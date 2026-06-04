@@ -29,3 +29,18 @@ npm start
 ```
 
 生产环境请配置 `.env` 中的 `DATABASE_URL`、`JWT_SECRET`、`TRON_API_KEY` 等变量。
+
+## Vercel 部署
+
+在 Vercel 项目 **Settings → Environment Variables** 中添加：
+
+| 变量 | 值 |
+|------|-----|
+| `DATABASE_URL` | `file:/tmp/phonefarm.db` |
+| `JWT_SECRET` | 随机长字符串 |
+| `ADMIN_EMAIL` | `admin@phonefarm.cn` |
+| `ADMIN_PASSWORD` | 管理员密码 |
+
+构建时若检测到 `DATABASE_URL`，会自动执行 `db push` 与 seed；未设置时跳过数据库步骤（避免构建失败）。
+
+> SQLite 在 Serverless 上为临时存储，重启后数据可能丢失。长期生产建议改用 Turso 或 PostgreSQL。
