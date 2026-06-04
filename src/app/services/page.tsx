@@ -5,9 +5,9 @@ import { ContactCTA } from "@/components/shared";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "???? - OEM ??????",
+  title: "定制方案 - OEM 手机农场部署",
   description:
-    "??????????:??????????ROM ????????????????????????????",
+    "广州手机农场定制服务：手机农场部署、远程控制配置、群控系统、ROM 定制、批量部署、企业交付及海外物流。",
   path: "/services",
 });
 
@@ -15,9 +15,9 @@ export default function ServicesPage() {
   return (
     <div className="section">
       <div className="container-wide">
-        <h1 className="section-title">???????</h1>
+        <h1 className="section-title">定制方案与服务</h1>
         <p className="section-subtitle">
-          ???????? OEM ???? - ??????????????????????????
+          广州手机农场 OEM 工厂直销 — 从样品评估、硬件定制到批量部署与远程运维，一站式交付真机手机农场方案。
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((svc) => (
@@ -30,7 +30,7 @@ export default function ServicesPage() {
                 <h2 className="text-xl font-bold text-white mb-2">{svc.title}</h2>
                 <p className="text-slate-400 text-sm mb-4">{svc.description}</p>
                 <Link href={`/contact?service=${svc.slug}`} className="text-emerald-400 text-sm hover:text-emerald-300">
-                  ?????
+                  咨询此方案
                 </Link>
               </div>
             </article>
@@ -38,7 +38,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-20">
-          <h2 className="text-2xl font-bold text-white mb-6">???? / ???? / ??????</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">批量采购 / 代理商 / 企业合作流程</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {BULK_PROCESS.map((step) => (
               <div key={step.step} className="card p-6">
@@ -50,7 +50,7 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <ContactCTA title="?? OEM ??????" />
+        <ContactCTA title="获取 OEM 定制报价" />
       </div>
     </div>
   );

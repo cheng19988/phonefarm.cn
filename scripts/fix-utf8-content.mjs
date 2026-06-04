@@ -75,6 +75,41 @@ const faqTs = `export const FAQ_ITEMS = [
     answer:
       "电话:13059502618 / WhatsApp:+852 6215 5642 / Telegram:@huicheng1998 / 邮箱:qiuxui646@gmail.com / 地址:中国广州。工作日 24 小时内回复,欢迎批量采购和定制咨询。",
   },
+  {
+    question: "手机农场有哪些应用场景?",
+    answer:
+      "常见合法场景包括:软件兼容性测试与压力测试、Android 产品开发调试、电商店铺群管理、矩阵获客与内容运营、游戏多开测试、云手机硬件租赁支撑等。广州手机农场硬件仅供开发测试等合法用途,请勿用于违法违规活动。",
+  },
+  {
+    question: "控制 3-5 个盒子需要什么电脑配置?",
+    answer:
+      "推荐多核多线程 CPU(如 E5 2680 V2 级别及以上)、16GB 以上内存、Windows 10/11 专业版、充足 USB 2.0 接口或独立供电 USB 扩展卡。20 台以上设备建议搭配企业软路由,避免普通路由器性能不足导致频繁断连。",
+  },
+  {
+    question: "购买整机盒包含哪些内容?",
+    answer:
+      "标准配置含整机盒硬件、USB 数据线、盒子电源线、主板备用电源线及群控管理软件(含试用)。批量订单可按需求增配散热、网络设备、机柜及 ROM 定制服务,详情请联系销售确认清单。",
+  },
+  {
+    question: "能否同时控制所有手机?",
+    answer:
+      "可以。群控软件支持单台独立操控,也可一键同步控制盒内全部设备窗口,适合批量安装、同步测试与自动化脚本执行,显著提升运维效率。",
+  },
+  {
+    question: "质保与售后政策是什么?",
+    answer:
+      "机箱质保 12 个月,手机主板质保 90 天,其他配件质保 1 年。质保期内硬件问题可免费更换(买家承担双向运费)。我们提供免费远程协助(AnyDesk),指导连接部署直至正常使用。",
+  },
+  {
+    question: "定制产品是否支持退换货?",
+    answer:
+      "整机盒为定制组装产品,发货后不支持退换,进入售后质保阶段。建议先采购样品评估,确认配置与兼容性后再下批量订单。",
+  },
+  {
+    question: "电脑提示 USB 资源不足怎么办?",
+    answer:
+      "建议使用 Windows 10 专业版;确认数据线接 USB 2.0 口而非 3.0;可在 BIOS 关闭 XHCI;使用带独立供电的 USB 2.0 PCI 扩展卡。如仍不足,可咨询我们推荐支持 120+ USB 设备的主板方案。",
+  },
 ];
 `;
 
@@ -158,4 +193,65 @@ export const BULK_PROCESS = [
 
 fs.writeFileSync(path.join(root, "src/data/faq.ts"), faqTs, "utf8");
 fs.writeFileSync(path.join(root, "src/data/services.ts"), servicesTs, "utf8");
+
+const servicesPageTs = `import Image from "next/image";
+import Link from "next/link";
+import { SERVICES, BULK_PROCESS } from "@/data/services";
+import { ContactCTA } from "@/components/shared";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata = buildMetadata({
+  title: "定制方案 - OEM 手机农场部署",
+  description:
+    "广州手机农场定制服务：手机农场部署、远程控制配置、群控系统、ROM 定制、批量部署、企业交付及海外物流。",
+  path: "/services",
+});
+
+export default function ServicesPage() {
+  return (
+    <div className="section">
+      <div className="container-wide">
+        <h1 className="section-title">定制方案与服务</h1>
+        <p className="section-subtitle">
+          广州手机农场 OEM 工厂直销 — 从样品评估、硬件定制到批量部署与远程运维，一站式交付真机手机农场方案。
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES.map((svc) => (
+            <article key={svc.slug} className="card overflow-hidden group">
+              <div className="relative aspect-video">
+                <Image src={svc.image} alt={svc.title} fill className="object-cover group-hover:scale-105 transition-transform" />
+              </div>
+              <div className="p-6">
+                <p className="text-xs text-emerald-400 mb-1">{svc.titleEn}</p>
+                <h2 className="text-xl font-bold text-white mb-2">{svc.title}</h2>
+                <p className="text-slate-400 text-sm mb-4">{svc.description}</p>
+                <Link href={\`/contact?service=\${svc.slug}\`} className="text-emerald-400 text-sm hover:text-emerald-300">
+                  咨询此方案
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-20">
+          <h2 className="text-2xl font-bold text-white mb-6">批量采购 / 代理商 / 企业合作流程</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {BULK_PROCESS.map((step) => (
+              <div key={step.step} className="card p-6">
+                <span className="text-emerald-400 font-bold text-xl">{step.step}</span>
+                <h3 className="font-bold text-white mt-2 mb-2">{step.title}</h3>
+                <p className="text-sm text-slate-400">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <ContactCTA title="获取 OEM 定制报价" />
+      </div>
+    </div>
+  );
+}
+`;
+
+fs.writeFileSync(path.join(root, "src/app/services/page.tsx"), servicesPageTs, "utf8");
 console.log("Fixed UTF-8 content files");
