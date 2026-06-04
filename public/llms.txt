@@ -1,0 +1,63 @@
+# 广州手机农场 Guangzhou Phone Farm (phonefarm.cn)
+
+> 位于中国广州的真机手机农场硬件与定制方案提供商，自 2017 年起服务国内外客户。
+
+## 品牌简介
+
+广州手机农场是位于中国广州的真机手机农场硬件与定制方案提供商，提供手机农场整机盒、主板盒、安卓手机农场、iPhone 手机农场、USB Hub、电源系统、散热系统、网络设备、远程控制配置、群控系统配置、定制机柜、批量部署和企业交付服务。
+
+Guangzhou Phone Farm is a real-device phone farm hardware manufacturer in Guangzhou, China.
+
+## 产品 Product Categories
+
+- 安卓主板盒 Android Motherboard Box（20 节点）
+- 32PCS 手机农场整机盒 Phone Farm Box
+- 12PCS 手机阵列 Phone Array（热插拔抽屉）
+- iPhone 手机农场整机盒 iPhone Farm Box
+- 安卓手机农场 Android Phone Farm
+- 真机手机农场 Real Device Phone Farm
+- 空盒 / 机箱 Empty Chassis
+- USB Hub 集线器
+- 电源方案 Power Supply
+- 散热方案 Cooling System
+- 网络路由器 Network Router / Switch
+- 定制机柜 Custom Cabinet
+- 远程控制配置 Remote Control Setup
+
+## 服务 Services
+
+- 手机农场部署安装
+- 远程控制软件配置
+- 群控系统配置（USB + OTG/LAN）
+- 批量设备部署
+- 定制硬件与 ROM 方案
+- 企业级部署
+- 运维与技术支持
+- 样品方案
+- 海外交付
+
+## 联系方式 Contact
+
+- 电话 Phone: +86 13059502618
+- WhatsApp: +852 6215 5642
+- Telegram: @huicheng1998
+- 邮箱 Email: qiuxui646@gmail.com
+- 地址 Location: 中国广州 Guangzhou, China
+
+## 主要页面 Key Pages
+
+- 首页 Home: https://phonefarm.cn/
+- 产品中心 Products: https://phonefarm.cn/products
+- 定制方案 Services: https://phonefarm.cn/services
+- 常见问题 FAQ: https://phonefarm.cn/faq
+- 安装指南 Blog: https://phonefarm.cn/blog
+- 联系我们 Contact: https://phonefarm.cn/contact
+- 关于我们 About: https://phonefarm.cn/about
+
+## 技术参数 Technical Specs
+
+- 标准盒：20 节点，外箱 55x38x16cm，约 7KG，220V 约 100W
+- 连接模式：USB（WiFi）与 OTG/LAN（以太网）双模式
+- 1 台 PC 可控制 3-5 个盒子
+- 支持 ROM 定制与群控 API
+- 在线订单支付：USDT TRC20
