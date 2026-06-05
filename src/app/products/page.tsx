@@ -16,6 +16,14 @@ export default async function ProductsPage({
   searchParams: Promise<{ sort?: string; category?: string }>;
 }) {
   const params = await searchParams;
+  const category = params.category;
+  const sortQuery = (extra: Record<string, string>) => {
+    const q = new URLSearchParams();
+    if (category) q.set("category", category);
+    Object.entries(extra).forEach(([k, v]) => q.set(k, v));
+    const s = q.toString();
+    return s ? `/products?${s}` : "/products";
+  };
   const orderBy =
     params.sort === "price-desc"
       ? { priceUsd: "desc" as const }
@@ -26,7 +34,7 @@ export default async function ProductsPage({
   const products = await prisma.product.findMany({
     where: {
       published: true,
-      ...(params.category ? { category: params.category } : {}),
+      ...(category ? { category } : {}),
     },
     orderBy,
   });
@@ -42,11 +50,11 @@ export default async function ProductsPage({
         </p>
 
         <div className="flex flex-wrap gap-3 mb-8">
-          <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-emerald-600 text-emerald-400" : "border-slate-700 text-slate-400"}`}>
+          <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!category ? "border-emerald-600 text-emerald-400" : "border-slate-700 text-slate-400"}`}>
             全部
           </Link>
           {categories.map((cat) => (
-            <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-emerald-600 text-emerald-400" : "border-slate-700 text-slate-400"}`}>
+            <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${category === cat ? "border-emerald-600 text-emerald-400" : "border-slate-700 text-slate-400"}`}>
               {cat}
             </Link>
           ))}
@@ -54,8 +62,8 @@ export default async function ProductsPage({
 
         <div className="flex gap-3 mb-8 text-sm">
           <span className="text-slate-500">排序：</span>
-          <Link href="/products?sort=price-asc" className="text-slate-400 hover:text-white">价格从低到高</Link>
-          <Link href="/products?sort=price-desc" className="text-slate-400 hover:text-white">价格从高到低</Link>
+          <Link href={sortQuery({ sort: "price-asc" })} className="text-slate-400 hover:text-white">价格从低到高</Link>
+          <Link href={sortQuery({ sort: "price-desc" })} className="text-slate-400 hover:text-white">价格从高到低</Link>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

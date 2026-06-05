@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StockBadge } from "./shared";
+import { CONTACT } from "@/lib/config";
 
 type ProductCardProps = {
   slug: string;
@@ -27,12 +28,12 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
         </Link>
         <p className="text-sm text-slate-400 mb-3 line-clamp-2 flex-1">{shortDesc}</p>
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xl font-bold text-white">${priceUsd.toLocaleString()}</span>
+          <span className="text-xl font-bold text-white">参考价 ${priceUsd.toLocaleString()}</span>
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/products/${slug}`} className="btn-primary text-center text-sm py-2">立即购买</Link>
-          <Link href={`/contact?product=${slug}`} className="btn-secondary text-center text-sm py-2">获取报价</Link>
+          <Link href={`/products/${slug}`} className="btn-secondary text-center text-sm py-2">查看详情</Link>
+          <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-sm py-2">获取报价</Link>
         </div>
       </div>
     </article>
@@ -55,23 +56,15 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
   );
 }
 
-export function BuyButtons({ slug, stock }: { slug: string; stock: number }) {
-  const disabled = stock <= 0;
+export function BuyButtons({ slug }: { slug: string; stock?: number }) {
+  const waText = encodeURIComponent(`你好，我想咨询产品：${slug}`);
   return (
     <div className="flex flex-wrap gap-3">
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="buy" />
-        <button type="submit" disabled={disabled} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
-          立即购买 Buy Now
-        </button>
-      </form>
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="quote" />
-        <button type="submit" className="btn-secondary">加入订单</button>
-      </form>
-      <Link href={`/contact?product=${slug}`} className="btn-outline">获取报价</Link>
+      <Link href={`/contact?product=${slug}`} className="btn-primary">获取报价</Link>
+      <Link href={`/contact?product=${slug}&type=sample`} className="btn-secondary">申请样品</Link>
+      <a href={`${CONTACT.whatsappUrl}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="btn-outline">
+        WhatsApp 咨询
+      </a>
     </div>
   );
 }

@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductCard, FAQAccordion } from "@/components/commerce";
 import { ContactCTA } from "@/components/shared";
-import { buildMetadata, faqJsonLd } from "@/lib/seo";
-import { JsonLd } from "@/components/shared";
+import { buildMetadata } from "@/lib/seo";
 import { FAQ_ITEMS } from "@/data/faq";
 import { BLOG_POSTS } from "@/data/blog";
 import { BULK_PROCESS } from "@/data/services";
@@ -12,8 +11,9 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT, PRODUCT_NAV } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "广州手机农场厂家｜真机手机农场设备与定制方案",
-  description: SITE.description,
+  title: "广州手机农场厂家｜真机手机农场设备",
+  description:
+    "广州手机农场 — 中国广州真机手机农场硬件厂家。主板盒、32PCS 整机盒、12PCS 阵列、iPhone 农场盒及网络设备，支持 OEM 定制与批量交付。",
   path: "/",
 });
 
@@ -28,15 +28,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <JsonLd data={faqJsonLd(previewFaq)} />
-
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <Image src={IMAGES.homeHero} alt="广州手机农场真机设备" fill className="object-cover opacity-30" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent" />
         <div className="container-wide relative py-20">
           <p className="text-emerald-400 font-medium mb-3">{SITE.location} · 工厂直销 · 自 {SITE.since} 年服务客户</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white max-w-4xl leading-tight mb-4">
-            广州手机农场厂家｜真机手机农场设备与定制方案
+            真机手机农场硬件厂家 · 整机盒与主板盒定制
           </h1>
           <p className="text-lg text-slate-400 mb-2">{SITE.nameEn}</p>
           <p className="text-xl text-slate-300 max-w-3xl mb-8 leading-relaxed">{SITE.description}</p>
@@ -61,7 +59,7 @@ export default async function HomePage() {
       <section className="section bg-slate-900/50">
         <div className="container-wide">
           <h2 className="section-title">核心产品 · 工厂直销</h2>
-          <p className="section-subtitle">复刻参考站产品体系并增强：主板盒、整机盒、手机阵列、iPhone 农场盒、网络路由器及全套配件。</p>
+          <p className="section-subtitle">主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、网络路由器及配套电源散热方案 — 面向企业与代理商批量交付。</p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -135,16 +133,19 @@ export default async function HomePage() {
 
       <section className="section">
         <div className="container-wide">
-          <h2 className="section-title">批量采购与合作流程</h2>
-          <p className="section-subtitle">面向企业客户、代理商及批量采购客户的标准商务流程，支持对公合同与开票。</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BULK_PROCESS.map((step) => (
+          <h2 className="section-title">合作流程概览</h2>
+          <p className="section-subtitle">面向企业客户与代理商的标准商务路径，支持对公合同与样品评估。</p>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {BULK_PROCESS.slice(0, 3).map((step) => (
               <div key={step.step} className="card p-6">
                 <span className="text-emerald-400 font-bold text-2xl">{step.step}</span>
                 <h3 className="font-bold text-white mt-2 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-400">{step.desc}</p>
               </div>
             ))}
+          </div>
+          <div className="text-center">
+            <Link href="/services" className="btn-outline">查看完整合作流程</Link>
           </div>
         </div>
       </section>
@@ -164,7 +165,7 @@ export default async function HomePage() {
               <li>WSAPI 批量设备控制与脚本自动化</li>
               <li>网络路由器 / 软路由推荐方案</li>
             </ul>
-            <Link href="/services/custom-hardware-solution" className="btn-primary">咨询 OEM 定制</Link>
+            <Link href="/contact?service=custom-hardware-solution" className="btn-primary">咨询 OEM 定制</Link>
           </div>
         </div>
       </section>

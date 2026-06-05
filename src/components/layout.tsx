@@ -66,7 +66,7 @@ export function Footer() {
           <div className="text-emerald-400 text-sm mb-3">{SITE.nameEn}</div>
           <p className="text-slate-400 text-sm mb-4 max-w-md">{SITE.description}</p>
           <ContactBar />
-          <p className="text-xs text-slate-500 mt-4">硬件仅供开发测试合法用途。</p>
+          <p className="text-xs text-slate-500 mt-4">{SITE.address} · 硬件仅供开发测试合法用途</p>
         </div>
         <div>
           <h3 className="font-semibold text-white mb-3">产品分类</h3>

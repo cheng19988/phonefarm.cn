@@ -3,6 +3,13 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
+  const company = String(form.get("company") || "");
+  const purchaseType = String(form.get("purchaseType") || "");
+  const extra = [
+    company ? `公司: ${company}` : "",
+    purchaseType ? `采购类型: ${purchaseType}` : "",
+  ].filter(Boolean).join(" | ");
+  const message = [extra, String(form.get("message") || "")].filter(Boolean).join("\n");
   const data = {
     name: String(form.get("name") || ""),
     country: String(form.get("country") || ""),
@@ -12,7 +19,7 @@ export async function POST(req: NextRequest) {
     deviceQuantity: String(form.get("deviceQuantity") || ""),
     productInterest: String(form.get("productInterest") || ""),
     budget: String(form.get("budget") || ""),
-    message: String(form.get("message") || ""),
+    message,
   };
   if (!data.name || !data.email) {
     return NextResponse.json({ error: "Name and email required" }, { status: 400 });

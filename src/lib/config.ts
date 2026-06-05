@@ -7,6 +7,7 @@ export const SITE = {
   taglineEn: "Real Device Phone Farm Hardware & Custom Solutions",
   location: "中国广州",
   locationEn: "Guangzhou, China",
+  address: "广东省广州市",
   since: 2017,
   description:
     "广州手机农场位于中国广州，专注于真机手机农场设备、整机盒、主板盒、安卓手机农场、iPhone 手机农场、USB Hub、电源、散热、网络设备、定制机柜及批量交付服务。",

@@ -164,7 +164,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     "真机手机农场 Real Device Phone Farm",
     "真机农场",
     "大规模真机手机农场整厂方案，工厂直销，适合企业与代理商。",
-    IMAGES.realDevice,
+    IMAGES.customCabinet,
     998,
     10
   ),
