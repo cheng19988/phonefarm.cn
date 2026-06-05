@@ -5,6 +5,7 @@ import { MobileContactBar } from "@/components/shared";
 import { JsonLd } from "@/components/shared";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
+import { ensureDatabase } from "@/lib/ensure-db";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,7 +27,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  await ensureDatabase();
+
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased pb-16 md:pb-0">
