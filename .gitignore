@@ -44,4 +44,6 @@ next-env.d.ts
 /prisma/dev.db
 dev.db
 *.db-journal
+!/prisma/data/
+!/prisma/data/phonefarm-seed.db
 /src/generated/prisma

@@ -1,12 +1,25 @@
 import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-if (!process.env.DATABASE_URL) {
-  console.log("prebuild: DATABASE_URL not set — skipping prisma db push & seed (OK for Vercel build)");
-  process.exit(0);
-}
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const seedDir = path.join(root, "prisma", "data");
+const seedDb = path.join(seedDir, "phonefarm-seed.db");
 
-console.log("prebuild: syncing database schema...");
-execSync("npx prisma db push", { stdio: "inherit" });
+fs.mkdirSync(seedDir, { recursive: true });
 
-console.log("prebuild: seeding database...");
-execSync("npx tsx prisma/seed.ts", { stdio: "inherit" });
+const dbUrl = `file:${seedDb.replace(/\\/g, "/")}`;
+console.log("prebuild: building bundled seed database at", seedDb);
+
+execSync("npx prisma db push", {
+  stdio: "inherit",
+  env: { ...process.env, DATABASE_URL: dbUrl },
+});
+
+execSync("npx tsx prisma/seed.ts", {
+  stdio: "inherit",
+  env: { ...process.env, DATABASE_URL: dbUrl },
+});
+
+console.log("prebuild: seed database ready");

@@ -43,6 +43,6 @@ npm start
 
 构建时若检测到 `DATABASE_URL`，会自动执行 `db push` 与 seed；未设置时跳过数据库步骤（避免构建失败）。
 
-Vercel Serverless 每次冷启动 `/tmp` 数据库为空，应用会在**首次请求时自动建表并 seed**（无需手动操作）。
+Vercel Serverless 每次冷启动 `/tmp` 为空。构建时会生成 `prisma/data/phonefarm-seed.db`（含产品数据），**首次请求自动复制到 `DATABASE_URL` 路径**。
 
 > SQLite 在 Serverless 上为临时存储，重启后数据可能丢失。长期生产建议改用 Turso 或 PostgreSQL。
