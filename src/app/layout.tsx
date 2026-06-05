@@ -27,6 +27,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   await ensureDatabase();
 

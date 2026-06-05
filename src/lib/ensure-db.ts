@@ -6,7 +6,11 @@ import { seedDatabase } from "@/lib/seed-db";
 
 const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
 
-const SEED_DB = path.join(process.cwd(), "prisma/data/phonefarm-seed.db");
+const SEED_DB = path.join(process.cwd(), "prisma", "data", "phonefarm-seed.db");
+
+function isBuildPhase() {
+  return process.env.NEXT_PHASE === "phase-production-build";
+}
 
 function resolveDbPath(databaseUrl: string) {
   if (!databaseUrl.startsWith("file:")) {
@@ -20,7 +24,13 @@ function resolveDbPath(databaseUrl: string) {
 function isMissingTableError(error: unknown) {
   const code = (error as { code?: string })?.code;
   const message = error instanceof Error ? error.message : String(error);
-  return code === "P2021" || message.includes("does not exist");
+  return (
+    code === "P2021" ||
+    code === "P2010" ||
+    message.includes("does not exist") ||
+    message.includes("TableDoesNotExist") ||
+    message.includes("没有名为")
+  );
 }
 
 async function tableExists() {
@@ -33,7 +43,7 @@ async function tableExists() {
   }
 }
 
-async function copyBundledSeed(targetPath: string) {
+function copyBundledSeed(targetPath: string) {
   if (!fs.existsSync(SEED_DB)) {
     throw new Error(`Bundled seed database missing: ${SEED_DB}`);
   }
@@ -42,18 +52,32 @@ async function copyBundledSeed(targetPath: string) {
   console.log("[ensure-db] Copied bundled seed to", targetPath);
 }
 
+function shouldCopySeed(targetPath: string) {
+  if (!fs.existsSync(SEED_DB)) return false;
+  if (!fs.existsSync(targetPath)) return true;
+  const seedSize = fs.statSync(SEED_DB).size;
+  const targetSize = fs.statSync(targetPath).size;
+  return targetSize < seedSize * 0.5;
+}
+
 async function initializeDatabase() {
-  if (await tableExists()) return;
+  if (isBuildPhase()) return;
 
   const targetPath = resolveDbPath(process.env.DATABASE_URL || "file:./prisma/dev.db");
 
+  if (shouldCopySeed(targetPath)) {
+    copyBundledSeed(targetPath);
+  }
+
+  if (await tableExists()) return;
+
   if (fs.existsSync(SEED_DB)) {
-    await copyBundledSeed(targetPath);
+    copyBundledSeed(targetPath);
     if (await tableExists()) return;
   }
 
   if (process.env.VERCEL) {
-    throw new Error("Failed to initialize database on Vercel from bundled seed");
+    throw new Error(`Failed to initialize database on Vercel (seed: ${fs.existsSync(SEED_DB)}, target: ${targetPath})`);
   }
 
   console.log("[ensure-db] Local fallback: prisma db push + seed");
@@ -62,6 +86,7 @@ async function initializeDatabase() {
 }
 
 export function ensureDatabase(): Promise<void> {
+  if (isBuildPhase()) return Promise.resolve();
   if (!globalForDb.dbReady) {
     globalForDb.dbReady = initializeDatabase();
   }
