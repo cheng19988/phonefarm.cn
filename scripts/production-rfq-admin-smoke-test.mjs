@@ -4,8 +4,14 @@
  * Never logs or prints passwords.
  */
 import { config } from "dotenv";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-config({ quiet: true });
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+config({ path: path.join(root, ".env"), quiet: true });
+const smokeEnv = path.join(root, ".env.smoke-test.local");
+if (fs.existsSync(smokeEnv)) config({ path: smokeEnv, quiet: true, override: true });
 
 const BASE = process.env.SMOKE_TEST_BASE || "https://www.phonefarm.cn";
 

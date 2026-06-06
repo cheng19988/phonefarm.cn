@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { prisma } from "@/lib/prisma";
+import { resolveDatabaseUrl, resolveDbFilePath } from "@/lib/database-url";
 import { seedDatabase } from "@/lib/seed-db";
 
 const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
@@ -13,12 +14,7 @@ function isBuildPhase() {
 }
 
 function resolveDbPath(databaseUrl: string) {
-  if (!databaseUrl.startsWith("file:")) {
-    return path.join(process.cwd(), "dev.db");
-  }
-  let filePath = databaseUrl.slice("file:".length);
-  if (filePath.startsWith("//")) filePath = filePath.slice(1);
-  return path.isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath);
+  return resolveDbFilePath(databaseUrl);
 }
 
 function isMissingTableError(error: unknown) {
@@ -80,7 +76,7 @@ function shouldCopySeed(targetPath: string) {
 async function initializeDatabase() {
   if (isBuildPhase()) return;
 
-  const targetPath = resolveDbPath(process.env.DATABASE_URL || "file:./prisma/dev.db");
+  const targetPath = resolveDbPath(resolveDatabaseUrl());
 
   if (shouldCopySeed(targetPath)) {
     copyBundledSeed(targetPath);
