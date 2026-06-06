@@ -16,6 +16,16 @@ if (fs.existsSync(seedDb)) {
 
 const dbUrl = `file:${seedDb.replace(/\\/g, "/")}`;
 console.log("prebuild: building bundled seed database at", seedDb);
+console.log("prebuild: ADMIN_EMAIL configured:", Boolean(process.env.ADMIN_EMAIL));
+console.log("prebuild: ADMIN_PASSWORD configured:", Boolean(process.env.ADMIN_PASSWORD));
+console.log(
+  "prebuild: admin seed uses",
+  process.env.ADMIN_EMAIL ? "ADMIN_EMAIL from build env" : "default admin@phonefarm.cn"
+);
+console.log(
+  "prebuild: admin password uses",
+  process.env.ADMIN_PASSWORD ? "ADMIN_PASSWORD from build env" : "fallback default (change in Vercel)"
+);
 
 execSync("npx prisma db push", {
   stdio: "inherit",

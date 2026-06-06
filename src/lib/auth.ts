@@ -2,6 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
 import { prisma } from "./prisma";
+import { getAdminEmail, getAdminPassword } from "./admin-env";
 
 const secret = new TextEncoder().encode(
   process.env.JWT_SECRET || "huicheng-phonefarm-dev-secret-change-in-production"
@@ -76,7 +77,7 @@ export async function requireUser() {
 }
 
 export async function ensureAdminUser() {
-  const email = process.env.ADMIN_EMAIL || "admin@phonefarm.cn";
+  const email = getAdminEmail();
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) return existing;
   return prisma.user.create({
@@ -84,15 +85,15 @@ export async function ensureAdminUser() {
       email,
       name: "Admin",
       role: "admin",
-      passwordHash: await hashPassword(process.env.ADMIN_PASSWORD || "admin123456"),
+      passwordHash: await hashPassword(getAdminPassword() || "admin123456"),
     },
   });
 }
 
 /** Keep seeded admin password aligned with runtime env (Vercel env changes, fresh /tmp DB). */
 export async function syncAdminFromEnv() {
-  const password = process.env.ADMIN_PASSWORD;
-  const email = process.env.ADMIN_EMAIL || "admin@phonefarm.cn";
+  const password = getAdminPassword();
+  const email = getAdminEmail();
   if (!password) return;
 
   await prisma.user.upsert({

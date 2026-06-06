@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { PRODUCT_SEEDS } from "@/data/products";
+import { getAdminEmail, getAdminPassword } from "@/lib/admin-env";
 
 export async function seedDatabase(client: PrismaClient) {
   for (const seed of PRODUCT_SEEDS) {
@@ -52,8 +53,8 @@ export async function seedDatabase(client: PrismaClient) {
     });
   }
 
-  const adminEmail = process.env.ADMIN_EMAIL || "admin@phonefarm.cn";
-  const adminPassword = process.env.ADMIN_PASSWORD || "admin123456";
+  const adminEmail = getAdminEmail();
+  const adminPassword = getAdminPassword() || "admin123456";
 
   await client.user.upsert({
     where: { email: adminEmail },

@@ -15,8 +15,17 @@ if (fs.existsSync(smokeEnv)) config({ path: smokeEnv, quiet: true, override: tru
 
 const BASE = process.env.SMOKE_TEST_BASE || "https://www.phonefarm.cn";
 
-const adminEmail = process.env.ADMIN_TEST_EMAIL || process.env.ADMIN_EMAIL || "";
-const adminPassword = process.env.ADMIN_TEST_PASSWORD || process.env.ADMIN_PASSWORD || "";
+function cleanEnvVar(value) {
+  if (!value) return "";
+  return value.trim().replace(/^["']|["']$/g, "");
+}
+
+const adminEmail = cleanEnvVar(
+  process.env.ADMIN_TEST_EMAIL || process.env.ADMIN_EMAIL
+).toLowerCase();
+const adminPassword = cleanEnvVar(
+  process.env.ADMIN_TEST_PASSWORD || process.env.ADMIN_PASSWORD
+);
 
 const now = new Date();
 const stamp =

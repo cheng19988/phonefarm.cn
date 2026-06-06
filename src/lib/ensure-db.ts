@@ -3,21 +3,21 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { prisma } from "@/lib/prisma";
 import { syncAdminFromEnv } from "@/lib/auth";
+import { adminEnvConfigured } from "@/lib/admin-env";
 import { resolveDatabaseUrl, resolveDbFilePath } from "@/lib/database-url";
 import { seedDatabase } from "@/lib/seed-db";
 
-const globalForDb = globalThis as unknown as { dbReady?: Promise<void>; adminSynced?: boolean };
-
-async function syncAdminOnce() {
-  if (globalForDb.adminSynced) return;
-  await syncAdminFromEnv();
-  globalForDb.adminSynced = true;
-}
+const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
 
 const SEED_DB = path.join(process.cwd(), "prisma", "data", "phonefarm-seed.db");
 
 function isBuildPhase() {
   return process.env.NEXT_PHASE === "phase-production-build";
+}
+
+function deploySeedMarkerPath() {
+  const deploymentId = process.env.VERCEL_DEPLOYMENT_ID || "local";
+  return path.join("/tmp", `.phonefarm-seed-applied-${deploymentId}`);
 }
 
 function resolveDbPath(databaseUrl: string) {
@@ -75,9 +75,25 @@ function copyBundledSeed(targetPath: string) {
 function shouldCopySeed(targetPath: string) {
   if (!fs.existsSync(SEED_DB)) return false;
   if (!fs.existsSync(targetPath)) return true;
+
+  if (process.env.VERCEL) {
+    const marker = deploySeedMarkerPath();
+    if (!fs.existsSync(marker)) return true;
+  }
+
   const seedSize = fs.statSync(SEED_DB).size;
   const targetSize = fs.statSync(targetPath).size;
   return targetSize < seedSize * 0.5;
+}
+
+function markDeploySeedApplied() {
+  if (!process.env.VERCEL) return;
+  fs.writeFileSync(deploySeedMarkerPath(), new Date().toISOString());
+}
+
+async function syncAdminIfConfigured() {
+  if (!adminEnvConfigured()) return;
+  await syncAdminFromEnv();
 }
 
 async function initializeDatabase() {
@@ -87,17 +103,19 @@ async function initializeDatabase() {
 
   if (shouldCopySeed(targetPath)) {
     copyBundledSeed(targetPath);
+    markDeploySeedApplied();
   }
 
   if ((await tableExists()) && (await contactTableReady())) {
-    await syncAdminOnce();
+    await syncAdminIfConfigured();
     return;
   }
 
   if (fs.existsSync(SEED_DB)) {
     copyBundledSeed(targetPath);
+    markDeploySeedApplied();
     if ((await tableExists()) && (await contactTableReady())) {
-      await syncAdminOnce();
+      await syncAdminIfConfigured();
       return;
     }
   }
@@ -109,6 +127,7 @@ async function initializeDatabase() {
   console.log("[ensure-db] Local fallback: prisma db push + seed");
   execSync("npx prisma db push", { stdio: "inherit", env: process.env });
   await seedDatabase(prisma);
+  await syncAdminIfConfigured();
 }
 
 export function ensureDatabase(): Promise<void> {
