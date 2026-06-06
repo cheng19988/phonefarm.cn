@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Technical Articles",
-  description: "Phone farm hardware notes — OTG setup, motherboard box comparison, automation API and enterprise deployment.",
+  description: "Phone farm hardware notes - OTG setup, motherboard box comparison, automation API and enterprise deployment.",
   path: "/blog",
 });
 
@@ -14,7 +14,7 @@ export default function BlogPage() {
       <div className="container-wide">
         <h1 className="section-title">Technical Articles</h1>
         <p className="section-subtitle">
-          Supplementary guides — primary setup reference is the{" "}
+          Supplementary guides - primary setup reference is the{" "}
           <Link href="/manual" className="text-blue-400 hover:underline">Installation Manual</Link>.
         </p>
         <div className="grid md:grid-cols-2 gap-4">

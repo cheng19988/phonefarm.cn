@@ -11,7 +11,7 @@ import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 export const metadata = buildMetadata({
   title: "Phone Farm Hardware Manufacturer",
   description:
-    "Guangzhou Phone Farm — Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, ROM customization and remote setup for bulk device deployment.",
+    "Guangzhou Phone Farm - Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, ROM customization and remote setup for bulk device deployment.",
   path: "/",
 });
 
@@ -46,14 +46,14 @@ export default function HomePage() {
 
       <section className="border-b border-[var(--border)]">
         <div className="container-wide py-14 md:py-20">
-          <p className="text-blue-400 text-sm font-medium mb-3">{SITE.nameEn} · {SITE.locationEn}</p>
+          <p className="text-blue-400 text-sm font-medium mb-3">{SITE.nameEn} - {SITE.locationEn}</p>
           <h1 className="text-3xl md:text-4xl font-semibold text-white max-w-3xl leading-tight mb-4">
             Phone Farm Hardware Manufacturer
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mb-2 leading-relaxed">
             Real-device phone farm boxes, Android motherboard arrays, ROM customization and remote setup support for bulk device deployment.
           </p>
-          <p className="text-sm text-slate-500 mb-8">{SITE.name} · 手机农场硬件设备 · 群控硬件 · 主板盒定制</p>
+          <p className="text-sm text-slate-500 mb-8">{SITE.name} - 手机农场硬件设备 - 群控硬件 - 主板盒定制</p>
           <div className="flex flex-wrap gap-3">
             <Link href="/contact" className="btn-primary">Get Quote</Link>
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">WhatsApp Inquiry</a>
@@ -65,7 +65,7 @@ export default function HomePage() {
       <section className="section border-b border-[var(--border)]">
         <div className="container-wide">
           <h2 className="section-title">Core Products</h2>
-          <p className="section-subtitle">Hardware SKUs with factory parameters — configuration and bulk pricing via RFQ.</p>
+          <p className="section-subtitle">Hardware SKUs with factory parameters - configuration and bulk pricing via RFQ.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {CORE_PRODUCTS.map((item) => (
               <Link key={item.slug} href={item.href} className="card p-0 flex flex-col sm:flex-row overflow-hidden hover:border-blue-800 transition-colors">
@@ -89,7 +89,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/products" className="btn-outline text-sm">All Products →</Link>
+            <Link href="/products" className="btn-outline text-sm">All Products -&gt;</Link>
           </div>
         </div>
       </section>
@@ -141,7 +141,7 @@ export default function HomePage() {
         <div className="container-wide max-w-3xl">
           <h2 className="section-title">FAQ Preview</h2>
           <FAQAccordion items={previewFaq} />
-          <Link href="/faq" className="btn-outline text-sm mt-6 inline-flex">All FAQ →</Link>
+          <Link href="/faq" className="btn-outline text-sm mt-6 inline-flex">All FAQ -&gt;</Link>
         </div>
       </section>
 
@@ -168,7 +168,7 @@ export default function HomePage() {
 
       <section className="section">
         <div className="container-wide">
-          <ContactCTA title="Need a phone farm box configuration?" />
+          <ContactCTA title="Need a phone farm box configuration-" />
         </div>
       </section>
     </>

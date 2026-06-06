@@ -1,6 +1,6 @@
 # Guangzhou Phone Farm (phonefarm.cn)
 
-> Phone farm hardware manufacturer in Guangzhou, China — RFQ-based sales, not retail checkout.
+> Phone farm hardware manufacturer in Guangzhou, China - RFQ-based sales, not retail checkout.
 
 ## Brand
 
@@ -19,8 +19,8 @@ Guangzhou Phone Farm (广州手机农场) supplies real-device phone farm boxes,
 
 ## Sales Model
 
-- **RFQ only** on website — Get Quote / WhatsApp / Email
-- Pricing depends on configuration — contact for bulk quote
+- **RFQ only** on website - Get Quote / WhatsApp / Email
+- Pricing depends on configuration - contact for bulk quote
 - Sample orders available
 - For confirmed bulk orders, payment methods discussed with sales (bank transfer, USDT when applicable)
 
@@ -43,9 +43,9 @@ Guangzhou Phone Farm (广州手机农场) supplies real-device phone farm boxes,
 
 ## Technical Specs (typical motherboard box)
 
-- 20 nodes, 55×38×16 cm, ~7 kg, 220V ~100W
+- 20 nodes, 55x38x16 cm, ~7 kg, 220V ~100W
 - USB + OTG/LAN dual mode
-- 1 PC controls 3–5 boxes (software dependent)
+- 1 PC controls 3-5 boxes (software dependent)
 
 ## Use
 

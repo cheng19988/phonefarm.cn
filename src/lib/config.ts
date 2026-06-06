@@ -3,15 +3,15 @@ export const SITE = {
   nameEn: "Guangzhou Phone Farm",
   domain: "phonefarm.cn",
   url: "https://phonefarm.cn",
-  tagline: "Phone Farm Hardware · RFQ",
-  taglineEn: "Phone Farm Box Manufacturer · Guangzhou, China",
+  tagline: "Phone Farm Hardware - RFQ",
+  taglineEn: "Phone Farm Box Manufacturer - Guangzhou, China",
   location: "中国广州",
   locationEn: "Guangzhou, China",
   address: "广东省广州市",
   description:
-    "广州手机农场 — 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
+    "广州手机农场 - 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
   descriptionEn:
-    "Guangzhou Phone Farm — hardware manufacturer for phone farm boxes, Android motherboard arrays, multi-device deployment, ROM customization and remote setup support.",
+    "Guangzhou Phone Farm - hardware manufacturer for phone farm boxes, Android motherboard arrays, multi-device deployment, ROM customization and remote setup support.",
 } as const;
 
 export const CONTACT = {
@@ -24,7 +24,7 @@ export const CONTACT = {
 } as const;
 
 export const PAYMENT = {
-  network: "Tron TRC20",
+  network: "TRON TRC20",
   currency: "USDT",
   address: "TH42KshQyz15iWk5svAwS475RM8oYQjwjW",
   contract: "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
@@ -33,8 +33,8 @@ export const PAYMENT = {
 } as const;
 
 export const RFQ_COPY = {
-  pricingNote: "Price depends on configuration · Contact for bulk quote",
-  pricingNoteZh: "价格随配置而定 · 批量询价",
+  pricingNote: "Price depends on configuration - Contact for bulk quote",
+  pricingNoteZh: "价格随配置而定 - 批量询价",
   paymentNote:
     "For confirmed bulk orders, payment methods can be discussed with sales, including USDT when applicable.",
   paymentNoteZh: "确认批量订单后，可与销售协商付款方式（含 USDT 等）。",
@@ -75,10 +75,10 @@ export const CORE_PRODUCTS = [
     href: "/products/motherboard-box",
     params: [
       "20 boards / box",
-      "220V · ~100W",
-      "55×38×16 cm · ~7 kg",
+      "220V - ~100W",
+      "55x38x16 cm - ~7 kg",
       "USB + OTG/LAN",
-      "1 PC → 3–5 boxes",
+      "1 PC -> 3-5 boxes",
     ],
     use: "Compact bulk deployment, low power per node",
   },

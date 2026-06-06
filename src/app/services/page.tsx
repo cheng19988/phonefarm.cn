@@ -33,14 +33,14 @@ export default function ServicesPage() {
                   <div className="grid sm:grid-cols-2 gap-4 text-xs mb-4">
                     <div>
                       <p className="text-slate-500 font-medium mb-1">What we provide</p>
-                      <ul className="text-slate-400 space-y-0.5">
-                        {svc.provides.map((p) => <li key={p}>- {p}</li>)}
+                      <ul className="list-disc list-inside text-slate-400 space-y-0.5">
+                        {svc.provides.map((p) => <li key={p}>{p}</li>)}
                       </ul>
                     </div>
                     <div>
                       <p className="text-slate-500 font-medium mb-1">Buyer prepares</p>
-                      <ul className="text-slate-400 space-y-0.5">
-                        {svc.buyerPrepares.map((p) => <li key={p}>- {p}</li>)}
+                      <ul className="list-disc list-inside text-slate-400 space-y-0.5">
+                        {svc.buyerPrepares.map((p) => <li key={p}>{p}</li>)}
                       </ul>
                     </div>
                   </div>

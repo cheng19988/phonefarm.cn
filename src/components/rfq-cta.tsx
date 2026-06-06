@@ -8,7 +8,7 @@ type RfqCTAProps = {
 };
 
 export function RfqCTA({
-  title = "Send RFQ · Get Configuration & Quote",
+  title = "Send RFQ - Get Configuration & Quote",
   productSlug,
   compact = false,
 }: RfqCTAProps) {
@@ -50,7 +50,7 @@ export function RfqCTA({
         <li>Shipping country</li>
         <li>ROM / cabinet customization (if any)</li>
       </ul>
-      <p className="text-xs text-slate-500 mb-4">{RFQ_COPY.pricingNote} · {RFQ_COPY.paymentNote}</p>
+      <p className="text-xs text-slate-500 mb-4">{RFQ_COPY.pricingNote} | {RFQ_COPY.paymentNote}</p>
       <div className="flex flex-wrap gap-3">
         <Link href={contactHref} className="btn-primary">
           Send RFQ

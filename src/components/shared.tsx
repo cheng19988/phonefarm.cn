@@ -34,7 +34,7 @@ export function ContactCTA({ title = "Need a phone farm configuration?" }: { tit
     <section className="card-flat">
       <h2 className="text-xl font-semibold text-white mb-2">{title}</h2>
       <p className="text-slate-400 text-sm mb-4 max-w-2xl">
-        Send device count, target model, connection mode (USB / OTG-LAN) and shipping country.
+        Send device count, target model, connection mode (USB / OTG-LAN) and shipping country.{" "}
         {SITE.nameEn} will reply with hardware configuration and factory quote within 24 hours.
       </p>
       <ContactBar />

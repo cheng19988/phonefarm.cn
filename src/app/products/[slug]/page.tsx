@@ -110,7 +110,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <ul className="space-y-2">
                   {features.map((f) => (
                     <li key={f} className="text-sm text-slate-300 flex gap-2">
-                      <span className="text-blue-400 shrink-0">—</span>{f}
+                      <span className="text-blue-400 shrink-0">-</span>{f}
                     </li>
                   ))}
                 </ul>
@@ -143,27 +143,27 @@ export default async function ProductDetailPage({ params }: Props) {
             <div className="space-y-6">
               <section className="card-flat">
                 <h3 className="font-medium text-white text-sm mb-3">What Is Included</h3>
-                <ul className="space-y-1 text-sm text-slate-400">
+                <ul className="space-y-1 text-sm text-slate-400 list-disc list-inside">
                   {included.map((a) => (
-                    <li key={a}>· {a}</li>
+                    <li key={a}>{a}</li>
                   ))}
                 </ul>
               </section>
 
               <section className="card-flat">
                 <h3 className="font-medium text-white text-sm mb-3">Customization Options</h3>
-                <ul className="space-y-1 text-sm text-slate-400">
+                <ul className="space-y-1 text-sm text-slate-400 list-disc list-inside">
                   {customization.map((c) => (
-                    <li key={c}>· {c}</li>
+                    <li key={c}>{c}</li>
                   ))}
                 </ul>
               </section>
 
               <section className="card-flat">
                 <h3 className="font-medium text-white text-sm mb-3">Warranty & Delivery</h3>
-                <ul className="space-y-1 text-sm text-slate-400">
+                <ul className="space-y-1 text-sm text-slate-400 list-disc list-inside">
                   {warranty.map((d) => (
-                    <li key={d}>· {d}</li>
+                    <li key={d}>{d}</li>
                   ))}
                 </ul>
               </section>

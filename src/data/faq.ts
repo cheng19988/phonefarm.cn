@@ -12,17 +12,17 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "product",
     question: "How many devices can one PC control?",
     answer:
-      "For Android motherboard boxes: typically 3?5 boxes (60?100 nodes) per PC depending on CPU, RAM and software. USB mode uses more host resources than OTG/LAN. Send your target node count and we recommend a PC spec.",
+      "For Android motherboard boxes: typically 3-5 boxes (60-100 nodes) per PC depending on CPU, RAM and software. USB mode uses more host resources than OTG/LAN. Send your target node count and we recommend a PC spec.",
   },
   {
     category: "product",
-    question: "USB mode or OTG/LAN mode ? which should I choose?",
+    question: "USB mode or OTG/LAN mode - which should I choose?",
     answer:
-      "USB mode (blue indicator): simpler setup, good for small labs and first evaluation. OTG/LAN mode (green indicator): better for 20+ devices on one network segment ? box and PC share a router, devices scanned by IP range. See /manual for setup steps.",
+      "USB mode (blue indicator): simpler setup, good for small labs and first evaluation. OTG/LAN mode (green indicator): better for 20+ devices on one network segment - box and PC share a router, devices scanned by IP range. See /manual for setup steps.",
   },
   {
     category: "product",
-    question: "Motherboard box vs full phone array ? what's the difference?",
+    question: "Motherboard box vs full phone array - what's the difference?",
     answer:
       "Motherboard box: highest density, lowest power, boards without screen. Phone array: hot-swap drawers, can hold full phones, easier maintenance. Choose based on whether you need quick device swaps or maximum nodes per watt.",
   },
@@ -30,25 +30,25 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "product",
     question: "Android vs iPhone farm box?",
     answer:
-      "Android boxes use mainstream Samsung and other boards with established ADB/group-control tooling. iPhone boxes require specific models, higher cost and custom quote ? send iOS version and model list in RFQ.",
+      "Android boxes use mainstream Samsung and other boards with established ADB/group-control tooling. iPhone boxes require specific models, higher cost and custom quote - send iOS version and model list in RFQ.",
   },
   {
     category: "product",
     question: "Can you customize ROM?",
     answer:
-      "Yes. Common requests: auto power-on after AC connect, persistent ADB authorization, disabled OTA prompts. Scope and lead time depend on board model ? describe requirements in RFQ.",
+      "Yes. Common requests: auto power-on after AC connect, persistent ADB authorization, disabled OTA prompts. Scope and lead time depend on board model - describe requirements in RFQ.",
   },
   {
     category: "product",
     question: "Can I choose the device model?",
     answer:
-      "Yes for Android ? subject to supply. iPhone models depend on stock. We confirm availability before final quote. Sample order recommended for new model combinations.",
+      "Yes for Android - subject to supply. iPhone models depend on stock. We confirm availability before final quote. Sample order recommended for new model combinations.",
   },
   {
     category: "technical",
     question: "What PC is recommended?",
     answer:
-      "Windows 10 or 11, 16 GB+ RAM, SSD, i5/Ryzen 5 or better for multi-box control. Avoid running heavy antivirus real-time scan on ADB folders. For 5+ boxes consider Xeon/E5 class with adequate USB controllers ? share your scale for a written spec.",
+      "Windows 10 or 11, 16 GB+ RAM, SSD, i5/Ryzen 5 or better for multi-box control. Avoid running heavy antivirus real-time scan on ADB folders. For 5+ boxes consider Xeon/E5 class with adequate USB controllers - share your scale for a written spec.",
   },
   {
     category: "technical",
@@ -60,11 +60,11 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "technical",
     question: "What is ADB authorization and why does it matter?",
     answer:
-      "ADB authorization files allow PC to communicate with boards without repeated on-screen prompts. Files must be placed in the correct Windows user profile folder. Replacing PC or reinstalling OS requires re-authorization ? backup your authorization folder.",
+      "ADB authorization files allow PC to communicate with boards without repeated on-screen prompts. Files must be placed in the correct Windows user profile folder. Replacing PC or reinstalling OS requires re-authorization - backup your authorization folder.",
   },
   {
     category: "technical",
-    question: "Devices not detected ? first checks?",
+    question: "Devices not detected - first checks?",
     answer:
       "1) Cable and power 2) Developer options + USB debugging enabled 3) Authorization files in place 4) No conflicting phone assistant software 5) Try another USB 2.0 port. Contact us with AnyDesk if still stuck.",
   },
@@ -84,7 +84,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "order",
     question: "Do you support sample orders?",
     answer:
-      "Yes. One box or 12PCS array for evaluation before bulk order. Sample lead time typically 3?5 business days for standard config.",
+      "Yes. One box or 12PCS array for evaluation before bulk order. Sample lead time typically 3-5 business days for standard config.",
   },
   {
     category: "order",
@@ -102,25 +102,25 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "order",
     question: "Do you ship internationally?",
     answer:
-      "Yes from Guangzhou. Express 3?7 days, sea freight 15?30 days. We can introduce freight forwarders. Import duties are buyer responsibility.",
+      "Yes from Guangzhou. Express 3-7 days, sea freight 15-30 days. We can introduce freight forwarders. Import duties are buyer responsibility.",
   },
   {
     category: "order",
     question: "How long is production time?",
     answer:
-      "Standard in-stock config: 3?5 business days. Custom ROM or OEM cabinet: 7?30 days depending on scope. Confirmed in written quote.",
+      "Standard in-stock config: 3-5 business days. Custom ROM or OEM cabinet: 7-30 days depending on scope. Confirmed in written quote.",
   },
   {
     category: "payment",
     question: "What payment methods are supported?",
     answer:
-      "Bank transfer for corporate orders. For confirmed bulk orders, payment methods are discussed with sales ? USDT (TRon TRC20) available when applicable. No automatic checkout on this website.",
+      "Bank transfer for corporate orders. For confirmed bulk orders, payment methods are discussed with sales - USDT (TRON TRC20) available when applicable. No automatic checkout on this website.",
   },
   {
     category: "payment",
     question: "Is USDT supported?",
     answer:
-      "Yes for confirmed orders when agreed with sales. This site does not display live payment checkout ? quote and proforma invoice first.",
+      "Yes for confirmed orders when agreed with sales. This site does not display live payment checkout - quote and proforma invoice first.",
   },
   {
     category: "payment",
@@ -132,7 +132,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "payment",
     question: "Can custom products be returned?",
     answer:
-      "Custom-assembled or ROM-modified units generally cannot be returned after dispatch. Standard catalog config may differ ? confirm in quote. See /manual warranty section.",
+      "Custom-assembled or ROM-modified units generally cannot be returned after dispatch. Standard catalog config may differ - confirm in quote. See /manual warranty section.",
   },
   {
     category: "payment",

@@ -12,7 +12,7 @@ export async function Header() {
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
           <span className="text-slate-400">
-            {SITE.nameEn} · {SITE.locationEn} · Phone Farm Hardware Manufacturer
+            {SITE.nameEn} | {SITE.locationEn} | Phone Farm Hardware Manufacturer
           </span>
           <ContactBar compact />
         </div>
@@ -20,7 +20,7 @@ export async function Header() {
       <div className="container-wide py-3 flex items-center justify-between gap-4">
         <Link href="/" className="shrink-0">
           <div className="font-semibold text-white leading-tight">{SITE.nameEn}</div>
-          <div className="text-[11px] text-slate-500 leading-tight">PhoneFarm.cn · {SITE.name}</div>
+          <div className="text-[11px] text-slate-500 leading-tight">PhoneFarm.cn | {SITE.name}</div>
         </Link>
         <nav className="hidden lg:flex items-center gap-5">
           {NAV.map((item) => (
@@ -57,7 +57,7 @@ export function Footer() {
       <div className="container-wide py-10 grid md:grid-cols-3 gap-8">
         <div>
           <div className="font-semibold text-white mb-1">{SITE.nameEn}</div>
-          <div className="text-sm text-slate-500 mb-3">{SITE.name} · {SITE.locationEn}</div>
+          <div className="text-sm text-slate-500 mb-3">{SITE.name} | {SITE.locationEn}</div>
           <p className="text-slate-400 text-sm mb-4 leading-relaxed">{SITE.descriptionEn}</p>
           <ContactBar />
           <p className="text-xs text-slate-600 mt-4">
@@ -86,12 +86,12 @@ export function Footer() {
             <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
           </ul>
           <p className="text-xs text-slate-600 mt-4">
-            RFQ: {CONTACT.email} · {CONTACT.whatsapp}
+            RFQ: {CONTACT.email} | {CONTACT.whatsapp}
           </p>
         </div>
       </div>
       <div className="border-t border-[var(--border)] py-3 text-center text-xs text-slate-600">
-        © {new Date().getFullYear()} {SITE.nameEn} · {CONTACT.email}
+        © {new Date().getFullYear()} {SITE.nameEn} | {CONTACT.email}
       </div>
     </footer>
   );

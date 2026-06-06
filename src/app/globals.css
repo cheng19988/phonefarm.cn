@@ -106,5 +106,5 @@ body {
 }
 
 .param-list li {
-  @apply flex gap-2 before:content-['·'] before:text-blue-400 before:font-bold;
+  @apply flex gap-2 before:content-['-'] before:text-blue-400 before:font-bold;
 }

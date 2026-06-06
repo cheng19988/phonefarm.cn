@@ -7,7 +7,7 @@ import { getProductSeed, type CatalogGroup } from "@/data/products";
 import { ContactCTA } from "@/components/shared";
 
 export const metadata = buildMetadata({
-  title: "Products — Phone Farm Hardware Catalog",
+  title: "Products - Phone Farm Hardware Catalog",
   description:
     "Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, routers, accessories and OEM cabinets. Contact for configuration and bulk quote.",
   path: "/products",
@@ -35,7 +35,7 @@ export default async function ProductsPage({
       <div className="container-wide">
         <h1 className="section-title">Products</h1>
         <p className="section-subtitle">
-          Phone farm hardware catalog — all pricing is configuration-based. Send RFQ for bulk quote, sample order or OEM scope.
+          Phone farm hardware catalog - all pricing is configuration-based. Send RFQ for bulk quote, sample order or OEM scope.
         </p>
 
         <div className="flex flex-wrap gap-2 mb-8">

@@ -3,7 +3,7 @@ import { SITE, RFQ_COPY } from "@/lib/config";
 
 export const metadata = buildMetadata({
   title: "Terms of Use",
-  description: `${SITE.nameEn} terms — RFQ sales, hardware use, warranty and payment for phone farm equipment.`,
+  description: `${SITE.nameEn} terms - RFQ sales, hardware use, warranty and payment for phone farm equipment.`,
   path: "/terms",
 });
 
@@ -22,7 +22,7 @@ export default function TermsPage() {
 
         <h2>Products</h2>
         <p>
-          Products are real-device hardware assembled or configured in Guangzhou, China. Specifications vary by configuration —
+          Products are real-device hardware assembled or configured in Guangzhou, China. Specifications vary by configuration -
           only the approved quote and BOM govern your order.
         </p>
 
@@ -31,7 +31,7 @@ export default function TermsPage() {
         <p>Bank transfer is standard for corporate orders. USDT (Tron TRC20) may be available for confirmed bulk orders when agreed with sales.</p>
 
         <h2>Shipping</h2>
-        <p>International shipping available. Express 3–7 days, sea 15–30 days typical. Import duties are buyer responsibility. Freight forwarder introduction available.</p>
+        <p>International shipping available. Express 3-7 days, sea 15-30 days typical. Import duties are buyer responsibility. Freight forwarder introduction available.</p>
 
         <h2>Warranty</h2>
         <p>Chassis: 12 months. Motherboards: 90 days. Accessories: 12 months unless stated otherwise. Unauthorized modification voids warranty.</p>

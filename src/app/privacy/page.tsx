@@ -3,7 +3,7 @@ import { SITE, RFQ_COPY } from "@/lib/config";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: `${SITE.nameEn} privacy policy — how RFQ and contact data is collected and used.`,
+  description: `${SITE.nameEn} privacy policy - how RFQ and contact data is collected and used.`,
   path: "/privacy",
 });
 

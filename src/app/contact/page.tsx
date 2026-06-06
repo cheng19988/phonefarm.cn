@@ -80,8 +80,8 @@ function ContactForm() {
       <button type="submit" disabled={status === "loading"} className="btn-primary w-full">
         {status === "loading" ? "Sending..." : "Send RFQ"}
       </button>
-      {status === "success" && <p className="text-green-400 text-sm">RFQ received — we reply within 24 hours.</p>}
-      {status === "error" && <p className="text-red-400 text-sm">Send failed — email {CONTACT.email} or WhatsApp directly.</p>}
+      {status === "success" && <p className="text-green-400 text-sm">RFQ received - we reply within 24 hours.</p>}
+      {status === "error" && <p className="text-red-400 text-sm">Send failed - email {CONTACT.email} or WhatsApp directly.</p>}
     </form>
   );
 }
@@ -106,7 +106,7 @@ export default function ContactPage() {
         </Suspense>
 
         <div className="mt-10">
-          <ContactCTA title="Prefer WhatsApp?" />
+          <ContactCTA title="Prefer WhatsApp-" />
         </div>
       </div>
     </div>

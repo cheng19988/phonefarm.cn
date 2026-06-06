@@ -5,9 +5,9 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About — Guangzhou Phone Farm",
+  title: "About - Guangzhou Phone Farm",
   description:
-    "Guangzhou-based phone farm hardware supplier — assembly, testing, packing, ROM customization and remote setup for bulk device deployment.",
+    "Guangzhou-based phone farm hardware supplier - assembly, testing, packing, ROM customization and remote setup for bulk device deployment.",
   path: "/about",
 });
 
@@ -17,29 +17,29 @@ export default function AboutPage() {
       <div className="container-wide max-w-3xl">
         <h1 className="section-title">About {SITE.nameEn}</h1>
         <p className="text-slate-300 text-base mb-6 leading-relaxed">
-          {SITE.nameEn} is a Guangzhou-based supplier focused on phone farm box hardware — Android motherboard arrays,
+          {SITE.nameEn} is a Guangzhou-based supplier focused on phone farm box hardware - Android motherboard arrays,
           multi-device chassis, network gear for OTG/LAN deployment, and factory services including ROM customization and remote setup.
         </p>
         <p className="text-slate-400 text-sm mb-8">
-          {SITE.name} · 手机农场硬件 · 主板盒 · 批量设备管理 · OEM 定制
+          {SITE.name} - 手机农场硬件 - 主板盒 - 批量设备管理 - OEM 定制
         </p>
 
         <div className="card-flat mb-10">
           <h2 className="font-medium text-white mb-4 text-sm">What we do</h2>
           <ul className="space-y-2 text-sm text-slate-400">
-            <li>· Hardware assembly, slot testing and QC burn-in</li>
-            <li>· Motherboard sourcing (model subject to supply)</li>
-            <li>· ROM customization for farm operation</li>
-            <li>· OTG/LAN network deployment guidance</li>
-            <li>· Remote installation support (AnyDesk)</li>
-            <li>· Bulk packing and export shipping from Guangzhou</li>
+            <li> -  Hardware assembly, slot testing and QC burn-in</li>
+            <li> -  Motherboard sourcing (model subject to supply)</li>
+            <li> -  ROM customization for farm operation</li>
+            <li> -  OTG/LAN network deployment guidance</li>
+            <li> -  Remote installation support (AnyDesk)</li>
+            <li> -  Bulk packing and export shipping from Guangzhou</li>
           </ul>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-10">
           {[
-            { title: "Real device hardware", desc: "Physical phones and motherboards — not cloud virtual instances or emulators." },
-            { title: "RFQ-based sales", desc: "Configuration and bulk pricing via email, WhatsApp or contact form — not retail checkout." },
+            { title: "Real device hardware", desc: "Physical phones and motherboards - not cloud virtual instances or emulators." },
+            { title: "RFQ-based sales", desc: "Configuration and bulk pricing via email, WhatsApp or contact form - not retail checkout." },
             { title: "OEM available", desc: "Custom cabinet, slot count and branding for integrators and enterprise labs." },
             { title: "Documentation", desc: "Installation manual, FAQ and remote support for commissioning." },
           ].map((item) => (
@@ -79,7 +79,7 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <ContactCTA title="Factory visit or RFQ — contact sales" />
+        <ContactCTA title="Factory visit or RFQ - contact sales" />
       </div>
     </div>
   );

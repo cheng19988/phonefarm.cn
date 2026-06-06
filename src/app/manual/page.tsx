@@ -4,7 +4,7 @@ import { MANUAL_SECTIONS, MANUAL_TOC } from "@/data/manual";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Installation Manual — Phone Farm Box Setup",
+  title: "Installation Manual - Phone Farm Box Setup",
   description:
     "Phone farm box installation manual: USB mode, OTG/LAN, ADB authorization, router recommendations, troubleshooting and remote support.",
   path: "/manual",
@@ -15,10 +15,10 @@ function renderContent(text: string) {
     if (line.startsWith("**") && line.endsWith("**")) {
       return <p key={i} className="font-medium text-white mt-4 mb-2 text-sm">{line.replace(/\*\*/g, "")}</p>;
     }
-    if (line.startsWith("☐")) {
+    if (line.startsWith("[ ]")) {
       return <p key={i} className="text-slate-300 text-sm mb-1">{line}</p>;
     }
-    if (line.startsWith("→")) {
+    if (line.startsWith(" -> ")) {
       return <p key={i} className="text-slate-400 text-sm mb-1 pl-2">{line}</p>;
     }
     if (line.startsWith("`") && line.includes("`")) {
@@ -48,7 +48,7 @@ export default function ManualPage() {
           <div className="lg:col-span-3 max-w-3xl">
             <h1 className="section-title">Installation Manual</h1>
             <p className="section-subtitle">
-              Technical setup guide for Android phone farm boxes — USB mode, OTG/LAN, ADB, routers and troubleshooting.
+              Technical setup guide for Android phone farm boxes - USB mode, OTG/LAN, ADB, routers and troubleshooting.
             </p>
 
             {MANUAL_SECTIONS.map((section) => (
@@ -61,7 +61,7 @@ export default function ManualPage() {
             ))}
 
             <div className="mt-12">
-              <ContactCTA title="Need hardware for this setup? Send RFQ" />
+              <ContactCTA title="Need hardware for this setup- Send RFQ" />
             </div>
             <p className="text-sm text-slate-500 mt-4">
               More articles: <Link href="/blog" className="text-blue-400 hover:underline">Technical Articles</Link>

@@ -5,7 +5,7 @@ import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "FAQ — Phone Farm Hardware",
+  title: "FAQ - Phone Farm Hardware",
   description:
     "Product configuration, USB/OTG setup, ADB, router choice, RFQ process, shipping, payment and warranty for Guangzhou Phone Farm hardware.",
   path: "/faq",
