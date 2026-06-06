@@ -57,7 +57,10 @@ export async function seedDatabase(client: PrismaClient) {
 
   await client.user.upsert({
     where: { email: adminEmail },
-    update: {},
+    update: {
+      role: "admin",
+      passwordHash: await bcrypt.hash(adminPassword, 12),
+    },
     create: {
       email: adminEmail,
       name: "Admin",

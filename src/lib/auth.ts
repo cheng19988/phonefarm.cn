@@ -88,3 +88,21 @@ export async function ensureAdminUser() {
     },
   });
 }
+
+/** Keep seeded admin password aligned with runtime env (Vercel env changes, fresh /tmp DB). */
+export async function syncAdminFromEnv() {
+  const password = process.env.ADMIN_PASSWORD;
+  const email = process.env.ADMIN_EMAIL || "admin@phonefarm.cn";
+  if (!password) return;
+
+  await prisma.user.upsert({
+    where: { email },
+    update: { role: "admin", passwordHash: await hashPassword(password) },
+    create: {
+      email,
+      name: "Admin",
+      role: "admin",
+      passwordHash: await hashPassword(password),
+    },
+  });
+}
