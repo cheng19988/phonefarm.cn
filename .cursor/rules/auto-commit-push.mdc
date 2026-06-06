@@ -1,0 +1,24 @@
+---
+description: 任务完成后自动 git commit 并 push，网络失败时重试
+alwaysApply: true
+---
+
+# 自动提交与推送
+
+每次完成用户任务后，**无需等待用户说「推送」**，立即执行 git commit + push。
+
+## 流程
+
+1. 检查 `git status`：若有未提交变更，先 commit（遵循仓库 commit 风格，不提交 `.env` 等敏感文件）
+2. 若本地分支 ahead of remote，立即 push
+3. 推送命令（本仓库代理常失败，禁用代理）：
+   ```bash
+   git -c http.proxy= -c https.proxy= push origin main
+   ```
+4. **网络超时或连接重置时自动重试**，最多 5 次，每次间隔约 5 秒；仍失败则报告错误并保留本地 commit
+
+## 注意
+
+- 仅推送到 `cheng19988/phonefarm.cn` 的 `main` 分支
+- 不要 force push
+- 用户若明确说「不要提交/不要推送」，以用户当次指令为准

@@ -1,107 +1,151 @@
-export const FAQ_ITEMS = [
+export type FaqItem = { question: string; answer: string; category: string };
+
+export const FAQ_CATEGORIES = [
+  { id: "product", title: "Product & Configuration" },
+  { id: "technical", title: "Installation & Technical" },
+  { id: "order", title: "Order & Shipping" },
+  { id: "payment", title: "Payment & After-sales" },
+] as const;
+
+export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: "什么是手机农场?",
+    category: "product",
+    question: "How many devices can one PC control?",
     answer:
-      "手机农场(Phone Farm)是将多台真机智能手机集中供电、联网、统一管理的硬件系统。通过群控软件,一台电脑可同时操控数十台甚至上百台设备,适用于应用兼容性测试、批量自动化测试、企业设备运维等合法业务场景。广州手机农场提供整机盒、主板盒及配套硬件方案。",
+      "For Android motherboard boxes: typically 3?5 boxes (60?100 nodes) per PC depending on CPU, RAM and software. USB mode uses more host resources than OTG/LAN. Send your target node count and we recommend a PC spec.",
   },
   {
-    question: "什么是真机手机农场?",
+    category: "product",
+    question: "USB mode or OTG/LAN mode ? which should I choose?",
     answer:
-      "真机手机农场使用物理智能手机或手机主板运行,具备真实 IMEI、传感器、GPS 和硬件指纹,而非云手机虚拟实例或软件模拟器。广州手机农场所有产品均为真机硬件,工厂直销,适合对设备真实性和稳定性要求较高的企业客户。",
+      "USB mode (blue indicator): simpler setup, good for small labs and first evaluation. OTG/LAN mode (green indicator): better for 20+ devices on one network segment ? box and PC share a router, devices scanned by IP range. See /manual for setup steps.",
   },
   {
-    question: "手机农场和云手机有什么区别?",
+    category: "product",
+    question: "Motherboard box vs full phone array ? what's the difference?",
     answer:
-      "云手机是在共享服务器上运行的虚拟 Android 实例,多用户共用底层基础设施,容易被平台识别。真机手机农场使用独立物理设备,每台设备拥有独立硬件特征和网络环境,在账号安全、传感器精度和长期稳定运行方面更具优势。",
+      "Motherboard box: highest density, lowest power, boards without screen. Phone array: hot-swap drawers, can hold full phones, easier maintenance. Choose based on whether you need quick device swaps or maximum nodes per watt.",
   },
   {
-    question: "手机农场和模拟器有什么区别?",
+    category: "product",
+    question: "Android vs iPhone farm box?",
     answer:
-      "模拟器在电脑上通过软件模拟 Android/iOS 环境,平台可检测到虚拟环境特征。真机手机农场使用真实硬件,传感器与系统行为更接近真实用户设备,在应用测试、兼容性验证与长期稳定性验证方面更具优势。",
+      "Android boxes use mainstream Samsung and other boards with established ADB/group-control tooling. iPhone boxes require specific models, higher cost and custom quote ? send iOS version and model list in RFQ.",
   },
   {
-    question: "支持安卓手机农场吗?",
+    category: "product",
+    question: "Can you customize ROM?",
     answer:
-      "支持。我们提供安卓主板盒(20 节点)、32PCS 整机盒、12PCS 手机阵列等多种规格,兼容 Samsung 等主流主板,支持 ADB 调试、群控软件和 ROM 定制。一台 PC 可控制 3-5 个盒子,轻松扩展至数百台设备。",
+      "Yes. Common requests: auto power-on after AC connect, persistent ADB authorization, disabled OTA prompts. Scope and lead time depend on board model ? describe requirements in RFQ.",
   },
   {
-    question: "支持 iPhone 手机农场吗?",
+    category: "product",
+    question: "Can I choose the device model?",
     answer:
-      "支持。我们提供 iPhone 手机农场整机盒方案,采用热插拔抽屉设计,支持完整 iPhone 设备接入,适用于 iOS 应用测试、TestFlight 验证及企业级多设备管理。详情请联系销售获取配置方案。",
+      "Yes for Android ? subject to supply. iPhone models depend on stock. We confirm availability before final quote. Sample order recommended for new model combinations.",
   },
   {
-    question: "可以定制数量和配置吗?",
+    category: "technical",
+    question: "What PC is recommended?",
     answer:
-      "可以。我们支持定制节点数量、机箱尺寸、电源方案、散热布局、机柜规格及 ROM 功能。企业客户可提供设备型号、目标数量和业务场景,我们的工程团队将出具 OEM 定制方案和报价。",
+      "Windows 10 or 11, 16 GB+ RAM, SSD, i5/Ryzen 5 or better for multi-box control. Avoid running heavy antivirus real-time scan on ADB folders. For 5+ boxes consider Xeon/E5 class with adequate USB controllers ? share your scale for a written spec.",
   },
   {
-    question: "是否支持远程控制?",
+    category: "technical",
+    question: "Why does Windows show insufficient USB resources?",
     answer:
-      "支持。我们提供远程控制软件配置服务,包括屏幕镜像、批量 APK 安装、ADB 命令、设备分组管理。购买硬件后可获得安装指导,直至成功部署。远程协助通过 AnyDesk 等方式提供。",
+      "Too many devices on one USB host controller. Fix: use powered USB 2.0 hubs, split boxes across separate controllers, reduce simultaneous mirrors, or switch heavy loads to OTG/LAN mode. Details in /manual troubleshooting.",
   },
   {
-    question: "是否支持群控系统配置?",
+    category: "technical",
+    question: "What is ADB authorization and why does it matter?",
     answer:
-      "支持。我们可配置 USB 模式(WiFi 连接)和 OTG/LAN 以太网模式,支持 IP 段扫描、批量同步操作、多分组管理,并可对接 WSAPI 自动化接口,满足代理商和企业批量部署需求。",
+      "ADB authorization files allow PC to communicate with boards without repeated on-screen prompts. Files must be placed in the correct Windows user profile folder. Replacing PC or reinstalling OS requires re-authorization ? backup your authorization folder.",
   },
   {
-    question: "是否支持样品?",
+    category: "technical",
+    question: "Devices not detected ? first checks?",
     answer:
-      "支持。欢迎先采购 1 台样品评估硬件质量、散热性能和软件兼容性。样品订单通常 3-5 个工作日发货,含硬件、线缆、电源及管理软件试用。确认满意后再下批量订单。",
+      "1) Cable and power 2) Developer options + USB debugging enabled 3) Authorization files in place 4) No conflicting phone assistant software 5) Try another USB 2.0 port. Contact us with AnyDesk if still stuck.",
   },
   {
-    question: "最小起订量是多少?",
+    category: "technical",
+    question: "What router is recommended for OTG/LAN?",
     answer:
-      "标准产品 MOQ 为 1 台(样品)。批量采购 5 台起享优惠价格,企业机柜部署通常 10 台以上配备专属项目经理。代理商和 OEM 客户可洽谈长期合作价格。",
+      "~20 devices: stable consumer router often sufficient. 50+: dedicated soft router with gigabit backbone. Router must assign stable IPs on same segment as control PC. We can bundle pre-configured router in quote.",
   },
   {
-    question: "如何付款?",
+    category: "technical",
+    question: "Can you help install remotely?",
     answer:
-      "在线订单支持 USDT(Tron TRC20 网络,最低 10 USDT,30 分钟支付窗口)。批量采购和对公合作支持银行转账(T/T)、Wise、PayPal 及合同开票。请联系销售获取对公账户和合同模板。",
+      "Yes. Basic remote setup is included with hardware orders (AnyDesk). We walk through mirror, batch control, OTG scan and common errors until operational.",
   },
   {
-    question: "交付周期多久?",
+    category: "order",
+    question: "Do you support sample orders?",
     answer:
-      "现货标准款 3-5 个工作日发货。定制 OEM 配置 7-15 个工作日生产。国内快递 1-3 天;国际快递 3-7 天;海运 15-30 天。我们可协助联系国际货代安排出口物流。",
+      "Yes. One box or 12PCS array for evaluation before bulk order. Sample lead time typically 3?5 business days for standard config.",
   },
   {
-    question: "如何联系广州手机农场?",
+    category: "order",
+    question: "How do I get a quote?",
     answer:
-      "电话:13059502618 / WhatsApp:+852 6215 5642 / Telegram:@huicheng1998 / 邮箱:qiuxui646@gmail.com / 地址:中国广州。工作日 24 小时内回复,欢迎批量采购和定制咨询。",
+      "Email qiuxui646@gmail.com, WhatsApp +852 6215 5642, or use the /contact RFQ form. Include: quantity, Android/iPhone, motherboard or full phone, USB or OTG/LAN, destination country, customization needs.",
   },
   {
-    question: "手机农场有哪些应用场景?",
+    category: "order",
+    question: "What information should I provide for RFQ?",
     answer:
-      "常见合法场景包括:软件兼容性测试与压力测试、Android/iOS 应用开发调试、企业级设备实验室、自动化回归测试、游戏兼容性验证、OEM 批量 provisioning 等。硬件仅供开发测试等合法用途,请勿用于违法违规活动。",
+      "Target device count, model (if known), connection mode, shipping country, timeline, ROM/custom needs and whether you need router/switch bundle. Photos of your site help for large projects.",
   },
   {
-    question: "控制 3-5 个盒子需要什么电脑配置?",
+    category: "order",
+    question: "Do you ship internationally?",
     answer:
-      "推荐多核多线程 CPU(如 E5 2680 V2 级别及以上)、16GB 以上内存、Windows 10/11 专业版、充足 USB 2.0 接口或独立供电 USB 扩展卡。20 台以上设备建议搭配企业软路由,避免普通路由器性能不足导致频繁断连。",
+      "Yes from Guangzhou. Express 3?7 days, sea freight 15?30 days. We can introduce freight forwarders. Import duties are buyer responsibility.",
   },
   {
-    question: "购买整机盒包含哪些内容?",
+    category: "order",
+    question: "How long is production time?",
     answer:
-      "标准配置含整机盒硬件、USB 数据线、盒子电源线、主板备用电源线及群控管理软件(含试用)。批量订单可按需求增配散热、网络设备、机柜及 ROM 定制服务,详情请联系销售确认清单。",
+      "Standard in-stock config: 3?5 business days. Custom ROM or OEM cabinet: 7?30 days depending on scope. Confirmed in written quote.",
   },
   {
-    question: "能否同时控制所有手机?",
+    category: "payment",
+    question: "What payment methods are supported?",
     answer:
-      "可以。群控软件支持单台独立操控,也可一键同步控制盒内全部设备窗口,适合批量安装、同步测试与自动化脚本执行,显著提升运维效率。",
+      "Bank transfer for corporate orders. For confirmed bulk orders, payment methods are discussed with sales ? USDT (TRon TRC20) available when applicable. No automatic checkout on this website.",
   },
   {
-    question: "质保与售后政策是什么?",
+    category: "payment",
+    question: "Is USDT supported?",
     answer:
-      "机箱质保 12 个月,手机主板质保 90 天,其他配件质保 1 年。质保期内硬件问题可免费更换(买家承担双向运费)。我们提供免费远程协助(AnyDesk),指导连接部署直至正常使用。",
+      "Yes for confirmed orders when agreed with sales. This site does not display live payment checkout ? quote and proforma invoice first.",
   },
   {
-    question: "定制产品是否支持退换货?",
+    category: "payment",
+    question: "What is the warranty?",
     answer:
-      "整机盒为定制组装产品,发货后不支持退换,进入售后质保阶段。建议先采购样品评估,确认配置与兼容性后再下批量订单。",
+      "Chassis: 12 months. Motherboards: 90 days. Accessories (fans, cables): 12 months. Misuse, unauthorized modification and normal wear excluded.",
   },
   {
-    question: "电脑提示 USB 资源不足怎么办?",
+    category: "payment",
+    question: "Can custom products be returned?",
     answer:
-      "建议使用 Windows 10 专业版;确认数据线接 USB 2.0 口而非 3.0;可在 BIOS 关闭 XHCI;使用带独立供电的 USB 2.0 PCI 扩展卡。如仍不足,可咨询我们推荐支持 120+ USB 设备的主板方案。",
+      "Custom-assembled or ROM-modified units generally cannot be returned after dispatch. Standard catalog config may differ ? confirm in quote. See /manual warranty section.",
+  },
+  {
+    category: "payment",
+    question: "What support is included?",
+    answer:
+      "Remote setup assistance until first successful operation, warranty-period remote diagnostics via AnyDesk, spare parts supply for out-of-warranty repairs quoted separately.",
   },
 ];
+
+export function getFaqByCategory(category: string) {
+  return FAQ_ITEMS.filter((item) => item.category === category);
+}
+
+export function getFaqPreview(count = 5) {
+  return FAQ_ITEMS.slice(0, count);
+}

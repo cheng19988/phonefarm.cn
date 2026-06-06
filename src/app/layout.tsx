@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
-import { MobileContactBar } from "@/components/shared";
+import { MobileNav } from "@/components/mobile-nav";
 import { JsonLd } from "@/components/shared";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -39,7 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <MobileContactBar />
+        <MobileNav />
       </body>
     </html>
   );

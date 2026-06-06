@@ -3,16 +3,15 @@ export const SITE = {
   nameEn: "Guangzhou Phone Farm",
   domain: "phonefarm.cn",
   url: "https://phonefarm.cn",
-  tagline: "真机手机农场设备 · 整机盒 · 主板盒 · 定制方案",
-  taglineEn: "Real Device Phone Farm Hardware & Custom Solutions",
+  tagline: "Phone Farm Hardware · RFQ",
+  taglineEn: "Phone Farm Box Manufacturer · Guangzhou, China",
   location: "中国广州",
   locationEn: "Guangzhou, China",
   address: "广东省广州市",
-  since: 2017,
   description:
-    "广州手机农场位于中国广州，专注于真机手机农场设备、整机盒、主板盒、安卓手机农场、iPhone 手机农场、USB Hub、电源、散热、网络设备、定制机柜及批量交付服务。",
+    "广州手机农场 — 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
   descriptionEn:
-    "Guangzhou Phone Farm manufactures real-device phone farm hardware, chassis boxes, motherboard arrays, Android and iPhone farms, and enterprise bulk deployment from Guangzhou, China.",
+    "Guangzhou Phone Farm — hardware manufacturer for phone farm boxes, Android motherboard arrays, multi-device deployment, ROM customization and remote setup support.",
 } as const;
 
 export const CONTACT = {
@@ -33,19 +32,96 @@ export const PAYMENT = {
   expiryMinutes: 30,
 } as const;
 
+export const RFQ_COPY = {
+  pricingNote: "Price depends on configuration · Contact for bulk quote",
+  pricingNoteZh: "价格随配置而定 · 批量询价",
+  paymentNote:
+    "For confirmed bulk orders, payment methods can be discussed with sales, including USDT when applicable.",
+  paymentNoteZh: "确认批量订单后，可与销售协商付款方式（含 USDT 等）。",
+} as const;
+
 export const NAV = [
-  { href: "/products", label: "产品中心" },
-  { href: "/services", label: "定制方案" },
-  { href: "/about", label: "关于我们" },
-  { href: "/faq", label: "常见问题" },
-  { href: "/blog", label: "安装指南" },
-  { href: "/contact", label: "联系我们" },
+  { href: "/products", label: "Products", labelZh: "产品" },
+  { href: "/manual", label: "Manual", labelZh: "手册" },
+  { href: "/faq", label: "FAQ", labelZh: "FAQ" },
+  { href: "/services", label: "Services", labelZh: "服务" },
+  { href: "/about", label: "About", labelZh: "关于" },
+  { href: "/contact", label: "Contact", labelZh: "联系" },
+] as const;
+
+export const PRODUCT_CATALOG_GROUPS = [
+  { id: "motherboard-box", label: "Android Motherboard Box", labelZh: "安卓主板盒" },
+  { id: "phone-farm-box", label: "Phone Farm Box", labelZh: "整机盒" },
+  { id: "phone-array", label: "Phone Array", labelZh: "手机阵列" },
+  { id: "iphone", label: "iPhone Farm Box", labelZh: "iPhone 农场盒" },
+  { id: "network", label: "Network / Router", labelZh: "网络设备" },
+  { id: "accessories", label: "Accessories", labelZh: "配件" },
+  { id: "oem-custom", label: "OEM / Custom", labelZh: "OEM 定制" },
 ] as const;
 
 export const PRODUCT_NAV = [
-  { href: "/products/motherboard-box", label: "主板盒 Motherboard Box" },
-  { href: "/products/phone-farm-box", label: "32PCS 整机盒" },
-  { href: "/products/phone-array-12pcs", label: "12PCS 手机阵列" },
-  { href: "/products/iphone-phone-farm", label: "iPhone 农场盒" },
-  { href: "/products/network-equipment", label: "网络路由器" },
+  { href: "/products/motherboard-box", label: "Motherboard Box" },
+  { href: "/products/phone-farm-box", label: "32PCS Phone Farm Box" },
+  { href: "/products/phone-array-12pcs", label: "12PCS Phone Array" },
+  { href: "/products/iphone-phone-farm", label: "iPhone Farm Box" },
+  { href: "/products/network-equipment", label: "Router / Switch" },
+] as const;
+
+export const CORE_PRODUCTS = [
+  {
+    slug: "motherboard-box",
+    title: "Android Motherboard Box",
+    titleZh: "安卓主板盒",
+    href: "/products/motherboard-box",
+    params: [
+      "20 boards / box",
+      "220V · ~100W",
+      "55×38×16 cm · ~7 kg",
+      "USB + OTG/LAN",
+      "1 PC → 3–5 boxes",
+    ],
+    use: "Compact bulk deployment, low power per node",
+  },
+  {
+    slug: "phone-farm-box",
+    title: "32PCS Phone Farm Box",
+    titleZh: "32PCS 整机盒",
+    href: "/products/phone-farm-box",
+    params: [
+      "32 devices / box",
+      "3-fan cooling",
+      "ROM customization",
+      "USB + OTG/LAN",
+      "Medium-scale batch ops",
+    ],
+    use: "Medium-scale device management & testing",
+  },
+  {
+    slug: "phone-array-12pcs",
+    title: "12PCS Phone Array",
+    titleZh: "12PCS 手机阵列",
+    href: "/products/phone-array-12pcs",
+    params: [
+      "12 hot-swap drawers",
+      "Full phone or motherboard",
+      "Built-in PC option",
+      "USB 2.0 HUB",
+      "Easier maintenance",
+    ],
+    use: "Lab teams, sample evaluation, small batches",
+  },
+  {
+    slug: "iphone-phone-farm",
+    title: "iPhone Farm Box",
+    titleZh: "iPhone 农场盒",
+    href: "/products/iphone-phone-farm",
+    params: [
+      "iOS device slots",
+      "Hot-swap drawers",
+      "Model depends on stock",
+      "Custom quote only",
+      "Remote setup included",
+    ],
+    use: "iOS app testing & multi-device management",
+  },
 ] as const;

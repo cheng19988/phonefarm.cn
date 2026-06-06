@@ -5,9 +5,11 @@ export async function POST(req: NextRequest) {
   const form = await req.formData();
   const company = String(form.get("company") || "");
   const purchaseType = String(form.get("purchaseType") || "");
+  const connectionMode = String(form.get("connectionMode") || "");
   const extra = [
-    company ? `公司: ${company}` : "",
-    purchaseType ? `采购类型: ${purchaseType}` : "",
+    company ? `Company: ${company}` : "",
+    purchaseType ? `Order type: ${purchaseType}` : "",
+    connectionMode ? `Connection: ${connectionMode}` : "",
   ].filter(Boolean).join(" | ");
   const message = [extra, String(form.get("message") || "")].filter(Boolean).join("\n");
   const data = {

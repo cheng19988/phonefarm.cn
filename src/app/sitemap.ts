@@ -4,12 +4,12 @@ import { BLOG_POSTS } from "@/data/blog";
 import { PRODUCT_SEEDS } from "@/data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/products", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms"].map(
+  const staticPages = ["", "/products", "/manual", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms"].map(
     (path) => ({
       url: `${SITE.url}${path}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : 0.8,
+      priority: path === "" ? 1 : path === "/manual" ? 0.95 : 0.8,
     })
   );
 
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE.url}/blog/${p.slug}`,
     lastModified: new Date(p.date),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.6,
   }));
 
   return [...staticPages, ...productPages, ...blogPages];

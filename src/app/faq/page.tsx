@@ -1,12 +1,13 @@
-import { FAQAccordion } from "@/components/commerce";
+import Link from "next/link";
+import { FAQSection } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
-import { FAQ_ITEMS } from "@/data/faq";
+import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "常见问题 FAQ - 手机农场硬件与采购",
+  title: "FAQ — Phone Farm Hardware",
   description:
-    "广州手机农场常见问题：什么是手机农场、真机与云手机区别、安卓/iPhone 支持、定制、样品、MOQ、付款、交付及联系方式。",
+    "Product configuration, USB/OTG setup, ADB, router choice, RFQ process, shipping, payment and warranty for Guangzhou Phone Farm hardware.",
   path: "/faq",
 });
 
@@ -16,14 +17,25 @@ export default function FAQPage() {
       <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <div className="section">
         <div className="container-wide max-w-3xl">
-          <h1 className="section-title">常见问题 FAQ</h1>
+          <h1 className="section-title">FAQ</h1>
           <p className="section-subtitle">
-            关于广州手机农场硬件、订购、发货、付款及技术支持的中文解答。
+            Procurement, installation and after-sales answers for phone farm hardware buyers.
           </p>
-          <FAQAccordion items={FAQ_ITEMS} />
-          <div className="mt-16">
-            <ContactCTA title="还有疑问？联系广州手机农场" />
+
+          {FAQ_CATEGORIES.map((cat) => (
+            <FAQSection
+              key={cat.id}
+              title={cat.title}
+              items={FAQ_ITEMS.filter((i) => i.category === cat.id)}
+            />
+          ))}
+
+          <div className="mt-12">
+            <ContactCTA title="Still have questions? Send RFQ" />
           </div>
+          <p className="text-center text-sm text-slate-500 mt-4">
+            Technical setup details: <Link href="/manual" className="text-blue-400 hover:underline">Installation Manual</Link>
+          </p>
         </div>
       </div>
     </>

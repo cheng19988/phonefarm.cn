@@ -84,12 +84,9 @@ export function productJsonLd(product: {
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
-      price: product.priceUsd,
-      availability:
-        product.stock > 0
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
+      availability: "https://schema.org/InStock",
       seller: { "@type": "Organization", name: SITE.name },
+      description: "Contact for configuration-based pricing",
     },
   };
 }

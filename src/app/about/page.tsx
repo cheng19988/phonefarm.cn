@@ -5,66 +5,81 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "关于我们 - 广州手机农场厂家",
+  title: "About — Guangzhou Phone Farm",
   description:
-    "了解广州手机农场：中国广州真机手机农场硬件厂家，自 2017 年起提供主板盒、整机盒、OEM 定制与企业批量交付，欢迎验厂与商务洽谈。",
+    "Guangzhou-based phone farm hardware supplier — assembly, testing, packing, ROM customization and remote setup for bulk device deployment.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <div className="section">
-      <div className="container-wide max-w-4xl">
-        <h1 className="section-title">关于广州手机农场</h1>
-        <p className="text-xl text-slate-300 mb-4 leading-relaxed">
-          广州手机农场位于{SITE.address}，自 {SITE.since} 年起专注真机手机农场硬件研发、组装与交付。我们服务国内集成商、海外采购商及企业设备实验室，提供从样品评估到批量部署的完整支持。
+      <div className="container-wide max-w-3xl">
+        <h1 className="section-title">About {SITE.nameEn}</h1>
+        <p className="text-slate-300 text-base mb-6 leading-relaxed">
+          {SITE.nameEn} is a Guangzhou-based supplier focused on phone farm box hardware — Android motherboard arrays,
+          multi-device chassis, network gear for OTG/LAN deployment, and factory services including ROM customization and remote setup.
         </p>
-        <p className="text-slate-400 mb-8">{SITE.nameEn} · 工厂直销 · 支持对公合同与 OEM 定制</p>
+        <p className="text-slate-400 text-sm mb-8">
+          {SITE.name} · 手机农场硬件 · 主板盒 · 批量设备管理 · OEM 定制
+        </p>
 
-        <div className="card p-6 mb-12">
-          <h2 className="font-bold text-white mb-4">企业信息</h2>
-          <dl className="grid sm:grid-cols-2 gap-4 text-sm">
-            <div><dt className="text-slate-500">品牌名称</dt><dd className="text-white">{SITE.name}</dd></div>
-            <div><dt className="text-slate-500">所在地</dt><dd className="text-white">{SITE.address}</dd></div>
-            <div><dt className="text-slate-500">业务方向</dt><dd className="text-white">真机手机农场硬件 · OEM 定制 · 批量交付</dd></div>
-            <div><dt className="text-slate-500">销售联系</dt><dd className="text-white">{CONTACT.phone} · {CONTACT.email}</dd></div>
-          </dl>
+        <div className="card-flat mb-10">
+          <h2 className="font-medium text-white mb-4 text-sm">What we do</h2>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li>· Hardware assembly, slot testing and QC burn-in</li>
+            <li>· Motherboard sourcing (model subject to supply)</li>
+            <li>· ROM customization for farm operation</li>
+            <li>· OTG/LAN network deployment guidance</li>
+            <li>· Remote installation support (AnyDesk)</li>
+            <li>· Bulk packing and export shipping from Guangzhou</li>
+          </ul>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="grid sm:grid-cols-2 gap-4 mb-10">
           {[
-            { title: "真机硬件环境", desc: "产品基于物理手机或主板运行，适用于应用测试、兼容性验证与企业级设备实验室，非云手机或模拟器方案。" },
-            { title: "稳定批量部署", desc: "220V 集中供电、散热与 QC 老化测试，单盒 20–32 节点，单 PC 可管理多盒，适合规模化部署。" },
-            { title: "OEM 定制生产", desc: "支持定制机箱规格、节点数量、ROM 功能与机柜集成，按项目出具配置清单与报价。" },
-            { title: "交付与售后", desc: "现货 3–5 个工作日发货，定制 7–15 天；提供远程安装指导、AnyDesk 协助及质保期内技术支持。" },
+            { title: "Real device hardware", desc: "Physical phones and motherboards — not cloud virtual instances or emulators." },
+            { title: "RFQ-based sales", desc: "Configuration and bulk pricing via email, WhatsApp or contact form — not retail checkout." },
+            { title: "OEM available", desc: "Custom cabinet, slot count and branding for integrators and enterprise labs." },
+            { title: "Documentation", desc: "Installation manual, FAQ and remote support for commissioning." },
           ].map((item) => (
-            <div key={item.title} className="card p-6">
-              <h2 className="font-bold text-white mb-2">{item.title}</h2>
-              <p className="text-slate-400 text-sm">{item.desc}</p>
+            <div key={item.title} className="card-flat">
+              <h2 className="font-medium text-white text-sm mb-2">{item.title}</h2>
+              <p className="text-slate-400 text-xs">{item.desc}</p>
             </div>
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold text-white mb-6">工厂实景</h2>
-        <p className="text-slate-400 text-sm mb-4">以下为广州办公与生产环境实拍，欢迎预约商务洽谈与验厂。</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+        <div className="card-flat mb-10 text-sm text-slate-400">
+          <h2 className="font-medium text-white mb-3">Company information</h2>
+          <dl className="grid sm:grid-cols-2 gap-3 text-xs">
+            <div><dt className="text-slate-500">Brand</dt><dd className="text-slate-300">{SITE.nameEn} / {SITE.name}</dd></div>
+            <div><dt className="text-slate-500">Location</dt><dd className="text-slate-300">{SITE.locationEn}</dd></div>
+            <div><dt className="text-slate-500">Sales contact</dt><dd className="text-slate-300">{CONTACT.email}</dd></div>
+            <div><dt className="text-slate-500">WhatsApp</dt><dd className="text-slate-300">{CONTACT.whatsapp}</dd></div>
+          </dl>
+          <p className="text-xs text-slate-500 mt-4">
+            More factory documents and production photos can be provided during RFQ communication.
+          </p>
+        </div>
+
+        <h2 className="text-lg font-semibold text-white mb-4">Workshop Photos</h2>
+        <p className="text-xs text-slate-500 mb-4">Assembly and packing environment in Guangzhou. Updated photos shared on request.</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
           {[
-            { src: IMAGES.companyFront, label: "前台" },
-            { src: IMAGES.companyOffice, label: "办公室" },
-            { src: IMAGES.companyMeeting, label: "会议室" },
-            { src: IMAGES.companyWorkshop, label: "生产车间" },
-            { src: IMAGES.companyWarehouse, label: "仓库" },
+            { src: IMAGES.companyFront, label: "Front desk" },
+            { src: IMAGES.companyOffice, label: "Office" },
+            { src: IMAGES.companyMeeting, label: "Meeting room" },
+            { src: IMAGES.companyWorkshop, label: "Workshop" },
+            { src: IMAGES.companyWarehouse, label: "Warehouse" },
           ].map((img) => (
-            <div key={img.label} className="relative aspect-[4/3] rounded-xl overflow-hidden">
+            <div key={img.label} className="relative aspect-[4/3] rounded-md overflow-hidden border border-[var(--border)]">
               <Image src={img.src} alt={img.label} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent flex items-end p-3">
-                <span className="text-white text-sm">{img.label}</span>
-              </div>
             </div>
           ))}
         </div>
 
-        <ContactCTA title="欢迎商务洽谈与验厂" />
+        <ContactCTA title="Factory visit or RFQ — contact sales" />
       </div>
     </div>
   );

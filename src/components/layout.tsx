@@ -5,48 +5,42 @@ import { getSession } from "@/lib/auth";
 
 export async function Header() {
   const session = await getSession();
+  const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
-      <div className="hidden md:block bg-slate-900/80 border-b border-slate-800">
-        <div className="container-wide py-2 flex justify-between items-center text-xs text-slate-400">
-          <span>{SITE.location} · {SITE.nameEn} · 工厂直销</span>
+    <header className="sticky top-0 z-40 bg-[#0f1419] border-b border-[var(--border)]">
+      <div className="rfq-bar hidden md:block">
+        <div className="container-wide flex flex-wrap justify-between items-center gap-2">
+          <span className="text-slate-400">
+            {SITE.nameEn} · {SITE.locationEn} · Phone Farm Hardware Manufacturer
+          </span>
           <ContactBar compact />
         </div>
       </div>
-      <div className="container-wide py-4 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm">
-            广
-          </div>
-          <div>
-            <div className="font-bold text-white leading-tight">{SITE.name}</div>
-            <div className="text-[10px] text-emerald-400 leading-tight hidden sm:block">{SITE.tagline}</div>
-          </div>
+      <div className="container-wide py-3 flex items-center justify-between gap-4">
+        <Link href="/" className="shrink-0">
+          <div className="font-semibold text-white leading-tight">{SITE.nameEn}</div>
+          <div className="text-[11px] text-slate-500 leading-tight">PhoneFarm.cn · {SITE.name}</div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-5">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm text-slate-300 hover:text-white transition-colors">
+            <Link key={item.href} href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="/products" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
-            产品中心
+        <div className="flex items-center gap-2">
+          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-1.5 px-3">
+            Get Quote
           </Link>
-          {session ? (
-            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-300 hover:text-white">
-              账户
-            </Link>
-          ) : (
-            <Link href="/login" className="text-sm text-slate-300 hover:text-white">
-              登录
+          {isAdmin && (
+            <Link href="/admin" className="text-xs text-slate-500 hover:text-slate-300">
+              Admin
             </Link>
           )}
         </div>
       </div>
-      <nav className="lg:hidden container-wide pb-3 flex gap-4 overflow-x-auto text-sm">
+      <nav className="lg:hidden container-wide pb-2 flex gap-3 overflow-x-auto text-xs border-t border-[var(--border)] pt-2">
         {NAV.map((item) => (
           <Link key={item.href} href={item.href} className="text-slate-400 hover:text-white whitespace-nowrap">
             {item.label}
@@ -59,39 +53,45 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 mt-auto">
-      <div className="container-wide py-12 grid md:grid-cols-4 gap-8">
-        <div className="md:col-span-2">
-          <div className="font-bold text-white text-lg mb-1">{SITE.name}</div>
-          <div className="text-emerald-400 text-sm mb-3">{SITE.nameEn}</div>
-          <p className="text-slate-400 text-sm mb-4 max-w-md">{SITE.description}</p>
+    <footer className="bg-[#0a0e14] border-t border-[var(--border)] mt-auto">
+      <div className="container-wide py-10 grid md:grid-cols-3 gap-8">
+        <div>
+          <div className="font-semibold text-white mb-1">{SITE.nameEn}</div>
+          <div className="text-sm text-slate-500 mb-3">{SITE.name} · {SITE.locationEn}</div>
+          <p className="text-slate-400 text-sm mb-4 leading-relaxed">{SITE.descriptionEn}</p>
           <ContactBar />
-          <p className="text-xs text-slate-500 mt-4">{SITE.address} · 硬件仅供开发测试合法用途</p>
+          <p className="text-xs text-slate-600 mt-4">
+            Hardware for development, testing and legitimate device operations only.
+          </p>
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-3">产品分类</h3>
-          <ul className="space-y-2 text-sm text-slate-400">
+          <h3 className="font-medium text-white text-sm mb-3">Products</h3>
+          <ul className="space-y-1.5 text-sm text-slate-400">
             {PRODUCT_NAV.map((item) => (
               <li key={item.href}><Link href={item.href} className="hover:text-white">{item.label}</Link></li>
             ))}
-            <li><Link href="/products" className="hover:text-emerald-400">全部产品</Link></li>
+            <li><Link href="/products" className="hover:text-blue-400">All Products</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-3">公司信息</h3>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li><Link href="/about" className="hover:text-white">关于我们</Link></li>
-            <li><Link href="/services" className="hover:text-white">定制方案</Link></li>
-            <li><Link href="/faq" className="hover:text-white">常见问题</Link></li>
-            <li><Link href="/blog" className="hover:text-white">安装指南</Link></li>
-            <li><Link href="/contact" className="hover:text-white">联系我们</Link></li>
-            <li><Link href="/privacy" className="hover:text-white">隐私政策</Link></li>
-            <li><Link href="/terms" className="hover:text-white">使用条款</Link></li>
+          <h3 className="font-medium text-white text-sm mb-3">Resources</h3>
+          <ul className="space-y-1.5 text-sm text-slate-400">
+            <li><Link href="/manual" className="hover:text-white">Installation Manual</Link></li>
+            <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
+            <li><Link href="/services" className="hover:text-white">Services</Link></li>
+            <li><Link href="/about" className="hover:text-white">About</Link></li>
+            <li><Link href="/contact" className="hover:text-white">Contact / RFQ</Link></li>
+            <li><Link href="/blog" className="hover:text-white">Technical Articles</Link></li>
+            <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
           </ul>
+          <p className="text-xs text-slate-600 mt-4">
+            RFQ: {CONTACT.email} · {CONTACT.whatsapp}
+          </p>
         </div>
       </div>
-      <div className="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        {new Date().getFullYear()} {SITE.name} · {SITE.location} · {CONTACT.email}
+      <div className="border-t border-[var(--border)] py-3 text-center text-xs text-slate-600">
+        © {new Date().getFullYear()} {SITE.nameEn} · {CONTACT.email}
       </div>
     </footer>
   );
