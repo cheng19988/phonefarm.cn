@@ -5,6 +5,20 @@ import { requireAdmin } from "@/lib/auth";
 
 const VALID_STATUSES = ["New", "Contacted", "Quoted", "Closed", "Spam"] as const;
 
+export async function GET() {
+  const admin = await requireAdmin();
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  await ensureDatabase();
+
+  const contacts = await prisma.contactSubmission.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 50,
+  });
+
+  return NextResponse.json(contacts);
+}
+
 export async function PATCH(req: NextRequest) {
   const admin = await requireAdmin();
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

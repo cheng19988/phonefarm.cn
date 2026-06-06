@@ -42,8 +42,12 @@ export async function POST(req: NextRequest) {
   }
 
   await ensureDatabase();
-  const submission = await prisma.contactSubmission.create({ data });
-  await notifyWebhook({ type: "contact_rfq", ...submission, createdAt: submission.createdAt.toISOString() });
-
-  return NextResponse.json({ ok: true });
+  try {
+    const submission = await prisma.contactSubmission.create({ data });
+    await notifyWebhook({ type: "contact_rfq", ...submission, createdAt: submission.createdAt.toISOString() });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("[contact] create failed:", error);
+    return NextResponse.json({ error: "Unable to save RFQ" }, { status: 503 });
+  }
 }

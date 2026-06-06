@@ -61,6 +61,7 @@ const report = {
   csvHeadersComplete: false,
   unauthExport401: false,
   unauthPatch401: false,
+  unauthList401: false,
   needsCodeFix: false,
   errors: [],
 };
@@ -106,24 +107,23 @@ async function fetchWithJar(url, init = {}) {
   return res;
 }
 
-function escapeRe(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** @param {CookieJar} jar @param {string} email */
+async function fetchContactFromApi(jar, email) {
+  const res = await fetchWithJar(`${BASE}/api/admin/contacts`, { jar });
+  if (!res.ok) {
+    report.errors.push(`GET /api/admin/contacts: HTTP ${res.status}`);
+    return null;
+  }
+  const contacts = await res.json();
+  if (!Array.isArray(contacts)) return null;
+  return contacts.find((c) => c.email === email) || null;
 }
 
-/** @param {string} html @param {string} email */
-function findContactId(html, email) {
-  const esc = escapeRe(email);
-  const patterns = [
-    new RegExp(`"id":"(c[a-z0-9]{20,})"[\\s\\S]{0,800}?${esc}`),
-    new RegExp(`${esc}[\\s\\S]{0,800}?"id":"(c[a-z0-9]{20,})"`),
-    new RegExp(`"email":"${esc}"[\\s\\S]{0,800}?"id":"(c[a-z0-9]{20,})"`),
-    new RegExp(`"id":"(c[a-z0-9]{20,})"[\\s\\S]{0,800}?"email":"${esc}"`),
-  ];
-  for (const re of patterns) {
-    const m = html.match(re);
-    if (m) return m[1];
-  }
-  return null;
+/** @param {CookieJar} jar @param {string} email @param {string} status */
+async function apiHasStatus(jar, email, status) {
+  const contact = await fetchContactFromApi(jar, email);
+  return contact?.status === status;
 }
 
 /** @param {string} html @param {string} email @param {string} status */
@@ -245,6 +245,9 @@ async function testUnauth() {
   const exportRes = await fetch(`${BASE}/api/admin/contacts/export`);
   report.unauthExport401 = exportRes.status === 401;
 
+  const listRes = await fetch(`${BASE}/api/admin/contacts`);
+  report.unauthList401 = listRes.status === 401;
+
   const patchRes = await fetch(`${BASE}/api/admin/contacts`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -303,30 +306,28 @@ async function main() {
     }
     report.adminShowsRfq = adminHtmlShowsRfq(html);
 
-    const contactId = findContactId(html, testRfq.email);
+    const contact = await fetchContactFromApi(jar, testRfq.email);
+    const contactId = contact?.id;
     if (!contactId) {
-      report.errors.push("Could not extract contact id from admin HTML for PATCH tests");
+      report.errors.push("Could not find test contact via GET /api/admin/contacts");
     } else {
       report.statusNewToContacted = await patchStatus(jar, contactId, "Contacted");
-      html = await fetchAdminHtml(jar);
-      if (!adminHtmlHasStatus(html, testRfq.email, "Contacted")) {
+      if (!(await apiHasStatus(jar, testRfq.email, "Contacted"))) {
         report.statusNewToContacted = false;
-        report.errors.push("Contacted not visible after refresh");
+        report.errors.push("Contacted not persisted after PATCH");
       }
 
       report.statusContactedToQuoted = await patchStatus(jar, contactId, "Quoted");
-      html = await fetchAdminHtml(jar);
-      if (!adminHtmlHasStatus(html, testRfq.email, "Quoted")) {
+      if (!(await apiHasStatus(jar, testRfq.email, "Quoted"))) {
         report.statusContactedToQuoted = false;
-        report.errors.push("Quoted not visible after refresh");
+        report.errors.push("Quoted not persisted after PATCH");
       }
 
       report.statusQuotedToClosed = await patchStatus(jar, contactId, "Closed");
-      html = await fetchAdminHtml(jar);
-      report.statusClosedPersists = adminHtmlHasStatus(html, testRfq.email, "Closed");
+      report.statusClosedPersists = await apiHasStatus(jar, testRfq.email, "Closed");
       if (!report.statusClosedPersists) {
         report.statusQuotedToClosed = false;
-        report.errors.push("Closed not visible after refresh");
+        report.errors.push("Closed not persisted after PATCH");
       }
     }
 
@@ -346,7 +347,8 @@ async function main() {
     report.csvContainsTestRfq &&
     report.csvHeadersComplete &&
     report.unauthExport401 &&
-    report.unauthPatch401;
+    report.unauthPatch401 &&
+    report.unauthList401;
 
   report.needsCodeFix = !allPass;
 
@@ -364,7 +366,8 @@ async function main() {
   console.log(`11. CSV headers complete: ${report.csvHeadersComplete ? "PASS" : "FAIL"}`);
   console.log(`12. Unauth export 401: ${report.unauthExport401 ? "PASS" : "FAIL"}`);
   console.log(`13. Unauth PATCH 401: ${report.unauthPatch401 ? "PASS" : "FAIL"}`);
-  console.log(`14. Needs code fix: ${report.needsCodeFix ? "yes" : "no"}`);
+  console.log(`14. Unauth list 401: ${report.unauthList401 ? "PASS" : "FAIL"}`);
+  console.log(`15. Needs code fix: ${report.needsCodeFix ? "yes" : "no"}`);
 
   if (report.errors.length) {
     console.log("\n--- Errors ---");

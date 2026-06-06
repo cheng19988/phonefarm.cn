@@ -4,7 +4,12 @@ import { prisma } from "@/lib/prisma";
 import { createSession, verifyPassword } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
-  await ensureDatabase();
+  try {
+    await ensureDatabase();
+  } catch (error) {
+    console.error("[login] database init failed:", error);
+    return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
+  }
   const { email, password } = await req.json();
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user || !(await verifyPassword(password, user.passwordHash))) {
