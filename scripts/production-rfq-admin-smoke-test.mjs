@@ -7,7 +7,7 @@ import { config } from "dotenv";
 
 config({ quiet: true });
 
-const BASE = "https://www.phonefarm.cn";
+const BASE = process.env.SMOKE_TEST_BASE || "https://www.phonefarm.cn";
 
 const adminEmail = process.env.ADMIN_TEST_EMAIL || process.env.ADMIN_EMAIL || "";
 const adminPassword = process.env.ADMIN_TEST_PASSWORD || process.env.ADMIN_PASSWORD || "";
