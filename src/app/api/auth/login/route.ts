@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureDatabase } from "@/lib/ensure-db";
-import { cleanEnvVar } from "@/lib/admin-env";
+import { cleanEnvVar, adminEnvConfigured, getAdminEmail } from "@/lib/admin-env";
 import { createSession, findUserByEmail, syncAdminFromEnv, verifyPassword } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
@@ -18,6 +18,10 @@ export async function POST(req: NextRequest) {
   }
 
   await syncAdminFromEnv();
+  if (email === getAdminEmail() && process.env.VERCEL && !adminEnvConfigured()) {
+    console.error("[login] ADMIN_PASSWORD missing on Vercel runtime");
+    return NextResponse.json({ error: "Admin login unavailable" }, { status: 503 });
+  }
   const user = await findUserByEmail(email);
   if (!user || !(await verifyPassword(password, user.passwordHash))) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
