@@ -226,7 +226,9 @@ async function loginAdmin() {
     } catch {
       /* ignore */
     }
-    report.errors.push(`Admin login failed: ${detail}`);
+    report.errors.push(
+      `Admin login failed: ${detail}. Use the exact Vercel ADMIN_EMAIL / ADMIN_PASSWORD (login email: ${adminEmail}).`
+    );
     return null;
   }
   const body = await res.json().catch(() => ({}));
@@ -292,7 +294,8 @@ async function main() {
   console.log("=== Production RFQ Admin Smoke Test ===");
   console.log(`Target: ${BASE}`);
   console.log(`Test RFQ name: ${testRfq.name}`);
-  console.log(`admin credentials loaded from env: ${report.credentialsFromEnv ? "yes" : "no"}\n`);
+  console.log(`admin credentials loaded from env: ${report.credentialsFromEnv ? "yes" : "no"}`);
+  console.log(`admin login email: ${adminEmail || "(not set)"}\n`);
 
   await submitContact();
 

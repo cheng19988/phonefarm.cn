@@ -2,10 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { prisma } from "@/lib/prisma";
+import { syncAdminFromEnv } from "@/lib/auth";
 import { resolveDatabaseUrl, resolveDbFilePath } from "@/lib/database-url";
 import { seedDatabase } from "@/lib/seed-db";
 
-const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
+const globalForDb = globalThis as unknown as { dbReady?: Promise<void>; adminSynced?: boolean };
+
+async function syncAdminOnce() {
+  if (globalForDb.adminSynced) return;
+  await syncAdminFromEnv();
+  globalForDb.adminSynced = true;
+}
 
 const SEED_DB = path.join(process.cwd(), "prisma", "data", "phonefarm-seed.db");
 
@@ -82,11 +89,17 @@ async function initializeDatabase() {
     copyBundledSeed(targetPath);
   }
 
-  if ((await tableExists()) && (await contactTableReady())) return;
+  if ((await tableExists()) && (await contactTableReady())) {
+    await syncAdminOnce();
+    return;
+  }
 
   if (fs.existsSync(SEED_DB)) {
     copyBundledSeed(targetPath);
-    if ((await tableExists()) && (await contactTableReady())) return;
+    if ((await tableExists()) && (await contactTableReady())) {
+      await syncAdminOnce();
+      return;
+    }
   }
 
   if (process.env.VERCEL) {
