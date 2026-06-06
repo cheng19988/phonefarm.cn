@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AdminContactTable } from "@/components/admin-contact-table";
 import { AdminProductRow } from "@/components/admin-product-row";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
@@ -30,8 +31,8 @@ export default async function AdminPage() {
   });
 
   const recentContacts = await prisma.contactSubmission.findMany({
-    take: 10,
     orderBy: { createdAt: "desc" },
+    take: 50,
   });
 
   const allProducts = await prisma.product.findMany({ orderBy: { name: "asc" } });
@@ -54,39 +55,42 @@ export default async function AdminPage() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          <section>
-            <h2 className="text-xl font-bold text-white mb-4">最近订单</h2>
-            <div className="space-y-3">
-              {recentOrders.map((o) => (
-                <div key={o.id} className="card p-4 text-sm">
-                  <div className="flex justify-between">
-                    <Link href={`/orders/${o.id}`} className="text-emerald-400">{o.orderNumber}</Link>
-                    <span className="text-white">{o.status}</span>
-                  </div>
-                  <p className="text-slate-400 mt-1">{o.user.email} · ${o.totalUsd}</p>
-                  {o.payment && (
-                    <p className="text-slate-500 mt-1">支付：{o.payment.paymentStatus} / {o.payment.verificationStatus}</p>
-                  )}
+        <div className="mb-12">
+          <h2 className="text-xl font-bold text-white mb-4">最近订单</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {recentOrders.map((o) => (
+              <div key={o.id} className="card p-4 text-sm">
+                <div className="flex justify-between">
+                  <Link href={`/orders/${o.id}`} className="text-emerald-400">{o.orderNumber}</Link>
+                  <span className="text-white">{o.status}</span>
                 </div>
-              ))}
-            </div>
-          </section>
-          <section>
-            <h2 className="text-xl font-bold text-white mb-4">咨询留言</h2>
-            <div className="space-y-3">
-              {recentContacts.map((c) => (
-                <div key={c.id} className="card p-4 text-sm">
-                  <p className="text-white font-medium">{c.name} · {c.email}</p>
-                  <p className="text-slate-400">{c.country} · {c.productInterest} · 数量：{c.deviceQuantity}</p>
-                  <p className="text-slate-500 mt-1 line-clamp-2">{c.message}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+                <p className="text-slate-400 mt-1">{o.user.email} | ${o.totalUsd}</p>
+                {o.payment && (
+                  <p className="text-slate-500 mt-1">支付：{o.payment.paymentStatus} / {o.payment.verificationStatus}</p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <section>
+        <section className="mb-12">
+          <AdminContactTable
+            contacts={recentContacts.map((c) => ({
+              id: c.id,
+              name: c.name,
+              email: c.email,
+              country: c.country,
+              productInterest: c.productInterest,
+              deviceQuantity: c.deviceQuantity,
+              connectionMode: c.connectionMode,
+              status: c.status,
+              createdAt: c.createdAt.toISOString(),
+              message: c.message,
+            }))}
+          />
+        </section>
+
+        <section className="mb-12">
           <h2 className="text-xl font-bold text-white mb-4">产品库存</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
 import { buildMetadata } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
-import { getProductSeed, type CatalogGroup } from "@/data/products";
+import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
 import { ContactCTA } from "@/components/shared";
 
 export const metadata = buildMetadata({
@@ -38,6 +38,18 @@ export default async function ProductsPage({
           Phone farm hardware catalog - all pricing is configuration-based. Send RFQ for bulk quote, sample order or OEM scope.
         </p>
 
+        <div className="card-flat mb-8">
+          <h2 className="font-medium text-white text-sm mb-3">What to send for a quote</h2>
+          <ul className="list-disc list-outside pl-5 text-sm text-slate-400 space-y-1">
+            <li>Target quantity (nodes / boxes)</li>
+            <li>Product type (motherboard box, 32PCS, array, OEM, etc.)</li>
+            <li>Connection mode (USB, OTG/LAN, or not sure)</li>
+            <li>Android or iPhone model preference</li>
+            <li>Destination country</li>
+            <li>Customization needs (ROM, router bundle, cabinet)</li>
+          </ul>
+        </div>
+
         <div className="flex flex-wrap gap-2 mb-8">
           <Link
             href="/products"
@@ -66,6 +78,7 @@ export default async function ProductsPage({
                 name={p.name}
                 shortDesc={seed?.shortDesc || p.shortDesc}
                 keyParams={seed?.keyParams || []}
+                bestFor={getProductBestFor(p.slug)}
                 scenario={seed?.targetBuyer || "Contact for configuration"}
                 imageCard={p.imageCard}
                 category={p.category}

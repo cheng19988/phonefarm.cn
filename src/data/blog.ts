@@ -1,5 +1,127 @@
 export const BLOG_POSTS = [
   {
+    slug: "usb-mode-vs-otg-lan-mode",
+    title: "USB Mode vs OTG/LAN Mode for Phone Farm Box",
+    category: "Technical Guide",
+    date: "2026-06-01",
+    excerpt: "Compare USB and OTG/LAN connection modes for phone farm hardware: requirements, scale limits and common issues.",
+    content: `This guide explains how Guangzhou Phone Farm boxes support two connection paths and when to choose each for development, testing and device management labs.
+
+**Difference**
+- USB mode (blue LED): devices connect through USB to the control PC, often via powered USB 2.0 hubs.
+- OTG/LAN mode (green LED): devices share a router segment with the PC; software discovers devices by IP range.
+
+**When to choose USB**
+- First evaluation or small labs (1-2 boxes)
+- Simpler initial setup without router planning
+- Teams still validating software on fewer nodes
+
+**When to choose OTG/LAN**
+- 20+ devices on one network segment
+- Reducing USB host controller load on the PC
+- Multi-box farms where Ethernet stability matters
+
+**PC requirements**
+- Windows 10/11, adequate RAM (16 GB+ for multi-box USB)
+- For heavy USB loads: separate controllers or migrate to OTG/LAN
+- See /manual#recommended-pc for written specs
+
+**Router requirements (OTG/LAN)**
+- Enough DHCP leases for all devices + PC
+- 50+ devices: dedicated soft router recommended
+- See /manual#router-network-notes
+
+**Common issues**
+- USB: "insufficient USB resources" -> powered USB 2.0 hub, fewer mirrors, or OTG/LAN
+- OTG/LAN: scan finds nothing -> same subnet, firewall, green mode, router model
+
+**Next steps**
+- Product catalog: /products
+- Installation steps: /manual
+- Send quantity and environment: /contact`,
+  },
+  {
+    slug: "adb-authorization-multi-device-setup",
+    title: "Why ADB Authorization Matters in Multi-device Hardware Setup",
+    category: "Technical Guide",
+    date: "2026-05-20",
+    excerpt: "What ADB authorization means, why devices show unauthorized, and how to prepare for remote support.",
+    content: `ADB authorization allows a Windows control PC to communicate with Android boards in a phone farm box without repeated on-screen approval prompts.
+
+**What ADB authorization means**
+- Supplier-provided files stored under the Windows user profile
+- PC and boards establish a trusted debugging relationship
+- Required for stable batch control and mirror software
+
+**Why devices show unauthorized**
+- Authorization folder missing or wrong Windows user profile
+- User clicked "Deny" on USB debugging prompt
+- Board was factory reset or ROM reflashed
+- New PC without copied authorization backup
+
+**What changes after reinstalling Windows**
+- Authorization folder path is tied to the user profile
+- Backup the .android folder before OS reinstall
+- Plan re-authorization or restore from backup
+
+**How to prepare for remote support**
+- Install AnyDesk on control PC
+- Confirm box powered and reachable on USB or LAN
+- Note product model, box count and connection mode
+- Have router model ready if using OTG/LAN
+
+**Related resources**
+- Manual section: /manual#adb-auth
+- Hardware catalog: /products
+- RFQ with setup photos: /contact
+
+Hardware is provided for development, testing, device management, and other lawful use only.`,
+  },
+  {
+    slug: "how-to-prepare-phone-farm-rfq",
+    title: "How to Prepare an RFQ for Phone Farm Hardware",
+    category: "Technical Guide",
+    date: "2026-05-10",
+    excerpt: "Checklist for B2B buyers: quantity, device type, connection mode, shipping country, customization and sample vs bulk orders.",
+    content: `A clear RFQ helps Guangzhou Phone Farm return accurate configuration, lead time and quotation within 24 hours.
+
+**1. Quantity**
+- Target node count (e.g. 60 Android boards)
+- Number of chassis/boxes if known
+- Sample order (1 box) vs bulk MOQ
+
+**2. Device type**
+- Android motherboard box vs full phone array vs iPhone box
+- Preferred board or phone model if any
+
+**3. Connection mode**
+- USB, OTG/LAN, or not sure yet
+- Existing router model if OTG/LAN
+
+**4. Shipping country**
+- Destination for freight planning
+- Import broker or Incoterms preference if applicable
+
+**5. Customization**
+- ROM needs (auto-boot, ADB persistence)
+- OEM cabinet or branding
+- Router/switch bundle
+
+**6. Sample vs bulk order**
+- Sample: evaluate build quality and software compatibility first
+- Bulk: proforma invoice, agreed payment terms, production schedule
+
+**What we reply with**
+- BOM and configuration proposal
+- Setup notes for your software stack
+- Factory quote and lead time
+
+**Send RFQ**
+- Contact form: /contact
+- Product reference: /products
+- Setup reference: /manual`,
+  },
+  {
     slug: "phone-farm-setup-manual",
     title: "手机农场整机盒安装手册：ADB 与 OTG 配置",
     category: "安装手册",

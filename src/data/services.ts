@@ -112,3 +112,12 @@ export const BULK_PROCESS = [
   { step: "05", title: "Shipping", desc: "Express or sea freight worldwide. Forwarder support available." },
   { step: "06", title: "Remote Setup", desc: "AnyDesk commissioning until your team confirms successful operation." },
 ];
+
+export const DELIVERY_PROCESS = [
+  { step: "1", title: "Requirement confirmation", desc: "Confirm quantity, device platform, connection mode and shipping destination." },
+  { step: "2", title: "Configuration proposal", desc: "Written BOM, ROM scope, router recommendation and lead time." },
+  { step: "3", title: "Sample or bulk quotation", desc: "Sample unit or bulk proforma with payment terms." },
+  { step: "4", title: "Assembly and test", desc: "Factory assembly, power-on, connection check and burn-in." },
+  { step: "5", title: "Packing confirmation", desc: "Carton photos or packing list shared before dispatch when requested." },
+  { step: "6", title: "Shipping and remote setup", desc: "Export shipment plus optional AnyDesk commissioning after delivery." },
+];

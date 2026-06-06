@@ -502,6 +502,26 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
   },
 ];
 
+export const PRODUCT_BEST_FOR: Record<string, string> = {
+  "motherboard-box": "Medium bulk deployment",
+  "phone-farm-box": "Medium bulk deployment",
+  "phone-array-12pcs": "Small testing lab",
+  "iphone-phone-farm": "Custom cabinet project",
+  "android-phone-farm": "Medium bulk deployment",
+  "real-device-phone-farm": "Enterprise device lab",
+  "empty-box-chassis": "Custom cabinet project",
+  "usb-hub": "Replacement parts buyer",
+  "power-supply-solution": "Replacement parts buyer",
+  "cooling-solution": "Replacement parts buyer",
+  "network-equipment": "OTG/LAN scale-up project",
+  "custom-cabinet": "Custom cabinet project",
+  "remote-control-setup": "Reseller sample order",
+};
+
+export function getProductBestFor(slug: string) {
+  return PRODUCT_BEST_FOR[slug] || "Contact for configuration";
+}
+
 export function getProductSeed(slug: string) {
   return PRODUCT_SEEDS.find((item) => item.slug === slug);
 }

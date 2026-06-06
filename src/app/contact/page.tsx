@@ -27,6 +27,14 @@ function ContactForm() {
           <input name="name" required className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
         <div>
+          <label className="block text-xs text-slate-500 mb-1">Email *</label>
+          <input name="email" type="email" required className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+        </div>
+        <div>
+          <label className="block text-xs text-slate-500 mb-1">WhatsApp / Telegram</label>
+          <input name="whatsapp" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+        </div>
+        <div>
           <label className="block text-xs text-slate-500 mb-1">Company</label>
           <input name="company" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
@@ -35,52 +43,75 @@ function ContactForm() {
           <input name="country" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
         <div>
-          <label className="block text-xs text-slate-500 mb-1">WhatsApp / Telegram</label>
-          <input name="whatsapp" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
-        </div>
-        <div>
-          <label className="block text-xs text-slate-500 mb-1">Phone</label>
+          <label className="block text-xs text-slate-500 mb-1">Phone (optional)</label>
           <input name="phone" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
         <div>
-          <label className="block text-xs text-slate-500 mb-1">Email *</label>
-          <input name="email" type="email" required className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
-        </div>
-        <div>
-          <label className="block text-xs text-slate-500 mb-1">Order type</label>
+          <label className="block text-xs text-slate-500 mb-1">Product type</label>
           <select name="purchaseType" defaultValue={searchParams.get("type") || ""} className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm">
             <option value="">Select</option>
-            <option value="sample">Sample evaluation</option>
-            <option value="bulk">Bulk order / RFQ</option>
+            <option value="motherboard-box">Android motherboard box</option>
+            <option value="phone-farm-box">32PCS phone farm box</option>
+            <option value="phone-array">12PCS phone array</option>
+            <option value="iphone">iPhone farm box</option>
+            <option value="network">Router / switch</option>
             <option value="oem">OEM / custom cabinet</option>
-            <option value="agent">Integrator / reseller</option>
+            <option value="service">Factory service</option>
+            <option value="parts">Replacement parts</option>
           </select>
         </div>
         <div>
-          <label className="block text-xs text-slate-500 mb-1">Target device quantity</label>
+          <label className="block text-xs text-slate-500 mb-1">Target quantity</label>
           <input name="deviceQuantity" placeholder="e.g. 20 nodes / 3 boxes" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
-        <div className="sm:col-span-2">
-          <label className="block text-xs text-slate-500 mb-1">Product / service interest</label>
-          <input name="productInterest" defaultValue={defaultProduct} placeholder="Motherboard box / 32PCS / ROM / router" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+        <div>
+          <label className="block text-xs text-slate-500 mb-1">Android or iPhone</label>
+          <select name="devicePlatform" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm">
+            <option value="">Select</option>
+            <option value="android">Android</option>
+            <option value="iphone">iPhone</option>
+            <option value="mixed">Mixed / not sure</option>
+          </select>
         </div>
         <div>
           <label className="block text-xs text-slate-500 mb-1">Connection mode</label>
-          <input name="connectionMode" placeholder="USB / OTG-LAN / not sure" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+          <select name="connectionMode" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm">
+            <option value="">Select</option>
+            <option value="usb">USB</option>
+            <option value="otg-lan">OTG/LAN</option>
+            <option value="not-sure">Not sure</option>
+          </select>
         </div>
         <div>
-          <label className="block text-xs text-slate-500 mb-1">Budget range (optional)</label>
-          <input name="budget" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+          <label className="block text-xs text-slate-500 mb-1">Custom ROM needed</label>
+          <select name="customRomNeeded" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="not-sure">Not sure</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-xs text-slate-500 mb-1">Shipping country</label>
+          <input name="shippingCountry" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="block text-xs text-slate-500 mb-1">Product / service detail</label>
+          <input name="productInterest" defaultValue={defaultProduct} placeholder="Model, SKU or service name" className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
         </div>
       </div>
       <div>
-        <label className="block text-xs text-slate-500 mb-1">Project details *</label>
-        <textarea name="message" rows={5} required placeholder="Device model, Android/iPhone, customization, shipping country, timeline..." className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
+        <label className="block text-xs text-slate-500 mb-1">Message *</label>
+        <textarea name="message" rows={5} required placeholder="Timeline, customization, router needs, photos of current setup..." className="w-full bg-[#141c28] border border-[var(--border)] rounded-md px-3 py-2 text-white text-sm" />
       </div>
       <button type="submit" disabled={status === "loading"} className="btn-primary w-full">
         {status === "loading" ? "Sending..." : "Send RFQ"}
       </button>
-      {status === "success" && <p className="text-green-400 text-sm">RFQ received - we reply within 24 hours.</p>}
+      {status === "success" && (
+        <p className="text-green-400 text-sm">
+          Thank you. Your RFQ has been received. Our team will review your configuration and reply with product options, setup notes and quotation.
+        </p>
+      )}
       {status === "error" && <p className="text-red-400 text-sm">Send failed - email {CONTACT.email} or WhatsApp directly.</p>}
     </form>
   );
@@ -92,7 +123,7 @@ export default function ContactPage() {
       <div className="container-wide max-w-2xl">
         <h1 className="section-title">Contact / RFQ</h1>
         <p className="section-subtitle">
-          Send device count, model, USB or OTG/LAN mode, destination country and customization needs. Factory quote within 24 hours.
+          Please send your target quantity, preferred device type, connection mode and destination country. We will reply with configuration suggestions and quotation.
         </p>
 
         <div className="card-flat mb-8">
@@ -106,7 +137,7 @@ export default function ContactPage() {
         </Suspense>
 
         <div className="mt-10">
-          <ContactCTA title="Prefer WhatsApp-" />
+          <ContactCTA title="Prefer WhatsApp or email?" />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SERVICES, BULK_PROCESS } from "@/data/services";
+import { SERVICES, BULK_PROCESS, DELIVERY_PROCESS } from "@/data/services";
 import { ContactCTA } from "@/components/shared";
 import { buildMetadata } from "@/lib/seo";
 
@@ -60,6 +60,17 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-16">
+          <h2 className="text-xl font-semibold text-white mb-6">Delivery Process</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
+            {DELIVERY_PROCESS.map((step) => (
+              <div key={step.step} className="card-flat">
+                <span className="text-blue-400 font-mono text-sm">{step.step}</span>
+                <h3 className="font-medium text-white text-sm mt-1 mb-1">{step.title}</h3>
+                <p className="text-xs text-slate-400">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
           <h2 className="text-xl font-semibold text-white mb-6">Bulk Order Process</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {BULK_PROCESS.map((step) => (

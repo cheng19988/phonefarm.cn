@@ -114,8 +114,51 @@ Extract supplier-provided archive into this folder. Restart PC and software.
 Keep one spare board with screen attached for authorization recovery if needed.`,
   },
   {
+    id: "recommended-pc",
+    title: "7. Recommended PC Configuration",
+    content: `Use a dedicated Windows control PC for multi-box farms. Specs depend on node count and software load.
+
+**Small lab (1-2 boxes / up to ~40 nodes, USB mode)**
+- Windows 10 or 11 64-bit
+- Intel i5 or Ryzen 5, 16 GB RAM, SSD
+- Multiple USB 2.0 root ports or powered USB 2.0 hubs
+
+**Medium deployment (3-5 boxes / 60-100 nodes)**
+- 32 GB RAM recommended
+- Intel i7 / Ryzen 7 or Xeon E5 class
+- Separate USB controllers or plan OTG/LAN for heavy loads
+
+**Software load**
+- Close unnecessary background apps
+- Exclude ADB and group-control install folders from real-time antivirus scan
+- Use wired Ethernet on PC when running OTG/LAN mode
+
+Send your target box count in RFQ for a written PC recommendation.`,
+  },
+  {
+    id: "router-network-notes",
+    title: "8. Router and Network Notes",
+    content: `OTG/LAN mode requires stable LAN between box, router and control PC.
+
+**20 devices or fewer**
+- Stable consumer router with enough DHCP leases
+- Box and PC on same subnet (e.g. 192.168.1.x)
+
+**50+ devices**
+- Dedicated soft router with gigabit LAN recommended
+- Avoid overloading WiFi; use Ethernet to PC
+- Fixed DHCP reservations reduce scan churn
+
+**Checklist**
+- Same subnet for PC and devices
+- Disable phone WiFi when using Ethernet OTG mode
+- Document router model and IP range before remote support
+
+See also: /blog/usb-mode-vs-otg-lan-mode for mode selection.`,
+  },
+  {
     id: "troubleshooting",
-    title: "7. Troubleshooting",
+    title: "9. Troubleshooting",
     content: `**Device not detected**
  ->  Power, cable, USB debugging, authorization, try USB 2.0 port/hub
 
@@ -151,7 +194,7 @@ Keep one spare board with screen attached for authorization recovery if needed.`
   },
   {
     id: "remote-support",
-    title: "8. Remote Setup Support",
+    title: "10. Remote Setup Support",
     content: `Included with hardware purchase (standard scope):
 
 1. Schedule via email or WhatsApp after delivery
@@ -164,7 +207,7 @@ Keep one spare board with screen attached for authorization recovery if needed.`
   },
   {
     id: "api-automation",
-    title: "9. API / Automation Interface",
+    title: "11. API / Automation Interface",
     content: `For software testing, device operation workflows and internal automation integration, API documentation can be provided after purchase.
 
 Typical integration paths:
@@ -176,7 +219,7 @@ We do not provide tools for platform manipulation or terms-of-service violations
   },
   {
     id: "warranty",
-    title: "10. Warranty & After-sales",
+    title: "12. Warranty & After-sales",
     content: `**Standard terms**
 - Chassis / cabinet: 12 months
 - Motherboards: 90 days
@@ -189,6 +232,20 @@ We do not provide tools for platform manipulation or terms-of-service violations
 **Shipping damage:** report within 48 hours with photos.
 
 **Out of warranty:** parts and labor quoted separately.`,
+  },
+  {
+    id: "support-checklist",
+    title: "13. Before Contacting Support, Please Prepare",
+    content: `Gather these details before opening a support or RFQ ticket:
+
+- Product model (motherboard box, 32PCS box, 12PCS array, etc.)
+- Number of boxes and approximate node count
+- Connection mode: USB, OTG/LAN, or mixed
+- Windows version on control PC
+- Screenshots or exact error message text
+- Router model and IP segment if OTG/LAN is used
+
+Need help choosing USB mode or OTG/LAN mode? Send your quantity and setup environment for RFQ support via /contact.`,
   },
 ];
 

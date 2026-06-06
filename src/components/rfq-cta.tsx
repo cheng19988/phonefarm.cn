@@ -51,6 +51,7 @@ export function RfqCTA({
         <li>ROM / cabinet customization (if any)</li>
       </ul>
       <p className="text-xs text-slate-500 mb-4">{RFQ_COPY.pricingNote} | {RFQ_COPY.paymentNote}</p>
+      <p className="text-xs text-slate-500 mb-4">Attach photos or current setup details if available.</p>
       <div className="flex flex-wrap gap-3">
         <Link href={contactHref} className="btn-primary">
           Send RFQ

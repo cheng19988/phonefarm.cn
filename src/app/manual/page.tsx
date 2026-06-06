@@ -34,8 +34,8 @@ export default function ManualPage() {
     <div className="section">
       <div className="container-wide">
         <div className="grid lg:grid-cols-4 gap-10">
-          <aside className="lg:col-span-1 hidden lg:block">
-            <nav className="sticky top-24 space-y-1 text-sm">
+          <aside className="lg:col-span-1">
+            <nav className="lg:sticky lg:top-24 space-y-1 text-sm mb-8 lg:mb-0">
               <p className="text-slate-500 text-xs font-medium mb-3 uppercase tracking-wide">Contents</p>
               {MANUAL_TOC.map((s) => (
                 <a key={s.id} href={`#${s.id}`} className="block text-slate-400 hover:text-white py-1">
@@ -61,7 +61,11 @@ export default function ManualPage() {
             ))}
 
             <div className="mt-12">
-              <ContactCTA title="Need hardware for this setup- Send RFQ" />
+              <p className="text-sm text-slate-400 mb-6 card-flat">
+                Need help choosing USB mode or OTG/LAN mode? Send your quantity and setup environment for{" "}
+                <Link href="/contact" className="text-blue-400 hover:underline">RFQ support</Link>.
+              </p>
+              <ContactCTA title="Need hardware for this setup - Send RFQ" />
             </div>
             <p className="text-sm text-slate-500 mt-4">
               More articles: <Link href="/blog" className="text-blue-400 hover:underline">Technical Articles</Link>

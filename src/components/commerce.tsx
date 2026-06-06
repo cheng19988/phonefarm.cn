@@ -9,12 +9,13 @@ type ProductCardProps = {
   name: string;
   shortDesc: string;
   keyParams: string[];
+  bestFor: string;
   scenario: string;
   imageCard: string;
   category: string;
 };
 
-export function ProductCard({ slug, name, shortDesc, keyParams, scenario, imageCard, category }: ProductCardProps) {
+export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, scenario, imageCard, category }: ProductCardProps) {
   const waText = encodeURIComponent(`Hi, I need a quote for: ${name}`);
   return (
     <article className="card flex flex-col">
@@ -32,7 +33,10 @@ export function ProductCard({ slug, name, shortDesc, keyParams, scenario, imageC
             <li key={p}>{p}</li>
           ))}
         </ul>
-        <p className="text-[11px] text-slate-500 mb-3">{scenario}</p>
+        <p className="text-[11px] text-slate-500 mb-1">
+          <span className="text-slate-400">Best for:</span> {bestFor}
+        </p>
+        <p className="text-[11px] text-slate-500 mb-3 line-clamp-2">{scenario}</p>
         <p className="text-[11px] text-blue-400/80 mb-3">{RFQ_COPY.pricingNote}</p>
         <div className="grid grid-cols-2 gap-2">
           <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-xs py-1.5">
