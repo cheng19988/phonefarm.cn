@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 
 async function notifyWebhook(payload: Record<string, unknown>) {
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name and email required" }, { status: 400 });
   }
 
+  await ensureDatabase();
   const submission = await prisma.contactSubmission.create({ data });
   await notifyWebhook({ type: "contact_rfq", ...submission, createdAt: submission.createdAt.toISOString() });
 

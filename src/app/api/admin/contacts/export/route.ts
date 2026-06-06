@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 
@@ -12,6 +13,7 @@ export async function GET() {
   const admin = await requireAdmin();
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  await ensureDatabase();
   const rows = await prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" } });
   const header = [
     "createdAt",

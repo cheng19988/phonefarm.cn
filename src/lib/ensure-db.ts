@@ -43,6 +43,23 @@ async function tableExists() {
   }
 }
 
+function isSchemaMismatchError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.includes("no such column") || message.includes("SQLITE_ERROR");
+}
+
+async function contactTableReady() {
+  try {
+    await prisma.$queryRawUnsafe(
+      "SELECT status, purchaseType, connectionMode FROM ContactSubmission LIMIT 1"
+    );
+    return true;
+  } catch (error) {
+    if (isMissingTableError(error) || isSchemaMismatchError(error)) return false;
+    throw error;
+  }
+}
+
 function copyBundledSeed(targetPath: string) {
   if (!fs.existsSync(SEED_DB)) {
     throw new Error(`Bundled seed database missing: ${SEED_DB}`);
@@ -69,11 +86,11 @@ async function initializeDatabase() {
     copyBundledSeed(targetPath);
   }
 
-  if (await tableExists()) return;
+  if ((await tableExists()) && (await contactTableReady())) return;
 
   if (fs.existsSync(SEED_DB)) {
     copyBundledSeed(targetPath);
-    if (await tableExists()) return;
+    if ((await tableExists()) && (await contactTableReady())) return;
   }
 
   if (process.env.VERCEL) {
