@@ -1,20 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureDatabase } from "@/lib/ensure-db";
+import { notifyNewContactSubmission } from "@/lib/notifications";
 import { prisma } from "@/lib/prisma";
-
-async function notifyWebhook(payload: Record<string, unknown>) {
-  const url = process.env.CONTACT_WEBHOOK_URL;
-  if (!url) return;
-  try {
-    await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-  } catch {
-    // optional notification; ignore failures
-  }
-}
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
@@ -44,7 +31,11 @@ export async function POST(req: NextRequest) {
   await ensureDatabase();
   try {
     const submission = await prisma.contactSubmission.create({ data });
-    await notifyWebhook({ type: "contact_rfq", ...submission, createdAt: submission.createdAt.toISOString() });
+    try {
+      await notifyNewContactSubmission(submission);
+    } catch (error) {
+      console.warn("[contact] notification failed:", error instanceof Error ? error.message : "unknown");
+    }
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("[contact] create failed:", error);
