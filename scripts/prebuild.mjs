@@ -9,6 +9,11 @@ const seedDb = path.join(seedDir, "phonefarm-seed.db");
 
 fs.mkdirSync(seedDir, { recursive: true });
 
+if (fs.existsSync(seedDb)) {
+  fs.unlinkSync(seedDb);
+  console.log("prebuild: removed previous seed database for clean rebuild");
+}
+
 const dbUrl = `file:${seedDb.replace(/\\/g, "/")}`;
 console.log("prebuild: building bundled seed database at", seedDb);
 
