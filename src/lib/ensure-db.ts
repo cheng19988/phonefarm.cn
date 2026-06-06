@@ -1,15 +1,17 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { prisma } from "@/lib/prisma";
+import { adminEnvConfigured, getAdminCredentialEpoch } from "@/lib/admin-env";
 import { syncAdminFromEnv } from "@/lib/auth";
-import { adminEnvConfigured } from "@/lib/admin-env";
+import { reconnectPrismaClient, prisma } from "@/lib/prisma";
 import { resolveDatabaseUrl, resolveDbFilePath } from "@/lib/database-url";
 import { seedDatabase } from "@/lib/seed-db";
 
 const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
 
 const SEED_DB = path.join(process.cwd(), "prisma", "data", "phonefarm-seed.db");
+const SEED_ADMIN_META = path.join(process.cwd(), "prisma", "data", "seed-admin-meta.json");
 
 function isBuildPhase() {
   return process.env.NEXT_PHASE === "phase-production-build";
@@ -17,11 +19,23 @@ function isBuildPhase() {
 
 function deploySeedMarkerPath() {
   const deploymentId = process.env.VERCEL_DEPLOYMENT_ID || "local";
-  return path.join("/tmp", `.phonefarm-seed-applied-${deploymentId}`);
+  return path.join(os.tmpdir(), `.phonefarm-seed-applied-${deploymentId}`);
 }
 
-function resolveDbPath(databaseUrl: string) {
-  return resolveDbFilePath(databaseUrl);
+function adminEpochMarkerPath() {
+  return path.join(os.tmpdir(), ".phonefarm-admin-epoch");
+}
+
+function readBundledAdminEpoch() {
+  if (!fs.existsSync(SEED_ADMIN_META)) return null;
+  try {
+    const meta = JSON.parse(fs.readFileSync(SEED_ADMIN_META, "utf8")) as {
+      credentialEpoch?: string;
+    };
+    return meta.credentialEpoch ?? null;
+  } catch {
+    return null;
+  }
 }
 
 function isMissingTableError(error: unknown) {
@@ -63,12 +77,13 @@ async function contactTableReady() {
   }
 }
 
-function copyBundledSeed(targetPath: string) {
+async function copyBundledSeed(targetPath: string) {
   if (!fs.existsSync(SEED_DB)) {
     throw new Error(`Bundled seed database missing: ${SEED_DB}`);
   }
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.copyFileSync(SEED_DB, targetPath);
+  await reconnectPrismaClient();
   console.log("[ensure-db] Copied bundled seed to", targetPath);
 }
 
@@ -77,8 +92,10 @@ function shouldCopySeed(targetPath: string) {
   if (!fs.existsSync(targetPath)) return true;
 
   if (process.env.VERCEL) {
-    const marker = deploySeedMarkerPath();
-    if (!fs.existsSync(marker)) return true;
+    if (!fs.existsSync(deploySeedMarkerPath())) return true;
+    const runtimeEpoch = getAdminCredentialEpoch();
+    const bundledEpoch = readBundledAdminEpoch();
+    if (runtimeEpoch && bundledEpoch && runtimeEpoch !== bundledEpoch) return true;
   }
 
   const seedSize = fs.statSync(SEED_DB).size;
@@ -91,31 +108,62 @@ function markDeploySeedApplied() {
   fs.writeFileSync(deploySeedMarkerPath(), new Date().toISOString());
 }
 
-async function syncAdminIfConfigured() {
+function readAppliedAdminEpoch() {
+  if (!fs.existsSync(adminEpochMarkerPath())) return null;
+  try {
+    return fs.readFileSync(adminEpochMarkerPath(), "utf8").trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+function markAdminEpochApplied(epoch: string) {
+  fs.writeFileSync(adminEpochMarkerPath(), epoch);
+}
+
+async function ensureAdminCredentialsFresh() {
   if (!adminEnvConfigured()) return;
+
+  const runtimeEpoch = getAdminCredentialEpoch();
+  if (!runtimeEpoch) return;
+
+  const appliedEpoch = readAppliedAdminEpoch();
+  const bundledEpoch = readBundledAdminEpoch();
+  const needsSync =
+    appliedEpoch !== runtimeEpoch ||
+    (bundledEpoch !== null && bundledEpoch !== runtimeEpoch);
+
+  if (!needsSync) return;
+
   await syncAdminFromEnv();
+  markAdminEpochApplied(runtimeEpoch);
+  console.log("[ensure-db] Synced admin credentials from runtime env");
 }
 
 async function initializeDatabase() {
   if (isBuildPhase()) return;
 
-  const targetPath = resolveDbPath(resolveDatabaseUrl());
+  const targetPath = resolveDbFilePath(resolveDatabaseUrl());
+  let copied = false;
 
   if (shouldCopySeed(targetPath)) {
-    copyBundledSeed(targetPath);
+    await copyBundledSeed(targetPath);
     markDeploySeedApplied();
+    copied = true;
   }
 
   if ((await tableExists()) && (await contactTableReady())) {
-    await syncAdminIfConfigured();
+    await ensureAdminCredentialsFresh();
     return;
   }
 
   if (fs.existsSync(SEED_DB)) {
-    copyBundledSeed(targetPath);
-    markDeploySeedApplied();
+    if (!copied) {
+      await copyBundledSeed(targetPath);
+      markDeploySeedApplied();
+    }
     if ((await tableExists()) && (await contactTableReady())) {
-      await syncAdminIfConfigured();
+      await ensureAdminCredentialsFresh();
       return;
     }
   }
@@ -127,7 +175,7 @@ async function initializeDatabase() {
   console.log("[ensure-db] Local fallback: prisma db push + seed");
   execSync("npx prisma db push", { stdio: "inherit", env: process.env });
   await seedDatabase(prisma);
-  await syncAdminIfConfigured();
+  await ensureAdminCredentialsFresh();
 }
 
 export function ensureDatabase(): Promise<void> {

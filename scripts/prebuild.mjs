@@ -1,4 +1,5 @@
 import { execSync } from "node:child_process";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,5 +37,18 @@ execSync("npx tsx prisma/seed.ts", {
   stdio: "inherit",
   env: { ...process.env, DATABASE_URL: dbUrl },
 });
+
+const adminEmail = (process.env.ADMIN_EMAIL || "admin@phonefarm.cn").trim().toLowerCase();
+const adminPassword = process.env.ADMIN_PASSWORD || "admin123456";
+const credentialEpoch = crypto
+  .createHash("sha256")
+  .update(`${adminEmail}|${adminPassword}`)
+  .digest("hex");
+
+fs.writeFileSync(
+  path.join(seedDir, "seed-admin-meta.json"),
+  JSON.stringify({ adminEmail, credentialEpoch }, null, 2)
+);
+console.log("prebuild: wrote seed-admin-meta.json (credential fingerprint only)");
 
 console.log("prebuild: seed database ready");

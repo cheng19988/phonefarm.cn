@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureDatabase } from "@/lib/ensure-db";
-import { prisma } from "@/lib/prisma";
 import { cleanEnvVar } from "@/lib/admin-env";
-import { createSession, syncAdminFromEnv, verifyPassword } from "@/lib/auth";
+import { createSession, findUserByEmail, syncAdminFromEnv, verifyPassword } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,7 +18,7 @@ export async function POST(req: NextRequest) {
   }
 
   await syncAdminFromEnv();
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await findUserByEmail(email);
   if (!user || !(await verifyPassword(password, user.passwordHash))) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }

@@ -1,8 +1,11 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { prisma } from "./prisma";
-import { getAdminEmail, getAdminPassword } from "./admin-env";
+import { getAdminCredentialEpoch, getAdminEmail, getAdminPassword } from "./admin-env";
 
 const secret = new TextEncoder().encode(
   process.env.JWT_SECRET || "huicheng-phonefarm-dev-secret-change-in-production"
@@ -15,12 +18,29 @@ export type SessionUser = {
   role: string;
 };
 
+export type DbUser = {
+  id: string;
+  email: string;
+  passwordHash: string;
+  name: string | null;
+  role: string;
+};
+
 export async function hashPassword(password: string) {
   return bcrypt.hash(password, 12);
 }
 
 export async function verifyPassword(password: string, hash: string) {
   return bcrypt.compare(password, hash);
+}
+
+export async function findUserByEmail(email: string): Promise<DbUser | null> {
+  const normalized = email.toLowerCase();
+  const rows = await prisma.$queryRawUnsafe<DbUser[]>(
+    `SELECT id, email, passwordHash, name, role FROM User WHERE LOWER(email) = ? LIMIT 1`,
+    normalized
+  );
+  return rows[0] ?? null;
 }
 
 export async function createSession(user: SessionUser) {
@@ -78,7 +98,7 @@ export async function requireUser() {
 
 export async function ensureAdminUser() {
   const email = getAdminEmail();
-  const existing = await prisma.user.findUnique({ where: { email } });
+  const existing = await findUserByEmail(email);
   if (existing) return existing;
   return prisma.user.create({
     data: {
@@ -90,11 +110,17 @@ export async function ensureAdminUser() {
   });
 }
 
-/** Keep seeded admin password aligned with runtime env (Vercel env changes, fresh /tmp DB). */
+/** Align admin row with runtime ADMIN_EMAIL / ADMIN_PASSWORD from Vercel. */
 export async function syncAdminFromEnv() {
   const password = getAdminPassword();
   const email = getAdminEmail();
-  if (!password) return;
+  if (!password) return false;
+
+  await prisma.$executeRawUnsafe(
+    `DELETE FROM User WHERE LOWER(email) = ? AND email <> ?`,
+    email,
+    email
+  );
 
   await prisma.user.upsert({
     where: { email },
@@ -106,4 +132,10 @@ export async function syncAdminFromEnv() {
       passwordHash: await hashPassword(password),
     },
   });
+
+  const epoch = getAdminCredentialEpoch();
+  if (epoch) {
+    fs.writeFileSync(path.join(os.tmpdir(), ".phonefarm-admin-epoch"), epoch);
+  }
+  return true;
 }
