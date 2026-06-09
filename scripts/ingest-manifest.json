@@ -1,75 +1,131 @@
 {
-  "at": "2026-06-09T15:30:20.740Z",
+  "at": "2026-06-09T17:58:15.817Z",
+  "sources": [
+    "E:\\宣传资料主板机照片",
+    "E:\\主板机照片素材",
+    "E:\\主板机照片素材\\水印\\演示文稿",
+    "D:\\产品商品详情图"
+  ],
   "picked": [
     {
-      "dest": "motherboard-box-hero.jpg",
+      "dest": "real/motherboard-box-hero.jpg",
       "from": "E:\\宣传资料主板机照片\\2025_05_26_23_56_IMG_0310.JPG",
       "bytes": 1564890
     },
     {
-      "dest": "motherboard-box-front.jpg",
+      "dest": "real/motherboard-box-front.jpg",
       "from": "E:\\宣传资料主板机照片\\2025_05_27_00_28_IMG_0333.JPG",
       "bytes": 1755252
     },
     {
-      "dest": "motherboard-box-inside.jpg",
+      "dest": "real/motherboard-box-inside.jpg",
       "from": "E:\\宣传资料主板机照片\\2025_05_26_23_45_IMG_0159.JPG",
       "bytes": 1698041
     },
     {
-      "dest": "phone-farm-box-hero.jpg",
-      "from": "E:\\宣传资料主板机照片\\2025_05_27_00_28_IMG_0332.JPG",
-      "bytes": 1643632
-    },
-    {
-      "dest": "phone-farm-box-front.png",
+      "dest": "real/phone-farm-box-hero.png",
       "from": "D:\\产品商品详情图\\product_Box_Phone_Farm_A908N_6_128GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-a908n-en_main_box_phone_farm_a908n.png",
       "bytes": 1429271
     },
     {
-      "dest": "factory-workshop.jpg",
+      "dest": "real/phone-farm-box-front.png",
+      "from": "D:\\产品商品详情图\\product_Box_Phone_Farm_Change_Generasi_Terbaru_2026_Port_USB_LAN_box-phone-farm-s8-change-id_gallery_6_Structure_of_B.png",
+      "bytes": 1284109
+    },
+    {
+      "dest": "real/phone-array-hero.png",
+      "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_12_01_IMG_0579.png",
+      "bytes": 5589579
+    },
+    {
+      "dest": "real/iphone-farm-hero.png",
+      "from": "E:\\主板机照片素材\\水印\\演示文稿\\幻灯片1.png",
+      "bytes": 1157325
+    },
+    {
+      "dest": "real/factory-workshop.jpg",
       "from": "E:\\宣传资料主板机照片\\2025_05_26_23_59_IMG_0312.JPG",
       "bytes": 1463096
     },
     {
-      "dest": "factory-packing.jpg",
+      "dest": "real/factory-packing.jpg",
       "from": "E:\\宣传资料主板机照片\\721a7543fafddff991b722774b74425.jpg",
       "bytes": 5370059
     },
     {
-      "dest": "factory-qc.png",
+      "dest": "real/factory-qc.png",
       "from": "D:\\产品商品详情图\\product_Box_Phone_Farm_S8_Change_Latest_Generation_2026_USB_LAN_Port_box-phone-farm-s8-change-en_main_s8_change_en.png",
       "bytes": 1599294
     },
     {
-      "dest": "factory/gallery-1.png",
+      "dest": "deck/deck-slide-1.png",
+      "from": "E:\\主板机照片素材\\水印\\演示文稿\\幻灯片10.png",
+      "bytes": 1446553
+    },
+    {
+      "dest": "deck/deck-slide-2.png",
+      "from": "E:\\主板机照片素材\\水印\\演示文稿\\幻灯片11.png",
+      "bytes": 1147411
+    },
+    {
+      "dest": "factory/gallery-01.png",
       "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_11_27_IMG_0551.png",
       "bytes": 14825731
     },
     {
-      "dest": "factory/gallery-2.png",
+      "dest": "factory/gallery-02.png",
       "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_11_28_IMG_0553.png",
       "bytes": 11329666
     },
     {
-      "dest": "factory/gallery-3.png",
+      "dest": "factory/gallery-03.png",
       "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_11_29_IMG_0556 - 25-10-2025 22-02-38.png",
       "bytes": 10355925
     },
     {
-      "dest": "factory/gallery-4.jpg",
+      "dest": "factory/gallery-04.jpg",
       "from": "E:\\宣传资料主板机照片\\4726e23d35ef8206d633db483d9dad0f.jpg",
       "bytes": 6044066
     },
     {
-      "dest": "factory/gallery-5.jpg",
+      "dest": "factory/gallery-05.jpg",
       "from": "E:\\宣传资料主板机照片\\93bb1ee473c940c61f0ef2dd029c861.jpg",
       "bytes": 6011391
     },
     {
-      "dest": "factory/gallery-6.png",
-      "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_12_01_IMG_0579.png",
-      "bytes": 5589579
+      "dest": "factory/gallery-06.jpg",
+      "from": "E:\\宣传资料主板机照片\\0f5501e1584de9a625d220f62951bc6d.jpg",
+      "bytes": 4979967
+    },
+    {
+      "dest": "factory/gallery-07.jpg",
+      "from": "E:\\宣传资料主板机照片\\f2747fe7f0e47f38e836abf0a430643f.jpg",
+      "bytes": 4912740
+    },
+    {
+      "dest": "factory/gallery-08.png",
+      "from": "E:\\主板机照片素材\\主板机白底\\Untitled image (1).png",
+      "bytes": 4806768
+    },
+    {
+      "dest": "factory/gallery-09.jpg",
+      "from": "E:\\宣传资料主板机照片\\095dfc1f8b1329f8584d880651ffbfd.jpg",
+      "bytes": 4754115
+    },
+    {
+      "dest": "factory/gallery-10.jpg",
+      "from": "E:\\宣传资料主板机照片\\b0d58ce128acf593ece3f90eb66e6bc.jpg",
+      "bytes": 4672117
+    },
+    {
+      "dest": "factory/gallery-11.png",
+      "from": "E:\\主板机照片素材\\主板机白底\\2025_10_25_11_23_IMG_0548.png",
+      "bytes": 4658442
+    },
+    {
+      "dest": "factory/gallery-12.jpg",
+      "from": "E:\\宣传资料主板机照片\\d14650ce0b2d47625fa539532e617b20.jpg",
+      "bytes": 4566186
     }
   ]
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { BLOG_POSTS } from "@/data/blog";
 import { buildMetadata } from "@/lib/seo";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Technical Articles",
@@ -10,24 +12,34 @@ export const metadata = buildMetadata({
 
 export default function BlogPage() {
   return (
-    <div className="section">
-      <div className="container-wide">
-        <h1 className="section-title">Technical Articles</h1>
-        <p className="section-subtitle">
-          Supplementary guides - primary setup reference is the{" "}
-          <Link href="/manual" className="text-blue-400 hover:underline">Installation Manual</Link>.
-        </p>
-        <div className="grid md:grid-cols-2 gap-4">
-          {BLOG_POSTS.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="card-flat hover:border-blue-800 transition-colors block">
-              <span className="text-[10px] text-blue-400 uppercase tracking-wide">{post.category}</span>
-              <span className="text-[10px] text-slate-600 ml-2">{post.date}</span>
-              <h2 className="font-medium text-white text-sm mt-2">{post.title}</h2>
-              <p className="text-xs text-slate-500 mt-2">{post.excerpt}</p>
-            </Link>
-          ))}
+    <>
+      <PageBanner
+        title="Technical Articles"
+        subtitle="Supplementary guides — primary setup reference is the Installation Manual."
+        image={IMAGES.deck.slide2}
+      />
+      <section className="section">
+        <div className="container-wide">
+          <SectionHeader
+            title="Hardware guides"
+            subtitle="Supplementary notes — see the Installation Manual for the primary setup reference."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BLOG_POSTS.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="card-flat hover:border-amber-500/30 transition-all block h-full"
+              >
+                <span className="text-xs text-amber-400/90 uppercase tracking-wide font-semibold">{post.category}</span>
+                <span className="text-xs text-slate-600 ml-2">{post.date}</span>
+                <h2 className="font-bold text-white text-lg mt-3 mb-2 leading-snug">{post.title}</h2>
+                <p className="text-sm text-slate-500 leading-relaxed">{post.excerpt}</p>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
