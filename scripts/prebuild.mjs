@@ -51,4 +51,14 @@ fs.writeFileSync(
 );
 console.log("prebuild: wrote seed-admin-meta.json (credential fingerprint only)");
 
+const realDir = path.join(root, "public", "images", "real");
+const realFiles = fs.existsSync(realDir)
+  ? fs.readdirSync(realDir).filter((name) => !name.startsWith(".") && name !== ".gitkeep")
+  : [];
+fs.writeFileSync(
+  path.join(root, "src", "lib", "real-images-manifest.json"),
+  JSON.stringify(realFiles, null, 2) + "\n"
+);
+console.log("prebuild: real images manifest:", realFiles.length, "file(s)");
+
 console.log("prebuild: seed database ready");

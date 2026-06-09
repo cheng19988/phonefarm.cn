@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
 import { buildMetadata } from "@/lib/seo";
@@ -20,6 +21,8 @@ export default async function ProductsPage({
 }) {
   const params = await searchParams;
   const groupFilter = params.group as CatalogGroup | undefined;
+
+  await ensureDatabase();
 
   const products = await prisma.product.findMany({
     where: { published: true },

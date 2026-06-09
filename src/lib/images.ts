@@ -1,14 +1,19 @@
 /**
  * Product and factory images.
  *
- * Real photos: upload to public/images/real/ ? see docs/image-replacement-guide.md
- * Set USE_REAL_IMAGES = true after files are in place.
+ * Real photos: public/images/real/ — see docs/image-replacement-guide.md
+ * Manifest is generated at build time (scripts/prebuild.mjs). Missing files keep placeholders.
  */
 
-/** Flip to true once authentic assets exist under public/images/real/ */
-export const USE_REAL_IMAGES = false;
+import realImageManifest from "./real-images-manifest.json";
 
 const REAL_BASE = "/images/real";
+const existingRealFiles = new Set<string>(realImageManifest as string[]);
+
+function pickReal(webPath: string, fallback: string): string {
+  const filename = webPath.slice(webPath.lastIndexOf("/") + 1);
+  return existingRealFiles.has(filename) ? webPath : fallback;
+}
 
 /** Reserved real-photo paths (filenames per docs/image-replacement-guide.md) */
 export const REAL_IMAGES = {
@@ -44,10 +49,6 @@ export const REAL_IMAGES = {
     cableRouting: `${REAL_BASE}/cable-routing-detail.webp`,
   },
 } as const;
-
-function pick(real: string, fallback: string) {
-  return USE_REAL_IMAGES ? real : fallback;
-}
 
 const card = (name: string) => `/images/card_800x800/${name}-card_800x800.webp`;
 const hero = (name: string) => `/images/hero_1600x900/${name}-hero_1600x900.webp`;
@@ -131,46 +132,57 @@ const FALLBACK = {
 export const IMAGES = {
   homeHero: FALLBACK.homeHero,
   phoneFarmBox: {
-    card: pick(REAL_IMAGES.phoneFarmBox32.front, FALLBACK.phoneFarmBox.card),
-    hero: pick(REAL_IMAGES.phoneFarmBox32.front, FALLBACK.phoneFarmBox.hero),
-    detail: pick(REAL_IMAGES.phoneFarmBox32.inside, FALLBACK.phoneFarmBox.detail),
+    card: pickReal(REAL_IMAGES.phoneFarmBox32.front, FALLBACK.phoneFarmBox.card),
+    hero: pickReal(REAL_IMAGES.phoneFarmBox32.front, FALLBACK.phoneFarmBox.hero),
+    detail: pickReal(REAL_IMAGES.phoneFarmBox32.inside, FALLBACK.phoneFarmBox.detail),
+    delivery: pickReal(REAL_IMAGES.workshop.exportPacking, FALLBACK.warehouse),
   },
   motherboardBox: {
-    card: pick(REAL_IMAGES.motherboardBox.front, FALLBACK.motherboardBox.card),
-    hero: pick(REAL_IMAGES.motherboardBox.front, FALLBACK.motherboardBox.hero),
-    detail: pick(REAL_IMAGES.motherboardBox.inside, FALLBACK.motherboardBox.detail),
+    card: pickReal(REAL_IMAGES.motherboardBox.front, FALLBACK.motherboardBox.card),
+    hero: pickReal(REAL_IMAGES.motherboardBox.front, FALLBACK.motherboardBox.hero),
+    detail: pickReal(REAL_IMAGES.motherboardBox.inside, FALLBACK.motherboardBox.detail),
+    cables: pickReal(REAL_IMAGES.motherboardBox.cables, FALLBACK.motherboardBox.detail),
   },
   androidFarm: FALLBACK.androidFarm,
   iphoneFarm: {
-    card: pick(REAL_IMAGES.iphoneFarmBox.front, FALLBACK.iphoneFarm.card),
-    hero: pick(REAL_IMAGES.iphoneFarmBox.front, FALLBACK.iphoneFarm.hero),
-    detail: pick(REAL_IMAGES.iphoneFarmBox.inside, FALLBACK.iphoneFarm.detail),
+    card: pickReal(REAL_IMAGES.iphoneFarmBox.front, FALLBACK.iphoneFarm.card),
+    hero: pickReal(REAL_IMAGES.iphoneFarmBox.front, FALLBACK.iphoneFarm.hero),
+    detail: pickReal(REAL_IMAGES.iphoneFarmBox.inside, FALLBACK.iphoneFarm.detail),
   },
   realDevice: {
-    card: pick(REAL_IMAGES.phoneArray12.front, FALLBACK.realDevice.card),
-    hero: pick(REAL_IMAGES.phoneArray12.front, FALLBACK.realDevice.hero),
-    detail: pick(REAL_IMAGES.phoneArray12.drawer, FALLBACK.realDevice.detail),
+    card: pickReal(REAL_IMAGES.phoneArray12.front, FALLBACK.realDevice.card),
+    hero: pickReal(REAL_IMAGES.phoneArray12.front, FALLBACK.realDevice.hero),
+    detail: pickReal(
+      REAL_IMAGES.phoneArray12.front,
+      pickReal(REAL_IMAGES.phoneArray12.drawer, FALLBACK.realDevice.detail)
+    ),
   },
   emptyBox: FALLBACK.emptyBox,
   usbHub: FALLBACK.usbHub,
   power: FALLBACK.power,
   cooling: FALLBACK.cooling,
   network: {
-    card: pick(REAL_IMAGES.network.switchCabling, FALLBACK.network.card),
-    hero: pick(REAL_IMAGES.network.routerSetup, FALLBACK.network.hero),
-    detail: pick(REAL_IMAGES.network.switchCabling, FALLBACK.network.detail),
+    card: pickReal(REAL_IMAGES.network.routerSetup, FALLBACK.network.card),
+    hero: pickReal(REAL_IMAGES.network.routerSetup, FALLBACK.network.hero),
+    detail: pickReal(REAL_IMAGES.network.routerSetup, FALLBACK.network.detail),
   },
   customCabinet: FALLBACK.customCabinet,
   remoteControl: FALLBACK.remoteControl,
   serviceScene: FALLBACK.serviceScene,
-  factory: pick(REAL_IMAGES.workshop.assemblyTable, FALLBACK.factory),
-  workshop: pick(REAL_IMAGES.workshop.testingBench, FALLBACK.workshop),
+  factory: pickReal(REAL_IMAGES.workshop.assemblyTable, FALLBACK.factory),
+  workshop: pickReal(REAL_IMAGES.workshop.testingBench, FALLBACK.workshop),
   office: FALLBACK.office,
   meeting: FALLBACK.meeting,
-  warehouse: pick(REAL_IMAGES.workshop.exportPacking, FALLBACK.warehouse),
+  warehouse: pickReal(REAL_IMAGES.workshop.exportPacking, FALLBACK.warehouse),
   companyFront: FALLBACK.companyFront,
   companyOffice: FALLBACK.companyOffice,
   companyMeeting: FALLBACK.companyMeeting,
-  companyWorkshop: pick(REAL_IMAGES.workshop.assemblyTable, FALLBACK.companyWorkshop),
-  companyWarehouse: pick(REAL_IMAGES.workshop.exportPacking, FALLBACK.companyWarehouse),
+  companyWorkshop: pickReal(REAL_IMAGES.workshop.assemblyTable, FALLBACK.companyWorkshop),
+  companyWarehouse: pickReal(REAL_IMAGES.workshop.exportPacking, FALLBACK.companyWarehouse),
+  manual: {
+    otgLan: pickReal(REAL_IMAGES.network.routerSetup, FALLBACK.network.hero),
+    motherboardCables: pickReal(REAL_IMAGES.motherboardBox.cables, FALLBACK.motherboardBox.detail),
+  },
 } as const;
+
+export const HAS_REAL_IMAGES = existingRealFiles.size > 0;

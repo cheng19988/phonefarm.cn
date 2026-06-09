@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LogoutButton } from "@/components/logout-button";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
@@ -15,6 +16,8 @@ export const metadata = buildMetadata({
 export default async function AccountOrdersPage() {
   const session = await getSession();
   if (!session) redirect("/login");
+
+  await ensureDatabase();
 
   const orders = await prisma.order.findMany({
     where: { userId: session.id },

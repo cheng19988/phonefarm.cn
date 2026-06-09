@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AdminContactTable } from "@/components/admin-contact-table";
 import { AdminProductRow } from "@/components/admin-product-row";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
@@ -16,6 +17,8 @@ export const metadata = buildMetadata({
 export default async function AdminPage() {
   const admin = await requireAdmin();
   if (!admin) redirect("/login");
+
+  await ensureDatabase();
 
   const [users, orders, contacts, products] = await Promise.all([
     prisma.user.count(),

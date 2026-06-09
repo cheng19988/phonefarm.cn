@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { FAQAccordion } from "@/components/commerce";
 import { JsonLd } from "@/components/shared";
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
+  await ensureDatabase();
   const product = await prisma.product.findUnique({ where: { slug } });
   const seed = getProductSeed(slug);
   if (!product || !seed) notFound();
