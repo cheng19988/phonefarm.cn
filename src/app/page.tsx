@@ -11,7 +11,7 @@ import {
 } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
-import { FACTORY_GALLERY, IMAGES } from "@/lib/images";
+import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
@@ -157,11 +157,11 @@ export default function HomePage() {
               { src: IMAGES.companyWorkshop, label: "Assembly floor" },
               { src: IMAGES.qc, label: "QC & testing" },
               { src: IMAGES.companyWarehouse, label: "Export packing" },
+              { src: IMAGES.companyOffice, label: "Office" },
+              { src: IMAGES.companyMeeting, label: "Meeting room" },
               { src: IMAGES.motherboardBox.detail, label: "Motherboard layout" },
               { src: IMAGES.phoneFarmBox.hero, label: "Phone farm chassis" },
               { src: IMAGES.realDevice.hero, label: "12PCS array" },
-              { src: FACTORY_GALLERY[2] ?? IMAGES.companyMeeting, label: "Product line" },
-              { src: FACTORY_GALLERY[3] ?? IMAGES.iphoneFarm.hero, label: "White-background SKU" },
             ]}
           />
           <p className="text-center mt-8">

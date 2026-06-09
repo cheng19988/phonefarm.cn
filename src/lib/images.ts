@@ -5,30 +5,23 @@ import realImageManifest from "./real-images-manifest.json";
 
 const existing = new Set<string>(realImageManifest as string[]);
 
-function asset(realPath: string, fallback: string): string {
-  const name = realPath.split("/").pop() ?? "";
-  if (existing.has(name)) return realPath;
-  return fallback;
-}
+/** Static paths committed under public/images — always safe to serve */
+const STATIC_IMAGE = /^\/images\/(factory|deck|card|hero|real)\//;
 
 function pub(sub: string, file: string): string {
   return `/images/${sub}/${file}`;
 }
 
-const fb = {
-  card: (n: string) => `/images/card_800x800/${n}-card_800x800.webp`,
-  hero: (n: string) => `/images/hero_1600x900/${n}-hero_1600x900.webp`,
-  detail: (n: string) => `/images/detail_1200x900/${n}-detail_1200x900.webp`,
-};
+function asset(primary: string, fallback: string): string {
+  const name = primary.split("/").pop() ?? "";
+  if (existing.has(name) || STATIC_IMAGE.test(primary)) return primary;
+  return fallback;
+}
 
-const FALLBACK_NAMES = {
-  phoneFarm: "phonefarm.cn-product-box-2025-10-25-11-27-img-0551-a9b35",
-  mb: "phonefarm.cn-components-electronicscomponentslayout-64e0d",
-  array: "phonefarm.cn-product-box-2025-10-25-11-28-img-0553-47327",
-  iphone: "phonefarm.cn-product-box-2025-10-25-11-37-img-0566-ee21b",
-  network: "phonefarm.cn-rack-cabinet-moderntechserverdeviceshowcase-89e28",
-  remote: "phonefarm.cn-service-scenes-moderndevicemanagementcontrol-ae6b9",
-  workshop: "phonefarm.cn-components-electronicsassemblylab-19f44",
+const PLACEHOLDER = {
+  card: pub("card", "motherboard-box-front.jpg"),
+  hero: pub("hero", "motherboard-box-hero.jpg"),
+  detail: pub("real", "motherboard-box-inside.jpg"),
 };
 
 const R = {
@@ -65,83 +58,83 @@ const GALLERY_FILES = [
 export const FACTORY_GALLERY = GALLERY_FILES.map((f) => pub("factory", f));
 
 export const IMAGES = {
-  homeHero: asset(R.mbHero, fb.hero(FALLBACK_NAMES.phoneFarm)),
+  homeHero: asset(R.mbHero, PLACEHOLDER.hero),
   phoneFarmBox: {
-    card: asset(R.pfFront, fb.card(FALLBACK_NAMES.phoneFarm)),
-    hero: asset(R.pfHero, fb.hero(FALLBACK_NAMES.phoneFarm)),
-    detail: asset(R.pfDetail, fb.detail(FALLBACK_NAMES.phoneFarm)),
+    card: asset(R.pfFront, pub("card", "phone-farm-box-front.png")),
+    hero: asset(R.pfHero, pub("hero", "phone-farm-box-hero.png")),
+    detail: asset(R.pfDetail, pub("real", "phone-farm-box-front.png")),
   },
   motherboardBox: {
-    card: asset(R.mbFront, fb.card(FALLBACK_NAMES.mb)),
-    hero: asset(R.mbHero, fb.hero(FALLBACK_NAMES.mb)),
-    detail: asset(R.mbInside, fb.detail(FALLBACK_NAMES.mb)),
+    card: asset(R.mbFront, pub("card", "motherboard-box-front.jpg")),
+    hero: asset(R.mbHero, PLACEHOLDER.hero),
+    detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   androidFarm: {
-    card: asset(R.pfFront, fb.card(FALLBACK_NAMES.array)),
-    hero: asset(R.arrayHero, fb.hero(FALLBACK_NAMES.array)),
-    detail: asset(R.mbInside, fb.detail(FALLBACK_NAMES.array)),
+    card: asset(R.pfFront, pub("card", "phone-farm-box-front.png")),
+    hero: asset(R.arrayHero, pub("hero", "phone-array-hero.png")),
+    detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   iphoneFarm: {
-    card: asset(R.iphoneHero, fb.card(FALLBACK_NAMES.iphone)),
-    hero: asset(R.iphoneHero, fb.hero(FALLBACK_NAMES.iphone)),
-    detail: asset(R.iphoneHero, fb.detail(FALLBACK_NAMES.iphone)),
+    card: asset(R.iphoneHero, pub("card", "iphone-farm-front.png")),
+    hero: asset(R.iphoneHero, pub("hero", "iphone-farm-hero.png")),
+    detail: asset(R.iphoneHero, pub("hero", "iphone-farm-hero.png")),
   },
   realDevice: {
-    card: asset(R.arrayHero, fb.card(FALLBACK_NAMES.array)),
-    hero: asset(R.arrayHero, fb.hero(FALLBACK_NAMES.array)),
-    detail: asset(R.mbInside, fb.detail(FALLBACK_NAMES.array)),
+    card: asset(R.arrayHero, pub("card", "phone-array-front.png")),
+    hero: asset(R.arrayHero, pub("hero", "phone-array-hero.png")),
+    detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   emptyBox: {
-    card: asset(R.mbInside, fb.card("phonefarm.cn-components-electronicsassembly-detail-f936c")),
-    hero: asset(R.mbInside, fb.hero("phonefarm.cn-components-electronicsassembly-detail-f936c")),
-    detail: asset(R.mbInside, fb.detail("phonefarm.cn-components-electronicsassembly-detail-f936c")),
+    card: asset(R.mbInside, PLACEHOLDER.detail),
+    hero: asset(R.mbInside, PLACEHOLDER.detail),
+    detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   usbHub: {
-    card: fb.card("phonefarm.cn-components-electronicscomponentsassembly-19059"),
-    hero: fb.hero("phonefarm.cn-components-electronicscomponentsassembly-19059"),
-    detail: fb.detail("phonefarm.cn-components-electronicscomponentsassembly-19059"),
+    card: asset(R.deck1, PLACEHOLDER.card),
+    hero: asset(R.deck1, R.deck1),
+    detail: asset(R.deck2, R.deck2),
   },
   power: {
-    card: fb.card("phonefarm.cn-components-electronicsassemblylabworkbench-9e7df"),
-    hero: fb.hero("phonefarm.cn-components-electronicsassemblylabworkbench-9e7df"),
-    detail: fb.detail("phonefarm.cn-components-electronicsassemblylabworkbench-9e7df"),
+    card: asset(R.factoryWorkshop, PLACEHOLDER.card),
+    hero: asset(R.factoryWorkshop, R.factoryWorkshop),
+    detail: asset(R.factoryPacking, R.factoryPacking),
   },
   cooling: {
-    card: fb.card("phonefarm.cn-components-electronics-workbenchdetail-6f814"),
-    hero: fb.hero("phonefarm.cn-components-electronics-workbenchdetail-6f814"),
-    detail: fb.detail("phonefarm.cn-components-electronics-workbenchdetail-6f814"),
+    card: asset(R.factoryQc, PLACEHOLDER.card),
+    hero: asset(R.factoryQc, R.factoryQc),
+    detail: asset(R.factoryQc, R.factoryQc),
   },
   network: {
-    card: asset(R.pfFront, fb.card(FALLBACK_NAMES.network)),
-    hero: asset(R.deck1, fb.hero(FALLBACK_NAMES.network)),
-    detail: asset(R.deck2, fb.detail(FALLBACK_NAMES.network)),
+    card: asset(R.pfFront, PLACEHOLDER.card),
+    hero: asset(R.deck1, R.deck1),
+    detail: asset(R.deck2, R.deck2),
   },
   customCabinet: {
-    card: asset(R.pfHero, fb.card("phonefarm.cn-rack-cabinet-moderntechlab-datarack-2fb2e")),
-    hero: asset(R.pfHero, fb.hero("phonefarm.cn-rack-cabinet-moderntechlab-datarack-2fb2e")),
-    detail: asset(R.mbInside, fb.detail("phonefarm.cn-rack-cabinet-moderntechlab-datarack-2fb2e")),
+    card: asset(R.pfHero, pub("card", "phone-farm-box-hero.jpg")),
+    hero: asset(R.pfHero, pub("hero", "phone-farm-box-hero.png")),
+    detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   remoteControl: {
-    card: asset(R.deck1, fb.card(FALLBACK_NAMES.remote)),
-    hero: asset(R.deck2, fb.hero(FALLBACK_NAMES.remote)),
-    detail: fb.detail(FALLBACK_NAMES.remote),
+    card: asset(R.deck1, PLACEHOLDER.card),
+    hero: asset(R.deck2, R.deck2),
+    detail: asset(R.deck2, R.deck2),
   },
-  serviceScene: asset(R.deck1, fb.hero("phonefarm.cn-service-scenes-moderntechoffice-devicecontrol-2663b")),
-  factory: asset(R.factoryWorkshop, fb.hero("phonefarm.cn-rack-cabinet-modernlab-serverworkbench-a0099")),
-  workshop: asset(R.factoryWorkshop, fb.hero(FALLBACK_NAMES.workshop)),
-  office: asset(R.deck1, fb.hero("phonefarm.cn-service-scenes-moderntechofficeworkspace-23aa6")),
-  meeting: asset(R.deck2, fb.hero("phonefarm.cn-service-scenes-modernoffice-lab-28010")),
-  warehouse: asset(R.factoryPacking, fb.hero("phonefarm.cn-rack-cabinet-industrial-server-8317a")),
-  companyFront: asset(R.factoryWorkshop, "/images/company/%E5%89%8D%E5%8F%B0.png"),
-  companyOffice: asset(pub("factory", "gallery-04.jpg"), "/images/company/%E5%8A%9E%E5%85%AC%E5%AE%A4.png"),
-  companyMeeting: asset(pub("factory", "gallery-05.jpg"), "/images/company/%E4%BC%9A%E8%AE%AE%E5%AE%A4.png"),
-  companyWorkshop: asset(R.factoryWorkshop, "/images/company/%E7%94%9F%E4%BA%A7%E8%BD%A6%E9%97%B4.png"),
-  companyWarehouse: asset(R.factoryPacking, "/images/company/%E4%BB%93%E5%BA%93.png"),
-  qc: asset(R.factoryQc, fb.detail(FALLBACK_NAMES.workshop)),
+  serviceScene: asset(R.deck1, R.deck1),
+  factory: asset(R.factoryWorkshop, R.factoryWorkshop),
+  workshop: asset(R.factoryWorkshop, R.factoryWorkshop),
+  office: asset(pub("factory", "gallery-04.jpg"), pub("factory", "gallery-04.jpg")),
+  meeting: asset(pub("factory", "gallery-05.jpg"), pub("factory", "gallery-05.jpg")),
+  warehouse: asset(R.factoryPacking, R.factoryPacking),
+  companyFront: pub("factory", "gallery-01.png"),
+  companyOffice: pub("factory", "gallery-04.jpg"),
+  companyMeeting: pub("factory", "gallery-05.jpg"),
+  companyWorkshop: R.factoryWorkshop,
+  companyWarehouse: R.factoryPacking,
+  qc: asset(R.factoryQc, R.factoryQc),
   deck: { slide1: R.deck1, slide2: R.deck2 },
   manual: {
-    otgLan: asset(R.deck1, fb.hero(FALLBACK_NAMES.network)),
-    motherboardCables: asset(R.mbInside, fb.detail(FALLBACK_NAMES.mb)),
+    otgLan: asset(R.deck1, R.deck1),
+    motherboardCables: asset(R.mbInside, PLACEHOLDER.detail),
   },
 } as const;
 
