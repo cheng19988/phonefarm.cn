@@ -42,9 +42,10 @@ export const RFQ_COPY = {
 
 export const NAV = [
   { href: "/products", label: "Products", labelZh: "产品" },
-  { href: "/manual", label: "Manual", labelZh: "手册" },
-  { href: "/faq", label: "FAQ", labelZh: "FAQ" },
+  { href: "/packages", label: "Packages", labelZh: "套餐" },
+  { href: "/pricing", label: "Pricing", labelZh: "报价" },
   { href: "/services", label: "Services", labelZh: "服务" },
+  { href: "/manual", label: "Manual", labelZh: "手册" },
   { href: "/about", label: "About", labelZh: "关于" },
   { href: "/contact", label: "Contact", labelZh: "联系" },
 ] as const;

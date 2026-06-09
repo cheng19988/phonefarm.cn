@@ -8,41 +8,60 @@ export async function Header() {
   const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0f1419] border-b border-[var(--border)]">
+    <header className="sticky top-0 z-50 bg-[#070a0f]/90 backdrop-blur-lg border-b border-[var(--border-subtle)]">
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
-          <span className="text-slate-400">
-            {SITE.nameEn} | {SITE.locationEn} | Phone Farm Hardware Manufacturer
+          <span className="text-slate-400 text-xs md:text-sm">
+            {SITE.nameEn} · {SITE.locationEn} · Factory-direct phone farm hardware
           </span>
           <ContactBar compact />
         </div>
       </div>
-      <div className="container-wide py-3 flex items-center justify-between gap-4">
-        <Link href="/" className="shrink-0">
-          <div className="font-semibold text-white leading-tight">{SITE.nameEn}</div>
-          <div className="text-[11px] text-slate-500 leading-tight">PhoneFarm.cn | {SITE.name}</div>
+      <div className="container-wide py-4 flex items-center justify-between gap-4">
+        <Link href="/" className="shrink-0 flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-500/20">
+            <span className="text-slate-950 font-black text-sm">PF</span>
+          </div>
+          <div>
+            <div className="font-bold text-white leading-tight group-hover:text-amber-100 transition-colors">{SITE.nameEn}</div>
+            <div className="text-[11px] text-slate-500 leading-tight">{SITE.name}</div>
+          </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-5">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+            >
               {item.label}
             </Link>
           ))}
+          <Link href="/faq" className="px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+            FAQ
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-1.5 px-3">
+          <Link href="/pricing" className="hidden md:inline-flex btn-ghost text-sm">
+            Pricing
+          </Link>
+          <Link href="/contact" className="btn-primary text-sm py-2 px-4 min-h-[40px]">
             Get Quote
           </Link>
           {isAdmin && (
-            <Link href="/admin" className="text-xs text-slate-500 hover:text-slate-300">
+            <Link href="/admin" className="text-xs text-slate-500 hover:text-slate-300 px-2">
               Admin
             </Link>
           )}
         </div>
       </div>
-      <nav className="lg:hidden container-wide pb-2 flex gap-3 overflow-x-auto text-xs border-t border-[var(--border)] pt-2">
-        {NAV.map((item) => (
-          <Link key={item.href} href={item.href} className="text-slate-400 hover:text-white whitespace-nowrap">
+      <nav className="lg:hidden container-wide pb-3 flex gap-2 overflow-x-auto text-sm border-t border-[var(--border-subtle)] pt-3">
+        {[...NAV, { href: "/faq", label: "FAQ" }].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="whitespace-nowrap px-3 py-1.5 rounded-full border border-[var(--border)] text-slate-400 hover:text-white hover:border-amber-500/50"
+          >
             {item.label}
           </Link>
         ))}
@@ -53,45 +72,55 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-[#0a0e14] border-t border-[var(--border)] mt-auto">
-      <div className="container-wide py-10 grid md:grid-cols-3 gap-8">
-        <div>
-          <div className="font-semibold text-white mb-1">{SITE.nameEn}</div>
-          <div className="text-sm text-slate-500 mb-3">{SITE.name} | {SITE.locationEn}</div>
-          <p className="text-slate-400 text-sm mb-4 leading-relaxed">{SITE.descriptionEn}</p>
+    <footer className="bg-[var(--surface)] border-t border-[var(--border)] mt-auto">
+      <div className="container-wide py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 rounded-lg bg-amber-500 flex items-center justify-center">
+              <span className="text-slate-950 font-black text-xs">PF</span>
+            </div>
+            <div>
+              <div className="font-bold text-white">{SITE.nameEn}</div>
+              <div className="text-sm text-slate-500">{SITE.locationEn}</div>
+            </div>
+          </div>
+          <p className="text-slate-400 text-sm md:text-base mb-6 max-w-md leading-relaxed">{SITE.descriptionEn}</p>
           <ContactBar />
-          <p className="text-xs text-slate-600 mt-4">
+          <p className="text-xs text-slate-600 mt-6">
             Hardware for development, testing and legitimate device operations only.
           </p>
         </div>
         <div>
-          <h3 className="font-medium text-white text-sm mb-3">Products</h3>
-          <ul className="space-y-1.5 text-sm text-slate-400">
+          <h3 className="font-semibold text-white text-sm mb-4 uppercase tracking-wide">Products</h3>
+          <ul className="space-y-2 text-sm text-slate-400">
             {PRODUCT_NAV.map((item) => (
-              <li key={item.href}><Link href={item.href} className="hover:text-white">{item.label}</Link></li>
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-amber-300 transition-colors">{item.label}</Link>
+              </li>
             ))}
-            <li><Link href="/products" className="hover:text-blue-400">All Products</Link></li>
+            <li><Link href="/packages" className="hover:text-amber-300">Solution Packages</Link></li>
+            <li><Link href="/products" className="hover:text-amber-300">Full Catalog</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-medium text-white text-sm mb-3">Resources</h3>
-          <ul className="space-y-1.5 text-sm text-slate-400">
-            <li><Link href="/manual" className="hover:text-white">Installation Manual</Link></li>
-            <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
+          <h3 className="font-semibold text-white text-sm mb-4 uppercase tracking-wide">Company</h3>
+          <ul className="space-y-2 text-sm text-slate-400">
+            <li><Link href="/pricing" className="hover:text-white">Pricing & MOQ</Link></li>
             <li><Link href="/services" className="hover:text-white">Services</Link></li>
+            <li><Link href="/manual" className="hover:text-white">Installation Manual</Link></li>
             <li><Link href="/about" className="hover:text-white">About</Link></li>
             <li><Link href="/contact" className="hover:text-white">Contact / RFQ</Link></li>
             <li><Link href="/blog" className="hover:text-white">Technical Articles</Link></li>
             <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
             <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
           </ul>
-          <p className="text-xs text-slate-600 mt-4">
-            RFQ: {CONTACT.email} | {CONTACT.whatsapp}
+          <p className="text-xs text-slate-600 mt-6">
+            RFQ: {CONTACT.email}
           </p>
         </div>
       </div>
-      <div className="border-t border-[var(--border)] py-3 text-center text-xs text-slate-600">
-        © {new Date().getFullYear()} {SITE.nameEn} | {CONTACT.email}
+      <div className="border-t border-[var(--border)] py-4 text-center text-xs text-slate-600">
+        © {new Date().getFullYear()} {SITE.nameEn} · {CONTACT.email}
       </div>
     </footer>
   );

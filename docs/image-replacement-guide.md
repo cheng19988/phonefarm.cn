@@ -1,12 +1,20 @@
-# Real Image Replacement Guide
+# Real Image Replacement Guide (phonefarm.cn)
 
-Upload authentic product and factory photos only. Do not use AI-generated or stock images that misrepresent hardware.
+Upload **authentic** product and workshop photos only.
+
+**Do not:**
+
+- Generate or use AI product/factory images
+- Use stock photos that misrepresent your hardware
+- Fabricate certificates, client logos, or factory scale you cannot verify
 
 ## Upload location
 
 ```
 public/images/real/
 ```
+
+Filenames must match exactly (case-sensitive). Use `.webp` when possible.
 
 ## Recommended filenames
 
@@ -40,7 +48,7 @@ public/images/real/
 - `otg-lan-router-setup.webp`
 - `switch-network-cabling.webp`
 
-### Factory / workshop
+### Factory / workshop (real photos only)
 
 - `workshop-assembly-table.webp`
 - `workshop-testing-bench.webp`
@@ -63,14 +71,16 @@ public/images/real/
 - No customer privacy, accounts, IMEI, or shipping labels
 - No sensitive admin or control-panel screenshots
 - Prefer horizontal orientation and even lighting
-- Export as `.webp` when possible for size
 
-## How to go live
+## How it goes live (no page changes)
 
 1. Copy files into `public/images/real/` using the names above.
-2. Open `src/lib/images.ts`.
-3. Set `USE_REAL_IMAGES = true` after assets are uploaded.
-4. Adjust `REAL_IMAGES` paths if your filenames differ.
-5. Run `npm run build` and deploy.
+2. Optionally adjust slot mappings in `src/lib/images.ts` (`REAL_IMAGES`) if filenames differ.
+3. Run `npm run build` — `scripts/prebuild.mjs` scans `public/images/real/` and writes `src/lib/real-images-manifest.json`.
+4. Deploy. Each slot uses `pickReal()`: if the file exists in the manifest, the real path is used; otherwise the existing placeholder stays.
 
-No page structure changes are required. Existing placeholder paths remain the fallback when `USE_REAL_IMAGES` is `false`.
+There is **no** manual `USE_REAL_IMAGES` toggle. Missing files automatically keep placeholders — safe to deploy incrementally as photos arrive.
+
+## Current status
+
+Until real files are uploaded, `real-images-manifest.json` is `[]` and all pages use existing `/images/card_*`, `/images/hero_*`, and `/images/detail_*` placeholders.

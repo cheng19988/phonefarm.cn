@@ -2,173 +2,185 @@ import Image from "next/image";
 import Link from "next/link";
 import { FAQAccordion } from "@/components/commerce";
 import { ContactCTA } from "@/components/shared";
+import {
+  FactoryGallery,
+  ProductShowcase,
+  SectionHeader,
+  SiteHero,
+  TrustStrip,
+} from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
-import { MANUAL_TOC } from "@/data/manual";
 import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Hardware Manufacturer",
+  title: "Phone Farm Hardware Manufacturer | Guangzhou",
   description:
-    "Guangzhou Phone Farm - Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, ROM customization and remote setup for bulk device deployment.",
+    "Guangzhou Phone Farm — flagship manufacturer for Android motherboard boxes, 32PCS phone farm boxes, 12PCS arrays, ROM customization and export delivery.",
   path: "/",
 });
 
 const CAPABILITIES = [
-  "Hardware assembly & QC burn-in",
-  "Motherboard sourcing and slot testing",
-  "ROM customization (auto-boot, ADB persistence)",
-  "OTG/LAN network deployment",
-  "Remote installation via AnyDesk",
-  "Bulk packing & export shipping from Guangzhou",
+  { title: "Assembly & QC", desc: "Slot-level burn-in, power and USB path verification before export." },
+  { title: "ROM & ADB", desc: "Auto-boot, persistent ADB, custom firmware scope for lab workflows." },
+  { title: "Network deploy", desc: "USB, OTG/LAN, router sizing for 20–100+ node environments." },
+  { title: "Remote setup", desc: "AnyDesk handoff so your team receives hardware ready to operate." },
+  { title: "Export logistics", desc: "Foam packing, commercial invoice, Guangzhou freight coordination." },
+  { title: "OEM projects", desc: "Custom cabinets, tray layouts, mixed Android/iOS lab builds." },
 ];
 
 const APPLICATIONS = [
-  "App compatibility testing",
-  "Multi-device management",
-  "QA & software automation testing",
-  "Enterprise device deployment lab",
+  "App compatibility & regression testing",
+  "Multi-device management at scale",
+  "QA automation & CI device farms",
+  "Enterprise deployment labs",
   "Remote operation workflow validation",
-  "Internal automation integration (ADB/API)",
+  "Legitimate automation integration (ADB/API)",
 ];
 
+const SHOWCASE_COPY: Record<string, string> = {
+  "motherboard-box":
+    "High-density Android motherboard chassis — 20 screenless nodes in a compact enclosure. One PC controls 3–5 boxes for batch or individual device tasks.",
+  "phone-farm-box":
+    "32-device phone farm box with active cooling and ROM customization options. Built for medium-scale testing labs and production QA teams.",
+  "phone-array-12pcs":
+    "12 hot-swappable drawers for full phones or motherboards. Easier maintenance and lower entry cost for evaluation labs.",
+  "iphone-phone-farm":
+    "iOS device farm chassis with adjustable tray spacing. Configuration and model mix confirmed before build.",
+};
+
 export default function HomePage() {
-  const previewFaq = getFaqPreview(5);
+  const previewFaq = getFaqPreview(4);
 
   return (
     <>
-      <div className="rfq-bar md:hidden">
-        <div className="container-wide text-xs text-slate-400">
-          RFQ: <a href={`mailto:${CONTACT.email}`} className="text-slate-300">{CONTACT.email}</a>
+      <SiteHero
+        image={IMAGES.homeHero}
+        eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
+        title={
+          <>
+            Professional Phone Farm Hardware{" "}
+            <span className="gradient-text">Built in Guangzhou</span>
+          </>
+        }
+        subtitle="Factory-direct Android motherboard boxes, 32PCS phone farm chassis, and 12PCS arrays — assembled, tested, and shipped for serious device labs."
+      >
+        <div className="flex flex-wrap gap-3 md:gap-4">
+          <Link href="/contact" className="btn-primary">Get Configuration Quote</Link>
+          <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+            WhatsApp Sales
+          </a>
+          <Link href="/products" className="btn-secondary">Browse Catalog</Link>
         </div>
-      </div>
+      </SiteHero>
 
-      <section className="border-b border-[var(--border)]">
-        <div className="container-wide py-14 md:py-20">
-          <p className="text-blue-400 text-sm font-medium mb-3">{SITE.nameEn} - {SITE.locationEn}</p>
-          <h1 className="text-3xl md:text-4xl font-semibold text-white max-w-3xl leading-tight mb-4">
-            Phone Farm Hardware Manufacturer
-          </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mb-2 leading-relaxed">
-            Real-device phone farm boxes, Android motherboard arrays, ROM customization and remote setup support for bulk device deployment.
-          </p>
-          <p className="text-sm text-slate-500 mb-8">{SITE.name} - 手机农场硬件设备 - 群控硬件 - 主板盒定制</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/contact" className="btn-primary">Get Quote</Link>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">WhatsApp Inquiry</a>
-            <Link href="/manual" className="btn-secondary">View Manual</Link>
-          </div>
-        </div>
-      </section>
+      <TrustStrip />
 
       <section className="section border-b border-[var(--border)]">
-        <div className="container-wide">
-          <h2 className="section-title">Core Products</h2>
-          <p className="section-subtitle">Hardware SKUs with factory parameters - configuration and bulk pricing via RFQ.</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            {CORE_PRODUCTS.map((item) => (
-              <Link key={item.slug} href={item.href} className="card p-0 flex flex-col sm:flex-row overflow-hidden hover:border-blue-800 transition-colors">
-                <div className="relative w-full sm:w-40 h-32 sm:h-auto shrink-0 bg-[#141c28]">
-                  <Image
-                    src={item.slug === "motherboard-box" ? IMAGES.motherboardBox.hero : item.slug === "phone-farm-box" ? IMAGES.phoneFarmBox.hero : item.slug === "phone-array-12pcs" ? IMAGES.realDevice.hero : IMAGES.iphoneFarm.hero}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4 flex-1">
-                  <h3 className="font-medium text-white text-sm mb-1">{item.title}</h3>
-                  <p className="text-xs text-slate-500 mb-2">{item.titleZh}</p>
-                  <ul className="param-list text-xs mb-2">
-                    {item.params.map((p) => <li key={p}>{p}</li>)}
-                  </ul>
-                  <p className="text-[11px] text-slate-500">{item.use}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6">
-            <Link href="/products" className="btn-outline text-sm">All Products -&gt;</Link>
+        <div className="container-wide space-y-20 md:space-y-28">
+          <SectionHeader
+            title="Flagship Hardware SKUs"
+            subtitle="Each chassis is engineered for continuous operation — power, cooling, and USB routing verified before shipment."
+          />
+          {CORE_PRODUCTS.map((item, i) => (
+            <ProductShowcase
+              key={item.slug}
+              title={item.title}
+              titleZh={item.titleZh}
+              description={SHOWCASE_COPY[item.slug] ?? item.use}
+              params={item.params}
+              useCase={item.use}
+              href={item.href}
+              image={
+                item.slug === "motherboard-box"
+                  ? IMAGES.motherboardBox.hero
+                  : item.slug === "phone-farm-box"
+                    ? IMAGES.phoneFarmBox.hero
+                    : item.slug === "phone-array-12pcs"
+                      ? IMAGES.realDevice.hero
+                      : IMAGES.iphoneFarm.hero
+              }
+              reverse={i % 2 === 1}
+            />
+          ))}
+          <div className="text-center pt-4">
+            <Link href="/packages" className="btn-outline mr-3">View Solution Packages</Link>
+            <Link href="/products" className="btn-primary">Full Product Catalog</Link>
           </div>
         </div>
       </section>
 
-      <section className="section border-b border-[var(--border)] bg-[#141c28]/50">
+      <section className="section border-b border-[var(--border)] bg-[var(--surface)]/50">
         <div className="container-wide">
-          <h2 className="section-title">Factory Capabilities</h2>
-          <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
+          <SectionHeader
+            title="Factory Capabilities"
+            subtitle="From motherboard sourcing to export packing — one Guangzhou team owns the full hardware path."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {CAPABILITIES.map((c) => (
-              <li key={c} className="text-sm text-slate-300 py-2 px-3 border border-[var(--border)] rounded-md bg-[var(--surface)]">{c}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section border-b border-[var(--border)]">
-        <div className="container-wide grid md:grid-cols-2 gap-10">
-          <div>
-            <h2 className="section-title">Installation Manual</h2>
-            <p className="text-slate-400 text-sm mb-4">
-              Technical reference for USB mode, OTG/LAN, ADB authorization, router sizing and troubleshooting.
-            </p>
-            <ul className="space-y-1 text-sm text-slate-400 mb-6">
-              {MANUAL_TOC.slice(0, 6).map((s) => (
-                <li key={s.id}><Link href={`/manual#${s.id}`} className="hover:text-white">{s.title}</Link></li>
-              ))}
-            </ul>
-            <Link href="/manual" className="btn-primary text-sm">Read Full Manual</Link>
-          </div>
-          <div className="relative aspect-video rounded-md overflow-hidden border border-[var(--border)]">
-            <Image src={IMAGES.remoteControl.hero} alt="Device management setup" fill className="object-cover" />
-          </div>
-        </div>
-      </section>
-
-      <section className="section border-b border-[var(--border)]">
-        <div className="container-wide">
-          <h2 className="section-title">Applications</h2>
-          <p className="text-sm text-slate-500 mb-4">Hardware for development, testing and legitimate device operations.</p>
-          <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-            {APPLICATIONS.map((a) => (
-              <li key={a} className="text-sm text-slate-400 py-2 border-b border-[var(--border)]">{a}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section border-b border-[var(--border)]">
-        <div className="container-wide max-w-3xl">
-          <h2 className="section-title">FAQ Preview</h2>
-          <FAQAccordion items={previewFaq} />
-          <Link href="/faq" className="btn-outline text-sm mt-6 inline-flex">All FAQ -&gt;</Link>
-        </div>
-      </section>
-
-      <section className="section border-b border-[var(--border)]">
-        <div className="container-wide">
-          <h2 className="section-title">Workshop Photos</h2>
-          <p className="text-sm text-slate-500 mb-6">Guangzhou assembly and packing environment. More photos available during RFQ.</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {[
-              { src: IMAGES.companyFront, label: "Front desk" },
-              { src: IMAGES.companyOffice, label: "Office" },
-              { src: IMAGES.companyMeeting, label: "Meeting" },
-              { src: IMAGES.companyWorkshop, label: "Workshop" },
-              { src: IMAGES.companyWarehouse, label: "Warehouse" },
-            ].map((img) => (
-              <div key={img.label} className="relative aspect-[4/3] rounded-md overflow-hidden border border-[var(--border)]">
-                <Image src={img.src} alt={img.label} fill className="object-cover" />
-                <span className="absolute bottom-0 inset-x-0 bg-black/60 text-[10px] text-slate-300 px-2 py-1">{img.label}</span>
+              <div key={c.title} className="card-flat hover:border-amber-500/30 transition-colors">
+                <h3 className="text-lg font-bold text-white mb-2">{c.title}</h3>
+                <p className="text-slate-400 text-sm md:text-base leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section border-b border-[var(--border)]">
+        <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <SectionHeader title="Deployment Applications" subtitle="Hardware for development, testing, and legitimate multi-device operations." />
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {APPLICATIONS.map((a) => (
+                <li key={a} className="card-flat py-4 text-sm md:text-base text-slate-300">{a}</li>
+              ))}
+            </ul>
+            <Link href="/services" className="btn-outline mt-8 inline-flex">Factory Services →</Link>
+          </div>
+          <div className="product-showcase-image min-h-[280px]">
+            <Image src={IMAGES.qc} alt="Factory QC and testing bench" fill className="object-cover" sizes="50vw" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section border-b border-[var(--border)] bg-[var(--surface)]/30">
         <div className="container-wide">
-          <ContactCTA title="Need a phone farm box configuration-" />
+          <SectionHeader
+            title="Guangzhou Workshop"
+            subtitle="Assembly, burn-in, packing, and remote setup — real factory workflow, not stock renders."
+            center
+          />
+          <FactoryGallery
+            images={[
+              { src: IMAGES.companyWorkshop, label: "Assembly floor" },
+              { src: IMAGES.qc, label: "QC & testing" },
+              { src: IMAGES.companyWarehouse, label: "Export packing" },
+              { src: IMAGES.motherboardBox.detail, label: "Motherboard layout" },
+              { src: IMAGES.phoneFarmBox.hero, label: "Phone farm chassis" },
+              { src: IMAGES.companyMeeting, label: "Project review" },
+            ]}
+          />
+          <p className="text-center mt-8">
+            <Link href="/about" className="text-amber-400 font-medium hover:text-amber-300">About our factory team →</Link>
+          </p>
+        </div>
+      </section>
+
+      <section className="section-compact">
+        <div className="container-wide max-w-3xl mx-auto">
+          <SectionHeader title="FAQ" subtitle="Common questions about hardware, RFQ, and deployment." center />
+          <FAQAccordion items={previewFaq} />
+          <div className="text-center mt-8">
+            <Link href="/faq" className="btn-outline">All FAQ</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-compact border-t border-[var(--border)]">
+        <div className="container-wide">
+          <ContactCTA title="Need a phone farm configuration quote?" />
         </div>
       </section>
     </>

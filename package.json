@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "verify:copy": "node scripts/verify-copy.mjs",
+    "ingest:assets": "node scripts/ingest-local-assets.mjs",
+    "test:telegram": "node scripts/test-telegram-notification.mjs",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "postinstall": "prisma generate"

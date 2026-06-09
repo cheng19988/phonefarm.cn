@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ContactCTA } from "@/components/shared";
+import { FactoryGallery, PageBanner, SectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import {
   BUYER_SHOULD_PROVIDE,
@@ -13,104 +13,111 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About - Guangzhou Phone Farm",
+  title: "About — Guangzhou Phone Farm Factory",
   description:
-    "Guangzhou-based phone farm hardware supplier - assembly, QC, packing, ROM customization and remote setup for bulk device deployment.",
+    "Guangzhou-based phone farm hardware manufacturer — assembly, QC, packing, ROM customization and remote setup for bulk device deployment.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
-    <div className="section">
-      <div className="container-wide max-w-3xl">
-        <h1 className="section-title">About {SITE.nameEn}</h1>
-        <p className="text-slate-400 text-sm mb-8">
-          Hardware is provided for development, testing, device management, and other lawful use only.
-        </p>
+    <>
+      <PageBanner
+        title={`About ${SITE.nameEn}`}
+        subtitle="Factory-direct phone farm hardware from Guangzhou — assembly, burn-in, export packing, and remote commissioning."
+        image={IMAGES.companyWorkshop}
+      />
 
-        <section className="mb-10">
-          <h2 className="text-lg font-semibold text-white mb-3">{WHO_WE_ARE.title}</h2>
-          {WHO_WE_ARE.paragraphs.map((p) => (
-            <p key={p} className="text-slate-300 text-sm leading-relaxed mb-3">{p}</p>
-          ))}
-        </section>
+      <div className="section">
+        <div className="container-wide max-w-4xl">
+          <p className="text-slate-400 text-base mb-10">
+            Hardware is provided for development, testing, device management, and other lawful use only.
+          </p>
 
-        <section className="card-flat mb-10">
-          <h2 className="font-medium text-white mb-4 text-sm">What We Actually Do</h2>
-          <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-slate-400">
-            {WHAT_WE_DO.map((item) => (
-              <li key={item}>{item}</li>
+          <section className="mb-14">
+            <SectionHeader title={WHO_WE_ARE.title} />
+            {WHO_WE_ARE.paragraphs.map((p) => (
+              <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
             ))}
-          </ul>
-        </section>
+          </section>
 
-        <section className="mb-10">
-          <h2 className="text-lg font-semibold text-white mb-4">Factory Workflow</h2>
-          <div className="space-y-3">
-            {FACTORY_WORKFLOW.map((step) => (
-              <div key={step.step} className="card-flat flex gap-4">
-                <span className="text-blue-400 font-mono text-sm shrink-0">{step.step}</span>
-                <div>
-                  <h3 className="font-medium text-white text-sm">{step.title}</h3>
-                  <p className="text-xs text-slate-400 mt-1">{step.desc}</p>
+          <section className="card-flat mb-14">
+            <SectionHeader title="What we actually do" />
+            <ul className="param-list">
+              {WHAT_WE_DO.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mb-14">
+            <SectionHeader title="Factory workflow" />
+            <div className="space-y-4">
+              {FACTORY_WORKFLOW.map((step) => (
+                <div key={step.step} className="card-flat flex gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
+                    {step.step}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">{step.title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="card-flat mb-10">
-          <h2 className="font-medium text-white mb-4 text-sm">Quality Check</h2>
-          <p className="text-xs text-slate-500 mb-3">Standard checks before packing:</p>
-          <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-slate-400">
-            {QUALITY_CHECKS.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="card-flat mb-10">
-          <h2 className="font-medium text-white mb-4 text-sm">What Buyers Should Provide</h2>
-          <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-slate-400">
-            {BUYER_SHOULD_PROVIDE.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="card-flat mb-10 border-blue-900/30">
-          <h2 className="font-medium text-white mb-3 text-sm">Trust Note</h2>
-          <p className="text-sm text-slate-400 leading-relaxed">{TRUST_NOTE}</p>
-        </section>
-
-        <div className="card-flat mb-10 text-sm text-slate-400">
-          <h2 className="font-medium text-white mb-3">Company information</h2>
-          <dl className="grid sm:grid-cols-2 gap-3 text-xs">
-            <div><dt className="text-slate-500">Brand</dt><dd className="text-slate-300">{SITE.nameEn} / {SITE.name}</dd></div>
-            <div><dt className="text-slate-500">Location</dt><dd className="text-slate-300">{SITE.locationEn}</dd></div>
-            <div><dt className="text-slate-500">Sales contact</dt><dd className="text-slate-300">{CONTACT.email}</dd></div>
-            <div><dt className="text-slate-500">WhatsApp</dt><dd className="text-slate-300">{CONTACT.whatsapp}</dd></div>
-          </dl>
-        </div>
-
-        <h2 className="text-lg font-semibold text-white mb-4">Workshop Photos</h2>
-        <p className="text-xs text-slate-500 mb-4">Assembly and packing environment in Guangzhou. Updated photos shared on request.</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
-          {[
-            { src: IMAGES.companyFront, label: "Front desk" },
-            { src: IMAGES.companyOffice, label: "Office" },
-            { src: IMAGES.companyMeeting, label: "Meeting room" },
-            { src: IMAGES.companyWorkshop, label: "Workshop" },
-            { src: IMAGES.companyWarehouse, label: "Warehouse" },
-          ].map((img) => (
-            <div key={img.label} className="relative aspect-[4/3] rounded-md overflow-hidden border border-[var(--border)]">
-              <Image src={img.src} alt={img.label} fill className="object-cover" />
+              ))}
             </div>
-          ))}
-        </div>
+          </section>
 
-        <ContactCTA title="Factory visit or RFQ - contact sales" />
+          <section className="card-flat mb-14">
+            <SectionHeader title="Quality checks before shipment" />
+            <ul className="param-list">
+              {QUALITY_CHECKS.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="card-flat mb-14">
+            <SectionHeader title="What buyers should provide" />
+            <ul className="param-list">
+              {BUYER_SHOULD_PROVIDE.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          </section>
+
+          <p className="text-slate-400 text-sm mb-14 italic border-l-2 border-amber-500/40 pl-4">{TRUST_NOTE}</p>
+
+          <section className="mb-14">
+            <SectionHeader title="Company information" center />
+            <dl className="card-flat grid sm:grid-cols-2 gap-4 text-sm">
+              <div><dt className="text-slate-500">Brand</dt><dd className="text-white font-medium">{SITE.nameEn}</dd></div>
+              <div><dt className="text-slate-500">Location</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
+              <div><dt className="text-slate-500">Email</dt><dd><a href={`mailto:${CONTACT.email}`} className="text-amber-400">{CONTACT.email}</a></dd></div>
+              <div><dt className="text-slate-500">Phone</dt><dd className="text-white">{CONTACT.phone}</dd></div>
+            </dl>
+          </section>
+        </div>
       </div>
-    </div>
+
+      <section className="section-compact border-t border-[var(--border)] bg-[var(--surface)]/30">
+        <div className="container-wide">
+          <SectionHeader title="Factory environment" subtitle="Real workshop and packing areas in Guangzhou." center />
+          <FactoryGallery
+            images={[
+              { src: IMAGES.companyWorkshop, label: "Assembly" },
+              { src: IMAGES.qc, label: "QC bench" },
+              { src: IMAGES.companyWarehouse, label: "Export packing" },
+              { src: IMAGES.motherboardBox.hero, label: "Motherboard box" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="section-compact">
+        <div className="container-wide max-w-4xl">
+          <ContactCTA title="Work with our Guangzhou factory team" />
+        </div>
+      </section>
+    </>
   );
 }

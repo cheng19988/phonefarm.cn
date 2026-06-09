@@ -30,6 +30,23 @@ npm start
 
 生产环境请配置 `.env` 中的 `DATABASE_URL`、`JWT_SECRET`、`TRON_API_KEY` 等变量。
 
+### 可选：Telegram RFQ 通知
+
+在 Vercel **Production** 环境变量中配置（详见 [docs/telegram-rfq-notification.md](docs/telegram-rfq-notification.md)）：
+
+| 变量 | 说明 |
+|------|------|
+| `TELEGRAM_BOT_TOKEN` | BotFather 机器人 token |
+| `TELEGRAM_NOTIFY_CHAT_ID` | 接收询盘通知的 chat id |
+
+配置后需 **Redeploy**。未配置或发送失败时，Contact 表单仍会保存询盘并返回成功。
+
+本地验证：`npm run test:telegram`（读取 `.env`，不打印 token）。
+
+### 可选：真实产品图
+
+见 [docs/image-replacement-guide.md](docs/image-replacement-guide.md)。上传至 `public/images/real/`，构建时自动生效；未上传前保持占位图。
+
 ## Vercel 部署
 
 在 Vercel 项目 **Settings → Environment Variables** 中添加：

@@ -1,0 +1,87 @@
+import { IMAGES } from "@/lib/images";
+
+export const PACKAGES = [
+  {
+    id: "starter-lab",
+    name: "Starter Lab Package",
+    nameZh: "入门实验室套餐",
+    tagline: "12-node array + remote setup guidance",
+    includes: [
+      "12PCS hot-swap phone array chassis",
+      "USB 2.0 hub routing baseline",
+      "Remote installation support (AnyDesk)",
+      "Factory QC burn-in before shipment",
+    ],
+    idealFor: "Small QA teams, sample evaluation, first phone farm pilot",
+    leadTime: "7–14 days after configuration confirm",
+    moq: "1 unit",
+    href: "/products/phone-array-12pcs",
+    image: IMAGES.realDevice.hero,
+    highlight: false,
+  },
+  {
+    id: "pro-motherboard",
+    name: "Pro Motherboard Deployment",
+    nameZh: "专业主板盒部署套餐",
+    tagline: "20-node headless cluster + network kit",
+    includes: [
+      "Android motherboard box (20 nodes)",
+      "OTG/LAN connection baseline",
+      "Router / switch sizing consultation",
+      "ROM customization options (auto-boot, ADB)",
+      "Export packing from Guangzhou",
+    ],
+    idealFor: "Headless Android QA, automation R&D, high-density labs",
+    leadTime: "10–18 days",
+    moq: "1 box (20 nodes)",
+    href: "/products/motherboard-box",
+    image: IMAGES.motherboardBox.hero,
+    highlight: true,
+  },
+  {
+    id: "enterprise-farm",
+    name: "Enterprise Phone Farm",
+    nameZh: "企业级整机农场套餐",
+    tagline: "32PCS box + OEM options + bulk logistics",
+    includes: [
+      "32PCS phone farm box chassis",
+      "3-fan cooling layout",
+      "Custom ROM / software scope discussion",
+      "Bulk packing & export freight handoff",
+      "Optional custom cabinet for 40+ nodes",
+    ],
+    idealFor: "Production QA labs, multi-team device operations, export orders",
+    leadTime: "Quote-based (typically 2–4 weeks)",
+    moq: "1 box; bulk tiers on RFQ",
+    href: "/products/phone-farm-box",
+    image: IMAGES.phoneFarmBox.hero,
+    highlight: false,
+  },
+] as const;
+
+export const PRICING_TIERS = [
+  {
+    name: "Standard SKU",
+    description: "Catalog chassis with confirmed node count and connection mode.",
+    moq: "1 unit",
+    leadTime: "7–18 days",
+    pricing: "Configuration-based quote",
+    cta: "Get Quote",
+  },
+  {
+    name: "Bulk / Multi-box",
+    description: "3+ boxes or mixed SKUs for lab rollout.",
+    moq: "3+ boxes or equivalent nodes",
+    leadTime: "10–25 days",
+    pricing: "Volume tier on RFQ",
+    cta: "Bulk RFQ",
+  },
+  {
+    name: "OEM / Custom",
+    description: "Custom cabinet, tray layout, ROM scope, on-site or remote install.",
+    moq: "Project scope",
+    leadTime: "Quoted per project",
+    pricing: "Engineering + hardware quote",
+    cta: "OEM Inquiry",
+  },
+] as const;

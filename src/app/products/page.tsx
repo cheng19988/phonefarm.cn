@@ -2,15 +2,17 @@ import Link from "next/link";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
+import { ContactCTA } from "@/components/shared";
+import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
-import { ContactCTA } from "@/components/shared";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Products - Phone Farm Hardware Catalog",
+  title: "Products — Phone Farm Hardware Catalog",
   description:
-    "Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, routers, accessories and OEM cabinets. Contact for configuration and bulk quote.",
+    "Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, routers, accessories and OEM cabinets.",
   path: "/products",
 });
 
@@ -34,66 +36,72 @@ export default async function ProductsPage({
     : products;
 
   return (
-    <div className="section">
-      <div className="container-wide">
-        <h1 className="section-title">Products</h1>
-        <p className="section-subtitle">
-          Phone farm hardware catalog - all pricing is configuration-based. Send RFQ for bulk quote, sample order or OEM scope.
-        </p>
+    <>
+      <PageBanner
+        title="Hardware Catalog"
+        subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."
+        image={IMAGES.motherboardBox.hero}
+      />
 
-        <div className="card-flat mb-8">
-          <h2 className="font-medium text-white text-sm mb-3">What to send for a quote</h2>
-          <ul className="list-disc list-outside pl-5 text-sm text-slate-400 space-y-1">
-            <li>Target quantity (nodes / boxes)</li>
-            <li>Product type (motherboard box, 32PCS, array, OEM, etc.)</li>
-            <li>Connection mode (USB, OTG/LAN, or not sure)</li>
-            <li>Android or iPhone model preference</li>
-            <li>Destination country</li>
-            <li>Customization needs (ROM, router bundle, cabinet)</li>
-          </ul>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-8">
-          <Link
-            href="/products"
-            className={`px-3 py-1 rounded-md text-xs border ${!groupFilter ? "border-blue-600 text-blue-400 bg-blue-950/30" : "border-[var(--border)] text-slate-400"}`}
-          >
-            All
-          </Link>
-          {PRODUCT_CATALOG_GROUPS.map((g) => (
+      <section className="section">
+        <div className="container-wide">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-10">
             <Link
-              key={g.id}
-              href={`/products?group=${g.id}`}
-              className={`px-3 py-1 rounded-md text-xs border ${groupFilter === g.id ? "border-blue-600 text-blue-400 bg-blue-950/30" : "border-[var(--border)] text-slate-400"}`}
+              href="/products"
+              className={`px-4 py-2.5 rounded-lg text-sm font-medium border min-h-[44px] flex items-center ${
+                !groupFilter ? "border-amber-500 text-amber-300 bg-amber-500/10" : "border-[var(--border)] text-slate-400 hover:text-white"
+              }`}
             >
-              {g.label}
+              All products
             </Link>
-          ))}
-        </div>
+            {PRODUCT_CATALOG_GROUPS.map((g) => (
+              <Link
+                key={g.id}
+                href={`/products?group=${g.id}`}
+                className={`px-4 py-2.5 rounded-lg text-sm font-medium border min-h-[44px] flex items-center ${
+                  groupFilter === g.id ? "border-amber-500 text-amber-300 bg-amber-500/10" : "border-[var(--border)] text-slate-400 hover:text-white"
+                }`}
+              >
+                {g.label}
+              </Link>
+            ))}
+          </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((p) => {
-            const seed = getProductSeed(p.slug);
-            return (
-              <ProductCard
-                key={p.id}
-                slug={p.slug}
-                name={p.name}
-                shortDesc={seed?.shortDesc || p.shortDesc}
-                keyParams={seed?.keyParams || []}
-                bestFor={getProductBestFor(p.slug)}
-                scenario={seed?.targetBuyer || "Contact for configuration"}
-                imageCard={p.imageCard}
-                category={p.category}
-              />
-            );
-          })}
-        </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {filtered.map((p) => {
+              const seed = getProductSeed(p.slug);
+              return (
+                <ProductCard
+                  key={p.id}
+                  slug={p.slug}
+                  name={p.name}
+                  shortDesc={seed?.shortDesc || p.shortDesc}
+                  keyParams={seed?.keyParams || []}
+                  bestFor={getProductBestFor(p.slug)}
+                  scenario={seed?.targetBuyer || "Contact for configuration"}
+                  imageCard={p.imageCard}
+                  category={p.category}
+                />
+              );
+            })}
+          </div>
 
-        <div className="mt-12">
-          <ContactCTA title="Request Bulk Price / OEM Quote" />
+          <div className="mt-16 grid md:grid-cols-2 gap-6">
+            <div className="card-flat">
+              <SectionHeader title="Bulk & OEM" subtitle="Multi-box labs and custom cabinets — send quantity, ROM scope, and shipping country." />
+              <Link href="/contact" className="btn-primary">Bulk RFQ</Link>
+            </div>
+            <div className="card-flat">
+              <SectionHeader title="Solution packages" subtitle="Pre-defined bundles for starter labs and enterprise rollouts." />
+              <Link href="/packages" className="btn-outline">View Packages</Link>
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <ContactCTA title="Request configuration quote" />
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
