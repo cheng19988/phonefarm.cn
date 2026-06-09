@@ -77,8 +77,8 @@ export default function HomePage() {
 
       <TrustStrip />
 
-      <section className="section border-b border-[var(--border)]">
-        <div className="container-wide space-y-20 md:space-y-28">
+      <section className="section border-b border-orange-500/10">
+        <div className="container-wide space-y-16 md:space-y-24 lg:space-y-32">
           <SectionHeader
             title="Flagship Hardware SKUs"
             subtitle="Each chassis is engineered for continuous operation — power, cooling, and USB routing verified before shipment."
@@ -111,17 +111,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section border-b border-[var(--border)] bg-[var(--surface)]/50">
+      <section className="section border-b border-orange-500/10 bg-gradient-to-b from-orange-500/[0.04] to-transparent">
         <div className="container-wide">
           <SectionHeader
             title="Factory Capabilities"
             subtitle="From motherboard sourcing to export packing — one Guangzhou team owns the full hardware path."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {CAPABILITIES.map((c) => (
-              <div key={c.title} className="card-flat hover:border-amber-500/30 transition-colors">
-                <h3 className="text-lg font-bold text-white mb-2">{c.title}</h3>
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed">{c.desc}</p>
+              <div key={c.title} className="card-flat hover:border-orange-500/35 hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300">
+                <h3 className="text-xl font-bold text-white mb-3">{c.title}</h3>
+                <p className="text-slate-400 text-base leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -132,9 +132,9 @@ export default function HomePage() {
         <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <SectionHeader title="Deployment Applications" subtitle="Hardware for development, testing, and legitimate multi-device operations." />
-            <ul className="grid sm:grid-cols-2 gap-3">
+            <ul className="grid sm:grid-cols-2 gap-4 md:gap-6">
               {APPLICATIONS.map((a) => (
-                <li key={a} className="card-flat py-4 text-sm md:text-base text-slate-300">{a}</li>
+                <li key={a} className="card-flat py-5 px-6 text-base md:text-lg text-slate-300">{a}</li>
               ))}
             </ul>
             <Link href="/services" className="btn-outline mt-8 inline-flex">Factory Services →</Link>

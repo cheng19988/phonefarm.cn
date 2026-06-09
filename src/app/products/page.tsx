@@ -45,11 +45,11 @@ export default async function ProductsPage({
 
       <section className="section">
         <div className="container-wide">
-          <div className="flex flex-wrap gap-2 md:gap-3 mb-10">
+          <div className="flex flex-wrap gap-3 md:gap-4 mb-14 md:mb-16">
             <Link
               href="/products"
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium border min-h-[44px] flex items-center ${
-                !groupFilter ? "border-amber-500 text-amber-300 bg-amber-500/10" : "border-[var(--border)] text-slate-400 hover:text-white"
+              className={`px-5 py-3 rounded-full text-sm md:text-base font-semibold border min-h-[48px] flex items-center transition-all ${
+                !groupFilter ? "border-orange-500 text-orange-200 bg-orange-500/15 shadow-md shadow-orange-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-orange-500/40"
               }`}
             >
               All products
@@ -58,8 +58,8 @@ export default async function ProductsPage({
               <Link
                 key={g.id}
                 href={`/products?group=${g.id}`}
-                className={`px-4 py-2.5 rounded-lg text-sm font-medium border min-h-[44px] flex items-center ${
-                  groupFilter === g.id ? "border-amber-500 text-amber-300 bg-amber-500/10" : "border-[var(--border)] text-slate-400 hover:text-white"
+                className={`px-5 py-3 rounded-full text-sm md:text-base font-semibold border min-h-[48px] flex items-center transition-all ${
+                  groupFilter === g.id ? "border-orange-500 text-orange-200 bg-orange-500/15 shadow-md shadow-orange-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-orange-500/40"
                 }`}
               >
                 {g.label}
@@ -67,7 +67,7 @@ export default async function ProductsPage({
             ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="catalog-grid">
             {filtered.map((p) => {
               const seed = getProductSeed(p.slug);
               return (

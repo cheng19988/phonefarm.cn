@@ -8,7 +8,7 @@ export async function Header() {
   const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-50 bg-[#070a0f]/90 backdrop-blur-lg border-b border-[var(--border-subtle)]">
+    <header className="sticky top-0 z-50 bg-[#0c1018]/85 backdrop-blur-xl border-b border-orange-500/25 shadow-lg shadow-black/20">
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
           <span className="text-slate-400 text-xs md:text-sm">
@@ -19,7 +19,7 @@ export async function Header() {
       </div>
       <div className="container-wide py-4 flex items-center justify-between gap-4">
         <Link href="/" className="shrink-0 flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-500/20">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-400 via-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-orange-500/40 ring-2 ring-orange-400/30">
             <span className="text-slate-950 font-black text-sm">PF</span>
           </div>
           <div>
@@ -32,12 +32,12 @@ export async function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-orange-300 hover:bg-orange-500/10 rounded-xl transition-colors"
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/faq" className="px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+          <Link href="/faq" className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-orange-300 hover:bg-orange-500/10 rounded-xl transition-colors">
             FAQ
           </Link>
         </nav>

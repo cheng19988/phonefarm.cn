@@ -24,37 +24,37 @@ export default function PackagesPage() {
       />
 
       <section className="section">
-        <div className="container-wide space-y-10 md:space-y-14">
+        <div className="container-wide space-y-14 md:space-y-20 lg:space-y-24">
           {PACKAGES.map((pkg) => (
             <article
               key={pkg.id}
-              className={`card overflow-hidden grid lg:grid-cols-2 ${pkg.highlight ? "ring-1 ring-amber-500/40" : ""}`}
+              className={`card overflow-hidden grid lg:grid-cols-2 ${pkg.highlight ? "ring-2 ring-orange-500/50 shadow-xl shadow-orange-500/10" : ""}`}
             >
-              <div className="relative min-h-[260px] lg:min-h-[360px]">
-                <Image src={pkg.image} alt={pkg.name} fill className="object-cover" sizes="50vw" />
+              <div className="relative min-h-[300px] lg:min-h-[420px]">
+                <Image src={pkg.image} alt={pkg.name} fill className="object-cover hover:scale-[1.02] transition-transform duration-700" sizes="50vw" />
                 {pkg.highlight && (
-                  <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-md">
+                  <span className="absolute top-5 left-5 bg-gradient-to-r from-orange-400 to-amber-500 text-slate-950 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-full shadow-lg">
                     Most deployed
                   </span>
                 )}
               </div>
-              <div className="p-6 md:p-10 flex flex-col">
-                <p className="eyebrow mb-1">{pkg.nameZh}</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">{pkg.name}</h2>
-                <p className="text-amber-400/90 text-sm font-medium mb-4">{pkg.tagline}</p>
-                <p className="text-slate-400 text-sm mb-4">
-                  <span className="text-slate-500">Ideal for:</span> {pkg.idealFor}
+              <div className="p-8 md:p-12 lg:p-14 flex flex-col gap-5">
+                <p className="eyebrow mb-0">{pkg.nameZh}</p>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white">{pkg.name}</h2>
+                <p className="text-orange-400 text-base md:text-lg font-semibold">{pkg.tagline}</p>
+                <p className="text-slate-400 text-base md:text-lg">
+                  <span className="text-slate-500 font-medium">Ideal for:</span> {pkg.idealFor}
                 </p>
-                <ul className="param-list mb-6 flex-1">
+                <ul className="param-list flex-1">
                   {pkg.includes.map((line) => (
                     <li key={line}>{line}</li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-6">
+                <div className="flex flex-wrap gap-6 text-base text-slate-500 pt-2">
                   <span><strong className="text-slate-300">MOQ:</strong> {pkg.moq}</span>
                   <span><strong className="text-slate-300">Lead time:</strong> {pkg.leadTime}</span>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4 pt-2">
                   <Link href={`/contact?product=${pkg.id}`} className="btn-primary">Request Package Quote</Link>
                   <Link href={pkg.href} className="btn-outline">View SKU Details</Link>
                 </div>
