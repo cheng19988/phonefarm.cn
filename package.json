@@ -9,6 +9,7 @@
     "lint": "eslint",
     "verify:copy": "node scripts/verify-copy.mjs",
     "ingest:assets": "node scripts/ingest-local-assets.mjs",
+    "upscale:banners": "node scripts/upscale-banners.mjs",
     "test:telegram": "node scripts/test-telegram-notification.mjs",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
@@ -36,6 +37,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"
