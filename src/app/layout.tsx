@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased pb-16 md:pb-0">
+      <body className="site-shell antialiased pb-16 md:pb-0">
         <JsonLd data={organizationJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>

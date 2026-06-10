@@ -102,13 +102,14 @@ export function TrustStrip() {
     { value: "RFQ + USDT", label: "Bulk order paths" },
   ];
   return (
-    <section className="border-b border-cyan-500/12 bg-[var(--surface)]/60 backdrop-blur-sm">
+    <section className="border-b border-sky-400/15 backdrop-blur-sm" style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(56,189,248,0.08) 50%, rgba(255,255,255,0.05) 100%)" }}>
       <div className="container-wide py-10 md:py-14">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {items.map((item) => (
             <div
               key={item.label}
-              className="text-center md:text-left rounded-2xl p-6 md:p-7 border border-cyan-500/12 bg-cyan-950/20 hover:border-cyan-400/30 hover:bg-cyan-950/30 transition-all"
+              className="text-center md:text-left rounded-2xl p-6 md:p-7 backdrop-blur-sm transition-all"
+              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(125,211,252,0.22)" }}
             >
               <div className="trust-metric-value">{item.value}</div>
               <div className="trust-metric-label">{item.label}</div>
@@ -185,7 +186,7 @@ export function FactoryGallery({ images }: { images: { src: string; label: strin
           }`}
         >
           <Image src={img.src} alt={img.label} fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />
-          <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#060912]/95 via-[#060912]/50 to-transparent text-sm md:text-base text-cyan-50 px-4 py-3 font-semibold">
+          <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0f1a30]/90 via-[#152238]/40 to-transparent text-sm md:text-base text-sky-50 px-4 py-3 font-semibold">
             {img.label}
           </span>
         </div>

@@ -8,7 +8,7 @@ export async function Header() {
   const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-50 bg-[#060912]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-lg shadow-cyan-950/30">
+    <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-sky-400/20 shadow-lg shadow-sky-950/20" style={{ background: "rgba(21, 34, 56, 0.75)" }}>
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
           <span className="text-slate-400 text-xs md:text-sm">
@@ -72,7 +72,7 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="relative bg-[var(--surface)] border-t border-cyan-500/15 mt-auto">
+    <footer className="relative border-t border-sky-400/15 mt-auto" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(15,26,48,0.6) 100%)" }}>
       <div className="tech-grid-bg absolute inset-x-0 h-48 opacity-30 pointer-events-none" aria-hidden />
       <div className="container-wide py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10 relative">
         <div className="lg:col-span-2">

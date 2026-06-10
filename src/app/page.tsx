@@ -78,7 +78,7 @@ export default function HomePage() {
 
       <TrustStrip />
 
-      <section className="section border-b border-cyan-500/10">
+      <section className="section border-b border-sky-400/12">
         <div className="container-wide space-y-16 md:space-y-24 lg:space-y-32">
           <SectionHeader
             title="Flagship Hardware SKUs"
@@ -129,7 +129,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section border-b border-[var(--border)]">
+      <section className="section border-b border-sky-400/12">
         <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <SectionHeader title="Deployment Applications" subtitle="Hardware for development, testing, and legitimate multi-device operations." />
@@ -146,7 +146,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section border-b border-[var(--border)] bg-[var(--surface)]/30">
+      <section className="section-alt">
         <div className="container-wide">
           <SectionHeader
             title="Guangzhou Workshop"
@@ -181,7 +181,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-compact border-t border-[var(--border)]">
+      <section className="section-compact border-t border-sky-400/12">
         <div className="container-wide">
           <ContactCTA title="Need a phone farm configuration quote?" />
         </div>
