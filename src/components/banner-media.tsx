@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { BannerFit } from "@/lib/banners";
 
 type BannerMediaProps = {
@@ -6,17 +5,15 @@ type BannerMediaProps = {
   fit?: BannerFit;
   focus?: string;
   scale?: number;
-  priority?: boolean;
   className?: string;
 };
 
-/** Sharp full-width banner layer — native PNG, no lossy recompression */
+/** Native img — zero Next.js processing, pixel-perfect source file */
 export function BannerMedia({
   src,
   fit = "cover",
   focus = "center",
   scale = 1,
-  priority = true,
   className = "",
 }: BannerMediaProps) {
   const isContain = fit === "contain";
@@ -24,14 +21,13 @@ export function BannerMedia({
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt=""
-        fill
-        priority={priority}
-        unoptimized
-        sizes="100vw"
-        className={isContain ? "banner-media--contain" : "banner-media--cover"}
+        decoding="async"
+        fetchPriority="high"
+        className={`banner-media h-full w-full ${isContain ? "banner-media--contain" : "banner-media--cover"}`}
         style={{
           objectPosition: focus,
           transform: zoom > 1 ? `scale(${zoom})` : undefined,

@@ -7,20 +7,18 @@ export type BannerPreset = {
   fit: BannerFit;
   /** CSS object-position */
   focus?: string;
-  /** Slight zoom to crop baked-in white margins (cover only) */
+  /** Optional zoom for cover (HD assets default to 1) */
   scale?: number;
 };
 
-/** Per-page banner tuning — fit/focus chosen for each asset’s composition */
+/** Per-page banner tuning — fit/focus matched to full-res local assets */
 export const PAGE_BANNERS = {
-  /** Full lab scene — no left-side white fade */
   home: {
-    src: IMAGES.banners.factory,
+    src: IMAGES.banners.home,
     fit: "cover",
-    focus: "52% 48%",
-    scale: 1.06,
+    focus: "50% 45%",
+    scale: 1,
   },
-  /** Product marketing art — show entire graphic, no crop */
   products: {
     src: IMAGES.banners.products,
     fit: "contain",
@@ -29,56 +27,56 @@ export const PAGE_BANNERS = {
   about: {
     src: IMAGES.banners.about,
     fit: "cover",
-    focus: "68% 50%",
-    scale: 1.12,
+    focus: "60% 50%",
+    scale: 1,
   },
   contact: {
     src: IMAGES.banners.contact,
     fit: "cover",
-    focus: "78% 50%",
-    scale: 1.18,
+    focus: "55% 50%",
+    scale: 1,
   },
   services: {
     src: IMAGES.banners.services,
     fit: "cover",
-    focus: "62% 50%",
-    scale: 1.1,
+    focus: "50% 45%",
+    scale: 1,
   },
   packages: {
     src: IMAGES.banners.packages,
     fit: "cover",
-    focus: "58% 50%",
-    scale: 1.08,
+    focus: "50% 45%",
+    scale: 1,
   },
   pricing: {
     src: IMAGES.banners.pricing,
+    focus: "55% 50%",
     fit: "cover",
-    focus: "75% 50%",
-    scale: 1.15,
+    scale: 1,
   },
   faq: {
     src: IMAGES.banners.factory,
     fit: "cover",
     focus: "50% 45%",
-    scale: 1.06,
+    scale: 1,
   },
   blog: {
     src: IMAGES.banners.blog,
     fit: "cover",
-    focus: "55% 50%",
-    scale: 1.08,
+    focus: "50% 45%",
+    scale: 1,
   },
   manual: {
     src: IMAGES.banners.manual,
     fit: "cover",
-    focus: "55% 50%",
-    scale: 1.08,
+    focus: "50% 45%",
+    scale: 1,
   },
   legal: {
     src: IMAGES.banners.about,
     fit: "cover",
-    focus: "65% 50%",
-    scale: 1.1,
+    focus: "60% 50%",
+    scale: 1,
   },
 } as const satisfies Record<string, BannerPreset>;
 
