@@ -10,5 +10,11 @@ const prisma = new PrismaClient({ adapter });
 
 seedDatabase(prisma)
   .then(() => console.log("Seeded products and admin user"))
-  .catch(console.error)
-  .finally(() => prisma.$disconnect());
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+    if (process.exitCode) process.exit(process.exitCode);
+  });
