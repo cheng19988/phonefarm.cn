@@ -24,8 +24,8 @@ const BANNER_MAP = [
   },
   {
     dest: "banner-products.png",
-    src: "f224216c-e806-426d-a64f-a98b0a6da9de.png",
-    note: "products — 20-Slot marketing slide (contain)",
+    src: "dd0dcd8b-81fb-48ff-9c67-046da3a7aa11.png",
+    note: "products — wide hardware lineup (cover banner)",
   },
   {
     dest: "banner-about.png",

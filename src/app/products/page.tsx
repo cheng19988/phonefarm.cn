@@ -40,7 +40,6 @@ export default async function ProductsPage({
       <PageBanner
         title="Hardware Catalog"
         subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."
-        compactTitle
         {...bannerProps("products")}
       />
 
@@ -80,7 +79,7 @@ export default async function ProductsPage({
                   keyParams={seed?.keyParams || []}
                   bestFor={getProductBestFor(p.slug)}
                   scenario={seed?.targetBuyer || "Contact for configuration"}
-                  imageCard={p.imageCard}
+                  imageCard={seed?.imageCard ?? p.imageCard}
                   category={p.category}
                 />
               );

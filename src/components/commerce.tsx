@@ -24,7 +24,8 @@ export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCa
           src={imageCard}
           alt={name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          unoptimized
+          className="object-contain p-3 md:p-4 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
           sizes="(max-width:768px) 100vw, 40vw"
         />
         <span className="absolute top-4 left-4 text-sm bg-cyan-500/90 text-slate-950 px-4 py-1.5 rounded-full font-bold shadow-lg">

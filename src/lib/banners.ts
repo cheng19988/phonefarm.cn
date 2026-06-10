@@ -21,8 +21,9 @@ export const PAGE_BANNERS = {
   },
   products: {
     src: IMAGES.banners.products,
-    fit: "contain",
-    focus: "center",
+    fit: "cover",
+    focus: "58% 50%",
+    scale: 1,
   },
   about: {
     src: IMAGES.banners.about,

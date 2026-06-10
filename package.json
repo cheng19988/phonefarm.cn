@@ -10,6 +10,7 @@
     "verify:copy": "node scripts/verify-copy.mjs",
     "ingest:assets": "node scripts/ingest-local-assets.mjs",
     "ingest:banners": "node scripts/ingest-banners.mjs",
+    "ingest:product-cards": "node scripts/ingest-product-cards.mjs",
     "upscale:banners": "node scripts/upscale-banners.mjs",
     "test:telegram": "node scripts/test-telegram-notification.mjs",
     "db:push": "prisma db push",
