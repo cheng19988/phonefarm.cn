@@ -7,7 +7,7 @@ import { ProductGallery } from "@/components/product-gallery";
 import { JsonLd } from "@/components/shared";
 import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
-import { SectionHeader } from "@/components/site-sections";
+import { SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { getProductGallery } from "@/lib/images";
@@ -103,12 +103,12 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
 
               <section>
-                <SectionHeader title="Key Specifications" subtitle="Factory parameters for procurement review." />
+                <SubsectionHeader title="Key Specifications" subtitle="Factory parameters for procurement review." />
                 <SpecTable specs={seed.specs} />
               </section>
 
               <section>
-                <SectionHeader title="Capabilities" />
+                <SubsectionHeader title="Capabilities" />
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {seed.features.map((f) => (
                     <li key={f} className="card-flat py-4 text-sm md:text-base text-slate-300">{f}</li>
@@ -117,7 +117,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
 
               <section>
-                <SectionHeader title="Use cases" />
+                <SubsectionHeader title="Use cases" />
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {seed.scenarios.map((s) => (
                     <li key={s} className="text-sm md:text-base text-slate-400 py-3 px-4 border border-[var(--border)] rounded-xl bg-[var(--surface)]">{s}</li>
@@ -126,7 +126,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
 
               <section>
-                <SectionHeader title="Deployment notes" />
+                <SubsectionHeader title="Deployment notes" />
                 <ul className="param-list">
                   {seed.deploymentNotes.map((n) => (
                     <li key={n}>{n}</li>
@@ -135,7 +135,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
 
               <section>
-                <SectionHeader title="Product FAQ" />
+                <SubsectionHeader title="Product FAQ" />
                 <FAQAccordion items={seed.faq.map((f) => ({ question: f.q, answer: f.a }))} />
               </section>
             </div>
@@ -167,10 +167,6 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
               <RfqCTA productSlug={slug} compact />
             </div>
-          </div>
-
-          <div className="mt-16">
-            <RfqCTA productSlug={slug} title={`RFQ: ${seed.name}`} />
           </div>
         </div>
       </section>

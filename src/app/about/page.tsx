@@ -1,5 +1,5 @@
 import { ContactCTA } from "@/components/shared";
-import { FactoryGallery, PageBanner, SectionHeader } from "@/components/site-sections";
+import { FactoryGallery, PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import {
   BUYER_SHOULD_PROVIDE,
@@ -35,14 +35,14 @@ export default function AboutPage() {
           </p>
 
           <section className="mb-14">
-            <SectionHeader title={WHO_WE_ARE.title} />
+            <SubsectionHeader title={WHO_WE_ARE.title} />
             {WHO_WE_ARE.paragraphs.map((p) => (
               <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
             ))}
           </section>
 
           <section className="card-flat mb-14">
-            <SectionHeader title="What we actually do" />
+            <SubsectionHeader title="What we actually do" />
             <ul className="param-list">
               {WHAT_WE_DO.map((item) => (
                 <li key={item}>{item}</li>
@@ -51,7 +51,7 @@ export default function AboutPage() {
           </section>
 
           <section className="mb-14">
-            <SectionHeader title="Factory workflow" />
+            <SubsectionHeader title="Factory workflow" />
             <div className="space-y-4">
               {FACTORY_WORKFLOW.map((step) => (
                 <div key={step.step} className="card-flat flex gap-4">
@@ -68,7 +68,7 @@ export default function AboutPage() {
           </section>
 
           <section className="card-flat mb-14">
-            <SectionHeader title="Quality checks before shipment" />
+            <SubsectionHeader title="Quality checks before shipment" />
             <ul className="param-list">
               {QUALITY_CHECKS.map((c) => (
                 <li key={c}>{c}</li>
@@ -77,7 +77,7 @@ export default function AboutPage() {
           </section>
 
           <section className="card-flat mb-14">
-            <SectionHeader title="What buyers should provide" />
+            <SubsectionHeader title="What buyers should provide" />
             <ul className="param-list">
               {BUYER_SHOULD_PROVIDE.map((c) => (
                 <li key={c}>{c}</li>
@@ -88,7 +88,7 @@ export default function AboutPage() {
           <p className="text-slate-400 text-sm mb-14 italic border-l-2 border-cyan-500/40 pl-4">{TRUST_NOTE}</p>
 
           <section className="mb-14">
-            <SectionHeader title="Company information" center />
+            <SubsectionHeader title="Company information" center />
             <dl className="card-flat grid sm:grid-cols-2 gap-4 text-sm">
               <div><dt className="text-slate-500">Brand</dt><dd className="text-white font-medium">{SITE.nameEn}</dd></div>
               <div><dt className="text-slate-500">Location</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
@@ -99,7 +99,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <section className="section-compact border-t border-[var(--border)] bg-[var(--surface)]/30">
+      <section className="section-compact section-alt">
         <div className="container-wide">
           <SectionHeader title="Factory environment" subtitle="Real workshop and packing areas in Guangzhou." center />
           <FactoryGallery

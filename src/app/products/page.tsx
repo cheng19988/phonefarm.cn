@@ -3,7 +3,7 @@ import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
 import { ContactCTA } from "@/components/shared";
-import { PageBanner, SectionHeader } from "@/components/site-sections";
+import { PageBanner, SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
@@ -88,11 +88,11 @@ export default async function ProductsPage({
 
           <div className="mt-16 grid md:grid-cols-2 gap-6">
             <div className="card-flat">
-              <SectionHeader title="Bulk & OEM" subtitle="Multi-box labs and custom cabinets — send quantity, ROM scope, and shipping country." />
+              <SubsectionHeader compact title="Bulk & OEM" subtitle="Multi-box labs and custom cabinets — send quantity, ROM scope, and shipping country." />
               <Link href="/contact" className="btn-primary">Bulk RFQ</Link>
             </div>
             <div className="card-flat">
-              <SectionHeader title="Solution packages" subtitle="Pre-defined bundles for starter labs and enterprise rollouts." />
+              <SubsectionHeader compact title="Solution packages" subtitle="Pre-defined bundles for starter labs and enterprise rollouts." />
               <Link href="/packages" className="btn-outline">View Packages</Link>
             </div>
           </div>

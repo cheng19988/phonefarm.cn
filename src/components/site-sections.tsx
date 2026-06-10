@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { CONTACT, SITE } from "@/lib/config";
+import { SITE } from "@/lib/config";
 
 export function SiteHero({
   image,
@@ -102,15 +102,11 @@ export function TrustStrip() {
     { value: "RFQ + USDT", label: "Bulk order paths" },
   ];
   return (
-    <section className="border-b border-sky-400/15 backdrop-blur-sm" style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(56,189,248,0.08) 50%, rgba(255,255,255,0.05) 100%)" }}>
+    <section className="trust-strip">
       <div className="container-wide py-10 md:py-14">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {items.map((item) => (
-            <div
-              key={item.label}
-              className="text-center md:text-left rounded-2xl p-6 md:p-7 backdrop-blur-sm transition-all"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(125,211,252,0.22)" }}
-            >
+            <div key={item.label} className="trust-metric-card">
               <div className="trust-metric-value">{item.value}</div>
               <div className="trust-metric-label">{item.label}</div>
             </div>
@@ -126,6 +122,25 @@ export function SectionHeader({ title, subtitle, center }: { title: string; subt
     <div className={`mb-12 md:mb-16 lg:mb-20 ${center ? "text-center" : ""}`}>
       <h2 className={`section-title ${center ? "mx-auto" : ""}`}>{title}</h2>
       {subtitle && <p className={`section-subtitle ${center ? "mx-auto" : ""} mb-0`}>{subtitle}</p>}
+    </div>
+  );
+}
+
+export function SubsectionHeader({
+  title,
+  subtitle,
+  center,
+  compact,
+}: {
+  title: string;
+  subtitle?: string;
+  center?: boolean;
+  compact?: boolean;
+}) {
+  return (
+    <div className={`subsection-header ${compact ? "!mb-4" : ""} ${center ? "text-center" : ""}`}>
+      <h2 className={`subsection-title ${center ? "mx-auto" : ""}`}>{title}</h2>
+      {subtitle && <p className={`subsection-subtitle ${center ? "mx-auto" : ""}`}>{subtitle}</p>}
     </div>
   );
 }
@@ -192,15 +207,5 @@ export function FactoryGallery({ images }: { images: { src: string; label: strin
         </div>
       ))}
     </div>
-  );
-}
-
-export function RfqFloatingHint() {
-  return (
-    <p className="text-sm text-slate-500 mt-4">
-      RFQ: <a href={`mailto:${CONTACT.email}`} className="text-cyan-400 hover:text-cyan-300 font-medium">{CONTACT.email}</a>
-      {" · "}
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-medium">WhatsApp</a>
-    </p>
   );
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { PageBanner } from "@/components/site-sections";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,31 +25,35 @@ export default function LoginPage() {
       router.refresh();
     } else {
       const data = await res.json();
-      setError(data.error || "登录失败");
+      setError(data.error || "Login failed");
     }
     setLoading(false);
   }
 
   return (
-    <div className="section">
-      <div className="container-wide max-w-md">
-        <h1 className="section-title text-center">用户登录</h1>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
-          {error && <p className="text-red-400 text-sm">{error}</p>}
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">邮箱 Email</label>
-            <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">密码 Password</label>
-            <input name="password" type="password" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">{loading ? "登录中..." : "登录"}</button>
-          <p className="text-center text-sm text-slate-400">
-            没有账户? <Link href="/register" className="text-emerald-400">注册</Link>
-          </p>
-        </form>
+    <>
+      <PageBanner title="Account Login" subtitle="Sign in to view order status and payment details." />
+      <div className="section-compact">
+        <div className="container-wide max-w-md">
+          <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4">
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+            <div>
+              <label className="form-label">Email</label>
+              <input name="email" type="email" required className="form-input" />
+            </div>
+            <div>
+              <label className="form-label">Password</label>
+              <input name="password" type="password" required className="form-input" />
+            </div>
+            <button type="submit" disabled={loading} className="btn-primary w-full">
+              {loading ? "Signing in…" : "Sign in"}
+            </button>
+            <p className="text-center text-sm text-slate-400">
+              No account? <Link href="/register" className="text-cyan-400 hover:text-cyan-300">Register</Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "./config";
+import { CONTACT, SITE } from "./config";
 import { IMAGES } from "./images";
 
 type SEOInput = {
@@ -19,23 +19,24 @@ export function buildMetadata({
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
   const ogImage = image || `${SITE.url}${IMAGES.motherboardBox.hero}`;
+  const fullTitle = `${title} | ${SITE.nameEn}`;
 
   return {
-    title: `${title} | ${SITE.name}`,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | ${SITE.name}`,
+      title: fullTitle,
       description,
       url,
-      siteName: SITE.name,
+      siteName: SITE.nameEn,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
-      locale: "zh_CN",
+      locale: "en_US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
+      title: fullTitle,
       description,
       images: [ogImage],
     },
@@ -47,10 +48,10 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE.name,
+    name: SITE.nameEn,
     url: SITE.url,
     logo: `${SITE.url}${IMAGES.motherboardBox.card}`,
-    description: SITE.description,
+    description: SITE.descriptionEn,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Guangzhou",
@@ -59,7 +60,7 @@ export function organizationJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+86-13059502618",
-      email: "qiuxui646@gmail.com",
+      email: CONTACT.email,
       contactType: "sales",
       areaServed: "Worldwide",
     },
@@ -81,12 +82,12 @@ export function productJsonLd(product: {
     description: product.description,
     image: `${SITE.url}${product.image}`,
     url: `${SITE.url}/products/${product.slug}`,
-    brand: { "@type": "Brand", name: SITE.name },
+    brand: { "@type": "Brand", name: SITE.nameEn },
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: SITE.name },
+      seller: { "@type": "Organization", name: SITE.nameEn },
       description: "Contact for configuration-based pricing",
     },
   };

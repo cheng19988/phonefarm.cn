@@ -46,6 +46,8 @@ export const NAV = [
   { href: "/pricing", label: "Pricing", labelZh: "报价" },
   { href: "/services", label: "Services", labelZh: "服务" },
   { href: "/manual", label: "Manual", labelZh: "手册" },
+  { href: "/blog", label: "Blog", labelZh: "文章" },
+  { href: "/faq", label: "FAQ", labelZh: "常见问题" },
   { href: "/about", label: "About", labelZh: "关于" },
   { href: "/contact", label: "Contact", labelZh: "联系" },
 ] as const;

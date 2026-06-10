@@ -19,16 +19,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.name} | ${SITE.tagline}`,
-    template: `%s | ${SITE.name}`,
+    default: `${SITE.nameEn} | ${SITE.taglineEn}`,
+    template: `%s | ${SITE.nameEn}`,
   },
-  description: SITE.description,
+  description: SITE.descriptionEn,
   metadataBase: new URL(SITE.url),
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="site-shell antialiased pb-16 md:pb-0">
         <JsonLd data={organizationJsonLd()} />
         <Header />

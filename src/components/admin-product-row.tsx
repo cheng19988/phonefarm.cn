@@ -31,13 +31,13 @@ export function AdminProductRow({
     <tr className="border-b border-slate-800">
       <td className="py-3 text-white">{name}</td>
       <td className="py-3">
-        <input value={price} onChange={(e) => setPrice(e.target.value)} className="w-20 bg-slate-800 border border-slate-700 rounded px-2 py-1 text-sm text-white" />
+        <input value={price} onChange={(e) => setPrice(e.target.value)} className="form-input-sm w-20" />
       </td>
       <td className="py-3">
-        <input value={qty} onChange={(e) => setQty(e.target.value)} className="w-16 bg-slate-800 border border-slate-700 rounded px-2 py-1 text-sm text-white" />
+        <input value={qty} onChange={(e) => setQty(e.target.value)} className="form-input-sm w-16" />
       </td>
       <td className="py-3">
-        <button type="button" onClick={save} className="text-emerald-400 text-xs hover:text-emerald-300">
+        <button type="button" onClick={save} className="text-cyan-400 text-xs hover:text-cyan-300">
           {saved ? "Saved" : "Save"}
         </button>
       </td>

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { BLOG_POSTS } from "@/data/blog";
 import { buildMetadata } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
+import { PageBanner } from "@/components/site-sections";
 
 export const metadata = buildMetadata({
   title: "Technical Articles",
@@ -20,10 +20,6 @@ export default function BlogPage() {
       />
       <section className="section">
         <div className="container-wide">
-          <SectionHeader
-            title="Hardware guides"
-            subtitle="Supplementary notes — see the Installation Manual for the primary setup reference."
-          />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BLOG_POSTS.map((post) => (
               <Link

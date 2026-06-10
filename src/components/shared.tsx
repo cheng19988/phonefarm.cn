@@ -52,7 +52,7 @@ export function ContactCTA({ title = "Need a phone farm configuration?" }: { tit
 
 export function MobileContactBar() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-[#070a0f]/95 backdrop-blur border-t border-[var(--border)]">
+    <div className="sticky-bar fixed bottom-0 inset-x-0 z-40 md:hidden">
       <div className="grid grid-cols-4 divide-x divide-[var(--border)]">
         <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center py-3 min-h-[48px] text-[11px] text-slate-300 font-medium">
           WhatsApp

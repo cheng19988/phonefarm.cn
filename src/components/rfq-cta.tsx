@@ -37,7 +37,7 @@ export function RfqCTA({
   }
 
   return (
-    <section className="card-flat border-blue-900/40">
+    <section className="card-flat">
       <h2 className="text-xl font-semibold text-white mb-2">{title}</h2>
       <p className="text-slate-400 text-sm mb-4 max-w-2xl">
         Send your target quantity, Android or iPhone, motherboard or full phone, USB or OTG/LAN mode,
@@ -70,7 +70,7 @@ export function RfqCTA({
 export function ProductStickyCTA({ slug }: { slug: string }) {
   const waText = encodeURIComponent(`Hi, quote request for: ${slug}`);
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[#141c28] border-t border-[var(--border)] px-3 py-2.5">
+    <div className="sticky-bar fixed bottom-0 inset-x-0 z-50 md:hidden px-3 py-2.5">
       <div className="grid grid-cols-3 gap-2">
         <Link href={`/contact?product=${slug}`} className="btn-primary text-xs py-2 text-center">
           Get Quote

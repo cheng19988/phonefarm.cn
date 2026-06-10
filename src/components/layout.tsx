@@ -8,7 +8,7 @@ export async function Header() {
   const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-sky-400/20 shadow-lg shadow-sky-950/20" style={{ background: "rgba(21, 34, 56, 0.75)" }}>
+    <header className="header-shell sticky top-0 z-50 backdrop-blur-xl border-b border-sky-400/20 shadow-lg shadow-sky-950/20">
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
           <span className="text-slate-400 text-xs md:text-sm">
@@ -37,9 +37,6 @@ export async function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/faq" className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-xl transition-colors">
-            FAQ
-          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <Link href="/pricing" className="hidden md:inline-flex btn-ghost text-sm">
@@ -56,7 +53,7 @@ export async function Header() {
         </div>
       </div>
       <nav className="lg:hidden container-wide pb-3 flex gap-2 overflow-x-auto text-sm border-t border-[var(--border-subtle)] pt-3">
-        {[...NAV, { href: "/faq", label: "FAQ" }].map((item) => (
+        {NAV.map((item) => (
           <Link
             key={item.href}
             href={item.href}
@@ -72,7 +69,7 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-sky-400/15 mt-auto" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(15,26,48,0.6) 100%)" }}>
+    <footer className="footer-shell relative border-t border-sky-400/15 mt-auto">
       <div className="tech-grid-bg absolute inset-x-0 h-48 opacity-30 pointer-events-none" aria-hidden />
       <div className="container-wide py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10 relative">
         <div className="lg:col-span-2">
@@ -106,14 +103,15 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-white text-sm mb-4 uppercase tracking-wide">Company</h3>
           <ul className="space-y-2 text-sm text-slate-400">
-            <li><Link href="/pricing" className="hover:text-white">Pricing & MOQ</Link></li>
-            <li><Link href="/services" className="hover:text-white">Services</Link></li>
-            <li><Link href="/manual" className="hover:text-white">Installation Manual</Link></li>
-            <li><Link href="/about" className="hover:text-white">About</Link></li>
-            <li><Link href="/contact" className="hover:text-white">Contact / RFQ</Link></li>
-            <li><Link href="/blog" className="hover:text-white">Technical Articles</Link></li>
-            <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
-            <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
+            <li><Link href="/pricing" className="hover:text-cyan-300 transition-colors">Pricing & MOQ</Link></li>
+            <li><Link href="/services" className="hover:text-cyan-300 transition-colors">Services</Link></li>
+            <li><Link href="/manual" className="hover:text-cyan-300 transition-colors">Installation Manual</Link></li>
+            <li><Link href="/faq" className="hover:text-cyan-300 transition-colors">FAQ</Link></li>
+            <li><Link href="/about" className="hover:text-cyan-300 transition-colors">About</Link></li>
+            <li><Link href="/contact" className="hover:text-cyan-300 transition-colors">Contact / RFQ</Link></li>
+            <li><Link href="/blog" className="hover:text-cyan-300 transition-colors">Technical Articles</Link></li>
+            <li><Link href="/privacy" className="hover:text-cyan-300 transition-colors">Privacy</Link></li>
+            <li><Link href="/terms" className="hover:text-cyan-300 transition-colors">Terms</Link></li>
           </ul>
           <p className="text-xs text-slate-600 mt-6">
             RFQ: {CONTACT.email}

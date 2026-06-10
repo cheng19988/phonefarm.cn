@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { PageBanner } from "@/components/site-sections";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -28,35 +29,39 @@ export default function RegisterPage() {
       router.refresh();
     } else {
       const data = await res.json();
-      setError(data.error || "注册失败");
+      setError(data.error || "Registration failed");
     }
     setLoading(false);
   }
 
   return (
-    <div className="section">
-      <div className="container-wide max-w-md">
-        <h1 className="section-title text-center">用户注册</h1>
-        <form onSubmit={handleSubmit} className="card p-6 space-y-4">
-          {error && <p className="text-red-400 text-sm">{error}</p>}
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">姓名 Name</label>
-            <input name="name" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">邮箱 Email</label>
-            <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">密码 Password</label>
-            <input name="password" type="password" required minLength={8} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
-          </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">{loading ? "注册中..." : "注册"}</button>
-          <p className="text-center text-sm text-slate-400">
-            已有账户? <Link href="/login" className="text-emerald-400">登录</Link>
-          </p>
-        </form>
+    <>
+      <PageBanner title="Create Account" subtitle="Register to track RFQ orders and payment status." />
+      <div className="section-compact">
+        <div className="container-wide max-w-md">
+          <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4">
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+            <div>
+              <label className="form-label">Name</label>
+              <input name="name" className="form-input" />
+            </div>
+            <div>
+              <label className="form-label">Email</label>
+              <input name="email" type="email" required className="form-input" />
+            </div>
+            <div>
+              <label className="form-label">Password</label>
+              <input name="password" type="password" required minLength={8} className="form-input" />
+            </div>
+            <button type="submit" disabled={loading} className="btn-primary w-full">
+              {loading ? "Creating account…" : "Create account"}
+            </button>
+            <p className="text-center text-sm text-slate-400">
+              Already have an account? <Link href="/login" className="text-cyan-400 hover:text-cyan-300">Sign in</Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

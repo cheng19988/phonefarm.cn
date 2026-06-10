@@ -7,8 +7,8 @@ import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "我的订单",
-  description: "查看手机农场硬件订单与支付状态。",
+  title: "My Orders",
+  description: "View phone farm hardware order and payment status.",
   path: "/account/orders",
   noIndex: true,
 });
@@ -29,18 +29,18 @@ export default async function AccountOrdersPage() {
     <div className="section">
       <div className="container-wide max-w-3xl">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="section-title mb-0">我的订单</h1>
+          <h1 className="section-title mb-0">My Orders</h1>
           <LogoutButton />
         </div>
         {orders.length === 0 ? (
           <div className="card p-8 text-center text-slate-400">
-            <p>暂无订单。</p>
-            <Link href="/products" className="btn-primary mt-4 inline-flex">浏览产品</Link>
+            <p>No orders yet.</p>
+            <Link href="/products" className="btn-primary mt-4 inline-flex">Browse products</Link>
           </div>
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (
-              <Link key={order.id} href={`/orders/${order.id}`} className="card p-6 block hover:border-emerald-800 transition-colors">
+              <Link key={order.id} href={`/orders/${order.id}`} className="card p-6 block hover:border-cyan-500/30 transition-colors">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="font-bold text-white">{order.orderNumber}</p>
@@ -50,7 +50,7 @@ export default async function AccountOrdersPage() {
                   </div>
                   <div className="text-right">
                     <p className="text-white font-bold">${order.totalUsd}</p>
-                    <p className="text-sm text-emerald-400">{order.status}</p>
+                    <p className="text-sm text-cyan-400">{order.status}</p>
                   </div>
                 </div>
               </Link>

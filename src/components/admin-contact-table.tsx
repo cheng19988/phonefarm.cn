@@ -75,7 +75,7 @@ export function AdminContactTable({ contacts }: { contacts: AdminContactRow[] })
                     value={c.status}
                     disabled={savingId === c.id}
                     onChange={(e) => updateStatus(c.id, e.target.value)}
-                    className="bg-[#141c28] border border-[var(--border)] rounded px-2 py-1 text-slate-300"
+                    className="form-input-sm"
                   >
                     {STATUSES.map((s) => (
                       <option key={s} value={s}>{s}</option>
