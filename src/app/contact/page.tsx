@@ -5,7 +5,7 @@ import { Suspense, useState } from "react";
 import { ContactBar, ContactCTA } from "@/components/shared";
 import { PageBanner } from "@/components/site-sections";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 
 function FormSkeleton() {
   return (
@@ -144,8 +144,7 @@ export default function ContactPage() {
       <PageBanner
         title="Contact / RFQ"
         subtitle="Send target quantity, device type, connection mode and shipping country — we reply with factory configuration and quote."
-        image={IMAGES.banners.contact}
-        imagePosition="right center"
+        {...bannerProps("contact")}
       />
       <section className="section">
         <div className="container-wide max-w-3xl">

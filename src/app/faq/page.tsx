@@ -3,7 +3,7 @@ import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
   title: "FAQ — Phone Farm Hardware",
@@ -19,7 +19,7 @@ export default function FAQPage() {
       <PageBanner
         title="FAQ"
         subtitle="Procurement, installation and after-sales answers for phone farm hardware buyers."
-        image={IMAGES.banners.factory}
+        {...bannerProps("faq")}
       />
       <section className="section">
         <div className="container-wide max-w-3xl">

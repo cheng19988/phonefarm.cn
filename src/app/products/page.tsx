@@ -7,7 +7,7 @@ import { PageBanner, SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
   title: "Products — Phone Farm Hardware Catalog",
@@ -40,8 +40,8 @@ export default async function ProductsPage({
       <PageBanner
         title="Hardware Catalog"
         subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."
-        image={IMAGES.banners.products}
-        imagePosition="right center"
+        compactTitle
+        {...bannerProps("products")}
       />
 
       <section className="section">

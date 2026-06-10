@@ -1,15 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { BannerMedia } from "@/components/banner-media";
+import type { BannerFit } from "@/lib/banners";
 import { SITE } from "@/lib/config";
+
+type BannerVisualProps = {
+  fit?: BannerFit;
+  focus?: string;
+  scale?: number;
+};
 
 export function SiteHero({
   banner,
+  fit = "cover",
+  focus = "center",
+  scale = 1,
   eyebrow,
   title,
   subtitle,
   children,
-}: {
+}: BannerVisualProps & {
   banner: string;
   eyebrow?: string;
   title: ReactNode;
@@ -17,27 +28,20 @@ export function SiteHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="tech-hero">
+    <section className={`tech-hero ${fit === "contain" ? "tech-hero--contain" : ""}`}>
       <div className="tech-hero-banner">
-        <Image
-          src={banner}
-          alt=""
-          fill
-          className="object-cover object-[center_45%]"
-          priority
-          sizes="100vw"
-        />
+        <BannerMedia src={banner} fit={fit} focus={focus} scale={scale} />
       </div>
-      <div className="tech-hero-overlay" aria-hidden />
-      <div className="tech-grid-bg absolute inset-0 opacity-30 pointer-events-none" aria-hidden />
+      <div className={`tech-hero-overlay ${fit === "contain" ? "tech-hero-overlay--light" : ""}`} aria-hidden />
+      <div className="tech-grid-bg absolute inset-0 opacity-20 pointer-events-none" aria-hidden />
 
-      <div className="container-wide relative z-10 py-24 md:py-32 lg:py-36">
-        <div className="max-w-2xl lg:max-w-3xl">
+      <div className="container-wide relative z-10 py-20 md:py-28 lg:py-32">
+        <div className="max-w-2xl lg:max-w-3xl hero-copy-panel">
           {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-slate-100 max-w-xl mb-8 leading-relaxed drop-shadow-md">{subtitle}</p>
+          <p className="text-lg md:text-xl text-slate-100 max-w-xl mb-8 leading-relaxed">{subtitle}</p>
           <div className="flex flex-wrap gap-3 mb-8">{children}</div>
           <div className="flex flex-wrap gap-3">
             <span className="hero-stat-pill">Est. 2017</span>
@@ -54,39 +58,38 @@ export function PageBanner({
   title,
   subtitle,
   image,
+  fit = "cover",
   imagePosition = "center",
+  scale = 1,
+  compactTitle,
   children,
 }: {
   title: string;
   subtitle?: string;
   image?: string;
+  fit?: BannerFit;
   imagePosition?: string;
+  scale?: number;
+  /** Minimal title bar for banners that already include headline artwork */
+  compactTitle?: boolean;
   children?: ReactNode;
 }) {
   return (
-    <section className="page-banner flex items-end">
-      <div className="tech-grid-bg absolute inset-0 opacity-25 pointer-events-none z-[1]" aria-hidden />
+    <section className={`page-banner flex items-end ${fit === "contain" ? "page-banner--contain" : ""}`}>
+      <div className="tech-grid-bg absolute inset-0 opacity-15 pointer-events-none z-[1]" aria-hidden />
       {image && (
         <>
           <div className="page-banner-visual">
-            <Image
-              src={image}
-              alt=""
-              fill
-              className="object-cover"
-              style={{ objectPosition: imagePosition }}
-              sizes="100vw"
-              priority
-            />
+            <BannerMedia src={image} fit={fit} focus={imagePosition} scale={scale} />
           </div>
-          <div className="page-banner-overlay" aria-hidden />
+          <div className={`page-banner-overlay ${fit === "contain" ? "page-banner-overlay--contain" : ""} ${compactTitle ? "page-banner-overlay--compact" : ""}`} aria-hidden />
         </>
       )}
       {!image && <div className="absolute inset-0 bg-[var(--surface)]" aria-hidden />}
-      <div className="container-wide relative z-10 w-full py-16 md:py-24">
-        <p className="eyebrow">{SITE.nameEn} · {SITE.locationEn}</p>
-        <h1 className="section-title mb-4 max-w-3xl drop-shadow-lg">{title}</h1>
-        {subtitle && <p className="section-subtitle mb-0 max-w-2xl drop-shadow-md">{subtitle}</p>}
+      <div className={`container-wide relative z-10 w-full ${compactTitle ? "py-6 md:py-8" : "py-14 md:py-20"}`}>
+        {!compactTitle && <p className="eyebrow">{SITE.nameEn} · {SITE.locationEn}</p>}
+        <h1 className={`section-title mb-4 max-w-3xl ${compactTitle ? "!text-2xl md:!text-3xl !mb-2" : ""}`}>{title}</h1>
+        {subtitle && !compactTitle && <p className="section-subtitle mb-0 max-w-2xl">{subtitle}</p>}
         {children}
       </div>
     </section>

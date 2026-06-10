@@ -12,6 +12,7 @@ import {
 import { buildMetadata } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
 import { IMAGES } from "@/lib/images";
+import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
@@ -56,7 +57,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHero
-        banner={IMAGES.banners.home}
+        {...heroProps("home")}
         eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
         title={
           <>

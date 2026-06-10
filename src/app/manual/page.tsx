@@ -4,6 +4,7 @@ import { ContactCTA } from "@/components/shared";
 import { PageBanner } from "@/components/site-sections";
 import { MANUAL_SECTIONS, MANUAL_TOC } from "@/data/manual";
 import { buildMetadata } from "@/lib/seo";
+import { bannerProps } from "@/lib/banners";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
@@ -38,7 +39,7 @@ export default function ManualPage() {
       <PageBanner
         title="Installation Manual"
         subtitle="USB mode, OTG/LAN, ADB authorization, router sizing and troubleshooting for phone farm hardware."
-        image={IMAGES.banners.manual}
+        {...bannerProps("manual")}
       />
       <div className="section">
         <div className="container-wide">

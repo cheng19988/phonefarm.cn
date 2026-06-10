@@ -9,6 +9,7 @@ import {
   WHAT_WE_DO,
   WHO_WE_ARE,
 } from "@/data/about";
+import { bannerProps } from "@/lib/banners";
 import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
@@ -25,7 +26,7 @@ export default function AboutPage() {
       <PageBanner
         title={`About ${SITE.nameEn}`}
         subtitle="Factory-direct phone farm hardware from Guangzhou — assembly, burn-in, export packing, and remote commissioning."
-        image={IMAGES.banners.about}
+        {...bannerProps("about")}
       />
 
       <div className="section">

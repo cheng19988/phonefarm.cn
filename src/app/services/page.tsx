@@ -4,7 +4,7 @@ import { SERVICES, BULK_PROCESS, DELIVERY_PROCESS } from "@/data/services";
 import { ContactCTA } from "@/components/shared";
 import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
   title: "Factory Services — OEM, ROM, Remote Setup",
@@ -19,7 +19,7 @@ export default function ServicesPage() {
       <PageBanner
         title="Factory Services"
         subtitle="Hardware assembly, ROM scope, network deployment, and remote commissioning from Guangzhou — scoped via RFQ."
-        image={IMAGES.banners.services}
+        {...bannerProps("services")}
       />
 
       <section className="section">

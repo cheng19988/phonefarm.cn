@@ -4,7 +4,7 @@ import { ContactCTA } from "@/components/shared";
 import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { PACKAGES } from "@/data/packages";
 import { buildMetadata } from "@/lib/seo";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 import { CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
@@ -20,7 +20,7 @@ export default function PackagesPage() {
       <PageBanner
         title="Solution Packages"
         subtitle="Curated hardware bundles for labs that need a clear starting point — every package is confirmed via RFQ before production."
-        image={IMAGES.banners.packages}
+        {...bannerProps("packages")}
       />
 
       <section className="section">

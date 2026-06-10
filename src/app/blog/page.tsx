@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BLOG_POSTS } from "@/data/blog";
 import { buildMetadata } from "@/lib/seo";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 import { PageBanner } from "@/components/site-sections";
 
 export const metadata = buildMetadata({
@@ -16,7 +16,7 @@ export default function BlogPage() {
       <PageBanner
         title="Technical Articles"
         subtitle="Supplementary guides — primary setup reference is the Installation Manual."
-        image={IMAGES.banners.blog}
+        {...bannerProps("blog")}
       />
       <section className="section">
         <div className="container-wide">

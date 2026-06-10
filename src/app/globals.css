@@ -238,25 +238,71 @@ body {
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* ── Banner media ── */
+.banner-media {
+  @apply select-none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.banner-media--cover {
+  @apply object-cover;
+  transform-origin: center center;
+}
+
+.banner-media--contain {
+  @apply object-contain;
+}
+
+.banner-media-wrap {
+  background-color: #0f1a30;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(56, 189, 248, 0.12), transparent 60%),
+    linear-gradient(165deg, #1a3358 0%, #152238 100%);
+}
+
+.hero-copy-panel {
+  @apply rounded-2xl p-6 md:p-8 backdrop-blur-sm;
+  background: linear-gradient(135deg, rgba(15, 26, 48, 0.72) 0%, rgba(15, 26, 48, 0.45) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  max-width: 36rem;
+}
+
 /* ── Homepage hero ── */
 .tech-hero {
-  @apply relative overflow-hidden border-b border-sky-400/30;
-  min-height: min(88vh, 760px);
+  @apply relative overflow-hidden border-b border-sky-400/30 w-full;
+  min-height: clamp(420px, 52vh, 580px);
+}
+
+.tech-hero--contain {
+  min-height: clamp(300px, 38vw, 460px);
 }
 
 .tech-hero-banner {
   @apply absolute inset-0;
+  background-color: #0f1a30;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(56, 189, 248, 0.12), transparent 60%),
+    linear-gradient(165deg, #1a3358 0%, #152238 100%);
 }
 
 .tech-hero-overlay {
   @apply absolute inset-0 pointer-events-none;
   background: linear-gradient(
     100deg,
-    rgba(15, 26, 48, 0.94) 0%,
-    rgba(15, 26, 48, 0.82) 32%,
-    rgba(15, 26, 48, 0.52) 52%,
-    rgba(15, 26, 48, 0.22) 72%,
-    rgba(15, 26, 48, 0.08) 100%
+    rgba(15, 26, 48, 0.88) 0%,
+    rgba(15, 26, 48, 0.65) 28%,
+    rgba(15, 26, 48, 0.28) 48%,
+    rgba(15, 26, 48, 0.08) 68%,
+    transparent 100%
+  );
+}
+
+.tech-hero-overlay--light {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 26, 48, 0.55) 0%,
+    rgba(15, 26, 48, 0.25) 40%,
+    transparent 100%
   );
 }
 
@@ -296,22 +342,48 @@ body {
 
 /* ── Inner page banners ── */
 .page-banner {
-  @apply relative border-b border-sky-400/20 overflow-hidden min-h-[380px] md:min-h-[460px] lg:min-h-[520px];
+  @apply relative border-b border-sky-400/20 overflow-hidden w-full;
+  min-height: clamp(320px, 38vh, 480px);
+}
+
+.page-banner--contain {
+  min-height: clamp(240px, calc(100vw * 0.42), 400px);
 }
 
 .page-banner-visual {
   @apply absolute inset-0;
+  background-color: #0f1a30;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(56, 189, 248, 0.12), transparent 60%),
+    linear-gradient(165deg, #1a3358 0%, #152238 100%);
 }
 
 .page-banner-overlay {
   @apply absolute inset-0;
   background: linear-gradient(
     100deg,
-    rgba(15, 26, 48, 0.93) 0%,
-    rgba(15, 26, 48, 0.78) 30%,
-    rgba(15, 26, 48, 0.48) 55%,
-    rgba(15, 26, 48, 0.2) 78%,
-    rgba(15, 26, 48, 0.05) 100%
+    rgba(15, 26, 48, 0.9) 0%,
+    rgba(15, 26, 48, 0.7) 26%,
+    rgba(15, 26, 48, 0.35) 48%,
+    rgba(15, 26, 48, 0.12) 70%,
+    transparent 100%
+  );
+}
+
+.page-banner-overlay--contain {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 55%,
+    rgba(15, 26, 48, 0.85) 100%
+  );
+}
+
+.page-banner-overlay--compact {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(15, 26, 48, 0.75) 100%
   );
 }
 

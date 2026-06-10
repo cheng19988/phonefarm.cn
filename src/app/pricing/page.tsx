@@ -4,7 +4,7 @@ import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { PRICING_TIERS } from "@/data/packages";
 import { buildMetadata } from "@/lib/seo";
 import { RFQ_COPY, CONTACT } from "@/lib/config";
-import { IMAGES } from "@/lib/images";
+import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
   title: "Pricing & MOQ — Configuration-Based Quotes",
@@ -19,7 +19,7 @@ export default function PricingPage() {
       <PageBanner
         title="Pricing & MOQ"
         subtitle="All hardware is quoted per configuration — node count, connection mode, ROM scope, and export terms. No hidden checkout; confirmed orders can use USDT where applicable."
-        image={IMAGES.banners.pricing}
+        {...bannerProps("pricing")}
       />
 
       <section className="section border-b border-[var(--border)]">
