@@ -6,7 +6,7 @@ import realImageManifest from "./real-images-manifest.json";
 const existing = new Set<string>(realImageManifest as string[]);
 
 /** Static paths committed under public/images — always safe to serve */
-const STATIC_IMAGE = /^\/images\/(factory|deck|card|hero|real)\//;
+const STATIC_IMAGE = /^\/images\/(factory|deck|card|hero|real|banner)\//;
 
 function pub(sub: string, file: string): string {
   return `/images/${sub}/${file}`;
@@ -58,6 +58,18 @@ const GALLERY_FILES = [
 export const FACTORY_GALLERY = GALLERY_FILES.map((f) => pub("factory", f));
 
 export const IMAGES = {
+  banners: {
+    home: pub("banner", "banner-home.png"),
+    products: pub("banner", "banner-products.png"),
+    about: pub("banner", "banner-about.png"),
+    contact: pub("banner", "banner-contact.png"),
+    services: pub("banner", "banner-services.png"),
+    packages: pub("banner", "banner-packages.png"),
+    pricing: pub("banner", "banner-pricing.png"),
+    factory: pub("banner", "banner-factory.png"),
+    blog: pub("banner", "banner-blog.png"),
+    manual: pub("banner", "banner-manual.png"),
+  },
   phoneFarmBox: {
     card: asset(R.pfFront, pub("card", "phone-farm-box-front.png")),
     hero: asset(R.pfHero, pub("hero", "phone-farm-box-hero.png")),

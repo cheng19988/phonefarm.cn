@@ -144,7 +144,8 @@ export default function ContactPage() {
       <PageBanner
         title="Contact / RFQ"
         subtitle="Send target quantity, device type, connection mode and shipping country — we reply with factory configuration and quote."
-        image={IMAGES.motherboardBox.hero}
+        image={IMAGES.banners.contact}
+        imagePosition="right center"
       />
       <section className="section">
         <div className="container-wide max-w-3xl">

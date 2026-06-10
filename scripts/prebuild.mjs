@@ -10,7 +10,7 @@ const seedDb = path.join(seedDir, "phonefarm-seed.db");
 
 fs.mkdirSync(seedDir, { recursive: true });
 
-const imageRoots = ["real", "factory", "deck", "card", "hero"];
+const imageRoots = ["real", "factory", "deck", "card", "hero", "banner"];
 const publicNames = new Set();
 for (const sub of imageRoots) {
   const dir = path.join(root, "public", "images", sub);

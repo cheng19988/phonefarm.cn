@@ -20,7 +20,7 @@ export default function PackagesPage() {
       <PageBanner
         title="Solution Packages"
         subtitle="Curated hardware bundles for labs that need a clear starting point — every package is confirmed via RFQ before production."
-        image={IMAGES.motherboardBox.hero}
+        image={IMAGES.banners.packages}
       />
 
       <section className="section">

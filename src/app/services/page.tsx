@@ -19,7 +19,7 @@ export default function ServicesPage() {
       <PageBanner
         title="Factory Services"
         subtitle="Hardware assembly, ROM scope, network deployment, and remote commissioning from Guangzhou — scoped via RFQ."
-        image={IMAGES.workshop}
+        image={IMAGES.banners.services}
       />
 
       <section className="section">

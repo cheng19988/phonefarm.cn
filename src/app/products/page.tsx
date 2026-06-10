@@ -40,7 +40,8 @@ export default async function ProductsPage({
       <PageBanner
         title="Hardware Catalog"
         subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."
-        image={IMAGES.motherboardBox.hero}
+        image={IMAGES.banners.products}
+        imagePosition="right center"
       />
 
       <section className="section">

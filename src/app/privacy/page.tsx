@@ -1,6 +1,7 @@
 import { PageBanner } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { CONTACT, SITE, RFQ_COPY } from "@/lib/config";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
@@ -11,7 +12,7 @@ export const metadata = buildMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <PageBanner title="Privacy Policy" subtitle="How we handle RFQ and contact information." />
+      <PageBanner title="Privacy Policy" subtitle="How we handle RFQ and contact information." image={IMAGES.banners.contact} />
       <div className="section">
         <div className="container-wide max-w-3xl prose-content">
           <p className="text-sm text-slate-500">Last updated: June 2026</p>

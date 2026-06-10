@@ -16,7 +16,7 @@ export default function BlogPage() {
       <PageBanner
         title="Technical Articles"
         subtitle="Supplementary guides — primary setup reference is the Installation Manual."
-        image={IMAGES.deck.slide2}
+        image={IMAGES.banners.blog}
       />
       <section className="section">
         <div className="container-wide">

@@ -241,11 +241,23 @@ body {
 /* ── Homepage hero ── */
 .tech-hero {
   @apply relative overflow-hidden border-b border-sky-400/30;
-  min-height: min(92vh, 820px);
-  background:
-    radial-gradient(ellipse 90% 65% at 15% 15%, rgba(56, 189, 248, 0.42), transparent 58%),
-    radial-gradient(ellipse 70% 55% at 88% 25%, rgba(129, 140, 248, 0.35), transparent 52%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
+  min-height: min(88vh, 760px);
+}
+
+.tech-hero-banner {
+  @apply absolute inset-0;
+}
+
+.tech-hero-overlay {
+  @apply absolute inset-0 pointer-events-none;
+  background: linear-gradient(
+    100deg,
+    rgba(15, 26, 48, 0.94) 0%,
+    rgba(15, 26, 48, 0.82) 32%,
+    rgba(15, 26, 48, 0.52) 52%,
+    rgba(15, 26, 48, 0.22) 72%,
+    rgba(15, 26, 48, 0.08) 100%
+  );
 }
 
 .tech-hero-bg {
@@ -284,22 +296,22 @@ body {
 
 /* ── Inner page banners ── */
 .page-banner {
-  @apply relative border-b border-sky-400/15 overflow-hidden min-h-[300px] md:min-h-[360px];
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(129, 140, 248, 0.08) 100%);
+  @apply relative border-b border-sky-400/20 overflow-hidden min-h-[380px] md:min-h-[460px] lg:min-h-[520px];
 }
 
 .page-banner-visual {
-  @apply absolute inset-y-0 right-0 w-[min(55vw,640px)] opacity-40 md:opacity-55;
-  mask-image: linear-gradient(90deg, transparent 0%, black 35%);
+  @apply absolute inset-0;
 }
 
 .page-banner-overlay {
   @apply absolute inset-0;
   background: linear-gradient(
-    105deg,
-    rgba(21, 34, 56, 0.88) 0%,
-    rgba(21, 34, 56, 0.65) 45%,
-    rgba(21, 34, 56, 0.25) 100%
+    100deg,
+    rgba(15, 26, 48, 0.93) 0%,
+    rgba(15, 26, 48, 0.78) 30%,
+    rgba(15, 26, 48, 0.48) 55%,
+    rgba(15, 26, 48, 0.2) 78%,
+    rgba(15, 26, 48, 0.05) 100%
   );
 }
 

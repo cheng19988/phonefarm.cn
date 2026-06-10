@@ -56,8 +56,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHero
-        image={IMAGES.phoneFarmBox.hero}
-        secondaryImage={IMAGES.motherboardBox.hero}
+        banner={IMAGES.banners.home}
         eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
         title={
           <>

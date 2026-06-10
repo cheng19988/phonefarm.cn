@@ -19,7 +19,7 @@ export default function FAQPage() {
       <PageBanner
         title="FAQ"
         subtitle="Procurement, installation and after-sales answers for phone farm hardware buyers."
-        image={IMAGES.deck.slide1}
+        image={IMAGES.banners.factory}
       />
       <section className="section">
         <div className="container-wide max-w-3xl">

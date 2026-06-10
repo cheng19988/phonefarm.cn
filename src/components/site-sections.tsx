@@ -4,15 +4,13 @@ import type { ReactNode } from "react";
 import { SITE } from "@/lib/config";
 
 export function SiteHero({
-  image,
-  secondaryImage,
+  banner,
   eyebrow,
   title,
   subtitle,
   children,
 }: {
-  image: string;
-  secondaryImage?: string;
+  banner: string;
   eyebrow?: string;
   title: ReactNode;
   subtitle: string;
@@ -20,41 +18,32 @@ export function SiteHero({
 }) {
   return (
     <section className="tech-hero">
-      <div className="tech-hero-bg" aria-hidden />
-      <div className="tech-grid-bg absolute inset-0 pointer-events-none" aria-hidden />
+      <div className="tech-hero-banner">
+        <Image
+          src={banner}
+          alt=""
+          fill
+          className="object-cover object-[center_45%]"
+          priority
+          sizes="100vw"
+        />
+      </div>
+      <div className="tech-hero-overlay" aria-hidden />
+      <div className="tech-grid-bg absolute inset-0 opacity-30 pointer-events-none" aria-hidden />
 
-      <div className="container-wide relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 md:py-28 lg:py-32">
-        <div className="max-w-xl lg:max-w-none">
+      <div className="container-wide relative z-10 py-24 md:py-32 lg:py-36">
+        <div className="max-w-2xl lg:max-w-3xl">
           {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight drop-shadow-lg">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-lg mb-8 leading-relaxed">{subtitle}</p>
+          <p className="text-lg md:text-xl text-slate-100 max-w-xl mb-8 leading-relaxed drop-shadow-md">{subtitle}</p>
           <div className="flex flex-wrap gap-3 mb-8">{children}</div>
           <div className="flex flex-wrap gap-3">
             <span className="hero-stat-pill">Est. 2017</span>
             <span className="hero-stat-pill">20–32 nodes / SKU</span>
             <span className="hero-stat-pill">Guangzhou factory</span>
           </div>
-        </div>
-
-        <div className="relative lg:pl-4">
-          <div className="hero-product-glow" aria-hidden />
-          <div className="hero-product-frame">
-            <Image
-              src={image}
-              alt="Phone farm hardware"
-              fill
-              className="object-contain p-6 md:p-10 drop-shadow-2xl"
-              priority
-              sizes="(max-width:1024px) 90vw, 45vw"
-            />
-          </div>
-          {secondaryImage && (
-            <div className="absolute -bottom-4 -left-2 md:-left-6 w-[38%] max-w-[200px] aspect-square rounded-2xl overflow-hidden border border-cyan-400/30 shadow-xl shadow-cyan-950/40 bg-[var(--surface)] hidden sm:block">
-              <Image src={secondaryImage} alt="" fill className="object-cover" sizes="200px" />
-            </div>
-          )}
         </div>
       </div>
     </section>
@@ -65,29 +54,39 @@ export function PageBanner({
   title,
   subtitle,
   image,
+  imagePosition = "center",
   children,
 }: {
   title: string;
   subtitle?: string;
   image?: string;
+  imagePosition?: string;
   children?: ReactNode;
 }) {
   return (
     <section className="page-banner flex items-end">
-      <div className="tech-grid-bg absolute inset-0 opacity-60 pointer-events-none" aria-hidden />
+      <div className="tech-grid-bg absolute inset-0 opacity-25 pointer-events-none z-[1]" aria-hidden />
       {image && (
         <>
           <div className="page-banner-visual">
-            <Image src={image} alt="" fill className="object-cover object-center" sizes="50vw" priority />
+            <Image
+              src={image}
+              alt=""
+              fill
+              className="object-cover"
+              style={{ objectPosition: imagePosition }}
+              sizes="100vw"
+              priority
+            />
           </div>
           <div className="page-banner-overlay" aria-hidden />
         </>
       )}
       {!image && <div className="absolute inset-0 bg-[var(--surface)]" aria-hidden />}
-      <div className="container-wide relative z-10 w-full py-14 md:py-20">
+      <div className="container-wide relative z-10 w-full py-16 md:py-24">
         <p className="eyebrow">{SITE.nameEn} · {SITE.locationEn}</p>
-        <h1 className="section-title mb-4 max-w-3xl">{title}</h1>
-        {subtitle && <p className="section-subtitle mb-0 max-w-2xl">{subtitle}</p>}
+        <h1 className="section-title mb-4 max-w-3xl drop-shadow-lg">{title}</h1>
+        {subtitle && <p className="section-subtitle mb-0 max-w-2xl drop-shadow-md">{subtitle}</p>}
         {children}
       </div>
     </section>

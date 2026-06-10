@@ -38,7 +38,7 @@ export default function ManualPage() {
       <PageBanner
         title="Installation Manual"
         subtitle="USB mode, OTG/LAN, ADB authorization, router sizing and troubleshooting for phone farm hardware."
-        image={IMAGES.manual.motherboardCables}
+        image={IMAGES.banners.manual}
       />
       <div className="section">
         <div className="container-wide">

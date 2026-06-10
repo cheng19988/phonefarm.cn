@@ -19,7 +19,7 @@ export default function PricingPage() {
       <PageBanner
         title="Pricing & MOQ"
         subtitle="All hardware is quoted per configuration — node count, connection mode, ROM scope, and export terms. No hidden checkout; confirmed orders can use USDT where applicable."
-        image={IMAGES.phoneFarmBox.hero}
+        image={IMAGES.banners.pricing}
       />
 
       <section className="section border-b border-[var(--border)]">
