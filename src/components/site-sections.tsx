@@ -169,7 +169,14 @@ export function ProductShowcase({
   return (
     <div className={`product-showcase-band grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center ${reverse ? "lg:[direction:rtl]" : ""}`}>
       <div className={`product-showcase-image min-h-[280px] lg:min-h-[380px] ${reverse ? "lg:[direction:ltr]" : ""}`}>
-        <Image src={image} alt={title} fill className="object-cover hover:scale-[1.02] transition-transform duration-700" sizes="(max-width:1024px) 100vw, 45vw" />
+        <Image
+          src={image}
+          alt={title}
+          fill
+          unoptimized
+          className="object-contain p-4 md:p-6 hover:scale-[1.02] transition-transform duration-700"
+          sizes="(max-width:1024px) 100vw, 45vw"
+        />
       </div>
       <div className={`space-y-6 lg:space-y-7 ${reverse ? "lg:[direction:ltr]" : ""}`}>
         <p className="eyebrow">{titleZh}</p>

@@ -77,7 +77,7 @@ export const IMAGES = {
   },
   motherboardBox: {
     card: asset(pub("card", "motherboard-box-card.png"), R.mbFront),
-    hero: asset(pub("hero", "motherboard-box-hero.png"), PLACEHOLDER.hero),
+    hero: asset(R.mbHero, R.mbFront),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   androidFarm: {
