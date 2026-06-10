@@ -6,12 +6,13 @@ import { adminEnvConfigured, getAdminCredentialEpoch } from "@/lib/admin-env";
 import { syncAdminFromEnv } from "@/lib/auth";
 import { reconnectPrismaClient, prisma } from "@/lib/prisma";
 import { resolveDatabaseUrl, resolveDbFilePath } from "@/lib/database-url";
+import { PROJECT_ROOT } from "@/lib/project-root";
 import { seedDatabase } from "@/lib/seed-db";
 
 const globalForDb = globalThis as unknown as { dbReady?: Promise<void> };
 
-const SEED_DB = path.join(process.cwd(), "prisma", "data", "phonefarm-seed.db");
-const SEED_ADMIN_META = path.join(process.cwd(), "prisma", "data", "seed-admin-meta.json");
+const SEED_DB = path.join(PROJECT_ROOT, "prisma", "data", "phonefarm-seed.db");
+const SEED_ADMIN_META = path.join(PROJECT_ROOT, "prisma", "data", "seed-admin-meta.json");
 
 function isBuildPhase() {
   return process.env.NEXT_PHASE === "phase-production-build";

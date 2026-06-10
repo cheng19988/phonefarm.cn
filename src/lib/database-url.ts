@@ -1,6 +1,8 @@
 import path from "node:path";
+import { PROJECT_ROOT } from "@/lib/project-root";
 
 const VERCEL_SQLITE_PATH = "file:/tmp/phonefarm.db";
+const VERCEL_DB_FILE = "/tmp/phonefarm.db";
 
 function cleanDatabaseUrl(raw: string) {
   return raw.trim().replace(/^["']|["']$/g, "");
@@ -35,9 +37,11 @@ export function resolveDatabaseUrl() {
 export function resolveDbFilePath(databaseUrl: string) {
   const url = cleanDatabaseUrl(databaseUrl);
   if (!url.startsWith("file:")) {
-    return path.join(process.cwd(), "dev.db");
+    return path.join(PROJECT_ROOT, "prisma", "dev.db");
   }
   let filePath = url.slice("file:".length);
   if (filePath.startsWith("//")) filePath = filePath.slice(1);
-  return path.isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath);
+  if (path.isAbsolute(filePath)) return filePath;
+  if (process.env.VERCEL) return VERCEL_DB_FILE;
+  return path.join(PROJECT_ROOT, filePath);
 }
