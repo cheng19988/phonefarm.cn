@@ -11,12 +11,12 @@ export type BannerPreset = {
   scale?: number;
 };
 
-/** Per-page banner tuning — fit/focus matched to full-res local assets */
+/** Per-page banner tuning — matched to Desktop 新建文件夹 originals */
 export const PAGE_BANNERS = {
   home: {
     src: IMAGES.banners.home,
     fit: "cover",
-    focus: "50% 45%",
+    focus: "62% 50%",
     scale: 1,
   },
   products: {
@@ -27,19 +27,19 @@ export const PAGE_BANNERS = {
   about: {
     src: IMAGES.banners.about,
     fit: "cover",
-    focus: "60% 50%",
+    focus: "58% 50%",
     scale: 1,
   },
   contact: {
     src: IMAGES.banners.contact,
     fit: "cover",
-    focus: "55% 50%",
+    focus: "72% 50%",
     scale: 1,
   },
   services: {
     src: IMAGES.banners.services,
     fit: "cover",
-    focus: "50% 45%",
+    focus: "55% 48%",
     scale: 1,
   },
   packages: {
@@ -50,32 +50,32 @@ export const PAGE_BANNERS = {
   },
   pricing: {
     src: IMAGES.banners.pricing,
-    focus: "55% 50%",
+    focus: "58% 50%",
     fit: "cover",
     scale: 1,
   },
   faq: {
     src: IMAGES.banners.factory,
     fit: "cover",
-    focus: "50% 45%",
+    focus: "55% 50%",
     scale: 1,
   },
   blog: {
     src: IMAGES.banners.blog,
     fit: "cover",
-    focus: "50% 45%",
+    focus: "55% 50%",
     scale: 1,
   },
   manual: {
     src: IMAGES.banners.manual,
     fit: "cover",
-    focus: "50% 45%",
+    focus: "58% 48%",
     scale: 1,
   },
   legal: {
     src: IMAGES.banners.about,
     fit: "cover",
-    focus: "60% 50%",
+    focus: "58% 50%",
     scale: 1,
   },
 } as const satisfies Record<string, BannerPreset>;

@@ -1,5 +1,6 @@
 /**
- * Ingest full-resolution banner images from local asset folders (no resize/compress).
+ * Copy user-provided banner originals at full resolution (no resize/compress).
+ * Source: C:\Users\cdl30\Desktop\新建文件夹
  * Run: npm run ingest:banners
  */
 import fs from "node:fs";
@@ -8,197 +9,94 @@ import path from "node:path";
 const root = process.cwd();
 const outDir = path.join(root, "public", "images", "banner");
 
-const SOURCE_DIRS = [
-  "E:\\宣传资料主板机照片",
-  "E:\\主板机照片素材",
-  "E:\\主板机照片素材\\水印\\演示文稿",
-  "D:\\产品商品详情图",
-];
+/** User folder — chat uploads are NOT used */
+const SOURCE_DIR = "C:\\Users\\cdl30\\Desktop\\新建文件夹";
 
-/** Banner slot → pick rules (keywords in path/filename, min width) */
-const BANNER_RULES = [
-  {
-    dest: "banner-products.png",
-    minWidth: 1600,
-    minRatio: 1.2,
-    keywords: ["product", "box-phone", "phone-farm", "phone_farm", "20-slot", "20slot", "主板", "整机", "generasi", "gallery"],
-  },
-  {
-    dest: "banner-factory.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["factory", "workshop", "assembly", "0571", "0570", "0547", "IMG_057", "lab", "车间", "工厂"],
-  },
+/**
+ * Fixed slot → source file mapping (do not auto-pick from other folders).
+ * Picked by content fit + aspect ratio; 2 spare files in folder are intentionally unused.
+ */
+const BANNER_MAP = [
   {
     dest: "banner-home.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["0571", "0570", "0547", "monitor", "dashboard", "lab", "workshop", "hero", "banner"],
+    src: "f27e34c8-504a-49a8-873e-79362ba65b87.png",
+    note: "home hero — dashboard + hardware, left fade for title",
+  },
+  {
+    dest: "banner-products.png",
+    src: "f224216c-e806-426d-a64f-a98b0a6da9de.png",
+    note: "products — 20-Slot marketing slide (contain)",
   },
   {
     dest: "banner-about.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["showroom", "gallery", "office", "0312", "0310", "公司", "展厅"],
+    src: "546b692f-eb6f-4fc4-9f98-b26c37d7ddb6.png",
+    note: "about — showroom panorama",
   },
   {
     dest: "banner-contact.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["contact", "office", "team", "0547", "0571"],
+    src: "60856b25-cddf-405e-bf68-be9555a60092.png",
+    note: "contact — ultra-wide, white space on left",
   },
   {
     dest: "banner-services.png",
-    minWidth: 1600,
-    minRatio: 1.55,
-    keywords: ["slide", "0571", "0570", "0547", "deck", "演示", "factory", "workshop"],
+    src: "9a9eff7d-239c-4c8f-8450-6b60592fa0d5.png",
+    note: "services — ops center with monitoring screens",
   },
   {
     dest: "banner-packages.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["package", "solution", "0571", "0570", "slide"],
+    src: "73ad07c8-0be6-456b-9848-c8e26b7ba595.png",
+    note: "packages — factory floor + shipping",
   },
   {
     dest: "banner-pricing.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["price", "quote", "slide", "1920"],
+    src: "952c8939-3bf9-4f18-bb13-5940b26d3f3d.png",
+    note: "pricing — clean product showcase",
+  },
+  {
+    dest: "banner-factory.png",
+    src: "1caaec79-c5ac-4bd3-8d20-4c56d511f4c1.png",
+    note: "faq — warehouse hardware lineup",
   },
   {
     dest: "banner-blog.png",
-    minWidth: 1600,
-    minRatio: 1.3,
-    keywords: ["slide", "manual", "guide", "deck"],
+    src: "8232b49d-7ad4-42d2-971f-67f368b66bbb.png",
+    note: "blog — studio product shot",
   },
   {
     dest: "banner-manual.png",
-    minWidth: 1600,
-    minRatio: 1.55,
-    keywords: ["0579", "0580", "0581", "USB", "OTG", "slide", "manual", "setup"],
+    src: "3aa9c78c-5764-4aae-aa50-8b2a91179ca7.png",
+    note: "manual — setup with control monitors",
   },
 ];
 
-function walkImages(dir, acc = []) {
-  if (!fs.existsSync(dir)) return acc;
-  for (const name of fs.readdirSync(dir)) {
-    const full = path.join(dir, name);
-    let st;
-    try {
-      st = fs.statSync(full);
-    } catch {
-      continue;
-    }
-    if (st.isDirectory()) {
-      if (/微信截图|微信图片/i.test(full)) continue;
-      walkImages(full, acc);
-    } else if (/\.(jpe?g|png|webp)$/i.test(name)) {
-      acc.push({ full, name, size: st.size, dir });
-    }
-  }
-  return acc;
-}
-
-/** Read PNG/JPEG dimensions from header — no deps */
 function readDimensions(filePath) {
   const buf = fs.readFileSync(filePath);
-  // PNG
   if (buf[0] === 0x89 && buf.toString("ascii", 1, 4) === "PNG") {
     return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
-  }
-  // JPEG
-  if (buf[0] === 0xff && buf[1] === 0xd8) {
-    let i = 2;
-    while (i < buf.length) {
-      if (buf[i] !== 0xff) break;
-      const marker = buf[i + 1];
-      const len = buf.readUInt16BE(i + 2);
-      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8) {
-        return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
-      }
-      i += 2 + len;
-    }
   }
   return null;
 }
 
-function score(file, keywords) {
-  const hay = `${file.name} ${file.dir}`.toLowerCase();
-  let s = 0;
-  for (const kw of keywords) {
-    if (hay.includes(kw.toLowerCase())) s += 12;
-  }
-  s += Math.min(file.size / 100000, 8);
-  if (file.dims) {
-    s += Math.min(file.dims.width / 400, 10);
-    const ratio = file.dims.width / file.dims.height;
-    if (ratio >= 1.4 && ratio <= 2.8) s += 5;
-  }
-  return s;
-}
-
-function pickBest(pool, rule) {
-  const candidates = pool.filter((f) => {
-    if (!f.dims) return false;
-    const ratio = f.dims.width / f.dims.height;
-    return f.dims.width >= rule.minWidth && ratio >= rule.minRatio;
-  });
-  if (!candidates.length) return null;
-  return candidates
-    .map((f) => ({ f, s: score(f, rule.keywords) }))
-    .sort((a, b) => b.s - a.s)[0]?.f ?? null;
-}
-
-function copyBinary(src, destName) {
-  const dest = path.join(outDir, destName);
-  fs.copyFileSync(src, dest);
-  const dims = readDimensions(dest);
-  const kb = Math.round(fs.statSync(dest).size / 1024);
-  return { dest: destName, dims, kb, src };
+if (!fs.existsSync(SOURCE_DIR)) {
+  console.error(`Source folder not found: ${SOURCE_DIR}`);
+  process.exit(1);
 }
 
 fs.mkdirSync(outDir, { recursive: true });
 
-const pool = [];
-for (const dir of SOURCE_DIRS) {
-  for (const f of walkImages(dir)) {
-    const dims = readDimensions(f.full);
-    if (dims) pool.push({ ...f, dims });
+let ok = 0;
+for (const { dest, src, note } of BANNER_MAP) {
+  const from = path.join(SOURCE_DIR, src);
+  const to = path.join(outDir, dest);
+  if (!fs.existsSync(from)) {
+    console.error(`✗ ${dest} — missing source: ${src}`);
+    continue;
   }
+  fs.copyFileSync(from, to);
+  const dims = readDimensions(to);
+  const kb = Math.round(fs.statSync(to).size / 1024);
+  console.log(`✓ ${dest} ← ${src} (${dims?.width}×${dims?.height}, ${kb}KB) — ${note}`);
+  ok++;
 }
 
-console.log(`Scanned ${pool.length} images from local folders`);
-const hdWide = pool.filter((f) => f.dims.width >= 1600 && f.dims.width / f.dims.height >= 1.3);
-console.log(`  ${hdWide.length} are HD wide (≥1600px, ratio≥1.3)`);
-
-const used = new Set();
-const results = [];
-
-for (const rule of BANNER_RULES) {
-  const available = pool.filter((f) => !used.has(f.full));
-  const pick = pickBest(available, rule);
-  if (pick) {
-    used.add(pick.full);
-    const r = copyBinary(pick.full, rule.dest);
-    results.push(r);
-    console.log(`✓ ${rule.dest} ← ${path.basename(pick.full)} (${r.dims.width}×${r.dims.height}, ${r.kb}KB)`);
-  } else {
-    console.log(`⚠ ${rule.dest} — no HD match, keeping existing file`);
-  }
-}
-
-// Fill any missing slots with best remaining HD wides
-for (const rule of BANNER_RULES) {
-  const dest = path.join(outDir, rule.dest);
-  if (results.some((r) => r.dest === rule.dest)) continue;
-  const remaining = hdWide.filter((f) => !used.has(f.full)).sort((a, b) => b.dims.width - a.dims.width);
-  const pick = remaining[0];
-  if (pick) {
-    used.add(pick.full);
-    const r = copyBinary(pick.full, rule.dest);
-    results.push(r);
-    console.log(`↪ ${rule.dest} ← fallback ${path.basename(pick.full)} (${r.dims.width}×${r.dims.height})`);
-  }
-}
-
-console.log(`\nIngested ${results.length} banner(s) at full resolution (no compression).`);
+console.log(`\nCopied ${ok}/${BANNER_MAP.length} banner(s) at full resolution from Desktop folder.`);
