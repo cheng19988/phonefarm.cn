@@ -58,7 +58,7 @@ const GALLERY_FILES = [
 export const FACTORY_GALLERY = GALLERY_FILES.map((f) => pub("factory", f));
 
 export const IMAGES = {
-  homeHero: asset(R.mbHero, PLACEHOLDER.hero),
+  homeHero: asset(R.pfHero, PLACEHOLDER.hero),
   phoneFarmBox: {
     card: asset(R.pfFront, pub("card", "phone-farm-box-front.png")),
     hero: asset(R.pfHero, pub("hero", "phone-farm-box-hero.png")),

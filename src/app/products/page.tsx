@@ -49,7 +49,7 @@ export default async function ProductsPage({
             <Link
               href="/products"
               className={`px-5 py-3 rounded-full text-sm md:text-base font-semibold border min-h-[48px] flex items-center transition-all ${
-                !groupFilter ? "border-orange-500 text-orange-200 bg-orange-500/15 shadow-md shadow-orange-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-orange-500/40"
+                !groupFilter ? "border-cyan-500 text-cyan-200 bg-cyan-500/15 shadow-md shadow-cyan-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-cyan-500/40"
               }`}
             >
               All products
@@ -59,7 +59,7 @@ export default async function ProductsPage({
                 key={g.id}
                 href={`/products?group=${g.id}`}
                 className={`px-5 py-3 rounded-full text-sm md:text-base font-semibold border min-h-[48px] flex items-center transition-all ${
-                  groupFilter === g.id ? "border-orange-500 text-orange-200 bg-orange-500/15 shadow-md shadow-orange-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-orange-500/40"
+                  groupFilter === g.id ? "border-cyan-500 text-cyan-200 bg-cyan-500/15 shadow-md shadow-cyan-500/20" : "border-[var(--border)] text-slate-400 hover:text-white hover:border-cyan-500/40"
                 }`}
               >
                 {g.label}

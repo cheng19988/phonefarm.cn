@@ -25,7 +25,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container-wide space-y-8">
           {SERVICES.map((svc) => (
-            <article key={svc.slug} className="card overflow-hidden hover:border-amber-500/30 transition-colors">
+            <article key={svc.slug} className="card overflow-hidden hover:border-cyan-500/30 transition-colors">
               <div className="grid lg:grid-cols-5 gap-0">
                 <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[220px] lg:col-span-2 bg-[var(--surface-elevated)]">
                   <Image src={svc.image} alt={svc.title} fill className="object-cover" sizes="40vw" />
@@ -35,7 +35,7 @@ export default function ServicesPage() {
                   <p className="text-slate-400 text-base mb-6 leading-relaxed">{svc.summary}</p>
                   <div className="grid sm:grid-cols-2 gap-6 text-sm mb-6">
                     <div>
-                      <p className="text-amber-400/90 font-semibold mb-2 uppercase text-xs tracking-wide">What we provide</p>
+                      <p className="text-cyan-400/90 font-semibold mb-2 uppercase text-xs tracking-wide">What we provide</p>
                       <ul className="param-list text-sm">
                         {svc.provides.map((p) => <li key={p}>{p}</li>)}
                       </ul>
@@ -63,7 +63,7 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
             {DELIVERY_PROCESS.map((step) => (
               <div key={step.step} className="card-flat">
-                <span className="text-amber-400 font-bold text-lg">{step.step}</span>
+                <span className="text-cyan-400 font-bold text-lg">{step.step}</span>
                 <h3 className="font-semibold text-white mt-2 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
               </div>
@@ -73,7 +73,7 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {BULK_PROCESS.map((step) => (
               <div key={step.step} className="card-flat">
-                <span className="text-amber-400 font-bold text-lg">{step.step}</span>
+                <span className="text-cyan-400 font-bold text-lg">{step.step}</span>
                 <h3 className="font-semibold text-white mt-2 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
               </div>

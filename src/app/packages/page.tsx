@@ -28,12 +28,12 @@ export default function PackagesPage() {
           {PACKAGES.map((pkg) => (
             <article
               key={pkg.id}
-              className={`card overflow-hidden grid lg:grid-cols-2 ${pkg.highlight ? "ring-2 ring-orange-500/50 shadow-xl shadow-orange-500/10" : ""}`}
+              className={`card overflow-hidden grid lg:grid-cols-2 ${pkg.highlight ? "ring-2 ring-cyan-500/50 shadow-xl shadow-cyan-500/10" : ""}`}
             >
               <div className="relative min-h-[300px] lg:min-h-[420px]">
                 <Image src={pkg.image} alt={pkg.name} fill className="object-cover hover:scale-[1.02] transition-transform duration-700" sizes="50vw" />
                 {pkg.highlight && (
-                  <span className="absolute top-5 left-5 bg-gradient-to-r from-orange-400 to-amber-500 text-slate-950 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-full shadow-lg">
+                  <span className="absolute top-5 left-5 bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 text-sm font-bold uppercase tracking-wide px-4 py-2 rounded-full shadow-lg">
                     Most deployed
                   </span>
                 )}
@@ -41,7 +41,7 @@ export default function PackagesPage() {
               <div className="p-8 md:p-12 lg:p-14 flex flex-col gap-5">
                 <p className="eyebrow mb-0">{pkg.nameZh}</p>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white">{pkg.name}</h2>
-                <p className="text-orange-400 text-base md:text-lg font-semibold">{pkg.tagline}</p>
+                <p className="text-cyan-400 text-base md:text-lg font-semibold">{pkg.tagline}</p>
                 <p className="text-slate-400 text-base md:text-lg">
                   <span className="text-slate-500 font-medium">Ideal for:</span> {pkg.idealFor}
                 </p>

@@ -25,7 +25,7 @@ function renderContent(text: string) {
       return <p key={i} className="text-slate-400 text-sm mb-1 pl-2">{line}</p>;
     }
     if (line.startsWith("`") && line.includes("`")) {
-      return <code key={i} className="block bg-[var(--surface-elevated)] p-3 rounded-lg text-sm text-amber-300/90 my-2 font-mono border border-[var(--border)]">{line.replace(/`/g, "")}</code>;
+      return <code key={i} className="block bg-[var(--surface-elevated)] p-3 rounded-lg text-sm text-cyan-300/90 my-2 font-mono border border-[var(--border)]">{line.replace(/`/g, "")}</code>;
     }
     if (line.trim() === "") return <br key={i} />;
     return <p key={i} className="text-slate-300 text-sm leading-relaxed mb-2">{line}</p>;
@@ -47,7 +47,7 @@ export default function ManualPage() {
               <nav className="lg:sticky lg:top-24 card-flat space-y-1 text-sm mb-8 lg:mb-0">
                 <p className="text-slate-500 text-xs font-semibold mb-3 uppercase tracking-wide">Contents</p>
                 {MANUAL_TOC.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="block text-slate-400 hover:text-amber-300 py-1.5">
+                  <a key={s.id} href={`#${s.id}`} className="block text-slate-400 hover:text-cyan-300 py-1.5">
                     {s.title}
                   </a>
                 ))}
@@ -71,12 +71,12 @@ export default function ManualPage() {
               <div className="mt-12">
                 <p className="text-base text-slate-400 mb-6 card-flat">
                   Need help choosing USB or OTG/LAN mode? Send quantity and setup environment for{" "}
-                  <Link href="/contact" className="text-amber-400 hover:underline">RFQ support</Link>.
+                  <Link href="/contact" className="text-cyan-400 hover:underline">RFQ support</Link>.
                 </p>
                 <ContactCTA title="Need hardware for this setup — Send RFQ" />
               </div>
               <p className="text-sm text-slate-500 mt-6">
-                More articles: <Link href="/blog" className="text-amber-400 hover:underline">Technical Articles</Link>
+                More articles: <Link href="/blog" className="text-cyan-400 hover:underline">Technical Articles</Link>
               </p>
             </div>
           </div>

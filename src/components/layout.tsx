@@ -8,7 +8,7 @@ export async function Header() {
   const isAdmin = session?.role === "admin";
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0c1018]/85 backdrop-blur-xl border-b border-orange-500/25 shadow-lg shadow-black/20">
+    <header className="sticky top-0 z-50 bg-[#060912]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-lg shadow-cyan-950/30">
       <div className="rfq-bar hidden md:block">
         <div className="container-wide flex flex-wrap justify-between items-center gap-2">
           <span className="text-slate-400 text-xs md:text-sm">
@@ -19,11 +19,11 @@ export async function Header() {
       </div>
       <div className="container-wide py-4 flex items-center justify-between gap-4">
         <Link href="/" className="shrink-0 flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-400 via-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-orange-500/40 ring-2 ring-orange-400/30">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 ring-2 ring-cyan-400/25">
             <span className="text-slate-950 font-black text-sm">PF</span>
           </div>
           <div>
-            <div className="font-bold text-white leading-tight group-hover:text-amber-100 transition-colors">{SITE.nameEn}</div>
+            <div className="font-bold text-white leading-tight group-hover:text-cyan-100 transition-colors">{SITE.nameEn}</div>
             <div className="text-[11px] text-slate-500 leading-tight">{SITE.name}</div>
           </div>
         </Link>
@@ -32,12 +32,12 @@ export async function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-orange-300 hover:bg-orange-500/10 rounded-xl transition-colors"
+              className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-xl transition-colors"
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/faq" className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-orange-300 hover:bg-orange-500/10 rounded-xl transition-colors">
+          <Link href="/faq" className="px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-xl transition-colors">
             FAQ
           </Link>
         </nav>
@@ -60,7 +60,7 @@ export async function Header() {
           <Link
             key={item.href}
             href={item.href}
-            className="whitespace-nowrap px-3 py-1.5 rounded-full border border-[var(--border)] text-slate-400 hover:text-white hover:border-amber-500/50"
+            className="whitespace-nowrap px-3 py-1.5 rounded-full border border-cyan-500/20 text-slate-400 hover:text-cyan-200 hover:border-cyan-400/40"
           >
             {item.label}
           </Link>
@@ -72,11 +72,12 @@ export async function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--surface)] border-t border-[var(--border)] mt-auto">
-      <div className="container-wide py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer className="relative bg-[var(--surface)] border-t border-cyan-500/15 mt-auto">
+      <div className="tech-grid-bg absolute inset-x-0 h-48 opacity-30 pointer-events-none" aria-hidden />
+      <div className="container-wide py-14 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10 relative">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-lg bg-amber-500 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-500 flex items-center justify-center">
               <span className="text-slate-950 font-black text-xs">PF</span>
             </div>
             <div>
@@ -95,11 +96,11 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-slate-400">
             {PRODUCT_NAV.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-amber-300 transition-colors">{item.label}</Link>
+                <Link href={item.href} className="hover:text-cyan-300 transition-colors">{item.label}</Link>
               </li>
             ))}
-            <li><Link href="/packages" className="hover:text-amber-300">Solution Packages</Link></li>
-            <li><Link href="/products" className="hover:text-amber-300">Full Catalog</Link></li>
+            <li><Link href="/packages" className="hover:text-cyan-300">Solution Packages</Link></li>
+            <li><Link href="/products" className="hover:text-cyan-300">Full Catalog</Link></li>
           </ul>
         </div>
         <div>
@@ -119,7 +120,7 @@ export function Footer() {
           </p>
         </div>
       </div>
-      <div className="border-t border-[var(--border)] py-4 text-center text-xs text-slate-600">
+      <div className="border-t border-cyan-500/10 py-4 text-center text-xs text-slate-600">
         © {new Date().getFullYear()} {SITE.nameEn} · {CONTACT.email}
       </div>
     </footer>

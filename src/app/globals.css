@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0c1018;
-  --foreground: #f8fafc;
-  --surface: #141c28;
-  --surface-elevated: #1a2436;
-  --border: #2d3a52;
-  --border-subtle: #1e293b;
-  --accent: #ff8a2a;
-  --accent-bright: #ffb347;
-  --accent-hover: #ff9f4d;
-  --accent-muted: #e67a15;
+  --background: #060912;
+  --foreground: #f0f9ff;
+  --surface: #0a1020;
+  --surface-elevated: #111827;
+  --border: #1e3a5f;
+  --border-subtle: #152238;
+  --accent: #22d3ee;
+  --accent-bright: #67e8f9;
+  --accent-hover: #06b6d4;
+  --accent-secondary: #6366f1;
   --glow: #38bdf8;
   --steel: #64748b;
   --muted: #94a3b8;
@@ -29,9 +29,18 @@ body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(255, 138, 42, 0.14), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(56, 189, 248, 0.06), transparent 45%);
+    radial-gradient(ellipse 100% 70% at 50% -30%, rgba(34, 211, 238, 0.12), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 20%, rgba(99, 102, 241, 0.1), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 0% 80%, rgba(56, 189, 248, 0.06), transparent 45%);
   background-attachment: fixed;
+}
+
+.tech-grid-bg {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
 }
 
 .container-wide {
@@ -50,6 +59,10 @@ body {
   @apply py-16 md:py-20;
 }
 
+.section-alt {
+  @apply bg-[var(--surface)]/40 border-y border-cyan-500/10;
+}
+
 .section-title {
   @apply text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-5 tracking-tight leading-[1.08];
 }
@@ -59,37 +72,41 @@ body {
 }
 
 .eyebrow {
-  @apply inline-block text-orange-400 text-xs md:text-sm font-bold uppercase tracking-[0.25em] mb-5 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10;
+  @apply inline-block text-cyan-300 text-xs md:text-sm font-bold uppercase tracking-[0.25em] mb-5 px-3 py-1.5 rounded-full border border-cyan-500/35 bg-cyan-500/10;
 }
 
 .card {
-  @apply bg-[var(--surface)]/90 border border-[var(--border)] rounded-2xl overflow-hidden shadow-xl shadow-black/25 backdrop-blur-sm;
+  @apply bg-[var(--surface)]/80 border border-cyan-500/15 rounded-2xl overflow-hidden shadow-xl shadow-cyan-950/20 backdrop-blur-sm;
 }
 
 .card-flat {
-  @apply bg-[var(--surface-elevated)]/90 border border-[var(--border)] rounded-2xl p-7 md:p-10 backdrop-blur-sm;
+  @apply bg-[var(--surface-elevated)]/70 border border-cyan-500/12 rounded-2xl p-7 md:p-10 backdrop-blur-sm;
 }
 
 .card-glass {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  @apply bg-cyan-950/20 backdrop-blur-md border border-cyan-400/15 rounded-2xl;
+}
+
+.tech-card {
+  @apply bg-[var(--surface-elevated)]/70 border border-cyan-500/12 rounded-2xl p-7 md:p-10 backdrop-blur-sm hover:border-cyan-400/35 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300;
 }
 
 .btn-primary {
   @apply inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-xl text-base font-bold text-slate-950 transition-all duration-200;
-  background: linear-gradient(135deg, #ffb347 0%, #ff8a2a 50%, #f97316 100%);
-  box-shadow: 0 4px 24px rgba(255, 138, 42, 0.35);
+  background: linear-gradient(135deg, #67e8f9 0%, #22d3ee 45%, #0891b2 100%);
+  box-shadow: 0 4px 24px rgba(34, 211, 238, 0.35);
 }
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(255, 138, 42, 0.45);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.5);
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-xl bg-white/5 text-white text-base font-semibold hover:bg-white/10 border border-white/15 transition-all;
+  @apply inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-xl bg-cyan-950/40 text-cyan-100 text-base font-semibold hover:bg-cyan-900/50 border border-cyan-500/25 transition-all;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-xl border-2 border-orange-500/50 text-orange-300 text-base font-semibold hover:bg-orange-500/10 hover:border-orange-400 transition-all;
+  @apply inline-flex items-center justify-center px-8 py-3.5 min-h-[48px] rounded-xl border-2 border-cyan-400/45 text-cyan-300 text-base font-semibold hover:bg-cyan-500/10 hover:border-cyan-300 transition-all;
 }
 
 .btn-whatsapp {
@@ -97,34 +114,83 @@ body {
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center px-4 py-2 text-sm text-slate-400 hover:text-sky-300 transition-colors;
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm text-slate-400 hover:text-cyan-300 transition-colors;
 }
 
 .rfq-bar {
-  @apply bg-[var(--surface)]/80 border-b border-orange-500/20 py-3 text-sm backdrop-blur-md;
+  @apply bg-[var(--surface)]/90 border-b border-cyan-500/15 py-3 text-sm backdrop-blur-md;
+}
+
+/* ── Homepage hero (split layout) ── */
+.tech-hero {
+  @apply relative overflow-hidden border-b border-cyan-500/20;
+  min-height: min(92vh, 820px);
+}
+
+.tech-hero-bg {
+  @apply absolute inset-0 pointer-events-none;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 50%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(99, 102, 241, 0.08), transparent 50%);
+}
+
+.hero-product-frame {
+  @apply relative aspect-[4/3] lg:aspect-square max-h-[520px] mx-auto w-full rounded-3xl overflow-hidden;
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9) 0%, rgba(6, 9, 18, 0.95) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(34, 211, 238, 0.12);
+}
+
+.hero-product-glow {
+  @apply absolute -inset-4 rounded-[2rem] pointer-events-none;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.15), transparent 70%);
+}
+
+.hero-product-frame::before {
+  content: "";
+  @apply absolute inset-0 pointer-events-none z-10;
+  background: linear-gradient(180deg, transparent 60%, rgba(6, 9, 18, 0.4) 100%);
+}
+
+.hero-stat-pill {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-cyan-200/90 border border-cyan-500/20 bg-cyan-950/40 backdrop-blur-sm;
+}
+
+/* ── Inner page banners ── */
+.page-banner {
+  @apply relative border-b border-cyan-500/15 overflow-hidden min-h-[300px] md:min-h-[360px];
+}
+
+.page-banner-visual {
+  @apply absolute inset-y-0 right-0 w-[min(55vw,640px)] opacity-30 md:opacity-45;
+  mask-image: linear-gradient(90deg, transparent 0%, black 40%);
+}
+
+.page-banner-overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(
+    105deg,
+    rgba(6, 9, 18, 0.97) 0%,
+    rgba(6, 9, 18, 0.85) 45%,
+    rgba(6, 9, 18, 0.5) 100%
+  );
 }
 
 .catalog-hero {
-  @apply relative min-h-[480px] md:min-h-[560px] lg:min-h-[680px] flex items-end overflow-hidden;
+  @apply relative min-h-[480px] md:min-h-[560px] flex items-end overflow-hidden;
 }
 
 .catalog-hero-overlay {
   @apply absolute inset-0;
   background: linear-gradient(
     105deg,
-    rgba(12, 16, 24, 0.92) 0%,
-    rgba(12, 16, 24, 0.65) 45%,
-    rgba(255, 138, 42, 0.08) 100%
+    rgba(6, 9, 18, 0.95) 0%,
+    rgba(6, 9, 18, 0.7) 50%,
+    rgba(34, 211, 238, 0.06) 100%
   );
-}
-
-.page-banner {
-  @apply relative border-b border-[var(--border)] overflow-hidden min-h-[280px] md:min-h-[320px];
-}
-
-.page-banner-overlay {
-  @apply absolute inset-0;
-  background: linear-gradient(90deg, rgba(12, 16, 24, 0.95) 0%, rgba(12, 16, 24, 0.7) 60%, rgba(12, 16, 24, 0.4) 100%);
 }
 
 .spec-table {
@@ -144,7 +210,7 @@ body {
 }
 
 .prose-content h2 {
-  @apply text-xl md:text-2xl font-bold text-white mt-12 mb-4 pt-4 border-t border-[var(--border)];
+  @apply text-xl md:text-2xl font-bold text-white mt-12 mb-4 pt-4 border-t border-cyan-500/15;
 }
 
 .prose-content h3 {
@@ -164,11 +230,11 @@ body {
 }
 
 .param-list li {
-  @apply flex gap-3 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-br before:from-orange-400 before:to-amber-300 before:shrink-0 before:mt-2.5;
+  @apply flex gap-3 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-gradient-to-br before:from-cyan-400 before:to-indigo-400 before:shrink-0 before:mt-2.5;
 }
 
 .form-input {
-  @apply w-full bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl px-5 py-3.5 text-white text-base placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500/60;
+  @apply w-full bg-[var(--surface-elevated)] border border-cyan-500/20 rounded-xl px-5 py-3.5 text-white text-base placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-400/50;
 }
 
 .form-label {
@@ -176,7 +242,11 @@ body {
 }
 
 .trust-metric-value {
-  @apply text-3xl md:text-4xl font-extrabold text-white tabular-nums;
+  @apply text-3xl md:text-4xl font-extrabold tabular-nums;
+  background: linear-gradient(135deg, #fff 0%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .trust-metric-label {
@@ -184,16 +254,20 @@ body {
 }
 
 .product-showcase-image {
-  @apply relative aspect-[4/3] lg:aspect-[5/4] rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-black/50;
+  @apply relative aspect-[4/3] lg:aspect-[5/4] rounded-3xl overflow-hidden border border-cyan-500/20 shadow-2xl shadow-cyan-950/30;
 }
 
 .product-showcase-band {
-  @apply rounded-3xl p-8 md:p-12 lg:p-16 border border-white/5;
-  background: linear-gradient(145deg, rgba(26, 36, 54, 0.9) 0%, rgba(20, 28, 40, 0.6) 100%);
+  @apply rounded-3xl p-8 md:p-12 lg:p-16 border border-cyan-500/12;
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.85) 0%, rgba(10, 16, 32, 0.6) 100%);
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-orange-300 via-amber-400 to-sky-300 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent;
+}
+
+.accent-text {
+  @apply text-cyan-400 font-semibold;
 }
 
 .catalog-grid {

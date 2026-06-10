@@ -29,9 +29,9 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="card-flat hover:border-amber-500/30 transition-all block h-full"
+                className="card-flat hover:border-cyan-500/30 transition-all block h-full"
               >
-                <span className="text-xs text-amber-400/90 uppercase tracking-wide font-semibold">{post.category}</span>
+                <span className="text-xs text-cyan-400/90 uppercase tracking-wide font-semibold">{post.category}</span>
                 <span className="text-xs text-slate-600 ml-2">{post.date}</span>
                 <h2 className="font-bold text-white text-lg mt-3 mb-2 leading-snug">{post.title}</h2>
                 <p className="text-sm text-slate-500 leading-relaxed">{post.excerpt}</p>

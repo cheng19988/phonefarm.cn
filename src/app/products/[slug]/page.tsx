@@ -62,9 +62,9 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="section pb-24 md:pb-16 border-b border-[var(--border)]">
         <div className="container-wide">
           <nav className="text-sm text-slate-500 mb-8 flex flex-wrap gap-2">
-            <Link href="/" className="hover:text-amber-400">Home</Link>
+            <Link href="/" className="hover:text-cyan-400">Home</Link>
             <span>/</span>
-            <Link href="/products" className="hover:text-amber-400">Products</Link>
+            <Link href="/products" className="hover:text-cyan-400">Products</Link>
             <span>/</span>
             <span className="text-slate-300">{seed.name}</span>
           </nav>
@@ -83,7 +83,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   <li key={p}>{p}</li>
                 ))}
               </ul>
-              <p className="text-amber-400/90 font-medium mb-8">{RFQ_COPY.pricingNote}</p>
+              <p className="text-cyan-400/90 font-medium mb-8">{RFQ_COPY.pricingNote}</p>
               <div className="flex flex-wrap gap-3 mb-6">
                 <Link href={`/contact?product=${slug}`} className="btn-primary">Get Quote</Link>
                 <a href={`${CONTACT.whatsappUrl}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">

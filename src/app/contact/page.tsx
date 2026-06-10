@@ -130,7 +130,7 @@ function ContactForm() {
       {status === "error" && (
         <div className="text-red-400 text-sm bg-red-950/40 border border-red-800/50 rounded-lg p-4 space-y-1">
           <p>Send failed. Please contact us directly:</p>
-          <p><a href={`mailto:${CONTACT.email}`} className="text-amber-400 underline">{CONTACT.email}</a></p>
+          <p><a href={`mailto:${CONTACT.email}`} className="text-cyan-400 underline">{CONTACT.email}</a></p>
           <p><a href={CONTACT.whatsappUrl} className="underline">WhatsApp</a> · <a href={CONTACT.telegramUrl} className="underline">Telegram</a></p>
         </div>
       )}

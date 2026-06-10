@@ -22,7 +22,7 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
               type="button"
               onClick={() => setActive(i)}
               className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden border-2 snap-start transition-all ${
-                i === active ? "border-amber-500 ring-2 ring-amber-500/30" : "border-[var(--border)] opacity-80 hover:opacity-100"
+                i === active ? "border-cyan-500 ring-2 ring-cyan-500/30" : "border-[var(--border)] opacity-80 hover:opacity-100"
               }`}
               aria-label={`Image ${i + 1}`}
             >

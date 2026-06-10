@@ -5,29 +5,57 @@ import { CONTACT, SITE } from "@/lib/config";
 
 export function SiteHero({
   image,
+  secondaryImage,
   eyebrow,
   title,
   subtitle,
   children,
 }: {
   image: string;
+  secondaryImage?: string;
   eyebrow?: string;
   title: ReactNode;
   subtitle: string;
   children?: ReactNode;
 }) {
   return (
-    <section className="catalog-hero border-b border-orange-500/20">
-      <Image src={image} alt="" fill className="object-cover object-center scale-105" priority sizes="100vw" />
-      <div className="catalog-hero-overlay" aria-hidden />
-      <div className="absolute top-1/3 right-0 w-[min(50vw,520px)] h-[min(50vw,520px)] rounded-full bg-orange-500/20 blur-[120px] pointer-events-none" aria-hidden />
-      <div className="container-wide relative z-10 w-full pb-16 md:pb-24 pt-32 md:pt-40">
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold text-white max-w-4xl leading-[1.02] mb-8 tracking-tight">
-          {title}
-        </h1>
-        <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mb-10 leading-relaxed">{subtitle}</p>
-        <div className="flex flex-wrap gap-4 md:gap-5">{children}</div>
+    <section className="tech-hero">
+      <div className="tech-hero-bg" aria-hidden />
+      <div className="tech-grid-bg absolute inset-0 pointer-events-none" aria-hidden />
+
+      <div className="container-wide relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 md:py-28 lg:py-32">
+        <div className="max-w-xl lg:max-w-none">
+          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight">
+            {title}
+          </h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-lg mb-8 leading-relaxed">{subtitle}</p>
+          <div className="flex flex-wrap gap-3 mb-8">{children}</div>
+          <div className="flex flex-wrap gap-3">
+            <span className="hero-stat-pill">Est. 2017</span>
+            <span className="hero-stat-pill">20–32 nodes / SKU</span>
+            <span className="hero-stat-pill">Guangzhou factory</span>
+          </div>
+        </div>
+
+        <div className="relative lg:pl-4">
+          <div className="hero-product-glow" aria-hidden />
+          <div className="hero-product-frame">
+            <Image
+              src={image}
+              alt="Phone farm hardware"
+              fill
+              className="object-contain p-6 md:p-10 drop-shadow-2xl"
+              priority
+              sizes="(max-width:1024px) 90vw, 45vw"
+            />
+          </div>
+          {secondaryImage && (
+            <div className="absolute -bottom-4 -left-2 md:-left-6 w-[38%] max-w-[200px] aspect-square rounded-2xl overflow-hidden border border-cyan-400/30 shadow-xl shadow-cyan-950/40 bg-[var(--surface)] hidden sm:block">
+              <Image src={secondaryImage} alt="" fill className="object-cover" sizes="200px" />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -46,18 +74,20 @@ export function PageBanner({
 }) {
   return (
     <section className="page-banner flex items-end">
+      <div className="tech-grid-bg absolute inset-0 opacity-60 pointer-events-none" aria-hidden />
       {image && (
         <>
-          <div className="absolute inset-0">
-            <Image src={image} alt="" fill className="object-cover opacity-50 scale-105" sizes="100vw" priority />
+          <div className="page-banner-visual">
+            <Image src={image} alt="" fill className="object-cover object-center" sizes="50vw" priority />
           </div>
           <div className="page-banner-overlay" aria-hidden />
         </>
       )}
-      <div className={`container-wide relative z-10 w-full py-16 md:py-24 ${!image ? "bg-[var(--surface)]" : ""}`}>
+      {!image && <div className="absolute inset-0 bg-[var(--surface)]" aria-hidden />}
+      <div className="container-wide relative z-10 w-full py-14 md:py-20">
         <p className="eyebrow">{SITE.nameEn} · {SITE.locationEn}</p>
-        <h1 className="section-title mb-4">{title}</h1>
-        {subtitle && <p className="section-subtitle mb-0">{subtitle}</p>}
+        <h1 className="section-title mb-4 max-w-3xl">{title}</h1>
+        {subtitle && <p className="section-subtitle mb-0 max-w-2xl">{subtitle}</p>}
         {children}
       </div>
     </section>
@@ -72,17 +102,15 @@ export function TrustStrip() {
     { value: "RFQ + USDT", label: "Bulk order paths" },
   ];
   return (
-    <section className="border-b border-orange-500/15 bg-gradient-to-r from-[var(--surface)] via-[var(--surface-elevated)] to-[var(--surface)]">
+    <section className="border-b border-cyan-500/12 bg-[var(--surface)]/60 backdrop-blur-sm">
       <div className="container-wide py-10 md:py-14">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
           {items.map((item) => (
             <div
               key={item.label}
-              className="text-center md:text-left rounded-2xl p-6 md:p-8 border border-white/5 bg-white/[0.03] hover:border-orange-500/30 transition-colors"
+              className="text-center md:text-left rounded-2xl p-6 md:p-7 border border-cyan-500/12 bg-cyan-950/20 hover:border-cyan-400/30 hover:bg-cyan-950/30 transition-all"
             >
-              <div className="trust-metric-value bg-gradient-to-br from-white to-orange-200 bg-clip-text text-transparent">
-                {item.value}
-              </div>
+              <div className="trust-metric-value">{item.value}</div>
               <div className="trust-metric-label">{item.label}</div>
             </div>
           ))}
@@ -121,13 +149,13 @@ export function ProductShowcase({
   reverse?: boolean;
 }) {
   return (
-    <div className={`product-showcase-band grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center ${reverse ? "lg:[direction:rtl]" : ""}`}>
-      <div className={`product-showcase-image min-h-[280px] lg:min-h-[400px] ${reverse ? "lg:[direction:ltr]" : ""}`}>
+    <div className={`product-showcase-band grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center ${reverse ? "lg:[direction:rtl]" : ""}`}>
+      <div className={`product-showcase-image min-h-[280px] lg:min-h-[380px] ${reverse ? "lg:[direction:ltr]" : ""}`}>
         <Image src={image} alt={title} fill className="object-cover hover:scale-[1.02] transition-transform duration-700" sizes="(max-width:1024px) 100vw, 45vw" />
       </div>
-      <div className={`space-y-6 lg:space-y-8 ${reverse ? "lg:[direction:ltr]" : ""}`}>
+      <div className={`space-y-6 lg:space-y-7 ${reverse ? "lg:[direction:ltr]" : ""}`}>
         <p className="eyebrow">{titleZh}</p>
-        <h3 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-white leading-tight">{title}</h3>
+        <h3 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">{title}</h3>
         <p className="text-slate-300 text-lg md:text-xl leading-relaxed">{description}</p>
         <ul className="param-list">
           {params.map((p) => (
@@ -135,7 +163,7 @@ export function ProductShowcase({
           ))}
         </ul>
         <p className="text-base md:text-lg text-slate-400">
-          <span className="text-orange-400 font-bold">Best for:</span> {useCase}
+          <span className="accent-text">Best for:</span> {useCase}
         </p>
         <div className="flex flex-wrap gap-4 pt-2">
           <Link href={href} className="btn-primary">View Product</Link>
@@ -148,16 +176,16 @@ export function ProductShowcase({
 
 export function FactoryGallery({ images }: { images: { src: string; label: string }[] }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
       {images.map((img, i) => (
         <div
           key={img.label}
-          className={`relative rounded-2xl overflow-hidden border-2 border-white/10 bg-[var(--surface)] shadow-xl ${
+          className={`relative rounded-2xl overflow-hidden border border-cyan-500/15 bg-[var(--surface)] shadow-lg shadow-cyan-950/20 hover:border-cyan-400/30 transition-colors ${
             i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto md:min-h-[360px]" : "aspect-[4/3]"
           }`}
         >
           <Image src={img.src} alt={img.label} fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />
-          <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent text-sm md:text-base text-white px-4 py-3 font-semibold">
+          <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#060912]/95 via-[#060912]/50 to-transparent text-sm md:text-base text-cyan-50 px-4 py-3 font-semibold">
             {img.label}
           </span>
         </div>
@@ -169,7 +197,7 @@ export function FactoryGallery({ images }: { images: { src: string; label: strin
 export function RfqFloatingHint() {
   return (
     <p className="text-sm text-slate-500 mt-4">
-      RFQ: <a href={`mailto:${CONTACT.email}`} className="text-orange-400 hover:text-orange-300 font-medium">{CONTACT.email}</a>
+      RFQ: <a href={`mailto:${CONTACT.email}`} className="text-cyan-400 hover:text-cyan-300 font-medium">{CONTACT.email}</a>
       {" · "}
       <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-medium">WhatsApp</a>
     </p>

@@ -18,7 +18,7 @@ type ProductCardProps = {
 export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCard, category }: ProductCardProps) {
   const waText = encodeURIComponent(`Hi, I need a quote for: ${name}`);
   return (
-    <article className="card flex flex-col h-full group hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-1">
+    <article className="card flex flex-col h-full group hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1">
       <Link href={`/products/${slug}`} className="product-card-image">
         <Image
           src={imageCard}
@@ -27,13 +27,13 @@ export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCa
           className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           sizes="(max-width:768px) 100vw, 40vw"
         />
-        <span className="absolute top-4 left-4 text-sm bg-orange-500/90 text-slate-950 px-4 py-1.5 rounded-full font-bold shadow-lg">
+        <span className="absolute top-4 left-4 text-sm bg-cyan-500/90 text-slate-950 px-4 py-1.5 rounded-full font-bold shadow-lg">
           {category}
         </span>
       </Link>
       <div className="product-card-body">
         <Link href={`/products/${slug}`}>
-          <h3 className="font-extrabold text-white text-xl md:text-2xl lg:text-[1.65rem] leading-snug group-hover:text-orange-300 transition-colors">
+          <h3 className="font-extrabold text-white text-xl md:text-2xl lg:text-[1.65rem] leading-snug group-hover:text-cyan-300 transition-colors">
             {name}
           </h3>
         </Link>
@@ -44,9 +44,9 @@ export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCa
           ))}
         </ul>
         <p className="text-base text-slate-500 pt-2 border-t border-[var(--border)]">
-          <span className="text-orange-400 font-semibold">Best for:</span> {bestFor}
+          <span className="accent-text">Best for:</span> {bestFor}
         </p>
-        <p className="text-sm text-orange-400/90 font-medium">{RFQ_COPY.pricingNote}</p>
+        <p className="text-sm text-cyan-400/90 font-medium">{RFQ_COPY.pricingNote}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
           <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-sm md:text-base">
             Get Quote
@@ -69,10 +69,10 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
   return (
     <div className="space-y-4">
       {items.map((item, i) => (
-        <details key={i} className="card-flat group open:border-orange-500/40 open:shadow-xl transition-all">
+        <details key={i} className="card-flat group open:border-cyan-400/40 open:shadow-xl transition-all">
           <summary className="font-bold text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-start gap-4 py-1">
             <span className="leading-snug">{item.question}</span>
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-400 group-open:rotate-45 transition-transform text-xl">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 group-open:rotate-45 transition-transform text-xl">
               +
             </span>
           </summary>
@@ -86,7 +86,7 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
 export function FAQSection({ title, items }: { title: string; items: { question: string; answer: string }[] }) {
   return (
     <section className="mb-16">
-      <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-8 pb-4 border-b border-orange-500/20">{title}</h2>
+      <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-8 pb-4 border-b border-cyan-500/20">{title}</h2>
       <FAQAccordion items={items} />
     </section>
   );

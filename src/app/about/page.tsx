@@ -55,7 +55,7 @@ export default function AboutPage() {
             <div className="space-y-4">
               {FACTORY_WORKFLOW.map((step) => (
                 <div key={step.step} className="card-flat flex gap-4">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-cyan-400 font-bold border border-cyan-500/30">
                     {step.step}
                   </span>
                   <div>
@@ -85,14 +85,14 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          <p className="text-slate-400 text-sm mb-14 italic border-l-2 border-amber-500/40 pl-4">{TRUST_NOTE}</p>
+          <p className="text-slate-400 text-sm mb-14 italic border-l-2 border-cyan-500/40 pl-4">{TRUST_NOTE}</p>
 
           <section className="mb-14">
             <SectionHeader title="Company information" center />
             <dl className="card-flat grid sm:grid-cols-2 gap-4 text-sm">
               <div><dt className="text-slate-500">Brand</dt><dd className="text-white font-medium">{SITE.nameEn}</dd></div>
               <div><dt className="text-slate-500">Location</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
-              <div><dt className="text-slate-500">Email</dt><dd><a href={`mailto:${CONTACT.email}`} className="text-amber-400">{CONTACT.email}</a></dd></div>
+              <div><dt className="text-slate-500">Email</dt><dd><a href={`mailto:${CONTACT.email}`} className="text-cyan-400">{CONTACT.email}</a></dd></div>
               <div><dt className="text-slate-500">Phone</dt><dd className="text-white">{CONTACT.phone}</dd></div>
             </dl>
           </section>

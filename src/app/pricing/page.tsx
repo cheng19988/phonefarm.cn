@@ -32,7 +32,7 @@ export default function PricingPage() {
             {PRICING_TIERS.map((tier, i) => (
               <div
                 key={tier.name}
-                className={`card-flat flex flex-col h-full ${i === 1 ? "ring-1 ring-amber-500/40 bg-[var(--surface)]" : ""}`}
+                className={`card-flat flex flex-col h-full ${i === 1 ? "ring-1 ring-cyan-500/40 bg-[var(--surface)]" : ""}`}
               >
                 <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
                 <p className="text-slate-400 text-sm md:text-base mb-6 flex-1 leading-relaxed">{tier.description}</p>
@@ -47,7 +47,7 @@ export default function PricingPage() {
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-slate-500">Pricing</dt>
-                    <dd className="text-amber-400 font-semibold text-right">{tier.pricing}</dd>
+                    <dd className="text-cyan-400 font-semibold text-right">{tier.pricing}</dd>
                   </div>
                 </dl>
                 <Link href="/contact" className="btn-primary w-full text-center">{tier.cta}</Link>

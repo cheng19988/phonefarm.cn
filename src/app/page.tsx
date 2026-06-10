@@ -56,7 +56,8 @@ export default function HomePage() {
   return (
     <>
       <SiteHero
-        image={IMAGES.homeHero}
+        image={IMAGES.phoneFarmBox.hero}
+        secondaryImage={IMAGES.motherboardBox.hero}
         eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
         title={
           <>
@@ -77,7 +78,7 @@ export default function HomePage() {
 
       <TrustStrip />
 
-      <section className="section border-b border-orange-500/10">
+      <section className="section border-b border-cyan-500/10">
         <div className="container-wide space-y-16 md:space-y-24 lg:space-y-32">
           <SectionHeader
             title="Flagship Hardware SKUs"
@@ -111,7 +112,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section border-b border-orange-500/10 bg-gradient-to-b from-orange-500/[0.04] to-transparent">
+      <section className="section-alt">
         <div className="container-wide">
           <SectionHeader
             title="Factory Capabilities"
@@ -119,7 +120,7 @@ export default function HomePage() {
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {CAPABILITIES.map((c) => (
-              <div key={c.title} className="card-flat hover:border-orange-500/35 hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300">
+              <div key={c.title} className="tech-card">
                 <h3 className="text-xl font-bold text-white mb-3">{c.title}</h3>
                 <p className="text-slate-400 text-base leading-relaxed">{c.desc}</p>
               </div>
@@ -165,7 +166,7 @@ export default function HomePage() {
             ]}
           />
           <p className="text-center mt-8">
-            <Link href="/about" className="text-amber-400 font-medium hover:text-amber-300">About our factory team →</Link>
+            <Link href="/about" className="text-cyan-400 font-medium hover:text-cyan-300">About our factory team →</Link>
           </p>
         </div>
       </section>
