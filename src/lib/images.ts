@@ -18,6 +18,15 @@ function asset(primary: string, fallback: string): string {
   return fallback;
 }
 
+/** Per-SKU card/hero from ingest:product-cards ({slug}.png|.jpg in card/) */
+function skuImage(slug: string, sub: "card" | "hero", fallback: string): string {
+  for (const ext of [".png", ".jpg", ".jpeg", ".webp"]) {
+    const file = `${slug}${ext}`;
+    if (existing.has(file)) return pub(sub, file);
+  }
+  return fallback;
+}
+
 const PLACEHOLDER = {
   card: pub("card", "motherboard-box-front.jpg"),
   hero: pub("hero", "motherboard-box-hero.jpg"),
@@ -71,63 +80,63 @@ export const IMAGES = {
     manual: pub("banner", "banner-manual.png"),
   },
   phoneFarmBox: {
-    card: asset(pub("card", "phone-farm-box-card.png"), R.pfFront),
-    hero: asset(pub("hero", "phone-farm-box-hero.png"), R.pfHero),
+    card: skuImage("phone-farm-box", "card", R.pfFront),
+    hero: skuImage("phone-farm-box", "hero", R.pfHero),
     detail: asset(R.pfDetail, pub("real", "phone-farm-box-front.png")),
   },
   motherboardBox: {
-    card: asset(pub("card", "motherboard-box-card.png"), R.mbFront),
-    hero: asset(R.mbHero, R.mbFront),
+    card: skuImage("motherboard-box", "card", R.mbFront),
+    hero: skuImage("motherboard-box", "hero", R.mbHero),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   androidFarm: {
-    card: asset(pub("card", "android-farm-card.png"), pub("card", "phone-farm-box-front.png")),
-    hero: asset(pub("hero", "android-farm-hero.png"), pub("hero", "phone-array-hero.png")),
+    card: skuImage("android-phone-farm", "card", R.pfFront),
+    hero: skuImage("android-phone-farm", "hero", R.pfHero),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   iphoneFarm: {
-    card: asset(pub("card", "iphone-farm-card.png"), pub("card", "iphone-farm-front.png")),
-    hero: asset(pub("hero", "iphone-farm-hero.png"), pub("hero", "iphone-farm-hero.png")),
+    card: skuImage("iphone-phone-farm", "card", R.iphoneHero),
+    hero: skuImage("iphone-phone-farm", "hero", R.iphoneHero),
     detail: asset(R.iphoneHero, pub("hero", "iphone-farm-hero.png")),
   },
   realDevice: {
-    card: asset(pub("card", "phone-array-card.png"), pub("card", "phone-array-front.png")),
-    hero: asset(pub("hero", "phone-array-hero.png"), pub("hero", "phone-array-hero.png")),
+    card: skuImage("phone-array-12pcs", "card", R.arrayHero),
+    hero: skuImage("phone-array-12pcs", "hero", R.arrayHero),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   emptyBox: {
-    card: asset(pub("card", "hardware-accessory-card.png"), PLACEHOLDER.detail),
-    hero: asset(pub("hero", "hardware-accessory-hero.png"), PLACEHOLDER.detail),
+    card: skuImage("empty-box-chassis", "card", R.mbInside),
+    hero: skuImage("empty-box-chassis", "hero", R.mbInside),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   usbHub: {
-    card: asset(pub("card", "hardware-accessory-card.png"), PLACEHOLDER.card),
-    hero: asset(pub("hero", "hardware-accessory-hero.png"), R.deck1),
+    card: skuImage("usb-hub", "card", R.deck1),
+    hero: skuImage("usb-hub", "hero", R.deck1),
     detail: asset(R.deck2, R.deck2),
   },
   power: {
-    card: asset(pub("card", "hardware-accessory-card.png"), PLACEHOLDER.card),
-    hero: asset(pub("hero", "hardware-accessory-hero.png"), R.factoryWorkshop),
+    card: skuImage("power-supply-solution", "card", R.mbInside),
+    hero: skuImage("power-supply-solution", "hero", R.mbInside),
     detail: asset(R.factoryPacking, R.factoryPacking),
   },
   cooling: {
-    card: asset(pub("card", "hardware-accessory-card.png"), PLACEHOLDER.card),
-    hero: asset(pub("hero", "hardware-accessory-hero.png"), R.factoryQc),
+    card: skuImage("cooling-solution", "card", R.factoryQc),
+    hero: skuImage("cooling-solution", "hero", R.factoryQc),
     detail: asset(R.factoryQc, R.factoryQc),
   },
   network: {
-    card: asset(pub("card", "hardware-accessory-card.png"), PLACEHOLDER.card),
-    hero: asset(pub("hero", "hardware-accessory-hero.png"), R.deck1),
+    card: skuImage("network-equipment", "card", R.deck2),
+    hero: skuImage("network-equipment", "hero", R.deck2),
     detail: asset(R.deck2, R.deck2),
   },
   customCabinet: {
-    card: asset(pub("card", "phone-farm-box-card.png"), pub("card", "phone-farm-box-hero.jpg")),
-    hero: asset(pub("hero", "phone-farm-box-hero.png"), pub("hero", "phone-farm-box-hero.png")),
+    card: skuImage("custom-cabinet", "card", pub("factory", "gallery-01.png")),
+    hero: skuImage("custom-cabinet", "hero", pub("factory", "gallery-01.png")),
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   remoteControl: {
-    card: asset(pub("card", "android-farm-card.png"), PLACEHOLDER.card),
-    hero: asset(pub("hero", "android-farm-hero.png"), R.deck2),
+    card: skuImage("remote-control-setup", "card", R.deck1),
+    hero: skuImage("remote-control-setup", "hero", R.deck1),
     detail: asset(R.deck2, R.deck2),
   },
   serviceScene: asset(R.deck1, R.deck1),
@@ -149,6 +158,26 @@ export const IMAGES = {
   },
 } as const;
 
+/** Resolve card image for any product slug (used on catalog page). */
+export function getProductCardImage(slug: string): string {
+  const bySlug: Record<string, string> = {
+    "motherboard-box": IMAGES.motherboardBox.card,
+    "phone-farm-box": IMAGES.phoneFarmBox.card,
+    "phone-array-12pcs": IMAGES.realDevice.card,
+    "iphone-phone-farm": IMAGES.iphoneFarm.card,
+    "android-phone-farm": IMAGES.androidFarm.card,
+    "real-device-phone-farm": skuImage("real-device-phone-farm", "card", IMAGES.androidFarm.card),
+    "empty-box-chassis": IMAGES.emptyBox.card,
+    "usb-hub": IMAGES.usbHub.card,
+    "power-supply-solution": IMAGES.power.card,
+    "cooling-solution": IMAGES.cooling.card,
+    "network-equipment": IMAGES.network.card,
+    "custom-cabinet": IMAGES.customCabinet.card,
+    "remote-control-setup": IMAGES.remoteControl.card,
+  };
+  return bySlug[slug] ?? IMAGES.motherboardBox.card;
+}
+
 export const HAS_REAL_IMAGES = existing.size > 0;
 
 export function getProductGallery(slug: string): string[] {
@@ -158,7 +187,7 @@ export function getProductGallery(slug: string): string[] {
     "phone-farm-box": [IMAGES.phoneFarmBox.hero, IMAGES.phoneFarmBox.detail, IMAGES.phoneFarmBox.card, IMAGES.qc],
     "phone-array-12pcs": [IMAGES.realDevice.hero, IMAGES.realDevice.detail, IMAGES.motherboardBox.detail],
     "iphone-phone-farm": [IMAGES.iphoneFarm.hero, IMAGES.iphoneFarm.detail, IMAGES.phoneFarmBox.card],
-    "android-phone-farm": [IMAGES.phoneFarmBox.hero, IMAGES.androidFarm.hero, IMAGES.motherboardBox.detail],
+    "android-phone-farm": [IMAGES.androidFarm.hero, IMAGES.phoneFarmBox.hero, IMAGES.motherboardBox.detail],
   };
   const imgs = map[slug] ?? [IMAGES.motherboardBox.hero, IMAGES.motherboardBox.detail, IMAGES.qc];
   return [...new Set(imgs.filter(Boolean))].slice(0, 6);

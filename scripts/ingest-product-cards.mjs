@@ -1,73 +1,163 @@
 /**
- * Copy product card/hero images from user Desktop folder (full resolution).
+ * Per-SKU product card images from local product photo library (not banner/marketing folder).
  * Run: npm run ingest:product-cards
  */
 import fs from "node:fs";
 import path from "node:path";
 
-const SOURCE_DIR = "C:\\Users\\cdl30\\Desktop\\新建文件夹";
 const root = process.cwd();
 const cardDir = path.join(root, "public", "images", "card");
 const heroDir = path.join(root, "public", "images", "hero");
 
-/** slug-related card + hero pairs from Desktop originals */
-const PRODUCT_IMAGES = [
+const SOURCE_DIRS = [
+  "E:\\宣传资料主板机照片",
+  "E:\\主板机照片素材",
+  "E:\\主板机照片素材\\水印\\演示文稿",
+  "D:\\产品商品详情图",
+];
+
+/** slug → pick rules; each product gets a unique real photo */
+const PRODUCT_RULES = [
   {
-    card: "motherboard-box-card.png",
-    hero: "motherboard-box-hero.png",
-    src: "f224216c-e806-426d-a64f-a98b0a6da9de.png",
-    note: "20-Slot Phone Farm Box",
+    slug: "motherboard-box",
+    keywords: ["IMG_0333", "0333"],
+    minBytes: 60000,
+    note: "20-node motherboard box front",
   },
   {
-    card: "phone-farm-box-card.png",
-    hero: "phone-farm-box-hero.png",
-    src: "8232b49d-7ad4-42d2-971f-67f368b66bbb.png",
-    note: "32PCS chassis studio shot",
+    slug: "phone-farm-box",
+    keywords: ["s8-change-en_main", "s8_change_en"],
+    minBytes: 200000,
+    note: "32PCS S8 phone farm box product shot",
   },
   {
-    card: "phone-array-card.png",
-    hero: "phone-array-hero.png",
-    src: "1caaec79-c5ac-4bd3-8d20-4c56d511f4c1.png",
-    note: "warehouse hardware lineup",
+    slug: "phone-array-12pcs",
+    keywords: ["IMG_0579", "0579"],
+    minBytes: 100000,
+    note: "12PCS drawer array",
   },
   {
-    card: "iphone-farm-card.png",
-    hero: "iphone-farm-hero.png",
-    src: "952c8939-3bf9-4f18-bb13-5940b26d3f3d.png",
-    note: "dense blade racks",
+    slug: "iphone-phone-farm",
+    keywords: ["IMG_0566", "0566"],
+    minBytes: 100000,
+    note: "iPhone farm hardware",
   },
   {
-    card: "android-farm-card.png",
-    hero: "android-farm-hero.png",
-    src: "9a9eff7d-239c-4c8f-8450-6b60592fa0d5.png",
-    note: "ops center + racks",
+    slug: "android-phone-farm",
+    keywords: ["a908n-en_main", "A908N"],
+    minBytes: 200000,
+    note: "A908N android farm box",
   },
   {
-    card: "hardware-accessory-card.png",
-    hero: "hardware-accessory-hero.png",
-    src: "dd0dcd8b-81fb-48ff-9c67-046da3a7aa11.png",
-    note: "chassis components layout",
+    slug: "real-device-phone-farm",
+    keywords: ["IMG_0553", "0553"],
+    minBytes: 100000,
+    note: "Real device deployment photo",
+  },
+  {
+    slug: "empty-box-chassis",
+    keywords: ["Structure_of_B", "gallery_6"],
+    minBytes: 200000,
+    note: "Empty chassis / internal structure",
+  },
+  {
+    slug: "usb-hub",
+    keywords: ["幻灯片10", "slide-1", "deck-slide-1"],
+    minBytes: 100000,
+    note: "USB / connectivity setup slide",
+  },
+  {
+    slug: "power-supply-solution",
+    keywords: ["IMG_0159", "0159"],
+    minBytes: 50000,
+    note: "Internal power / wiring",
+  },
+  {
+    slug: "cooling-solution",
+    keywords: ["IMG_0310", "0310"],
+    minBytes: 80000,
+    note: "Chassis with visible cooling fans",
+  },
+  {
+    slug: "network-equipment",
+    keywords: ["幻灯片11", "slide-2", "deck-slide-2", "OTG", "LAN"],
+    minBytes: 100000,
+    note: "OTG/LAN network setup",
+  },
+  {
+    slug: "custom-cabinet",
+    keywords: ["IMG_0551", "0551"],
+    minBytes: 500000,
+    note: "Large OEM cabinet / rack",
+  },
+  {
+    slug: "remote-control-setup",
+    keywords: ["幻灯片10", "0570", "monitor"],
+    minBytes: 100000,
+    note: "Remote control / monitoring setup",
   },
 ];
 
-if (!fs.existsSync(SOURCE_DIR)) {
-  console.error(`Source folder not found: ${SOURCE_DIR}`);
-  process.exit(1);
+function walkImages(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const name of fs.readdirSync(dir)) {
+    const full = path.join(dir, name);
+    let st;
+    try {
+      st = fs.statSync(full);
+    } catch {
+      continue;
+    }
+    if (st.isDirectory()) walkImages(full, acc);
+    else if (/\.(jpe?g|png|webp)$/i.test(name)) {
+      acc.push({ full, name, size: st.size, hay: `${name} ${full}`.toLowerCase() });
+    }
+  }
+  return acc;
+}
+
+function score(file, keywords) {
+  let s = 0;
+  for (const kw of keywords) {
+    if (file.hay.includes(kw.toLowerCase())) s += 12;
+  }
+  s += Math.min(file.size / 100000, 6);
+  return s;
+}
+
+function pickBest(pool, rule, used) {
+  const candidates = pool.filter(
+    (f) => !used.has(f.full) && f.size >= rule.minBytes && score(f, rule.keywords) > 0
+  );
+  if (!candidates.length) return null;
+  return candidates.sort((a, b) => score(b, rule.keywords) - score(a, rule.keywords))[0];
 }
 
 fs.mkdirSync(cardDir, { recursive: true });
 fs.mkdirSync(heroDir, { recursive: true });
 
-for (const item of PRODUCT_IMAGES) {
-  const from = path.join(SOURCE_DIR, item.src);
-  if (!fs.existsSync(from)) {
-    console.error(`✗ missing ${item.src}`);
+const pool = [];
+for (const dir of SOURCE_DIRS) pool.push(...walkImages(dir));
+console.log(`Scanned ${pool.length} product photos`);
+
+const used = new Set();
+let ok = 0;
+
+for (const rule of PRODUCT_RULES) {
+  const pick = pickBest(pool, rule, used);
+  if (!pick) {
+    console.error(`✗ ${rule.slug} — no match (${rule.note})`);
     continue;
   }
-  fs.copyFileSync(from, path.join(cardDir, item.card));
-  fs.copyFileSync(from, path.join(heroDir, item.hero));
-  const kb = Math.round(fs.statSync(from).size / 1024);
-  console.log(`✓ ${item.card} + ${item.hero} ← ${item.src} (${kb}KB) — ${item.note}`);
+  used.add(pick.full);
+  const ext = path.extname(pick.name).toLowerCase() || ".jpg";
+  const cardName = `${rule.slug}${ext}`;
+  const cardPath = path.join(cardDir, cardName);
+  fs.copyFileSync(pick.full, cardPath);
+  fs.copyFileSync(pick.full, path.join(heroDir, cardName));
+  const kb = Math.round(pick.size / 1024);
+  console.log(`✓ ${cardName} ← ${path.basename(pick.full)} (${kb}KB) — ${rule.note}`);
+  ok++;
 }
 
-console.log(`\nIngested ${PRODUCT_IMAGES.length} product image set(s).`);
+console.log(`\nIngested ${ok}/${PRODUCT_RULES.length} SKU card image(s) from product library.`);

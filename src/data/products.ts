@@ -1,4 +1,4 @@
-import { IMAGES } from "@/lib/images";
+import { IMAGES, getProductCardImage } from "@/lib/images";
 
 export type CatalogGroup =
   | "motherboard-box"
@@ -298,8 +298,8 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     faq: [{ q: "Cloud phone replacement-", a: "We supply physical hardware for teams that need real devices. We do not sell cloud phone subscriptions." }],
     priceUsd: 0,
     stock: 0,
-    imageCard: IMAGES.androidFarm.card,
-    imageHero: IMAGES.androidFarm.hero,
+    imageCard: getProductCardImage("real-device-phone-farm"),
+    imageHero: getProductCardImage("real-device-phone-farm").replace("/card/", "/hero/"),
     imageDetail: IMAGES.androidFarm.detail,
   },
   {

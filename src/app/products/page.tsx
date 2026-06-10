@@ -8,6 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
 import { bannerProps } from "@/lib/banners";
+import { getProductCardImage } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Products — Phone Farm Hardware Catalog",
@@ -79,7 +80,7 @@ export default async function ProductsPage({
                   keyParams={seed?.keyParams || []}
                   bestFor={getProductBestFor(p.slug)}
                   scenario={seed?.targetBuyer || "Contact for configuration"}
-                  imageCard={seed?.imageCard ?? p.imageCard}
+                  imageCard={getProductCardImage(p.slug)}
                   category={p.category}
                 />
               );
