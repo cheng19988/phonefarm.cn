@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #152238;
-  --background-deep: #0f1a30;
+  --background: #1e3f6e;
+  --background-deep: #152238;
   --foreground: #f0f9ff;
-  --surface: rgba(255, 255, 255, 0.06);
-  --surface-elevated: rgba(255, 255, 255, 0.09);
-  --surface-solid: #1e3a5f;
+  --surface: rgba(255, 255, 255, 0.1);
+  --surface-elevated: rgba(255, 255, 255, 0.14);
+  --surface-solid: #234a7a;
   --border: rgba(125, 211, 252, 0.22);
   --border-subtle: rgba(125, 211, 252, 0.12);
   --accent: #22d3ee;
@@ -31,26 +31,51 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: var(--background-deep);
   background-image:
-    radial-gradient(ellipse 90% 60% at 15% -10%, rgba(56, 189, 248, 0.35), transparent 55%),
-    radial-gradient(ellipse 70% 55% at 85% 5%, rgba(129, 140, 248, 0.28), transparent 50%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(14, 165, 233, 0.2), transparent 55%),
-    radial-gradient(ellipse 40% 35% at 70% 60%, rgba(99, 102, 241, 0.15), transparent 45%),
-    linear-gradient(165deg, #1a3358 0%, #152238 35%, #122035 65%, #0f1a30 100%);
+    radial-gradient(ellipse 100% 70% at 10% -5%, rgba(56, 189, 248, 0.55), transparent 58%),
+    radial-gradient(ellipse 80% 60% at 92% 8%, rgba(129, 140, 248, 0.45), transparent 52%),
+    radial-gradient(ellipse 70% 55% at 50% 105%, rgba(14, 165, 233, 0.35), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 72% 55%, rgba(99, 102, 241, 0.28), transparent 48%),
+    linear-gradient(165deg, #234a7a 0%, #1a3358 30%, #152238 65%, #122035 100%);
   background-attachment: fixed;
+}
+
+@keyframes aurora-shift {
+  0%, 100% {
+    opacity: 0.75;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(1.5%, -1%, 0) scale(1.03);
+  }
 }
 
 .site-shell {
   @apply min-h-full flex flex-col relative;
 }
 
+.site-shell::after {
+  content: "";
+  @apply fixed pointer-events-none;
+  inset: -25%;
+  z-index: -9;
+  background:
+    radial-gradient(ellipse 45% 38% at 18% 28%, rgba(56, 189, 248, 0.5), transparent 62%),
+    radial-gradient(ellipse 40% 34% at 82% 22%, rgba(129, 140, 248, 0.42), transparent 58%),
+    radial-gradient(ellipse 38% 32% at 58% 78%, rgba(34, 211, 238, 0.35), transparent 55%);
+  animation: aurora-shift 20s ease-in-out infinite;
+  filter: blur(48px);
+}
+
 .site-shell::before {
   content: "";
-  @apply fixed inset-0 pointer-events-none -z-10;
+  @apply fixed inset-0 pointer-events-none;
+  z-index: -8;
   background-image:
-    linear-gradient(rgba(125, 211, 252, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125, 211, 252, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(125, 211, 252, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.11) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 80%);
+  mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 15%, transparent 85%);
 }
 
 .tech-grid-bg {
@@ -70,7 +95,8 @@ body {
 }
 
 .header-shell {
-  background: rgba(21, 34, 56, 0.78);
+  background: rgba(26, 51, 88, 0.82);
+  box-shadow: 0 4px 24px rgba(56, 189, 248, 0.08);
 }
 
 .footer-shell {
@@ -137,16 +163,22 @@ body {
 }
 
 .card {
-  @apply rounded-2xl overflow-hidden backdrop-blur-md;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
-  border: 1px solid rgba(125, 211, 252, 0.2);
-  box-shadow: 0 8px 32px rgba(15, 26, 48, 0.35);
+  @apply rounded-2xl overflow-hidden backdrop-blur-xl;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(186, 230, 253, 0.06) 45%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(186, 230, 253, 0.35);
+  box-shadow:
+    0 8px 32px rgba(15, 26, 48, 0.35),
+    0 0 40px rgba(56, 189, 248, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .card-flat {
-  @apply rounded-2xl p-7 md:p-10 backdrop-blur-md;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 100%);
-  border: 1px solid rgba(125, 211, 252, 0.18);
+  @apply rounded-2xl p-7 md:p-10 backdrop-blur-xl;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(186, 230, 253, 0.05) 50%, rgba(255, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(186, 230, 253, 0.3);
+  box-shadow:
+    0 8px 28px rgba(15, 26, 48, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .card-glass {
@@ -208,19 +240,19 @@ body {
 
 /* ── Homepage hero ── */
 .tech-hero {
-  @apply relative overflow-hidden border-b border-sky-400/20;
+  @apply relative overflow-hidden border-b border-sky-400/30;
   min-height: min(92vh, 820px);
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(56, 189, 248, 0.25), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(129, 140, 248, 0.2), transparent 50%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+    radial-gradient(ellipse 90% 65% at 15% 15%, rgba(56, 189, 248, 0.42), transparent 58%),
+    radial-gradient(ellipse 70% 55% at 88% 25%, rgba(129, 140, 248, 0.35), transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
 }
 
 .tech-hero-bg {
   @apply absolute inset-0 pointer-events-none;
   background:
-    radial-gradient(ellipse 55% 45% at 75% 45%, rgba(56, 189, 248, 0.18), transparent 60%),
-    radial-gradient(ellipse 35% 35% at 10% 70%, rgba(129, 140, 248, 0.14), transparent 50%);
+    radial-gradient(ellipse 60% 50% at 78% 42%, rgba(56, 189, 248, 0.32), transparent 62%),
+    radial-gradient(ellipse 40% 38% at 8% 68%, rgba(129, 140, 248, 0.26), transparent 52%);
 }
 
 .hero-product-frame {
