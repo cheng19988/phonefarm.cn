@@ -47,3 +47,11 @@ dev.db
 !/prisma/data/
 !/prisma/data/phonefarm-seed.db
 /src/generated/prisma
+
+# legacy placeholder assets (replaced by public/images/{real,factory,card,hero})
+/public/images/card_800x800/
+/public/images/hero_1600x900/
+/public/images/detail_1200x900/
+/public/images/company/
+/public/images/company2/
+/public/images/company3/

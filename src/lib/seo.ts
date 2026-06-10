@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "./config";
+import { IMAGES } from "./images";
 
 type SEOInput = {
   title: string;
@@ -17,7 +18,7 @@ export function buildMetadata({
   noIndex,
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
-  const ogImage = image || `${SITE.url}/images/hero_1600x900/phonefarm.cn-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-hero_1600x900.webp`;
+  const ogImage = image || `${SITE.url}${IMAGES.motherboardBox.hero}`;
 
   return {
     title: `${title} | ${SITE.name}`,
@@ -48,7 +49,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: SITE.name,
     url: SITE.url,
-    logo: `${SITE.url}/images/card_800x800/phonefarm.cn-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
+    logo: `${SITE.url}${IMAGES.motherboardBox.card}`,
     description: SITE.description,
     address: {
       "@type": "PostalAddress",
