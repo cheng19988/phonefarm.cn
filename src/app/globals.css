@@ -560,3 +560,75 @@ body {
   @apply block relative aspect-[5/4] md:aspect-[3/2] overflow-hidden;
   background: rgba(255, 255, 255, 0.05);
 }
+
+/* ── Floating contact ── */
+.floating-contact {
+  @apply fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3;
+}
+
+.floating-contact-panel {
+  @apply flex flex-col gap-2 rounded-2xl p-3 min-w-[240px] backdrop-blur-xl;
+  background: linear-gradient(145deg, rgba(15, 26, 48, 0.95) 0%, rgba(21, 34, 56, 0.92) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  box-shadow: 0 16px 48px rgba(15, 26, 48, 0.45);
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-contact-panel--open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-contact-title {
+  @apply text-xs font-semibold uppercase tracking-wide text-slate-400 px-2 pb-1;
+}
+
+.floating-contact-item {
+  @apply flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors;
+  border: 1px solid transparent;
+}
+
+.floating-contact-item:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(125, 211, 252, 0.2);
+}
+
+.floating-contact-item-label {
+  @apply text-[11px] font-semibold uppercase tracking-wide text-slate-400;
+}
+
+.floating-contact-item-value {
+  @apply text-sm font-medium text-white;
+}
+
+.floating-contact-item--telegram:hover .floating-contact-item-value {
+  @apply text-sky-300;
+}
+
+.floating-contact-item--whatsapp:hover .floating-contact-item-value {
+  @apply text-emerald-300;
+}
+
+.floating-contact-item--email:hover .floating-contact-item-value {
+  @apply text-cyan-200;
+}
+
+.floating-contact-toggle {
+  @apply flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  border: 1px solid rgba(125, 211, 252, 0.45);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+}
+
+.floating-contact-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(14, 165, 233, 0.45);
+}
+
+.floating-contact-toggle:active {
+  transform: scale(0.98);
+}

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { CONTACT, NAV, SITE, PRODUCT_NAV } from "@/lib/config";
-import { ContactBar } from "./shared";
 import { SiteLogo } from "./logo";
 import { getSession } from "@/lib/auth";
 
@@ -10,14 +9,6 @@ export async function Header() {
 
   return (
     <header className="header-shell sticky top-0 z-50 backdrop-blur-xl border-b border-sky-400/20 shadow-lg shadow-sky-950/20">
-      <div className="rfq-bar hidden md:block">
-        <div className="container-wide flex flex-wrap justify-between items-center gap-2">
-          <span className="rfq-bar-tagline">
-            {SITE.nameEn} · {SITE.locationEn} · Factory-direct phone farm hardware
-          </span>
-          <ContactBar compact />
-        </div>
-      </div>
       <div className="container-wide py-4 flex items-center justify-between gap-4">
         <SiteLogo />
         <nav className="hidden lg:flex items-center gap-1">
@@ -70,7 +61,6 @@ export function Footer() {
             <SiteLogo size="sm" />
           </div>
           <p className="text-slate-300 text-sm md:text-base mb-6 max-w-md leading-relaxed">{SITE.descriptionEn}</p>
-          <ContactBar />
           <p className="text-xs text-slate-600 mt-6">
             Hardware for development, testing and legitimate device operations only.
           </p>

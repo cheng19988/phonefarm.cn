@@ -94,7 +94,8 @@ export default function AboutPage() {
               <div><dt className="text-slate-500">Brand</dt><dd className="text-white font-medium">{SITE.nameEn}</dd></div>
               <div><dt className="text-slate-500">Location</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
               <div><dt className="text-slate-500">Email</dt><dd><a href={`mailto:${CONTACT.email}`} className="text-cyan-400">{CONTACT.email}</a></dd></div>
-              <div><dt className="text-slate-500">Phone</dt><dd className="text-white">{CONTACT.phone}</dd></div>
+              <div><dt className="text-slate-500">Telegram</dt><dd><a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-400">{CONTACT.telegram}</a></dd></div>
+              <div><dt className="text-slate-500">WhatsApp</dt><dd><a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-400">{CONTACT.whatsapp}</a></dd></div>
             </dl>
           </section>
         </div>

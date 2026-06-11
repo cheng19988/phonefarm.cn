@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
-import { MobileNav } from "@/components/mobile-nav";
+import { FloatingContact } from "@/components/floating-contact";
 import { JsonLd } from "@/components/shared";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -29,12 +29,12 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="site-shell antialiased pb-16 md:pb-0">
+      <body className="site-shell antialiased">
         <JsonLd data={organizationJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <MobileNav />
+        <FloatingContact />
       </body>
     </html>
   );
