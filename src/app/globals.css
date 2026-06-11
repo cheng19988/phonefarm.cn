@@ -567,20 +567,10 @@ body {
 }
 
 .floating-contact-panel {
-  @apply flex flex-col gap-2 rounded-2xl p-3 min-w-[240px] backdrop-blur-xl;
+  @apply flex flex-col gap-2 rounded-2xl p-3 min-w-[220px] max-w-[min(92vw,280px)] backdrop-blur-xl;
   background: linear-gradient(145deg, rgba(15, 26, 48, 0.95) 0%, rgba(21, 34, 56, 0.92) 100%);
   border: 1px solid rgba(125, 211, 252, 0.28);
   box-shadow: 0 16px 48px rgba(15, 26, 48, 0.45);
-  opacity: 0;
-  transform: translateY(8px) scale(0.96);
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.floating-contact-panel--open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
 }
 
 .floating-contact-title {
@@ -615,20 +605,4 @@ body {
 
 .floating-contact-item--email:hover .floating-contact-item-value {
   @apply text-cyan-200;
-}
-
-.floating-contact-toggle {
-  @apply flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg transition-all;
-  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-  border: 1px solid rgba(125, 211, 252, 0.45);
-  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
-}
-
-.floating-contact-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px rgba(14, 165, 233, 0.45);
-}
-
-.floating-contact-toggle:active {
-  transform: scale(0.98);
 }
