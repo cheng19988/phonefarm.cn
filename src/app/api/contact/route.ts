@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isContactSpam } from "@/lib/contact-guard";
+import { isContactRateLimited, isContactSpam } from "@/lib/contact-guard";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { notifyNewContactSubmission } from "@/lib/notifications";
 import { prisma } from "@/lib/prisma";
@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Valid email required" }, { status: 400 });
   }
   const data = {
-    name: String(form.get("name") || ""),
-    email: String(form.get("email") || ""),
+    name: String(form.get("name") || "").trim(),
+    email: String(form.get("email") || "").trim().toLowerCase(),
     company: String(form.get("company") || "") || null,
     country: String(form.get("country") || "") || null,
     shippingCountry: String(form.get("shippingCountry") || "") || null,
@@ -40,6 +40,18 @@ export async function POST(req: NextRequest) {
   }
 
   await ensureDatabase();
+
+  const rateLimited = await isContactRateLimited(
+    (email, since) =>
+      prisma.contactSubmission.count({
+        where: { email, createdAt: { gte: since } },
+      }),
+    data.email
+  );
+  if (rateLimited) {
+    return NextResponse.json({ error: "Too many RFQ submissions. Please try again later or contact us on WhatsApp." }, { status: 429 });
+  }
+
   try {
     const submission = await prisma.contactSubmission.create({ data });
     try {

@@ -38,12 +38,12 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4">
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <div>
-              <label className="form-label">Email</label>
-              <input name="email" type="email" required className="form-input" />
+              <label htmlFor="login-email" className="form-label">Email</label>
+              <input id="login-email" name="email" type="email" required className="form-input" autoComplete="email" />
             </div>
             <div>
-              <label className="form-label">Password</label>
-              <input name="password" type="password" required className="form-input" />
+              <label htmlFor="login-password" className="form-label">Password</label>
+              <input id="login-password" name="password" type="password" required className="form-input" autoComplete="current-password" />
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full">
               {loading ? "Signing in…" : "Sign in"}

@@ -34,7 +34,7 @@ export default async function ProductDetailPage({ params }: Props) {
   await ensureDatabase();
   const product = await prisma.product.findUnique({ where: { slug } });
   const seed = getProductSeed(slug);
-  if (!product || !seed) notFound();
+  if (!product || !seed || !product.published) notFound();
 
   const gallery = getProductGallery(slug);
   const waText = encodeURIComponent(`Hi, RFQ for: ${seed.name}. Quantity and config to follow.`);

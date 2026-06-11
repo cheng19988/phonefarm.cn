@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AdminContactTable } from "@/components/admin-contact-table";
+import { AdminOrderRow } from "@/components/admin-order-row";
 import { AdminProductRow } from "@/components/admin-product-row";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
@@ -62,16 +62,14 @@ export default async function AdminPage() {
           <h2 className="text-xl font-bold text-white mb-4">Recent orders</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {recentOrders.map((o) => (
-              <div key={o.id} className="card p-4 text-sm">
-                <div className="flex justify-between">
-                  <Link href={`/orders/${o.id}`} className="text-cyan-400 hover:text-cyan-300">{o.orderNumber}</Link>
-                  <span className="text-white">{o.status}</span>
-                </div>
-                <p className="text-slate-400 mt-1">{o.user.email} | ${o.totalUsd}</p>
-                {o.payment && (
-                  <p className="text-slate-500 mt-1">Payment: {o.payment.paymentStatus} / {o.payment.verificationStatus}</p>
-                )}
-              </div>
+              <AdminOrderRow
+                key={o.id}
+                id={o.id}
+                orderNumber={o.orderNumber}
+                status={o.status}
+                email={o.user.email}
+                totalUsd={o.totalUsd}
+              />
             ))}
           </div>
         </div>
@@ -102,12 +100,13 @@ export default async function AdminPage() {
                   <th className="text-left py-2">Product</th>
                   <th className="text-left py-2">Price (USD)</th>
                   <th className="text-left py-2">Stock</th>
+                  <th className="text-left py-2">Published</th>
                   <th className="text-left py-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {allProducts.map((p) => (
-                  <AdminProductRow key={p.id} id={p.id} name={p.name} priceUsd={p.priceUsd} stock={p.stock} />
+                  <AdminProductRow key={p.id} id={p.id} name={p.name} priceUsd={p.priceUsd} stock={p.stock} published={p.published} />
                 ))}
               </tbody>
             </table>

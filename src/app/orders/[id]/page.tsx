@@ -80,7 +80,7 @@ export default function OrderPage() {
               <Link href={`/products/${item.product.slug}`} className="text-cyan-400 hover:text-cyan-300">
                 {item.product.name}
               </Link>
-              <span className="text-white">${item.unitPrice} × {item.quantity}</span>
+              <span className="text-white">${item.unitPrice} x {item.quantity}</span>
             </div>
           ))}
           <div className="flex justify-between font-bold text-white mt-4">

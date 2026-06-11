@@ -1,6 +1,7 @@
 /** Honeypot + timing checks for RFQ spam (no external deps). */
 
 const MIN_SUBMIT_MS = 2500;
+const MAX_RFQ_PER_EMAIL_HOUR = 5;
 
 export function isContactSpam(form: FormData): string | null {
   const honeypot = String(form.get("_company_website") || "").trim();
@@ -18,3 +19,13 @@ export function isContactSpam(form: FormData): string | null {
 
   return null;
 }
+
+export async function isContactRateLimited(
+  countRecentForEmail: (email: string, since: Date) => Promise<number>,
+  email: string
+): Promise<boolean> {
+  const since = new Date(Date.now() - 60 * 60 * 1000);
+  const count = await countRecentForEmail(email.toLowerCase(), since);
+  return count >= MAX_RFQ_PER_EMAIL_HOUR;
+}
+

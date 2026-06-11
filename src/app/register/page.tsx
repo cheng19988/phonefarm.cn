@@ -42,16 +42,16 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4">
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <div>
-              <label className="form-label">Name</label>
-              <input name="name" className="form-input" />
+              <label htmlFor="register-name" className="form-label">Name</label>
+              <input id="register-name" name="name" className="form-input" autoComplete="name" />
             </div>
             <div>
-              <label className="form-label">Email</label>
-              <input name="email" type="email" required className="form-input" />
+              <label htmlFor="register-email" className="form-label">Email</label>
+              <input id="register-email" name="email" type="email" required className="form-input" autoComplete="email" />
             </div>
             <div>
-              <label className="form-label">Password</label>
-              <input name="password" type="password" required minLength={8} className="form-input" />
+              <label htmlFor="register-password" className="form-label">Password</label>
+              <input id="register-password" name="password" type="password" required minLength={8} className="form-input" autoComplete="new-password" />
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full">
               {loading ? "Creating account…" : "Create account"}

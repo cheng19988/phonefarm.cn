@@ -23,6 +23,9 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <Link href="/login" className="hidden md:inline-flex nav-link-muted text-sm">
+            Account
+          </Link>
           <Link href="/contact" className="btn-primary text-sm py-2 px-4 min-h-[40px]">
             Get Quote
           </Link>

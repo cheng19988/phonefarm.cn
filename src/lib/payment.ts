@@ -8,22 +8,67 @@ export type TronTransaction = {
   confirmed: boolean;
 };
 
-/** Placeholder for TronGrid / Tronscan API integration */
+const USDT_DECIMALS = 1_000_000;
+
+function normalizeTronAddress(addr: string) {
+  return addr.trim();
+}
+
+/** Query TronGrid for inbound USDT (TRC20) transfers to our receiving address. */
 export async function verifyTronPayment(
-  _address: string,
-  _expectedAmount: number,
-  _since: Date
+  address: string,
+  expectedAmount: number,
+  since: Date
 ): Promise<TronTransaction | null> {
-  const apiKey = process.env.TRON_API_KEY;
-  if (!apiKey) {
-    // No API key configured — do not auto-confirm
-    return null;
+  const apiKey = process.env.TRON_API_KEY?.trim();
+  if (!apiKey) return null;
+
+  const receiving = normalizeTronAddress(address);
+  const minTimestamp = since.getTime() - 60_000;
+
+  try {
+    const params = new URLSearchParams({
+      limit: "50",
+      contract_address: PAYMENT.contract,
+      only_to: "true",
+      min_timestamp: String(minTimestamp),
+    });
+    const url = `https://api.trongrid.io/v1/accounts/${receiving}/transactions/trc20?${params}`;
+    const res = await fetch(url, {
+      headers: { "TRON-PRO-API-KEY": apiKey },
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      console.warn("[payment] TronGrid HTTP", res.status);
+      return null;
+    }
+
+    const json = (await res.json()) as {
+      data?: Array<{
+        transaction_id?: string;
+        to?: string;
+        value?: string;
+        block_timestamp?: number;
+      }>;
+    };
+
+    for (const tx of json.data ?? []) {
+      const to = tx.to ? normalizeTronAddress(tx.to) : "";
+      if (to !== receiving) continue;
+      const amount = Number(BigInt(tx.value || "0")) / USDT_DECIMALS;
+      if (amount + 0.01 >= expectedAmount) {
+        return {
+          txHash: tx.transaction_id || "",
+          amount,
+          to: receiving,
+          confirmed: true,
+        };
+      }
+    }
+  } catch (error) {
+    console.warn("[payment] TronGrid error:", error instanceof Error ? error.message : "unknown");
   }
 
-  // TODO: Integrate TronGrid TRC20 transfer check
-  // Example endpoint: https://api.trongrid.io/v1/accounts/{address}/transactions/trc20
-  // Match USDT contract TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
-  // Verify amount >= expectedAmount and timestamp >= since
   return null;
 }
 
@@ -56,7 +101,7 @@ export async function checkAndUpdatePayment(paymentId: string) {
     payment.createdAt
   );
 
-  if (tx && tx.amount >= payment.expectedAmount) {
+  if (tx && tx.amount >= payment.expectedAmount - 0.01) {
     const now = new Date();
     await prisma.payment.update({
       where: { id: paymentId },
