@@ -16,8 +16,8 @@ export const PAGE_BANNERS = {
   home: {
     src: IMAGES.banners.home,
     fit: "cover",
-    focus: "62% 50%",
-    scale: 1,
+    focus: "58% 48%",
+    scale: 1.04,
   },
   products: {
     src: IMAGES.banners.products,

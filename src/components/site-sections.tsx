@@ -30,10 +30,12 @@ export function SiteHero({
   return (
     <section className={`tech-hero ${fit === "contain" ? "tech-hero--contain" : ""}`}>
       <div className="tech-hero-banner">
-        <BannerMedia src={banner} fit={fit} focus={focus} scale={scale} />
+        <BannerMedia src={banner} fit={fit} focus={focus} scale={scale} className="tech-hero-photo" />
       </div>
+      <div className="tech-hero-bg absolute inset-0 pointer-events-none z-[1]" aria-hidden />
+      <div className="tech-hero-edges absolute inset-0 pointer-events-none z-[2]" aria-hidden />
       <div className={`tech-hero-overlay ${fit === "contain" ? "tech-hero-overlay--light" : ""}`} aria-hidden />
-      <div className="tech-grid-bg absolute inset-0 opacity-20 pointer-events-none" aria-hidden />
+      <div className="tech-grid-bg absolute inset-0 opacity-25 pointer-events-none z-[2]" aria-hidden />
 
       <div className="container-wide relative z-10 py-20 md:py-28 lg:py-32">
         <div className="max-w-2xl lg:max-w-3xl hero-copy-panel">
