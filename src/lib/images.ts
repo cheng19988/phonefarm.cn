@@ -172,6 +172,7 @@ export function getProductCardImage(slug: string): string {
     "power-supply-solution": IMAGES.power.card,
     "cooling-solution": IMAGES.cooling.card,
     "network-equipment": IMAGES.network.card,
+    "ikuai-enterprise-switch": IMAGES.network.card,
     "custom-cabinet": IMAGES.customCabinet.card,
     "remote-control-setup": IMAGES.remoteControl.card,
   };
@@ -194,6 +195,7 @@ export function getProductGallery(slug: string): string[] {
     "power-supply-solution": [IMAGES.power.hero, IMAGES.factory, IMAGES.qc],
     "cooling-solution": [IMAGES.cooling.hero, IMAGES.qc, IMAGES.phoneFarmBox.hero],
     "network-equipment": [IMAGES.network.hero, IMAGES.deck.slide2, IMAGES.deck.slide1],
+    "ikuai-enterprise-switch": [IMAGES.network.hero, IMAGES.deck.slide2, IMAGES.deck.slide1],
     "custom-cabinet": [IMAGES.customCabinet.hero, IMAGES.companyWorkshop, IMAGES.companyWarehouse],
     "remote-control-setup": [IMAGES.remoteControl.hero, IMAGES.deck.slide1, IMAGES.deck.slide2],
   };

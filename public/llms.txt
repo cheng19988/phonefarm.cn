@@ -1,56 +1,82 @@
 # Guangzhou Phone Farm (phonefarm.cn)
 
-> Phone farm hardware manufacturer in Guangzhou, China - RFQ-based sales, not retail checkout.
+> Phone farm box manufacturer in Guangzhou, China — factory-direct hardware for development, testing and multi-device automation. RFQ-based sales with optional USDT checkout on select SKUs.
 
 ## Brand
 
-Guangzhou Phone Farm supplies real-device phone farm boxes, Android motherboard arrays, multi-device chassis, network gear, ROM customization and remote setup support.
+Guangzhou Phone Farm supplies real-device phone farm boxes, Android motherboard arrays, 32PCS phone farm chassis, 12PCS hot-swap arrays, iPhone farm boxes, enterprise network routers/switches for OTG/LAN, ROM customization and remote AnyDesk setup support.
 
-## Products
+## Core Products
 
-- Android Motherboard Box (20 nodes)
-- 32PCS Phone Farm Box
-- 12PCS Phone Array (hot-swap)
-- iPhone Farm Box (custom quote)
-- Network router / switch for OTG-LAN
-- Accessories: USB hub, power, cooling, empty chassis
-- OEM custom cabinet
-- Remote setup service
+- **Android Motherboard Box** — 20 nodes, 55×38×16 cm, ~7 kg, 220V ~100W, USB + OTG/LAN, 1 PC controls 3–5 boxes
+- **32PCS Phone Farm Box** — unified 32-device chassis, ROM customization, 3-fan cooling
+- **12PCS Phone Array** — hot-swappable drawers, full phone or motherboard, built-in PC option, USB 2.0 HUB
+- **iPhone Farm Box** — iOS multi-device chassis, custom quote
+- **Network Management Router** — enterprise IK-MSG series for 300–10,000 device farms
+- **Enterprise Network Switch** — L2/L3 and PoE switches for LAN expansion
+- **Accessories** — USB hub, power module, cooling kit, empty chassis
+- **OEM Custom Cabinet** — rack/floor cabinet engineering
+- **Remote Setup Service** — ADB, OTG/LAN, WSAPI orientation
+
+## Connection Modes
+
+- **USB mode** (blue LED) — devices via USB to control PC; best for small labs
+- **OTG/LAN mode** (green LED) — devices on router segment; scan by IP; scales past USB limits
+- VPN/proxy supported for IP rotation workflows
+
+## Group Control & Automation
+
+- Works with click farm / group-control software after ADB authorization
+- WebSocket API (WSAPI) at 127.0.0.1:22223 — List, Screen, ADB, PointerEvent, file transfer actions
+- ADB authorization path: C:\Users\<username>\.android
+
+## Application Fields (legitimate use)
+
+Mobile app testing, Android QA, device compatibility verification, automation workflows, click farm operations, multi-device monitoring, software integration testing, enterprise device labs. Hardware for development and testing only.
 
 ## Sales Model
 
-- **RFQ only** on website - Get Quote / WhatsApp / Email
-- Pricing depends on configuration - contact for bulk quote
-- Sample orders available
-- For confirmed bulk orders, payment methods discussed with sales (bank transfer, USDT when applicable)
+- RFQ via contact form, email, WhatsApp, Telegram
+- Sample orders available (1 box / 12PCS array)
+- List prices on select SKUs with USDT checkout; bulk quotes configuration-based
+- Custom-assembled units: no return after dispatch
+- Warranty: chassis 12 months, motherboards 90 days, accessories 12 months
 
 ## Key Pages
 
 - Home: https://phonefarm.cn/
 - Products: https://phonefarm.cn/products
+- Motherboard Box: https://phonefarm.cn/products/motherboard-box
+- 32PCS Box: https://phonefarm.cn/products/phone-farm-box
+- 12PCS Array: https://phonefarm.cn/products/phone-array-12pcs
+- iPhone Farm: https://phonefarm.cn/products/iphone-phone-farm
+- Network Router: https://phonefarm.cn/products/network-equipment
+- Enterprise Switch: https://phonefarm.cn/products/ikuai-enterprise-switch
 - Packages: https://phonefarm.cn/packages
 - Pricing: https://phonefarm.cn/pricing
 - Manual: https://phonefarm.cn/manual
 - FAQ: https://phonefarm.cn/faq
 - Blog: https://phonefarm.cn/blog
+- Phone Farming Guide: https://phonefarm.cn/phone-farming
+- Mobile Phone Farming: https://phonefarm.cn/mobile-phone-farming
+- Quality / Authenticity: https://phonefarm.cn/quality-assurance
 - Services: https://phonefarm.cn/services
 - Contact: https://phonefarm.cn/contact
 - About: https://phonefarm.cn/about
-- Privacy: https://phonefarm.cn/privacy
-- Terms: https://phonefarm.cn/terms
 
 ## Contact
 
 - Email: qiuxui646@gmail.com
 - WhatsApp: +85262155642
 - Telegram: @huicheng1998
+- Location: Guangzhou, China
 
-## Technical Specs (typical motherboard box)
+## PC Requirements (typical)
 
-- 20 nodes, 55x38x16 cm, ~7 kg, 220V ~100W
-- USB + OTG/LAN dual mode
-- 1 PC controls 3-5 boxes (software dependent)
+- Windows 10/11 for control PC
+- 3–5 boxes: Xeon E5-2680 V2 class or better, 32 GB RAM recommended
+- USB 2.0 powered hubs; enterprise router for 300+ OTG/LAN devices
 
-## Use
+## Quality
 
-Hardware for development, testing, device management and legitimate automation integration.
+FRP-unlocked boards, factory workbench assembly since 2019, remote inspection before bulk orders — https://phonefarm.cn/quality-assurance

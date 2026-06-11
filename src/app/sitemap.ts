@@ -4,7 +4,23 @@ import { BLOG_POSTS } from "@/data/blog";
 import { PRODUCT_SEEDS } from "@/data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/products", "/packages", "/pricing", "/manual", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms"].map(
+  const staticPages = [
+    "",
+    "/products",
+    "/packages",
+    "/pricing",
+    "/manual",
+    "/services",
+    "/about",
+    "/faq",
+    "/contact",
+    "/blog",
+    "/phone-farming",
+    "/mobile-phone-farming",
+    "/quality-assurance",
+    "/privacy",
+    "/terms",
+  ].map(
     (path) => ({
       url: `${SITE.url}${path}`,
       lastModified: new Date(),

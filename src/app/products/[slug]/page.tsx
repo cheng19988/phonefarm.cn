@@ -6,6 +6,7 @@ import { ProductBuyForm } from "@/components/product-buy-form";
 import { FAQAccordion } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { JsonLd } from "@/components/shared";
+import { DataTable } from "@/components/data-table";
 import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
 import { SubsectionHeader } from "@/components/site-sections";
@@ -123,10 +124,24 @@ export default async function ProductDetailPage({ params }: Props) {
                 <p className="text-slate-300 text-base md:text-lg leading-relaxed">{seed.description}</p>
               </section>
 
+              {seed.detailSections?.map((section) => (
+                <section key={section.title} className="card-flat">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-4">{section.title}</h2>
+                  <p className="text-slate-300 text-base leading-relaxed">{section.content}</p>
+                </section>
+              ))}
+
               <section>
                 <SubsectionHeader title="Key Specifications" subtitle="Factory parameters for procurement review." />
                 <SpecTable specs={seed.specs} />
               </section>
+
+              {seed.specTables?.map((table) => (
+                <section key={table.caption}>
+                  <SubsectionHeader title="Model specifications" />
+                  <DataTable table={table} />
+                </section>
+              ))}
 
               <section>
                 <SubsectionHeader title="Capabilities" />

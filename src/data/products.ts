@@ -1,4 +1,10 @@
 import { IMAGES, getProductCardImage } from "@/lib/images";
+import type { SpecTableData } from "@/data/network-specs";
+import {
+  ENTERPRISE_ROUTER_TABLE,
+  POE_SWITCH_TABLE,
+  STANDARD_SWITCH_TABLE,
+} from "@/data/network-specs";
 
 export type CatalogGroup =
   | "motherboard-box"
@@ -26,6 +32,8 @@ export type ProductSeed = {
   deploymentNotes: string[];
   customizationOptions: string[];
   faq: { q: string; a: string }[];
+  detailSections?: { title: string; content: string }[];
+  specTables?: SpecTableData[];
   priceUsd: number;
   stock: number;
   imageCard: string;
@@ -39,34 +47,54 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     name: "Android Motherboard Box",
     category: "Motherboard Box",
     catalogGroup: "motherboard-box",
-    shortDesc: "20-node Android motherboard chassis - screen/battery removed, USB or OTG/LAN control.",
-    targetBuyer: "Integrators and labs running 20-100+ Android nodes with low power per box.",
+    shortDesc:
+      "20-node Android motherboard chassis — screen, battery, camera and SIM slot removed; USB or OTG/LAN group control for click farm and testing workflows.",
+    targetBuyer: "Integrators and labs running 20–100+ Android nodes with low power per box.",
     description:
-      "Fixed-size metal chassis integrating 20 Android motherboards (no display/battery). One Windows PC typically controls 3-5 boxes. Supports USB (WiFi path) and OTG/LAN Ethernet modes for batch device management and software testing.",
+      "The motherboard box removes the phone screen, battery, camera and SIM slot, integrates boards into a metal chassis and works with group-control / click farm software for batch or individual device operation. One box contains 20 mobile phone motherboards in a fixed-size enclosure. One Windows PC typically controls 3–5 boxes (60–100 nodes). Operate all devices at once or run different tasks per phone. Voltage 220V; ~100W when running under continuous load. VPN or proxy methods can change IP per device. Ethernet OTG/LAN and USB modes are switchable (blue LED = USB/WiFi, green LED = OTG/LAN). Carton 55×38×16 cm, ~7 kg — compact and stackable.",
     keyParams: ["20 boards/box", "220V ~100W", "55x38x16 cm", "USB + OTG/LAN", "1 PC -> 3-5 boxes"],
     features: [
-      "Compact 20-node density for warehouse or rack deployment",
+      "Compact 20-node density — stackable metal chassis for warehouse or rack deployment",
+      "3-cooling-fan system for continuous 24/7 operation",
       "Dual connection: USB mode (blue indicator) and OTG/LAN mode (green indicator)",
-      "Central 220V power with active cooling fans",
-      "Compatible with common group-control / mirroring tools after ADB authorization",
-      "QC burn-in before shipping; remote setup support available",
+      "Mod ROM: auto power-on, auto ADB recognition, compatible with common market tools",
+      "One operator controls 20 phones per box; batch or individual tasks via group-control software",
+      "Compatible with click farm software, mirroring tools and WebSocket API after ADB authorization",
+      "QC burn-in before shipping; remote AnyDesk setup support available",
     ],
     specs: {
-      "Capacity / Nodes": "20 Android motherboards per box",
-      "Device Type": "Motherboard only (screen removed)",
-      "Connection Mode": "USB 2.0 + OTG/LAN Ethernet",
-      Power: "220V AC, ~100W under load",
+      "Capacity / Nodes": "20 Android motherboards per box (fixed count)",
+      "Device Type": "Motherboard only — screen, battery, camera, SIM slot removed",
+      "Connection Mode": "USB 2.0 + OTG/LAN Ethernet (switchable)",
+      Power: "220V AC, ~100W under continuous load",
       "Carton Size": "55 x 38 x 16 cm",
       Weight: "~7 kg",
-      "PC Requirement": "Windows 10/11, i5+ recommended for 3-5 boxes",
+      "PC Control": "1 PC controls 3–5 boxes (software dependent)",
+      "HS Code": "8471609000 (export reference)",
+      "PC Requirement": "Windows 10/11; E5-2680 V2 class or better for 3–5 boxes",
       "Router Requirement": "Soft router recommended for 20+ OTG/LAN devices",
-      Customization: "ROM mod, auto-boot, ADB auto-detect, node count on request",
+      Customization: "ROM mod, auto-boot, ADB auto-detect, OEM silkscreen",
     },
     scenarios: [
+      "Software application and game testing",
+      "Click farm and automation workflow operations",
+      "Live streaming and content creation device pools",
+      "Business marketing and multi-account management (lawful use)",
       "App compatibility and QA testing at scale",
       "Batch device provisioning and firmware validation",
-      "Internal automation lab with script/API integration",
       "Enterprise device operation workflow testing",
+    ],
+    detailSections: [
+      {
+        title: "What Are the Applications of Motherboard Box Farming?",
+        content:
+          "Motherboard box farming supports any online project that mobile phone users participate in — when operated within platform terms and applicable law. Common professional applications include multiplayer game testing, live streaming infrastructure, business marketing workflows, software application testing, QA automation and multi-device monitoring. The chassis lets one workstation manage hundreds of devices through stacked boxes and group-control software.",
+      },
+      {
+        title: "Why Choose Our Motherboard Boxes?",
+        content:
+          "Factory-direct assembly from Guangzhou with slot-level QC, FRP-unlocked boards, dedicated provisioning workbench and export packing. We engineer for continuous operation: stable power distribution, cooling airflow and USB/Ethernet routing verified before shipment. ROM customization aligns boards to your automation stack. Remote setup via AnyDesk included with hardware orders.",
+      },
     ],
     accessories: [
       "Metal chassis with 20 motherboard slots",
@@ -95,8 +123,11 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Router/switch bundle for OTG/LAN deployment",
     ],
     faq: [
-      { q: "How many boxes per PC?", a: "Typically 3-5 boxes per PC depending on CPU/RAM and software. Share your target count for a recommended PC spec." },
-      { q: "USB or OTG/LAN?", a: "USB is simpler for small setups. OTG/LAN scales better beyond ~20 devices on one network segment." },
+      { q: "How many boxes per PC?", a: "Typically 3–5 boxes per PC (60–100 nodes) depending on CPU/RAM and software. E5-2680 V2 multi-core or equivalent recommended. Share your target count for a written PC spec." },
+      { q: "USB or OTG/LAN?", a: "USB is simpler for small setups. OTG/LAN scales better beyond ~20 devices on one network segment. Both modes switchable on the box." },
+      { q: "Can one person control all 20 phones at once?", a: "Yes — group-control software supports batch operations on all nodes or individual control per device." },
+      { q: "Does it work with click farm software?", a: "Yes. After ADB authorization, common group-control and click farm tools connect via USB or OTG/LAN. We assist with first-time setup." },
+      { q: "Can I change IP per device?", a: "Yes — VPN or proxy tools per device are supported when your workflow requires IP rotation." },
     ],
     priceUsd: 899,
     stock: 10,
@@ -109,10 +140,10 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     name: "32PCS Phone Farm Box",
     category: "Phone Farm Box",
     catalogGroup: "phone-farm-box",
-    shortDesc: "32-device unified chassis for medium-scale batch deployment with ROM customization.",
-    targetBuyer: "Teams deploying 32-200 devices for testing, ops labs or reseller bulk orders.",
+    shortDesc: "32-device unified phone farm box — batch control, ROM customization and software development scope.",
+    targetBuyer: "Teams deploying 32–200 devices for testing, click farm ops, production QA or reseller bulk orders.",
     description:
-      "Higher-density phone farm box with 32 device slots, triple-fan cooling and unified power. Supports ROM customization (auto boot, ADB recognition) and both USB and OTG/LAN operation modes.",
+      "Box phone farm unified control for 32 PCS in one chassis. Support ROM customization — auto power-on, persistent ADB, custom firmware features. Triple-fan cooling for 24/7 operation. USB and OTG/LAN dual mode. We develop additional software integration scope on request; contact sales for customization and bulk device management planning.",
     keyParams: ["32 devices/box", "3-fan cooling", "ROM customization", "USB + OTG/LAN", "Medium-scale ops"],
     features: [
       "32 nodes in one chassis - fewer cables than multiple 20-node boxes",
@@ -146,7 +177,16 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     customizationOptions: ["ROM mod scope", "Device model per slot", "Included router/switch", "OEM exterior"],
     faq: [
-      { q: "32PCS vs 20-node motherboard box?", a: "32PCS suits medium density and unified cooling. 20-node box is smaller footprint per shipment - we help choose by quantity and space." },
+      { q: "32PCS vs 20-node motherboard box?", a: "32PCS suits medium density with unified cooling and one chassis for 32 nodes. 20-node box is smaller per shipment unit — we help choose by quantity and floor space." },
+      { q: "ROM customization scope?", a: "Common: auto boot after AC connect, ADB persistence, disabled OTA prompts. Advanced features quoted per project." },
+      { q: "Software development inquiry?", a: "We coordinate custom software scope and API integration for automation — describe your stack in RFQ." },
+    ],
+    detailSections: [
+      {
+        title: "High-Capacity Device Control",
+        content:
+          "The 32PCS phone farm box reduces cable clutter versus multiple smaller chassis. One operator manages 32 devices from a single enclosure with centralized power and active cooling. Scale by adding boxes — typically 3–5 boxes per control PC.",
+      },
     ],
     priceUsd: 1499,
     stock: 5,
@@ -159,10 +199,10 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     name: "12PCS Phone Array",
     category: "Phone Array",
     catalogGroup: "phone-array",
-    shortDesc: "12 hot-swappable drawers - full phone or motherboard, easier maintenance for small teams.",
+    shortDesc: "12 hot-swappable drawers — complete phone or motherboard, built-in PC option, USB 2.0 HUB.",
     targetBuyer: "Labs evaluating hardware, small dev teams, or maintenance-friendly deployments.",
     description:
-      "Drawer-based array: each slot accepts a full phone or motherboard. Built-in PC option and USB 2.0 HUB integration simplify cable management. Ideal when devices are swapped frequently.",
+      "Includes 12 hot-swappable drawers. Each drawer can hold a complete phone or motherboard. Built-in PC computer option available. Integrated USB 2.0 HUB for stable multi-device USB routing. Ideal when devices are swapped frequently during testing or sample evaluation.",
     keyParams: ["12 hot-swap drawers", "Phone or motherboard", "Built-in PC option", "USB 2.0 HUB", "Lab-friendly"],
     features: [
       "Hot-swappable drawers - replace device without shutting whole box",
@@ -197,10 +237,10 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     name: "iPhone Farm Box",
     category: "iPhone Farm",
     catalogGroup: "iphone",
-    shortDesc: "iOS multi-device chassis with hot-swap slots - model availability varies, custom quote only.",
-    targetBuyer: "Teams running iOS app testing, TestFlight validation or enterprise iOS device labs.",
+    shortDesc: "iOS multi-device chassis — remote control, task automation, hot-swap slots; custom quote.",
+    targetBuyer: "Teams running iOS app testing, TestFlight validation, market research or enterprise iOS device labs.",
     description:
-      "iPhone-oriented farm box with hot-swappable slots for full iPhone units. Higher hardware cost than Android; specific models depend on current supply. Configuration and quote provided after RFQ.",
+      "iPhone farm box for iOS system multi-device control. Transform workflow operations with physical iPhone hardware — real-time keyboard input, file transfer and copy-paste between PC and devices. Scale via additional chassis to hundreds of devices when combined with motherboard-style density planning. No jailbreak required for supported control workflows (model and tooling dependent). Hot-swappable drawer maintenance.",
     keyParams: ["iOS device slots", "Hot-swap design", "Model: quote-based", "Custom config", "Remote setup"],
     features: [
       "Physical iPhone hardware - not cloud virtual devices",
@@ -217,12 +257,35 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "PC Requirement": "macOS or Windows per tooling choice",
       Customization: "Slot count, model mix, cabinet finish",
     },
-    scenarios: ["iOS app compatibility testing", "TestFlight build validation", "Multi-device iOS lab", "Enterprise device ops testing"],
+    scenarios: [
+      "iOS app compatibility and TestFlight validation",
+      "App download and install testing workflows",
+      "Market research and website traffic validation",
+      "Application testing and QA automation",
+      "Social media interaction testing (lawful use)",
+      "Multi-device iOS lab and enterprise device ops",
+    ],
+    detailSections: [
+      {
+        title: "How iPhone Farms Work",
+        content:
+          "Devices mount in hot-swap drawers with centralized power and data routing. Control PC runs mirroring or management software for remote control, task automation and scripted workflows. Remote keyboard, file transfer and clipboard sync supported on compatible models. Configuration confirmed before build based on iOS version and model mix.",
+      },
+      {
+        title: "Why Choose Our iPhone Farm Box?",
+        content:
+          "Factory-assembled chassis with QC, export packing from Guangzhou and remote setup support. We confirm model availability, slot count and tooling compatibility in written quote before production.",
+      },
+    ],
+    faq: [
+      { q: "Which iPhone models?", a: "Send target model and iOS version in RFQ. We confirm availability and quote." },
+      { q: "Jailbreak required?", a: "Depends on model and control workflow — we confirm supported tooling path in RFQ." },
+      { q: "Remote control features?", a: "Real-time keyboard, file transfer and copy-paste supported on compatible setups via control software." },
+    ],
     accessories: ["iPhone farm chassis", "Lightning/USB-C cables per model", "Power module", "Setup support"],
-    delivery: ["Lead time depends on iPhone model supply", "Custom quote only - no fixed retail price"],
-    deploymentNotes: ["Confirm iOS version and model before order", "Apple tooling policies vary by use case - discuss in RFQ"],
+    delivery: ["Lead time depends on iPhone model supply", "Custom quote only — no fixed retail price"],
+    deploymentNotes: ["Confirm iOS version and model before order", "Apple tooling policies vary by use case — discuss in RFQ"],
     customizationOptions: ["Slot count", "Specific iPhone generations", "Combined Android + iPhone cabinet"],
-    faq: [{ q: "Which iPhone models?", a: "Send target model and iOS version in RFQ. We confirm availability and quote." }],
     priceUsd: 0,
     stock: 0,
     imageCard: IMAGES.iphoneFarm.card,
@@ -396,13 +459,13 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
   },
   {
     slug: "network-equipment",
-    name: "Router / Soft Router for OTG-LAN",
+    name: "Network Management Router for Phone Farms",
     category: "Network",
     catalogGroup: "network",
-    shortDesc: "Network gear for OTG/LAN phone farm mode - stable segments for 20+ devices.",
-    targetBuyer: "Deployments switching from USB to OTG/LAN or scaling past one router.",
+    shortDesc: "Enterprise network management router for large phone farms — stable OTG/LAN for 300–10,000 devices.",
+    targetBuyer: "Deployments scaling past consumer routers — 50, 300, 1000+ device OTG/LAN segments.",
     description:
-      "Soft router or managed switch packages sized for phone farm OTG/LAN mode. Router performance directly affects scan stability and disconnect rate at scale.",
+      "Network management router designed for large mobile phone farms. When OTG/LAN Ethernet mode connects dozens or thousands of devices, router stability directly affects scan success, disconnect rate and batch automation reliability. We size enterprise managed routers and soft-router gateways for phone farm deployments from 300 to 10,000 mobile phones. Pair with enterprise switches for port density. See model tables below for IK-MSG router series specifications.",
     keyParams: ["OTG/LAN mode", "Soft router", "IP segmentation", "20+ devices", "Stability focus"],
     features: [
       "Pre-configured IP segment templates",
@@ -411,18 +474,70 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Integration notes in Manual",
     ],
     specs: {
-      Role: "OTG/LAN network backbone",
-      "Recommended For": "20+ devices on Ethernet mode",
-      "Typical Setup": "Box + PC on same router; scan IP range",
-      "Switch Option": "Enterprise switch for large LAN port count",
-      Customization: "VLAN / segment design on request",
+      Role: "OTG/LAN network backbone for phone farm",
+      "Scale Range": "300–10,000 devices (model dependent)",
+      "Recommended For": "20+ devices USB migration; 300+ dedicated enterprise router",
+      "Typical Setup": "Box + PC on same router; scan IP range; green OTG mode",
+      "Switch Pairing": "Enterprise L2/L3 or PoE switches for port expansion",
+      Customization: "VLAN / segment design, pre-configured IP plan on request",
     },
-    scenarios: ["OTG/LAN deployment", "USB-to-Ethernet migration", "Large LAN port expansion"],
-    accessories: ["Router or soft router device", "Optional managed switch", "Config cheat sheet"],
-    delivery: ["Bundled with box order or standalone accessory"],
-    deploymentNotes: ["Disable WiFi on phones in Ethernet mode", "Use gigabit backbone for 50+ devices"],
-    customizationOptions: ["Brand/model preference", "Pre-configured IP plan"],
-    faq: [{ q: "Minimum router spec?", a: "For 20 devices: stable consumer router often works. 50+: dedicated soft router - share device count in RFQ." }],
+    specTables: [ENTERPRISE_ROUTER_TABLE],
+    detailSections: [
+      {
+        title: "When You Need an Enterprise Router",
+        content:
+          "Consumer routers often drop connections above ~20 simultaneous OTG/LAN devices. For phone farm box deployments at hundreds or thousands of nodes, enterprise managed routers provide stable DHCP, higher session counts and gigabit backbone capacity. Share your device count and we recommend IK-MSG series model or bundled switch package.",
+      },
+    ],
+    faq: [
+      { q: "Minimum router spec?", a: "For 20 devices: stable consumer router often works. 300+: IK-MSG100 or higher. 10,000: IK-MSG600X class — send device count in RFQ." },
+      { q: "Soft router vs hardware?", a: "Soft router on PC or dedicated appliance both work for mid scale. Enterprise IK-MSG series for production farms with 24/7 uptime requirements." },
+      { q: "Switch required?", a: "For port count beyond router Ethernet ports, add enterprise switch — see /products/ikuai-enterprise-switch." },
+    ],
+    scenarios: ["OTG/LAN deployment at 300+ nodes", "USB-to-Ethernet migration", "Large LAN port expansion", "Multi-box farm network backbone"],
+    accessories: ["Enterprise managed router (model per RFQ)", "Optional managed switch", "IP segment config cheat sheet"],
+    delivery: ["Bundled with box order or standalone accessory", "Lead time per model availability"],
+    deploymentNotes: ["Disable WiFi on phones in Ethernet mode", "Use gigabit backbone for 50+ devices", "Document router model before remote support"],
+    customizationOptions: ["Router model selection", "Pre-configured IP plan", "Switch bundle"],
+    priceUsd: 0,
+    stock: 0,
+    imageCard: IMAGES.network.card,
+    imageHero: IMAGES.network.hero,
+    imageDetail: IMAGES.network.detail,
+  },
+  {
+    slug: "ikuai-enterprise-switch",
+    name: "Enterprise-Level Network Switch",
+    category: "Network",
+    catalogGroup: "network",
+    shortDesc: "Enterprise L2/L3 and PoE switches — pair with soft router gateway for phone farm LAN expansion.",
+    targetBuyer: "Large OTG/LAN farms needing 24–48+ gigabit ports and PoE for access points.",
+    description:
+      "Enterprise-level switches recommended alongside soft-router gateway for phone farm deployments. Standard L2/L3 switches expand port count for device Ethernet connections; PoE models power access points and network gear in the same rack. Model specifications below — confirm port count and PoE budget in RFQ.",
+    keyParams: ["L2/L3 switches", "PoE options", "24–48 port", "10G SFP+", "Phone farm LAN"],
+    features: [
+      "Standard and PoE switch families for farm LAN expansion",
+      "336Gbps backplane on L3 models for high PPS",
+      "Pairs with IK-MSG enterprise router series",
+      "Rack-mount 1U form factors",
+    ],
+    specs: {
+      Role: "LAN port expansion for OTG/LAN phone farms",
+      "Standard Models": "IK-J7028, IK-J7028E, IK-J7028ES, IK-J7052",
+      "PoE Models": "IK-J3126, IK-J3126H, IK-J7110, IK-J7120, IK-J7128",
+      Pairing: "Use with network management router / soft router gateway",
+      Customization: "Model selected by port count and PoE budget",
+    },
+    specTables: [STANDARD_SWITCH_TABLE, POE_SWITCH_TABLE],
+    scenarios: ["Expand LAN ports beyond router", "PoE for APs in farm network closet", "Rack integration for 500+ node sites"],
+    accessories: ["Switch unit", "Rack ears", "Config baseline on request"],
+    delivery: ["Quote per model", "Often bundled with router + box RFQ"],
+    deploymentNotes: ["Match switch tier to PPS requirements", "Use L3 when inter-VLAN routing needed"],
+    customizationOptions: ["Standard vs PoE", "Port count", "SFP+ uplink"],
+    faq: [
+      { q: "Which switch for my farm?", a: "Send device count and rack layout. We size port count and PoE budget with router model." },
+      { q: "PoE required?", a: "Only if powering access points or PoE devices from same switch — most phone farm boxes use separate 220V power." },
+    ],
     priceUsd: 0,
     stock: 0,
     imageCard: IMAGES.network.card,
@@ -514,6 +629,7 @@ export const PRODUCT_BEST_FOR: Record<string, string> = {
   "power-supply-solution": "Replacement parts buyer",
   "cooling-solution": "Replacement parts buyer",
   "network-equipment": "OTG/LAN scale-up project",
+  "ikuai-enterprise-switch": "Large farm LAN expansion",
   "custom-cabinet": "Custom cabinet project",
   "remote-control-setup": "Reseller sample order",
 };

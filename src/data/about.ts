@@ -1,8 +1,9 @@
 export const WHO_WE_ARE = {
   title: "Who We Are",
   paragraphs: [
-    "Guangzhou Phone Farm is a Guangzhou-based phone farm hardware supplier focused on real-device chassis, Android motherboard boxes, phone arrays, custom cabinets and remote setup support.",
-    "We serve overseas B2B buyers, integrators, resellers, small engineering teams and device operation labs that need factory-assembled hardware rather than retail phone accessories.",
+    "Guangzhou Phone Farm is a Guangzhou-based phone farm hardware manufacturer focused on real-device chassis, Android motherboard boxes, 32PCS phone farm boxes, 12PCS arrays, iPhone farm boxes, network routers for OTG/LAN and OEM custom cabinets.",
+    "We serve B2B buyers worldwide — integrators, resellers, QA labs, automation teams and enterprise device operations. Factory-direct assembly with remote setup support via AnyDesk and export packing from Guangzhou.",
+    "Markets we regularly ship to include North America, Europe, Asia-Pacific and Australia — USA, Canada, Germany, France, UK, Netherlands, Spain, Australia, Japan, Singapore, Malaysia and others.",
   ],
 };
 
@@ -46,4 +47,4 @@ export const BUYER_SHOULD_PROVIDE = [
 ];
 
 export const TRUST_NOTE =
-  "Factory photos, packing videos, product testing details and configuration confirmation can be shared during RFQ communication. More factory documents and production photos can be provided on request.";
+  "Factory photos, packing videos, product testing details and configuration confirmation can be shared during RFQ communication. Google-account-unlocked boards, dedicated factory workbench since 2019, and remote inspection via AnyDesk available before bulk orders. See /quality-assurance for authenticity checklist.";

@@ -135,10 +135,64 @@ export const FAQ_ITEMS: FaqItem[] = [
       "Custom-assembled or ROM-modified units generally cannot be returned after dispatch. Standard catalog config may differ - confirm in quote. See /manual warranty section.",
   },
   {
-    category: "payment",
-    question: "What support is included?",
+    category: "product",
+    question: "What is a box phone farm?",
     answer:
-      "Remote setup assistance until first successful operation, warranty-period remote diagnostics via AnyDesk, spare parts supply for out-of-warranty repairs quoted separately.",
+      "A box phone farm is a metal chassis integrating many Android motherboards or phones with centralized power and cooling. Group-control or click farm software on a Windows PC connects via USB or OTG/LAN for batch or individual device tasks. Used for app testing, QA automation, device management and lawful multi-device operations.",
+  },
+  {
+    category: "product",
+    question: "What are the application fields for phone farm hardware?",
+    answer:
+      "Common fields include: in-game and app testing; e-commerce store group management; customer service routing; matrix customer acquisition workflows (where permitted); Android development bug detection and stress testing; cloud device rental labs; social media marketing device pools; software integration testing. Hardware is for development and testing only.",
+  },
+  {
+    category: "product",
+    question: "Can I control all phones at once?",
+    answer:
+      "Yes. Group-control software supports batch operations on all connected devices simultaneously, or individual control per device.",
+  },
+  {
+    category: "technical",
+    question: "Screen goes black after mirroring — what to do?",
+    answer:
+      "Increase screen standby timeout in phone settings. Unlock device once after boot. See /manual#troubleshooting for password-page black screen and control issues.",
+  },
+  {
+    category: "technical",
+    question: "Screen mirrors but mouse cannot control the device?",
+    answer:
+      "Enable Developer options → USB settings (safe mode) → USB simulation click. Re-enable accessibility/input service in your control software.",
+  },
+  {
+    category: "technical",
+    question: "Unrecognized USB device?",
+    answer:
+      "Change USB port or PC; replace cable; re-seat connection; try another phone/board in the same slot to isolate hardware vs cable fault.",
+  },
+  {
+    category: "technical",
+    question: "What PC spec for 3–5 boxes?",
+    answer:
+      "Windows 10/11, Xeon E5-2680 V2 multi-core or better, 32 GB RAM recommended, SSD, multiple USB 2.0 root ports or powered hubs. Nanjin X79-class boards support 120+ USB with expansion cards. See /manual#recommended-pc.",
+  },
+  {
+    category: "order",
+    question: "What is included in a standard motherboard box shipment?",
+    answer:
+      "Typically: chassis with 20 boards, USB cables, 220V power cord, spare motherboard power leads, setup guide and control software trial (scope confirmed in quote). Router and switches are separate SKUs.",
+  },
+  {
+    category: "payment",
+    question: "Are there hidden fees?",
+    answer:
+      "Standard hardware is one-time purchase — no recurring platform fee from us. Shipping, import duties and optional software licenses are quoted separately. Custom ROM or OEM scope confirmed in writing before payment.",
+  },
+  {
+    category: "payment",
+    question: "Do you provide customer support?",
+    answer:
+      "Yes — dedicated sales contact, remote AnyDesk setup included with hardware orders, and warranty-period remote diagnostics.",
   },
 ];
 

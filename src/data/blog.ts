@@ -1,3 +1,5 @@
+import { BLOG_POSTS_EXTRA } from "./blog-posts-extra";
+
 export const BLOG_POSTS = [
   {
     slug: "usb-mode-vs-otg-lan-mode",
@@ -243,6 +245,7 @@ Guangzhou Phone Farm has supported domestic and international enterprise custome
 
 Send project requirements: /contact`,
   },
+  ...BLOG_POSTS_EXTRA,
 ];
 
 export function getBlogPost(slug: string) {

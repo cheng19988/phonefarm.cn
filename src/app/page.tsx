@@ -33,12 +33,14 @@ const CAPABILITIES = [
 ];
 
 const APPLICATIONS = [
-  "App compatibility & regression testing",
-  "Multi-device management at scale",
-  "QA automation & CI device farms",
-  "Enterprise deployment labs",
-  "Remote operation workflow validation",
-  "Legitimate automation integration (ADB/API)",
+  "Mobile application & game testing",
+  "Android development & CI device farms",
+  "Device compatibility verification",
+  "Automation workflows & click farm operations",
+  "Quality assurance & stress testing",
+  "Multi-device monitoring at scale",
+  "Social media & marketing workflow testing (lawful use)",
+  "Enterprise deployment & research labs",
 ];
 
 const SHOWCASE_COPY: Record<string, string> = {
@@ -78,6 +80,26 @@ export default function HomePage() {
       </SiteHero>
 
       <TrustStrip />
+
+      <section className="section-alt border-b border-sky-400/12">
+        <div className="container-wide max-w-4xl mx-auto text-center space-y-6">
+          <p className="eyebrow">Professional Phone Farm Solutions Built for Scale</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            Advanced Phone Farm Hardware for Development, Testing &amp; Automation
+          </h2>
+          <p className="text-slate-300 text-lg leading-relaxed">
+            Want a dependable phone farm that is fast, stable and easy to manage? Guangzhou Phone Farm delivers high-density box phone farm hardware for developers, QA teams and device operation labs — Android motherboard boxes, 32PCS chassis and 12PCS arrays assembled and tested in Guangzhou.
+          </p>
+          <p className="text-slate-400 text-base leading-relaxed">
+            One PC controls 3–5 boxes (60–100 nodes). USB and OTG/LAN modes switchable. ROM customization, enterprise routers for 300–10,000 devices and remote AnyDesk setup included with hardware orders.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <Link href="/phone-farming" className="btn-outline">Phone Farming Guide</Link>
+            <Link href="/quality-assurance" className="btn-outline">Hardware Quality</Link>
+            <Link href="/manual" className="btn-outline">Installation Manual</Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section border-b border-sky-400/12">
         <div className="container-wide space-y-16 md:space-y-24 lg:space-y-32">

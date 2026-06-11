@@ -71,7 +71,8 @@ export const PRODUCT_NAV = [
   { href: "/products/phone-farm-box", label: "32PCS Phone Farm Box" },
   { href: "/products/phone-array-12pcs", label: "12PCS Phone Array" },
   { href: "/products/iphone-phone-farm", label: "iPhone Farm Box" },
-  { href: "/products/network-equipment", label: "Router / Switch" },
+  { href: "/products/network-equipment", label: "Network Router" },
+  { href: "/products/ikuai-enterprise-switch", label: "Enterprise Switch" },
 ] as const;
 
 export const CORE_PRODUCTS = [

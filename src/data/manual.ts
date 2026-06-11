@@ -6,8 +6,26 @@ export type ManualSection = {
 
 export const MANUAL_SECTIONS: ManualSection[] = [
   {
+    id: "about-equipment",
+    title: "1. About the Equipment",
+    content: `**Motherboard box / phone farm box**
+One box integrates 20 mobile phone motherboards (or 32PCS full-phone configuration). Screen, battery, camera and SIM slot are removed on motherboard configurations; boards mount in a metal chassis with group-control / click farm software for batch operation.
+
+**Electrical**
+220V AC input. Approximately 100W under continuous load (e.g. sustained app/game activity). Centralized power bus inside chassis.
+
+**Physical**
+Carton size approximately 55×38×16 cm. Weight approximately 7 kg per 20-node box. Stackable for warehouse deployment.
+
+**Control**
+One Windows PC typically controls 3–5 boxes (60–100 nodes). USB mode (blue LED) or OTG/LAN Ethernet mode (green LED). VPN or proxy tools supported when workflow requires IP change.
+
+**Legitimate use**
+Development, testing, device management, QA automation and lawful multi-device operations only.`,
+  },
+  {
     id: "overview",
-    title: "1. Overview",
+    title: "2. Overview",
     content: `A phone farm box is a metal chassis that powers and connects multiple physical Android phones or motherboards to one control PC. Group-control software mirrors screens and sends batch commands.
 
 **Legitimate use cases:** app compatibility testing, QA automation, device management workflow validation, software integration testing, enterprise device lab operations.
@@ -18,7 +36,7 @@ This manual covers standard Android motherboard box / phone farm box deployment.
   },
   {
     id: "before-start",
-    title: "2. Before You Start",
+    title: "3. Before You Start",
     content: `**Control PC**
 - Windows 10 or Windows 11 (64-bit)
 - 16 GB RAM minimum for multi-box; 32 GB+ recommended
@@ -45,7 +63,7 @@ This manual covers standard Android motherboard box / phone farm box deployment.
   },
   {
     id: "package-checklist",
-    title: "3. Package Checklist",
+    title: "4. Package Checklist",
     content: `Verify shipment contents on arrival:
 
 [ ] Phone farm box / chassis with devices or boards installed
@@ -60,7 +78,7 @@ Report shipping damage within 48 hours with photos.`,
   },
   {
     id: "usb-mode",
-    title: "4. USB Mode Setup",
+    title: "5. USB Mode Setup",
     content: `**Indicator:** Blue LED = USB / WiFi path mode
 
 1. Install group-control / mirroring software on Windows PC
@@ -76,7 +94,7 @@ Report shipping damage within 48 hours with photos.`,
   },
   {
     id: "otg-lan-mode",
-    title: "5. OTG / LAN Mode Setup",
+    title: "6. OTG / LAN Mode Setup",
     content: `**Indicator:** Green LED = OTG / Ethernet mode
 
 1. Connect box and PC to **same router** (Ethernet preferred for PC)
@@ -95,7 +113,7 @@ Report shipping damage within 48 hours with photos.`,
   },
   {
     id: "adb-auth",
-    title: "6. ADB Authorization",
+    title: "7. ADB Authorization",
     content: `Authorization files let PC talk to boards without repeated on-screen approval.
 
 **Placement (Windows):**
@@ -115,7 +133,7 @@ Keep one spare board with screen attached for authorization recovery if needed.`
   },
   {
     id: "recommended-pc",
-    title: "7. Recommended PC Configuration",
+    title: "8. Recommended PC Configuration",
     content: `Use a dedicated Windows control PC for multi-box farms. Specs depend on node count and software load.
 
 **Small lab (1-2 boxes / up to ~40 nodes, USB mode)**
@@ -123,9 +141,9 @@ Keep one spare board with screen attached for authorization recovery if needed.`
 - Intel i5 or Ryzen 5, 16 GB RAM, SSD
 - Multiple USB 2.0 root ports or powered USB 2.0 hubs
 
-**Medium deployment (3-5 boxes / 60-100 nodes)**
+**Medium deployment (3–5 boxes / 60–100 nodes)**
 - 32 GB RAM recommended
-- Intel i7 / Ryzen 7 or Xeon E5 class
+- Intel Xeon E5-2680 V2 multi-core or equivalent / Ryzen 7
 - Separate USB controllers or plan OTG/LAN for heavy loads
 
 **Software load**
@@ -137,7 +155,7 @@ Send your target box count in RFQ for a written PC recommendation.`,
   },
   {
     id: "router-network-notes",
-    title: "8. Router and Network Notes",
+    title: "9. Router and Network Notes",
     content: `OTG/LAN mode requires stable LAN between box, router and control PC.
 
 **20 devices or fewer**
@@ -158,8 +176,17 @@ See also: /blog/usb-mode-vs-otg-lan-mode for mode selection.`,
   },
   {
     id: "troubleshooting",
-    title: "9. Troubleshooting",
-    content: `**Device not detected**
+    title: "10. Troubleshooting",
+    content: `**Screen goes black after mirroring**
+ ->  Increase standby timeout in phone settings; unlock once after boot
+
+**Screen casts but mouse cannot control**
+ ->  Developer options → USB settings (safe mode) → enable USB simulation click
+
+**Password input page shows black screen**
+ ->  Disable secure keyboard; on Android 12+ root may be required; blind tap may still work
+
+**Device not detected**
  ->  Power, cable, USB debugging, authorization, try USB 2.0 port/hub
 
 **ADB unauthorized**
@@ -194,7 +221,7 @@ See also: /blog/usb-mode-vs-otg-lan-mode for mode selection.`,
   },
   {
     id: "remote-support",
-    title: "10. Remote Setup Support",
+    title: "11. Remote Setup Support",
     content: `Included with hardware purchase (standard scope):
 
 1. Schedule via email or WhatsApp after delivery
@@ -207,23 +234,38 @@ See also: /blog/usb-mode-vs-otg-lan-mode for mode selection.`,
   },
   {
     id: "api-automation",
-    title: "11. API / Automation Interface",
-    content: `For software testing, device operation workflows and internal automation integration, API documentation can be provided after purchase.
+    title: "12. API / WebSocket Automation (WSAPI)",
+    content: `Group-control software exposes a WebSocket API (WSAPI) on the control PC for custom automation in Python, Node.js and other languages.
 
-Typical integration paths:
+**Address**
+127.0.0.1:22223
+
+**Demo samples**
+See vendor folder: androids\\Dev samples
+
+**Documented actions**
+List, Detail, HostDetail, GetAppInfoByAppName, CurrentAppInfo, GetGroup, CreateGroup, UpdateGroup, DeleteGroup, RemoveDeviceGroup, EditDeviceName, EditDeviceNo, Screen, WriteClipboard, GetClipboard, BasisOperate, PointerEvent, KeyBoardkey, InputText, ADB, BeginFileSend, StopSendFile, ExecuteBat, StopBat, HttpDown, PullText, PullFile
+
+**Integration paths**
 - ADB shell commands scripted from CI
-- Software vendor WebSocket/API (tool-dependent)
+- WSAPI WebSocket from Python/Node.js
 - Batch task templates in group-control platform
 
-We do not provide tools for platform manipulation or terms-of-service violations. Use automation only within your legal and contractual boundaries.`,
+Use automation only within your legal and contractual boundaries. API documentation provided after hardware purchase.`,
   },
   {
     id: "warranty",
-    title: "12. Warranty & After-sales",
+    title: "13. Warranty & After-sales",
     content: `**Standard terms**
 - Chassis / cabinet: 12 months
-- Motherboards: 90 days
+- Motherboards: 90 days (1 month on some legacy quotes — confirm on proforma)
 - Accessories (fans, cables, hubs): 12 months
+
+**What is included (typical motherboard box)**
+Hardware with 20 boards, USB cable, box power cord, spare motherboard power cord, control software trial period (confirm scope in quote).
+
+**Sales & delivery**
+Custom-assembled units: no return/exchange after delivery. Buyer arranges international freight; we assist with forwarder introduction. Free remote AnyDesk support until operational.
 
 **Custom-assembled / ROM-modified units:** no return after dispatch unless written otherwise in quote.
 
@@ -235,7 +277,7 @@ We do not provide tools for platform manipulation or terms-of-service violations
   },
   {
     id: "support-checklist",
-    title: "13. Before Contacting Support, Please Prepare",
+    title: "14. Before Contacting Support, Please Prepare",
     content: `Gather these details before opening a support or RFQ ticket:
 
 - Product model (motherboard box, 32PCS box, 12PCS array, etc.)
