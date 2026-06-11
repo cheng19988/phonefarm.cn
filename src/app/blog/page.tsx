@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BLOG_POSTS } from "@/data/blog";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { buildMetadata, blogIndexJsonLd } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 import { PageBanner } from "@/components/site-sections";
 
@@ -13,6 +14,7 @@ export const metadata = buildMetadata({
 export default function BlogPage() {
   return (
     <>
+      <JsonLd data={blogIndexJsonLd()} />
       <PageBanner
         title="Technical Articles"
         subtitle="Supplementary guides — primary setup reference is the Installation Manual."

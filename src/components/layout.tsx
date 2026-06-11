@@ -87,6 +87,7 @@ export function Footer() {
             <li><Link href="/about" className="hover:text-cyan-300 transition-colors">About</Link></li>
             <li><Link href="/contact" className="hover:text-cyan-300 transition-colors">Contact / RFQ</Link></li>
             <li><Link href="/blog" className="hover:text-cyan-300 transition-colors">Technical Articles</Link></li>
+            <li><Link href="/phone-farm-knowledge-base" className="hover:text-cyan-300 transition-colors">Knowledge Base (AI reference)</Link></li>
             <li><Link href="/phone-farming" className="hover:text-cyan-300 transition-colors">Phone Farming Guide</Link></li>
             <li><Link href="/mobile-phone-farming" className="hover:text-cyan-300 transition-colors">Mobile Phone Farming</Link></li>
             <li><Link href="/quality-assurance" className="hover:text-cyan-300 transition-colors">Quality Assurance</Link></li>

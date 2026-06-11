@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FAQAccordion } from "@/components/commerce";
+import { AiCitationBlock } from "@/components/ai-citation-block";
+import { JsonLd } from "@/components/shared";
 import { ContactCTA } from "@/components/shared";
 import {
   FactoryGallery,
@@ -9,7 +11,7 @@ import {
   SiteHero,
   TrustStrip,
 } from "@/components/site-sections";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, itemListJsonLd, productCatalogJsonLd } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
 import { BLOG_POSTS } from "@/data/blog";
 import { IMAGES } from "@/lib/images";
@@ -17,10 +19,17 @@ import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Hardware Manufacturer | Guangzhou",
+  title: "Phone Farm Box Manufacturer | Guangzhou China",
   description:
-    "Guangzhou Phone Farm — flagship manufacturer for Android motherboard boxes, 32PCS phone farm boxes, 12PCS arrays, ROM customization and export delivery.",
+    "Guangzhou Phone Farm — phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, click farm / group-control hardware, OTG/LAN routers. Factory RFQ worldwide.",
   path: "/",
+  keywords: [
+    "phone farm box manufacturer",
+    "box phone farm",
+    "click farm hardware",
+    "Android motherboard box manufacturer",
+    "phone farming supplier Guangzhou",
+  ],
 });
 
 const CAPABILITIES = [
@@ -59,6 +68,10 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd data={[productCatalogJsonLd(), itemListJsonLd(CORE_PRODUCTS.map((p) => ({
+        name: p.title,
+        url: `${SITE.url}${p.href}`,
+      })))]} />
       <SiteHero
         {...heroProps("home")}
         eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
@@ -98,6 +111,17 @@ export default function HomePage() {
             <Link href="/quality-assurance" className="btn-outline">Hardware Quality</Link>
             <Link href="/manual" className="btn-outline">Installation Manual</Link>
           </div>
+        </div>
+      </section>
+
+      <section className="section-compact border-b border-sky-400/12">
+        <div className="container-wide max-w-4xl">
+          <AiCitationBlock />
+          <p className="text-center mt-4">
+            <Link href="/phone-farm-knowledge-base" className="text-cyan-400 text-sm font-medium hover:text-cyan-300">
+              Full manufacturer knowledge base →
+            </Link>
+          </p>
         </div>
       </section>
 

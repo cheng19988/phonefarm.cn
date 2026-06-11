@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner, SubsectionHeader } from "@/components/site-sections";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, productCatalogJsonLd } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
 import { bannerProps } from "@/lib/banners";
@@ -38,6 +38,7 @@ export default async function ProductsPage({
 
   return (
     <>
+      <JsonLd data={productCatalogJsonLd()} />
       <PageBanner
         title="Hardware Catalog"
         subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."

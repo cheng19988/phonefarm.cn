@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner } from "@/components/site-sections";
 import { MANUAL_SECTIONS, MANUAL_TOC } from "@/data/manual";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, howToJsonLd } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 import { IMAGES } from "@/lib/images";
 
@@ -34,8 +34,16 @@ function renderContent(text: string) {
 }
 
 export default function ManualPage() {
+  const howToSteps = [
+    { name: "Prepare Windows PC", text: "Windows 10/11, uninstall phone assistant apps, obtain ADB authorization files." },
+    { name: "Connect USB mode", text: "Power on box, connect USB, tap Allow on debug prompt, verify device list in group-control software." },
+    { name: "Configure OTG/LAN", text: "Connect box and PC to same router, scan IP range, switch green OTG mode, save adb tcpip 5555." },
+    { name: "Verify batch control", text: "Test mirror, batch select and click farm / group-control batch operations." },
+  ];
+
   return (
     <>
+      <JsonLd data={howToJsonLd(howToSteps)} />
       <PageBanner
         title="Installation Manual"
         subtitle="USB mode, OTG/LAN, ADB authorization, router sizing and troubleshooting for phone farm hardware."

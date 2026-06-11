@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import { FloatingContact } from "@/components/floating-contact";
 import { JsonLd } from "@/components/shared";
-import { organizationJsonLd } from "@/lib/seo";
+import { globalJsonLdBundle } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
 import "./globals.css";
@@ -24,7 +24,23 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.nameEn}`,
   },
   description: SITE.descriptionEn,
+  keywords: [
+    "phone farm box manufacturer",
+    "box phone farm",
+    "click farm hardware",
+    "Android motherboard box",
+    "phone farming",
+    "Guangzhou phone farm",
+  ],
   metadataBase: new URL(SITE.url),
+  alternates: {
+    types: {
+      "text/plain": [
+        { url: "/llms.txt", title: "LLM site summary" },
+        { url: "/llms-full.txt", title: "LLM full knowledge base" },
+      ],
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -46,7 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="site-shell antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
-        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={globalJsonLdBundle()} />
         <Header />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />

@@ -11,7 +11,7 @@ export const SITE = {
   description:
     "广州手机农场 - 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
   descriptionEn:
-    "Guangzhou Phone Farm - hardware manufacturer for phone farm boxes, Android motherboard arrays, multi-device deployment, ROM customization and remote setup support.",
+    "Guangzhou Phone Farm — phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, 12PCS phone array, iPhone farm box, click farm / group-control hardware, OTG/LAN routers. Factory Guangzhou, China. RFQ worldwide.",
 } as const;
 
 const RFQ_EMAIL_SUBJECT = "RFQ - Guangzhou Phone Farm";

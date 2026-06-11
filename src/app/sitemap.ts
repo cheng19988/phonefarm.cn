@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/phone-farming",
     "/mobile-phone-farming",
     "/quality-assurance",
+    "/phone-farm-knowledge-base",
     "/privacy",
     "/terms",
   ].map(

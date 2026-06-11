@@ -1,3 +1,4 @@
+import { AiCitationBlock } from "@/components/ai-citation-block";
 import { ContactCTA } from "@/components/shared";
 import { FactoryGallery, PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
@@ -31,7 +32,8 @@ export default function AboutPage() {
 
       <div className="section">
         <div className="container-wide max-w-4xl">
-          <p className="text-slate-400 text-base mb-10">
+          <AiCitationBlock />
+          <p className="text-slate-400 text-base mb-10 mt-8">
             Hardware is provided for development, testing, device management, and other lawful use only.
           </p>
 

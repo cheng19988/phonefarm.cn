@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
+import { AiCitationBlock } from "@/components/ai-citation-block";
 import { ProductBuyForm } from "@/components/product-buy-form";
 import { FAQAccordion } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
@@ -123,6 +124,8 @@ export default async function ProductDetailPage({ params }: Props) {
                 <h2 className="text-2xl font-bold text-white mb-4">Overview</h2>
                 <p className="text-slate-300 text-base md:text-lg leading-relaxed">{seed.description}</p>
               </section>
+
+              <AiCitationBlock />
 
               {seed.detailSections?.map((section) => (
                 <section key={section.title} className="card-flat">
