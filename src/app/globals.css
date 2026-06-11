@@ -664,7 +664,19 @@ body {
 }
 
 .floating-contact-text {
-  @apply flex flex-col gap-0.5 min-w-0;
+  @apply flex flex-col gap-0.5 min-w-0 flex-1;
+}
+
+.floating-contact-copy {
+  @apply shrink-0 text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-md border transition-colors;
+  color: rgba(165, 243, 252, 0.9);
+  border-color: rgba(125, 211, 252, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.floating-contact-copy:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(125, 211, 252, 0.45);
 }
 
 .floating-contact-item-label {

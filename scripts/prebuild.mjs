@@ -63,4 +63,11 @@ if (rebuildSeed) {
   console.log("prebuild: using committed seed database");
 }
 
+try {
+  execSync("node scripts/verify-copy.mjs", { cwd: root, stdio: "inherit" });
+  console.log("prebuild: copy verification passed");
+} catch {
+  console.warn("prebuild: verify-copy reported issues (non-fatal)");
+}
+
 console.log("prebuild: done");

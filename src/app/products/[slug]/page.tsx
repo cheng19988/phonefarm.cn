@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/shared";
 import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
 import { SubsectionHeader } from "@/components/site-sections";
-import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { getProductSeed } from "@/data/products";
 import { getProductGallery } from "@/lib/images";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
@@ -56,6 +56,9 @@ export default async function ProductDetailPage({ params }: Props) {
             { name: "Products", path: "/products" },
             { name: seed.name, path: `/products/${slug}` },
           ]),
+          ...(seed.faq.length > 0
+            ? [faqJsonLd(seed.faq.map((f) => ({ question: f.q, answer: f.a })))]
+            : []),
         ]}
       />
 

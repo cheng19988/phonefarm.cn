@@ -30,7 +30,7 @@ export function SiteHero({
   return (
     <section className={`tech-hero ${fit === "contain" ? "tech-hero--contain" : ""}`}>
       <div className="tech-hero-banner">
-        <BannerMedia src={banner} fit={fit} focus={focus} scale={scale} className="tech-hero-photo" />
+        <BannerMedia src={banner} fit={fit} focus={focus} scale={scale} className="tech-hero-photo" alt="" />
       </div>
       <div className="tech-hero-bg absolute inset-0 pointer-events-none z-[1]" aria-hidden />
       <div className="tech-hero-edges absolute inset-0 pointer-events-none z-[2]" aria-hidden />
@@ -82,7 +82,7 @@ export function PageBanner({
       {image && (
         <>
           <div className="page-banner-visual">
-            <BannerMedia src={image} fit={fit} focus={imagePosition} scale={scale} />
+            <BannerMedia src={image} fit={fit} focus={imagePosition} scale={scale} alt={`${title} banner`} />
           </div>
           <div className={`page-banner-overlay ${fit === "contain" ? "page-banner-overlay--contain" : ""} ${compactTitle ? "page-banner-overlay--compact" : ""}`} aria-hidden />
         </>
@@ -208,7 +208,7 @@ export function FactoryGallery({ images }: { images: { src: string; label: strin
         <div
           key={img.label}
           className={`relative rounded-2xl overflow-hidden border border-cyan-500/15 bg-[var(--surface)] shadow-lg shadow-cyan-950/20 hover:border-cyan-400/30 transition-colors ${
-            i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto md:min-h-[360px]" : "aspect-[4/3]"
+            i === 0 ? "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto md:min-h-[360px]" : "aspect-[4/3]"
           }`}
         >
           <Image src={img.src} alt={img.label} fill className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />

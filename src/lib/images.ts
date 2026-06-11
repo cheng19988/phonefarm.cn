@@ -188,6 +188,14 @@ export function getProductGallery(slug: string): string[] {
     "phone-array-12pcs": [IMAGES.realDevice.hero, IMAGES.realDevice.detail, IMAGES.motherboardBox.detail],
     "iphone-phone-farm": [IMAGES.iphoneFarm.hero, IMAGES.iphoneFarm.detail, IMAGES.phoneFarmBox.card],
     "android-phone-farm": [IMAGES.androidFarm.hero, IMAGES.phoneFarmBox.hero, IMAGES.motherboardBox.detail],
+    "real-device-phone-farm": [IMAGES.androidFarm.hero, IMAGES.realDevice.hero, IMAGES.phoneFarmBox.detail, IMAGES.qc],
+    "empty-box-chassis": [IMAGES.emptyBox.hero, IMAGES.motherboardBox.detail, IMAGES.motherboardBox.card],
+    "usb-hub": [IMAGES.usbHub.hero, IMAGES.deck.slide1, IMAGES.deck.slide2, IMAGES.qc],
+    "power-supply-solution": [IMAGES.power.hero, IMAGES.factory, IMAGES.qc],
+    "cooling-solution": [IMAGES.cooling.hero, IMAGES.qc, IMAGES.phoneFarmBox.hero],
+    "network-equipment": [IMAGES.network.hero, IMAGES.deck.slide2, IMAGES.deck.slide1],
+    "custom-cabinet": [IMAGES.customCabinet.hero, IMAGES.companyWorkshop, IMAGES.companyWarehouse],
+    "remote-control-setup": [IMAGES.remoteControl.hero, IMAGES.deck.slide1, IMAGES.deck.slide2],
   };
   const imgs = map[slug] ?? [IMAGES.motherboardBox.hero, IMAGES.motherboardBox.detail, IMAGES.qc];
   return [...new Set(imgs.filter(Boolean))].slice(0, 6);

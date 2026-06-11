@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { PAYMENT, CONTACT } from "@/lib/config";
 
@@ -49,7 +49,7 @@ export default function OrderPage() {
       }
       const expires = new Date(order.payment!.expiresAt).getTime() - Date.now();
       if (expires <= 0) {
-        setTimeLeft("已过期");
+        setTimeLeft("Expired");
       } else {
         const mins = Math.floor(expires / 60000);
         const secs = Math.floor((expires % 60000) / 1000);
@@ -59,58 +59,65 @@ export default function OrderPage() {
     return () => clearInterval(interval);
   }, [order, orderId]);
 
-  if (!order) return <div className="section container-wide text-slate-400">加载订单中...</div>;
+  if (!order) {
+    return <div className="section container-wide text-slate-400">Loading order...</div>;
+  }
 
   const payment = order.payment;
 
   return (
-    <div className="section">
+    <div className="section pb-32 md:pb-16">
       <div className="container-wide max-w-2xl">
-        <h1 className="section-title">订单 {order.orderNumber}</h1>
-        <p className="text-slate-400 mb-6">状态：<span className="text-white font-medium">{order.status}</span></p>
+        <h1 className="section-title">Order {order.orderNumber}</h1>
+        <p className="text-slate-400 mb-6">
+          Status: <span className="text-white font-medium">{order.status}</span>
+        </p>
 
         <div className="card p-6 mb-6">
-          <h2 className="font-bold text-white mb-4">订单明细</h2>
+          <h2 className="font-bold text-white mb-4">Line items</h2>
           {order.items.map((item, i) => (
             <div key={i} className="flex justify-between text-sm py-2 border-b border-slate-800">
-              <Link href={`/products/${item.product.slug}`} className="text-emerald-400">{item.product.name}</Link>
+              <Link href={`/products/${item.product.slug}`} className="text-cyan-400 hover:text-cyan-300">
+                {item.product.name}
+              </Link>
               <span className="text-white">${item.unitPrice} × {item.quantity}</span>
             </div>
           ))}
           <div className="flex justify-between font-bold text-white mt-4">
-            <span>合计</span>
+            <span>Total</span>
             <span>${order.totalUsd.toLocaleString()}</span>
           </div>
         </div>
 
         {payment && order.status === "Waiting for Payment" && (
           <div className="card p-6 mb-6 border-emerald-800/50">
-            <h2 className="font-bold text-white mb-4">USDT 支付（Tron TRC20）</h2>
+            <h2 className="font-bold text-white mb-4">USDT payment (Tron TRC20)</h2>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-slate-400">金额</span><span className="text-white font-mono">{payment.expectedAmount} USDT</span></div>
-              <div className="flex justify-between"><span className="text-slate-400">网络</span><span className="text-white">{payment.paymentNetwork}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Amount</span><span className="text-white font-mono">{payment.expectedAmount} USDT</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Network</span><span className="text-white">{payment.paymentNetwork}</span></div>
               <div>
-                <span className="text-slate-400 block mb-1">收款地址</span>
+                <span className="text-slate-400 block mb-1">Receiving address</span>
                 <code className="block bg-slate-800 p-3 rounded text-emerald-400 text-xs break-all">{payment.paymentAddress}</code>
               </div>
-              <div className="flex justify-between"><span className="text-slate-400">合约地址</span><span className="text-white font-mono text-xs">{PAYMENT.contract}</span></div>
-              <div className="flex justify-between"><span className="text-slate-400">最低支付</span><span className="text-white">{PAYMENT.minAmount} USDT</span></div>
-              <div className="flex justify-between"><span className="text-slate-400">剩余时间</span><span className="text-yellow-400">{timeLeft}</span></div>
-              <div className="flex justify-between"><span className="text-slate-400">验证状态</span><span className="text-slate-300">{payment.verificationStatus}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Contract</span><span className="text-white font-mono text-xs">{PAYMENT.contract}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Minimum</span><span className="text-white">{PAYMENT.minAmount} USDT</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Time remaining</span><span className="text-yellow-400">{timeLeft}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Verification</span><span className="text-slate-300">{payment.verificationStatus}</span></div>
             </div>
             <p className="text-xs text-slate-500 mt-4">
-              请通过 Tron TRC20 网络发送准确 USDT 金额。配置 Tron API 后将自动验证到账。如需帮助请联系 {CONTACT.email}。
+              Send the exact USDT amount via Tron TRC20. On-chain verification runs when TRON_API_KEY is configured; otherwise contact{" "}
+              <a href={CONTACT.emailHref} target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline">{CONTACT.email}</a> with your transaction hash.
             </p>
           </div>
         )}
 
         {order.status === "Paid" && (
           <div className="card p-6 mb-6 border-green-800/50 text-green-400">
-            支付已收到，我们的团队将尽快确认您的订单。
+            Payment received. Our team will confirm your order shortly.
           </div>
         )}
 
-        <Link href="/account/orders" className="btn-secondary">← 返回我的订单</Link>
+        <Link href="/account/orders" className="btn-secondary">← Back to my orders</Link>
       </div>
     </div>
   );

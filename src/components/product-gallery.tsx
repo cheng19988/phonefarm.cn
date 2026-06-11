@@ -26,7 +26,7 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
               }`}
               aria-label={`Image ${i + 1}`}
             >
-              <Image src={src} alt="" fill className="object-cover" sizes="96px" />
+              <Image src={src} alt={`${alt} view ${i + 1}`} fill className="object-cover" sizes="96px" />
             </button>
           ))}
         </div>

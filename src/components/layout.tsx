@@ -86,6 +86,7 @@ export function Footer() {
             <li><Link href="/blog" className="hover:text-cyan-300 transition-colors">Technical Articles</Link></li>
             <li><Link href="/privacy" className="hover:text-cyan-300 transition-colors">Privacy</Link></li>
             <li><Link href="/terms" className="hover:text-cyan-300 transition-colors">Terms</Link></li>
+            <li><Link href="/login" className="hover:text-cyan-300 transition-colors">Account login</Link></li>
           </ul>
           <p className="text-xs text-slate-600 mt-6">
             RFQ: {CONTACT.email}

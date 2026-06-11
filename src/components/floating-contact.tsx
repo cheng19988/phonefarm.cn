@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { CONTACT } from "@/lib/config";
 
 const CHANNELS = [
@@ -24,6 +27,7 @@ const CHANNELS = [
     href: CONTACT.emailHref,
     className: "floating-contact-item--email",
     iconClass: "floating-contact-icon--email",
+    copyable: true,
   },
 ] as const;
 
@@ -65,6 +69,20 @@ function ContactIcon({ id }: { id: (typeof CHANNELS)[number]["id"] }) {
 }
 
 export function FloatingContact() {
+  const [copied, setCopied] = useState(false);
+
+  async function copyEmail(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(CONTACT.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.open(CONTACT.emailHref, "_blank", "noopener,noreferrer");
+    }
+  }
+
   return (
     <aside className="floating-contact" aria-label="Contact sales">
       <div className="floating-contact-panel">
@@ -85,6 +103,16 @@ export function FloatingContact() {
                 <span className="floating-contact-item-label">{ch.label}</span>
                 <span className="floating-contact-item-value">{ch.value}</span>
               </span>
+              {"copyable" in ch && ch.copyable && (
+                <button
+                  type="button"
+                  className="floating-contact-copy"
+                  onClick={copyEmail}
+                  aria-label={copied ? "Email copied" : "Copy email address"}
+                >
+                  {copied ? "Copied" : "Copy"}
+                </button>
+              )}
             </a>
           ))}
         </div>

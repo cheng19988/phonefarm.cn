@@ -105,6 +105,30 @@ export function faqJsonLd(items: { question: string; answer: string }[]) {
   };
 }
 
+export function articleJsonLd(article: {
+  title: string;
+  description: string;
+  slug: string;
+  date: string;
+  category: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    author: { "@type": "Organization", name: SITE.nameEn },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.nameEn,
+      logo: { "@type": "ImageObject", url: `${SITE.url}/icon.svg` },
+    },
+    mainEntityOfPage: `${SITE.url}/blog/${article.slug}`,
+    articleSection: article.category,
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

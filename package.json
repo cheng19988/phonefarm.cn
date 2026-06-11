@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "verify:copy": "node scripts/verify-copy.mjs",
+    "test:smoke": "node scripts/production-rfq-admin-smoke-test.mjs",
     "ingest:assets": "node scripts/ingest-local-assets.mjs",
     "ingest:banners": "node scripts/ingest-banners.mjs",
     "ingest:product-cards": "node scripts/ingest-product-cards.mjs",

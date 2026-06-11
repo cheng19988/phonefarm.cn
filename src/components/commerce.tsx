@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
+import { FaqAnswer } from "@/components/faq-answer";
 
 type ProductCardProps = {
   slug: string;
@@ -77,7 +78,7 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
               +
             </span>
           </summary>
-          <p className="mt-5 text-slate-400 text-base md:text-lg leading-relaxed pb-2">{item.answer}</p>
+          <FaqAnswer text={item.answer} />
         </details>
       ))}
     </div>
