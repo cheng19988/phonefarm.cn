@@ -38,16 +38,16 @@ export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCa
             {name}
           </h3>
         </Link>
-        <p className="text-base md:text-lg text-slate-400 leading-relaxed line-clamp-2">{shortDesc}</p>
+        <p className="text-base md:text-lg text-slate-300 leading-relaxed line-clamp-2">{shortDesc}</p>
         <ul className="param-list flex-1">
           {keyParams.slice(0, 3).map((p) => (
             <li key={p}>{p}</li>
           ))}
         </ul>
-        <p className="text-base text-slate-500 pt-2 border-t border-[var(--border)]">
+        <p className="text-base text-slate-300 pt-2 border-t border-[var(--border)]">
           <span className="accent-text">Best for:</span> {bestFor}
         </p>
-        <p className="text-sm text-cyan-400/90 font-medium">{RFQ_COPY.pricingNote}</p>
+        <p className="text-sm text-cyan-300 font-semibold">{RFQ_COPY.pricingNote}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
           <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-sm md:text-base">
             Get Quote

@@ -43,7 +43,7 @@ export function SiteHero({
           <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-slate-100 max-w-xl mb-8 leading-relaxed">{subtitle}</p>
+          <p className="hero-lead">{subtitle}</p>
           <div className="flex flex-wrap gap-3 mb-8">{children}</div>
           <div className="flex flex-wrap gap-3">
             <span className="hero-stat-pill">Est. 2017</span>
@@ -183,13 +183,13 @@ export function ProductShowcase({
       <div className={`space-y-6 lg:space-y-7 ${reverse ? "lg:[direction:ltr]" : ""}`}>
         <p className="eyebrow">{titleZh}</p>
         <h3 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">{title}</h3>
-        <p className="text-slate-300 text-lg md:text-xl leading-relaxed">{description}</p>
+        <p className="text-slate-200 text-lg md:text-xl leading-relaxed">{description}</p>
         <ul className="param-list">
           {params.map((p) => (
             <li key={p}>{p}</li>
           ))}
         </ul>
-        <p className="text-base md:text-lg text-slate-400">
+        <p className="text-base md:text-lg text-slate-300">
           <span className="accent-text">Best for:</span> {useCase}
         </p>
         <div className="flex flex-wrap gap-4 pt-2">

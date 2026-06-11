@@ -95,8 +95,43 @@ body {
 }
 
 .header-shell {
-  background: rgba(26, 51, 88, 0.82);
-  box-shadow: 0 4px 24px rgba(56, 189, 248, 0.08);
+  background: rgba(21, 34, 56, 0.88);
+  box-shadow: 0 4px 28px rgba(56, 189, 248, 0.12);
+}
+
+/* ── Logo & navigation ── */
+.logo-wordmark-en {
+  @apply font-extrabold text-white leading-tight tracking-tight transition-colors;
+  text-shadow: 0 1px 12px rgba(56, 189, 248, 0.25);
+}
+
+.group:hover .logo-wordmark-en {
+  @apply text-cyan-50;
+}
+
+.logo-wordmark-zh {
+  @apply font-semibold text-cyan-300/90 leading-tight tracking-wide;
+}
+
+.rfq-bar-tagline {
+  @apply text-xs md:text-sm font-medium text-slate-200;
+}
+
+.nav-link {
+  @apply px-4 py-2.5 text-sm font-semibold text-slate-100 hover:text-cyan-200 hover:bg-cyan-400/12 rounded-xl transition-colors;
+}
+
+.nav-link-muted {
+  @apply px-3 py-2 font-semibold text-slate-300 hover:text-cyan-200 transition-colors;
+}
+
+.nav-chip {
+  @apply whitespace-nowrap px-3.5 py-1.5 rounded-full border border-cyan-400/25 text-slate-200 font-medium hover:text-cyan-100 hover:border-cyan-300/45 hover:bg-cyan-400/10 transition-colors;
+}
+
+.footer-heading {
+  @apply text-sm font-bold text-white mb-4 uppercase tracking-wider;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
 .footer-shell {
@@ -128,7 +163,7 @@ body {
 }
 
 .subsection-subtitle {
-  @apply text-slate-400 text-sm md:text-base mb-0 max-w-2xl leading-relaxed;
+  @apply text-slate-300 text-sm md:text-base mb-0 max-w-2xl leading-relaxed;
 }
 
 .form-input-sm {
@@ -155,11 +190,15 @@ body {
 }
 
 .section-subtitle {
-  @apply text-slate-200 text-lg md:text-xl mb-12 max-w-3xl leading-relaxed;
+  @apply text-slate-100 text-lg md:text-xl mb-12 max-w-3xl leading-relaxed;
+  text-shadow: 0 1px 16px rgba(15, 26, 48, 0.45);
 }
 
 .eyebrow {
-  @apply inline-block text-sky-200 text-xs md:text-sm font-bold uppercase tracking-[0.25em] mb-5 px-3 py-1.5 rounded-full border border-sky-300/35 bg-sky-400/15;
+  @apply inline-block text-cyan-100 text-xs md:text-sm font-bold uppercase tracking-[0.22em] mb-5 px-3.5 py-1.5 rounded-full;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(99, 102, 241, 0.14) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.45);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.15);
 }
 
 .card {
@@ -264,11 +303,17 @@ body {
 }
 
 .hero-copy-panel {
-  @apply rounded-2xl p-6 md:p-8 backdrop-blur-sm;
-  background: linear-gradient(135deg, rgba(15, 26, 48, 0.72) 0%, rgba(15, 26, 48, 0.45) 100%);
-  border: 1px solid rgba(125, 211, 252, 0.15);
+  @apply rounded-2xl p-6 md:p-8 backdrop-blur-md;
+  background: linear-gradient(135deg, rgba(15, 26, 48, 0.82) 0%, rgba(15, 26, 48, 0.52) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  box-shadow: 0 16px 48px rgba(15, 26, 48, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   max-width: 36rem;
   margin-left: -0.625rem;
+}
+
+.hero-lead {
+  @apply text-lg md:text-xl text-slate-50 max-w-xl mb-8 leading-relaxed font-medium;
+  text-shadow: 0 2px 16px rgba(15, 26, 48, 0.65);
 }
 
 /* ── Homepage hero ── */
@@ -479,7 +524,7 @@ body {
 }
 
 .trust-metric-label {
-  @apply text-sm text-slate-300 uppercase tracking-wide mt-2;
+  @apply text-sm text-slate-200 font-medium uppercase tracking-wide mt-2;
 }
 
 .product-showcase-image {
@@ -500,7 +545,7 @@ body {
 }
 
 .accent-text {
-  @apply text-sky-300 font-semibold;
+  @apply text-cyan-200 font-bold;
 }
 
 .catalog-grid {

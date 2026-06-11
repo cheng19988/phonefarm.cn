@@ -13,11 +13,11 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
 export function ContactBar({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 ${compact ? "text-xs" : "text-sm"}`}>
-      <span className="text-slate-500 hidden sm:inline">RFQ:</span>
-      <a href={`mailto:${CONTACT.email}`} className="text-slate-300 hover:text-cyan-300 transition-colors">
+      <span className="text-cyan-300/90 hidden sm:inline font-semibold">RFQ:</span>
+      <a href={`mailto:${CONTACT.email}`} className="text-slate-100 hover:text-cyan-200 transition-colors font-medium">
         {CONTACT.email}
       </a>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-emerald-400 transition-colors">
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-100 hover:text-emerald-300 transition-colors font-medium">
         WhatsApp {CONTACT.whatsapp}
       </a>
       <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-sky-400 transition-colors hidden md:inline">
@@ -33,8 +33,8 @@ export function ContactBar({ compact = false }: { compact?: boolean }) {
 export function ContactCTA({ title = "Need a phone farm configuration?" }: { title?: string }) {
   return (
     <section className="card-flat bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border-cyan-500/20">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
-      <p className="text-slate-400 text-base mb-6 max-w-2xl leading-relaxed">
+      <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">{title}</h2>
+      <p className="text-slate-200 text-base md:text-lg mb-6 max-w-2xl leading-relaxed">
         Send device count, target model, connection mode (USB / OTG-LAN) and shipping country. {SITE.nameEn} replies with hardware configuration and factory quote within 24 hours.
       </p>
       <ContactBar />
