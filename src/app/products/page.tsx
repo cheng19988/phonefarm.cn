@@ -82,6 +82,8 @@ export default async function ProductsPage({
                   scenario={seed?.targetBuyer || "Contact for configuration"}
                   imageCard={getProductCardImage(p.slug)}
                   category={p.category}
+                  priceUsd={p.priceUsd}
+                  stock={p.stock}
                 />
               );
             })}

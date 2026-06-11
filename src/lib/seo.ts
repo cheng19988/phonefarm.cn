@@ -75,6 +75,9 @@ export function productJsonLd(product: {
   stock: number;
   image: string;
 }) {
+  const hasPrice = product.priceUsd > 0;
+  const inStock = product.stock > 0;
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -85,10 +88,16 @@ export function productJsonLd(product: {
     brand: { "@type": "Brand", name: SITE.nameEn },
     offers: {
       "@type": "Offer",
-      priceCurrency: "USD",
-      availability: "https://schema.org/PreOrder",
+      ...(hasPrice ? { price: product.priceUsd, priceCurrency: "USD" } : {}),
+      availability: inStock
+        ? "https://schema.org/InStock"
+        : hasPrice
+          ? "https://schema.org/PreOrder"
+          : "https://schema.org/PreOrder",
       seller: { "@type": "Organization", name: SITE.nameEn },
-      description: "Configuration-based quote — contact sales for pricing",
+      description: hasPrice
+        ? "Standard chassis list price; device/motherboard configuration may require RFQ"
+        : "Configuration-based quote — contact sales for pricing",
     },
   };
 }

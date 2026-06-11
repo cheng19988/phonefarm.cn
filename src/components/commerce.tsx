@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
 import { FaqAnswer } from "@/components/faq-answer";
+import { canBuyOnline, formatListPrice } from "@/lib/product-pricing";
 
 type ProductCardProps = {
   slug: string;
@@ -14,9 +15,11 @@ type ProductCardProps = {
   scenario: string;
   imageCard: string;
   category: string;
+  priceUsd?: number;
+  stock?: number;
 };
 
-export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCard, category }: ProductCardProps) {
+export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCard, category, priceUsd = 0, stock = 0 }: ProductCardProps) {
   const waText = encodeURIComponent(`Hi, I need a quote for: ${name}`);
   return (
     <article className="card flex flex-col h-full group hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1">
@@ -48,8 +51,20 @@ export function ProductCard({ slug, name, shortDesc, keyParams, bestFor, imageCa
         <p className="text-base text-slate-300 pt-2 border-t border-[var(--border)]">
           <span className="accent-text">Best for:</span> {bestFor}
         </p>
-        <p className="text-sm text-cyan-300 font-semibold">{RFQ_COPY.pricingNote}</p>
+        {canBuyOnline(priceUsd, stock) ? (
+          <p className="text-lg font-bold text-white">
+            {formatListPrice(priceUsd)}
+            <span className="text-xs font-normal text-slate-400 ml-2">USD · USDT</span>
+          </p>
+        ) : (
+          <p className="text-sm text-cyan-300 font-semibold">{RFQ_COPY.pricingNote}</p>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          {canBuyOnline(priceUsd, stock) && (
+            <Link href={`/products/${slug}#buy`} className="btn-secondary text-center text-sm md:text-base">
+              Buy Now
+            </Link>
+          )}
           <Link href={`/contact?product=${slug}`} className="btn-primary text-center text-sm md:text-base">
             Get Quote
           </Link>

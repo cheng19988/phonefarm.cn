@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
+import { ProductBuyForm } from "@/components/product-buy-form";
 import { FAQAccordion } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { JsonLd } from "@/components/shared";
@@ -12,6 +13,7 @@ import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib
 import { getProductSeed } from "@/data/products";
 import { getProductGallery } from "@/lib/images";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
+import { REFERENCE_PRICE_NOTES, canBuyOnline, formatListPrice } from "@/lib/product-pricing";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,6 +40,8 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const gallery = getProductGallery(slug);
   const waText = encodeURIComponent(`Hi, RFQ for: ${seed.name}. Quantity and config to follow.`);
+  const buyOnline = canBuyOnline(product.priceUsd, product.stock);
+  const priceNote = REFERENCE_PRICE_NOTES[slug];
 
   return (
     <>
@@ -86,8 +90,22 @@ export default async function ProductDetailPage({ params }: Props) {
                   <li key={p}>{p}</li>
                 ))}
               </ul>
-              <p className="text-cyan-400/90 font-medium mb-8">{RFQ_COPY.pricingNote}</p>
-              <div className="flex flex-wrap gap-3 mb-6">
+              {buyOnline ? (
+                <div className="mb-4">
+                  <p className="text-2xl md:text-3xl font-bold text-white">
+                    {formatListPrice(product.priceUsd)}
+                    <span className="text-sm font-normal text-slate-400 ml-2">USD list · USDT checkout</span>
+                  </p>
+                  {product.stock > 0 && (
+                    <p className="text-sm text-emerald-400/90 mt-1">In stock ({product.stock} available)</p>
+                  )}
+                  {priceNote && <p className="text-xs text-slate-500 mt-2 max-w-lg leading-relaxed">{priceNote}</p>}
+                </div>
+              ) : (
+                <p className="text-cyan-400/90 font-medium mb-8">{RFQ_COPY.pricingNote}</p>
+              )}
+              <div id="buy" className="flex flex-wrap gap-3 mb-6 scroll-mt-28">
+                {buyOnline && <ProductBuyForm slug={slug} priceUsd={product.priceUsd} stock={product.stock} />}
                 <Link href={`/contact?product=${slug}`} className="btn-primary">Get Quote</Link>
                 <a href={`${CONTACT.whatsappUrl}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
                   WhatsApp
