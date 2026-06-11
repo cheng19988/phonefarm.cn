@@ -123,100 +123,125 @@ Hardware is provided for development, testing, device management, and other lawf
   },
   {
     slug: "phone-farm-setup-manual",
-    title: "手机农场整机盒安装手册：ADB 与 OTG 配置",
-    category: "安装手册",
+    title: "Phone Farm Box Setup Manual: ADB & OTG Configuration",
+    category: "Installation Manual",
     date: "2026-05-01",
-    excerpt: "完整安装指南 - 设备说明、安装步骤、USB/OTG 模式、ADB 授权及故障排除。",
-    content: `本手册介绍广州手机农场整机盒/主板盒从开箱到投产的全流程。
+    excerpt: "Complete setup guide — hardware overview, installation steps, USB/OTG modes, ADB authorization and troubleshooting.",
+    content: `This manual covers the full workflow from unboxing to production for Guangzhou Phone Farm phone farm boxes and motherboard boxes.
 
-【设备说明】
-一盒集成 20 块手机主板(或 32PCS 整机盒),去除屏幕/电池/摄像头后装入金属机箱,配合群控软件实现批量操控。220V 供电,满载约 100W。外箱 55x38x16cm,约 7KG。一台 PC 可控制 3-5 个盒子。
+**Hardware overview**
+Each box integrates 20 Android motherboards (or a 32PCS full-phone chassis). Boards ship without display, battery or camera modules, mounted in a metal enclosure for batch control software. 220V power, ~100W at full load. Outer dimensions 55×38×16 cm, ~7 kg. One PC typically controls 3–5 boxes.
 
-【安装步骤】
-1. 系统:Windows 10/11,卸载手机助手类软件,关闭拦截 ADB 的杀毒软件
-2. 安装群控管理软件,向主板供应商获取 ADB 授权文件
-3. 将授权文件解压至 C:\\Users\\用户名\\.android,重启电脑
-4. 盒子通电,USB 连接 PC,首次投屏解锁务必点击「允许」
-5. 蓝灯=USB/WiFi 模式,绿灯=OTG/以太网模式
+**Installation steps**
+1. OS: Windows 10/11 — remove phone assistant apps; disable antivirus that blocks ADB
+2. Install batch-control software; obtain ADB authorization files from the board supplier
+3. Extract authorization files to C:\\Users\\<username>\\.android, then reboot
+4. Power on the box, connect USB to PC; on first mirror unlock, always tap **Allow**
+5. Blue LED = USB/WiFi mode; green LED = OTG/Ethernet mode
 
-【OTG/LAN 以太网配置】
-盒子与 PC 同路由器 -> 软件添加 IP 段(如 192.168.3.1-254) -> 扫描 -> 保存 adb tcpip 5555 -> 按开关两次切 OTG -> 再扫 IP。以太网模式请关闭 WiFi。20+ 设备推荐软路由。
+**OTG/LAN Ethernet setup**
+Box and PC on the same router → add IP range in software (e.g. 192.168.3.1–254) → scan → save \`adb tcpip 5555\` → double-press mode switch for OTG → scan IPs again. Disable WiFi in Ethernet mode. For 20+ devices, use a dedicated soft router.
 
-【注意事项】
-妥善保管 ADB 授权文件;勿点「拒绝」数据访问;勿升级系统/恢复出厂;勿关闭开发者选项;Root 机勿更新 Magisk。建议备一块同型号屏幕以便应急。
+**Important notes**
+Keep ADB authorization files secure; never tap **Deny** on data access; do not upgrade OS or factory reset; keep Developer Options enabled; on rooted devices, do not update Magisk. Keep a spare screen of the same model for emergencies.
 
-【销售/交付/售后】
-定制产品发货后不退换。可协助联系国际货代出货。主板质保 90 天,机箱 12 个月,配件 1 年。AnyDesk 免费远程协助直至上线。`,
+**Sales, delivery & support**
+Custom builds are non-returnable after shipment. We can coordinate international freight forwarders. Motherboard warranty 90 days; chassis 12 months; accessories 1 year. Free AnyDesk remote support until your farm is online.`,
   },
   {
     slug: "mobile-phone-farming-guide",
-    title: "什么是手机农场？工作原理与搭建要求",
-    category: "知识库",
+    title: "What Is a Phone Farm? How It Works & Setup Requirements",
+    category: "Knowledge Base",
     date: "2026-04-15",
-    excerpt: "了解手机农场硬件要求、群控软件、供电网络及合法应用场景。",
-    content: `手机农场将多台真机设备连接至一台 PC,通过群控软件执行批量或独立自动化任务。
+    excerpt: "Understand phone farm hardware requirements, control software, power/network needs and legitimate use cases.",
+    content: `A phone farm connects multiple real devices to one PC. Control software runs batch or independent automation tasks across the fleet.
 
-【工作原理】
-设备通过 USB 或 OTG/LAN 接入整机盒/主板盒,PC 端群控软件统一管理。可编写脚本实现测试用例、应用验证等合法自动化流程。
+**How it works**
+Devices connect via USB or OTG/LAN to a phone farm box or motherboard box. PC-side control software manages the fleet. Scripts can drive test cases, app validation and other lawful automation workflows.
 
-【搭建要求】
-- 明确业务目标与设备数量
-- 稳定 220V 电源与高速网络
-- 智能手机或主板、USB 数据线
-- 整机盒/主板盒/iPhone 农场盒
-- 可信群控软件(我们可协助配置)
+**Setup requirements**
+- Clear business goal and target device count
+- Stable 220V power and reliable high-speed network
+- Smartphones or motherboards, USB data cables
+- Phone farm box, motherboard box or iPhone farm chassis
+- Trusted control software (we can help configure)
 
-【应用场景】
-应用兼容性测试、多设备管理、QA 自动化、企业设备实验室、软件集成测试等合法技术用途。硬件仅供开发测试与合法设备运维使用。
+**Use cases**
+App compatibility testing, multi-device management, QA automation, enterprise device labs, software integration testing and other lawful technical applications. Hardware is for development, testing and legitimate device operations only.
 
-【为何选择我们】
-广州硬件供应 - 主板盒、32PCS 整机盒、12PCS 阵列、iPhone 方案、网络路由器。配置与报价请通过 RFQ 联系。`,
+**Why Guangzhou Phone Farm**
+Guangzhou-based hardware supply — motherboard boxes, 32PCS chassis, 12PCS arrays, iPhone solutions and network routers. Contact us via RFQ for configuration and pricing.`,
   },
   {
     slug: "otg-lan-network-setup",
-    title: "OTG/LAN 以太网模式配置教程",
-    category: "技术指南",
+    title: "OTG/LAN Ethernet Mode Configuration Tutorial",
+    category: "Technical Guide",
     date: "2026-03-28",
-    excerpt: "以太网 OTG 模式 IP 扫描、adb tcpip 命令及软路由推荐。",
-    content: `以太网 OTG 比 WiFi USB 模式更稳定。
+    excerpt: "Ethernet OTG mode: IP scanning, adb tcpip commands and soft-router recommendations.",
+    content: `Ethernet OTG is more stable than WiFi-based USB mode for larger farms.
 
-步骤：盒子与 PC 同路由器 -> 软件添加 IP 段 -> 扫描 -> 保存 adb tcpip 5555 -> 按开关两次切 OTG -> 扫 IP。
+**Steps**
+1. Connect box and PC to the same router
+2. Add IP range in control software
+3. Scan for devices
+4. Save \`adb tcpip 5555\`
+5. Double-press the mode switch to enter OTG
+6. Scan IPs again
 
-20+ 设备推荐企业软路由。`,
+For 20+ devices, we recommend an enterprise soft router. See /manual#router-network-notes for sizing notes.`,
   },
   {
     slug: "motherboard-box-vs-phone-box",
-    title: "主板盒 vs 整机盒：如何选型",
-    category: "硬件选型",
+    title: "Motherboard Box vs Full Phone Box: How to Choose",
+    category: "Hardware Selection",
     date: "2026-03-10",
-    excerpt: "对比无屏主板盒与完整整机盒的成本、SIM 支持与维护差异。",
-    content: `主板盒：成本低，20 节点，适合无屏自动化。
+    excerpt: "Compare headless motherboard boxes and full-phone chassis: cost, SIM support and maintenance.",
+    content: `**Motherboard box**
+Lower cost, 20 headless nodes per chassis. Ideal for screenless automation, ADB-driven workflows and high-density labs.
 
-整机盒：含 SIM/摄像头，Mod ROM 自动开机，维护更方便。
+**Full phone box (32PCS)**
+Includes SIM/camera paths where configured; mod ROM options for auto-boot; easier per-device maintenance with hot-swap layout.
 
-扩展：2 盒 40 台，3 盒 60 台，1 PC 控 3-5 盒。`,
+**Scaling**
+2 boxes = 40 nodes, 3 boxes = 60 nodes. One PC typically controls 3–5 boxes depending on software and connection mode.
+
+Compare SKUs: /products/motherboard-box and /products/phone-farm-box`,
   },
   {
     slug: "automation-api-wsapi-guide",
-    title: "群控 WebSocket API 自动化开发指南",
-    category: "技术指南",
+    title: "Batch Control WebSocket API Automation Guide",
+    category: "Technical Guide",
     date: "2026-02-20",
-    excerpt: "WSAPI 接口说明，支持 Python、Node.js 等语言调用。",
-    content: `群控软件提供 WSAPI，地址 127.0.0.1:22223。
+    excerpt: "WSAPI overview for Python, Node.js and other languages.",
+    content: `Control software exposes a WebSocket API (WSAPI) at 127.0.0.1:22223 on the control PC.
 
-常用接口：List、Detail、Screen、ADB、BeginFileSend、PointerEvent。
+**Common endpoints**
+- List — enumerate connected devices
+- Detail — device metadata
+- Screen — mirror stream
+- ADB — shell commands
+- BeginFileSend — push files
+- PointerEvent — inject touch events
 
-如需定制软件开发请联系广州手机农场。`,
+For custom software integration or OEM automation scope, contact Guangzhou Phone Farm via /contact.`,
   },
   {
     slug: "enterprise-oem-deployment",
-    title: "企业 OEM 手机农场批量部署方案",
-    category: "企业方案",
+    title: "Enterprise OEM Phone Farm Bulk Deployment",
+    category: "Enterprise Solutions",
     date: "2026-01-15",
-    excerpt: "机架式机柜、ROM 定制、批量 provisioning 及国际物流。",
-    content: `企业 OEM 服务含定制机箱、ROM、机柜集成、批量部署及专属客户经理。
+    excerpt: "Rack cabinets, ROM customization, bulk provisioning and international logistics.",
+    content: `Enterprise OEM services include custom chassis, ROM scope, rack integration, bulk provisioning and a dedicated account manager.
 
-广州手机农场自 2017 年服务国内外企业客户。`,
+Guangzhou Phone Farm has supported domestic and international enterprise customers since 2017.
+
+**Typical scope**
+- Mixed Android/iOS lab builds
+- Custom tray layouts and cabinet branding
+- Router/switch bundles for OTG/LAN at scale
+- Export packing and freight handoff from Guangzhou
+
+Send project requirements: /contact`,
   },
 ];
 

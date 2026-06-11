@@ -151,7 +151,7 @@ export function SubsectionHeader({
 
 export function ProductShowcase({
   title,
-  titleZh,
+  eyebrow,
   description,
   params,
   useCase,
@@ -160,7 +160,7 @@ export function ProductShowcase({
   reverse,
 }: {
   title: string;
-  titleZh: string;
+  eyebrow: string;
   description: string;
   params: readonly string[] | string[];
   useCase: string;
@@ -181,7 +181,7 @@ export function ProductShowcase({
         />
       </div>
       <div className={`space-y-6 lg:space-y-7 ${reverse ? "lg:[direction:ltr]" : ""}`}>
-        <p className="eyebrow">{titleZh}</p>
+        <p className="eyebrow">{eyebrow}</p>
         <h3 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">{title}</h3>
         <p className="text-slate-200 text-lg md:text-xl leading-relaxed">{description}</p>
         <ul className="param-list">

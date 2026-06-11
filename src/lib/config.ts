@@ -78,7 +78,7 @@ export const CORE_PRODUCTS = [
   {
     slug: "motherboard-box",
     title: "Android Motherboard Box",
-    titleZh: "安卓主板盒",
+    eyebrow: "Headless Android",
     href: "/products/motherboard-box",
     params: [
       "20 boards / box",
@@ -92,7 +92,7 @@ export const CORE_PRODUCTS = [
   {
     slug: "phone-farm-box",
     title: "32PCS Phone Farm Box",
-    titleZh: "32PCS 整机盒",
+    eyebrow: "32-Device Chassis",
     href: "/products/phone-farm-box",
     params: [
       "32 devices / box",
@@ -106,7 +106,7 @@ export const CORE_PRODUCTS = [
   {
     slug: "phone-array-12pcs",
     title: "12PCS Phone Array",
-    titleZh: "12PCS 手机阵列",
+    eyebrow: "Hot-Swap Array",
     href: "/products/phone-array-12pcs",
     params: [
       "12 hot-swap drawers",
@@ -120,7 +120,7 @@ export const CORE_PRODUCTS = [
   {
     slug: "iphone-phone-farm",
     title: "iPhone Farm Box",
-    titleZh: "iPhone 农场盒",
+    eyebrow: "iOS Farm Box",
     href: "/products/iphone-phone-farm",
     params: [
       "iOS device slots",

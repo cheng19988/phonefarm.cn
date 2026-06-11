@@ -89,7 +89,7 @@ export default function HomePage() {
             <ProductShowcase
               key={item.slug}
               title={item.title}
-              titleZh={item.titleZh}
+              eyebrow={item.eyebrow}
               description={SHOWCASE_COPY[item.slug] ?? item.use}
               params={item.params}
               useCase={item.use}

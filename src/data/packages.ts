@@ -4,7 +4,7 @@ export const PACKAGES = [
   {
     id: "starter-lab",
     name: "Starter Lab Package",
-    nameZh: "入门实验室套餐",
+    eyebrow: "Entry Lab",
     tagline: "12-node array + remote setup guidance",
     includes: [
       "12PCS hot-swap phone array chassis",
@@ -22,7 +22,7 @@ export const PACKAGES = [
   {
     id: "pro-motherboard",
     name: "Pro Motherboard Deployment",
-    nameZh: "专业主板盒部署套餐",
+    eyebrow: "Headless Deploy",
     tagline: "20-node headless cluster + network kit",
     includes: [
       "Android motherboard box (20 nodes)",
@@ -41,7 +41,7 @@ export const PACKAGES = [
   {
     id: "enterprise-farm",
     name: "Enterprise Phone Farm",
-    nameZh: "企业级整机农场套餐",
+    eyebrow: "Enterprise Scale",
     tagline: "32PCS box + OEM options + bulk logistics",
     includes: [
       "32PCS phone farm box chassis",

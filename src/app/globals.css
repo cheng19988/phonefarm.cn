@@ -109,7 +109,7 @@ body {
   @apply text-cyan-50;
 }
 
-.logo-wordmark-zh {
+.logo-wordmark-sub {
   @apply font-semibold text-cyan-300/90 leading-tight tracking-wide;
 }
 

@@ -69,7 +69,7 @@ export function SiteLogo({ showWordmark = true, size = "md", asLink = true, clas
       {showWordmark && (
         <div className="min-w-0">
           <div className={`logo-wordmark-en ${size === "sm" ? "text-sm" : "text-base"}`}>{SITE.nameEn}</div>
-          <div className={`logo-wordmark-zh ${size === "sm" ? "text-[10px]" : "text-xs"}`}>{SITE.name}</div>
+          <div className={`logo-wordmark-sub ${size === "sm" ? "text-[10px]" : "text-xs"}`}>{SITE.locationEn}</div>
         </div>
       )}
     </>

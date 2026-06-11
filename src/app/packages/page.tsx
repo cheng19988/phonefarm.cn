@@ -39,7 +39,7 @@ export default function PackagesPage() {
                 )}
               </div>
               <div className="p-8 md:p-12 lg:p-14 flex flex-col gap-5">
-                <p className="eyebrow mb-0">{pkg.nameZh}</p>
+                <p className="eyebrow mb-0">{pkg.eyebrow}</p>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white">{pkg.name}</h2>
                 <p className="text-cyan-400 text-base md:text-lg font-semibold">{pkg.tagline}</p>
                 <p className="text-slate-400 text-base md:text-lg">

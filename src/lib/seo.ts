@@ -62,7 +62,7 @@ export function organizationJsonLd() {
       email: CONTACT.email,
       contactType: "sales",
       areaServed: "Worldwide",
-      availableLanguage: ["English", "Chinese"],
+      availableLanguage: ["English"],
     },
   };
 }
