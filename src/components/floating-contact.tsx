@@ -21,7 +21,7 @@ const CHANNELS = [
     id: "email",
     label: "Email",
     value: CONTACT.email,
-    href: `mailto:${CONTACT.email}`,
+    href: CONTACT.emailHref,
     className: "floating-contact-item--email",
     iconClass: "floating-contact-icon--email",
   },
@@ -74,8 +74,8 @@ export function FloatingContact() {
             <a
               key={ch.id}
               href={ch.href}
-              target={ch.id === "email" ? undefined : "_blank"}
-              rel={ch.id === "email" ? undefined : "noopener noreferrer"}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`floating-contact-item ${ch.className}`}
             >
               <span className={`floating-contact-icon ${ch.iconClass}`}>

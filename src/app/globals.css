@@ -562,6 +562,50 @@ body {
 }
 
 /* ── Floating contact ── */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border-radius: 0.5rem;
+  background: #0891b2;
+  color: #fff;
+  font-weight: 600;
+  outline: 2px solid rgba(125, 211, 252, 0.75);
+  outline-offset: 2px;
+}
+
+.hp-field {
+  @apply absolute overflow-hidden opacity-0 pointer-events-none;
+  width: 1px;
+  height: 1px;
+  left: -9999px;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.75);
+  outline-offset: 2px;
+}
+
 .floating-contact {
   @apply fixed bottom-5 right-5 z-50;
 }
@@ -645,10 +689,10 @@ body {
 
 @media (max-width: 640px) {
   .floating-contact {
-    @apply bottom-4 right-3 left-3;
+    @apply bottom-[5.75rem] right-3 left-auto;
   }
 
   .floating-contact-panel {
-    @apply w-full max-w-none min-w-0;
+    @apply min-w-0 w-[min(280px,calc(100vw-1.5rem))];
   }
 }

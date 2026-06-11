@@ -11,7 +11,7 @@ export async function Header() {
     <header className="header-shell sticky top-0 z-50 backdrop-blur-xl border-b border-sky-400/20 shadow-lg shadow-sky-950/20">
       <div className="container-wide py-4 flex items-center justify-between gap-4">
         <SiteLogo />
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -23,9 +23,6 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/pricing" className="hidden md:inline-flex nav-link-muted text-sm">
-            Pricing
-          </Link>
           <Link href="/contact" className="btn-primary text-sm py-2 px-4 min-h-[40px]">
             Get Quote
           </Link>
@@ -36,7 +33,7 @@ export async function Header() {
           )}
         </div>
       </div>
-      <nav className="lg:hidden container-wide pb-3 flex gap-2 overflow-x-auto text-sm border-t border-[var(--border-subtle)] pt-3">
+      <nav className="lg:hidden container-wide pb-3 flex gap-2 overflow-x-auto text-sm border-t border-[var(--border-subtle)] pt-3" aria-label="Mobile navigation">
         {NAV.map((item) => (
           <Link
             key={item.href}

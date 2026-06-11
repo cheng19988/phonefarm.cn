@@ -86,9 +86,9 @@ export function productJsonLd(product: {
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
+      availability: "https://schema.org/PreOrder",
       seller: { "@type": "Organization", name: SITE.nameEn },
-      description: "Contact for configuration-based pricing",
+      description: "Configuration-based quote — contact sales for pricing",
     },
   };
 }

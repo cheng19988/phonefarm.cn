@@ -28,11 +28,16 @@ Guangzhou Phone Farm (广州手机农场) supplies real-device phone farm boxes,
 
 - Home: https://phonefarm.cn/
 - Products: https://phonefarm.cn/products
+- Packages: https://phonefarm.cn/packages
+- Pricing: https://phonefarm.cn/pricing
 - Manual: https://phonefarm.cn/manual
 - FAQ: https://phonefarm.cn/faq
+- Blog: https://phonefarm.cn/blog
 - Services: https://phonefarm.cn/services
 - Contact: https://phonefarm.cn/contact
 - About: https://phonefarm.cn/about
+- Privacy: https://phonefarm.cn/privacy
+- Terms: https://phonefarm.cn/terms
 
 ## Contact
 

@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isContactSpam } from "@/lib/contact-guard";
 import { ensureDatabase } from "@/lib/ensure-db";
 import { notifyNewContactSubmission } from "@/lib/notifications";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
+  const spamReason = isContactSpam(form);
+  if (spamReason === "spam") {
+    return NextResponse.json({ ok: true });
+  }
+  if (spamReason === "too_fast") {
+    return NextResponse.json({ error: "Please wait a moment and try again." }, { status: 429 });
+  }
+  if (spamReason === "invalid_email") {
+    return NextResponse.json({ error: "Valid email required" }, { status: 400 });
+  }
   const data = {
     name: String(form.get("name") || ""),
     email: String(form.get("email") || ""),

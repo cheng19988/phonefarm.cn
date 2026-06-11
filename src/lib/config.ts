@@ -14,12 +14,17 @@ export const SITE = {
     "Guangzhou Phone Farm - hardware manufacturer for phone farm boxes, Android motherboard arrays, multi-device deployment, ROM customization and remote setup support.",
 } as const;
 
+const RFQ_EMAIL_SUBJECT = "RFQ - Guangzhou Phone Farm";
+
 export const CONTACT = {
   telegram: "@huicheng1998",
   telegramUrl: "https://t.me/huicheng1998",
   whatsapp: "+85262155642",
   whatsappUrl: "https://wa.me/85262155642",
   email: "qiuxui646@gmail.com",
+  /** Opens Gmail compose in browser (reliable when no local mail client). */
+  emailHref: `https://mail.google.com/mail/?view=cm&fs=1&to=qiuxui646@gmail.com&su=${encodeURIComponent(RFQ_EMAIL_SUBJECT)}`,
+  emailMailto: `mailto:qiuxui646@gmail.com?subject=${encodeURIComponent(RFQ_EMAIL_SUBJECT)}`,
 } as const;
 
 export const PAYMENT = {

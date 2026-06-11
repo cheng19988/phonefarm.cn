@@ -55,7 +55,7 @@ export default function PackagesPage() {
                   <span><strong className="text-slate-300">Lead time:</strong> {pkg.leadTime}</span>
                 </div>
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <Link href={`/contact?product=${pkg.id}`} className="btn-primary">Request Package Quote</Link>
+                  <Link href={`/contact?product=${pkg.href.replace("/products/", "")}`} className="btn-primary">Request Package Quote</Link>
                   <Link href={pkg.href} className="btn-outline">View SKU Details</Link>
                 </div>
               </div>

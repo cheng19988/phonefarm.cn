@@ -11,6 +11,7 @@ import {
 } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
+import { BLOG_POSTS } from "@/data/blog";
 import { IMAGES } from "@/lib/images";
 import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
@@ -168,6 +169,35 @@ export default function HomePage() {
           <p className="text-center mt-8">
             <Link href="/about" className="text-cyan-400 font-medium hover:text-cyan-300">About our factory team →</Link>
           </p>
+        </div>
+      </section>
+
+      <section className="section-compact section-alt border-t border-sky-400/10">
+        <div className="container-wide">
+          <SectionHeader
+            title="Technical Articles"
+            subtitle="Setup notes, connection modes, and deployment guides — full steps in the Installation Manual."
+            center
+          />
+          <div className="grid md:grid-cols-3 gap-6">
+            {BLOG_POSTS.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="card-flat hover:border-cyan-500/30 transition-all block h-full"
+              >
+                <span className="text-xs text-cyan-400/90 uppercase tracking-wide font-semibold">{post.category}</span>
+                <h3 className="text-lg font-bold text-white mt-2 mb-2 leading-snug">{post.title}</h3>
+                <p className="text-sm text-slate-400 line-clamp-3">{post.excerpt}</p>
+                <span className="inline-block mt-4 text-sm text-cyan-400 font-medium">Read article →</span>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/blog" className="btn-outline">All technical articles</Link>
+            <span className="mx-3 text-slate-600 hidden sm:inline">·</span>
+            <Link href="/manual" className="text-cyan-400 font-medium hover:text-cyan-300 text-sm sm:inline hidden sm:inline">Installation Manual</Link>
+          </div>
         </div>
       </section>
 

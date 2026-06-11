@@ -47,8 +47,8 @@ export default async function ProductDetailPage({ params }: Props) {
             name: seed.name,
             description: seed.shortDesc,
             slug: seed.slug,
-            priceUsd: 0,
-            stock: 1,
+            priceUsd: product.priceUsd,
+            stock: product.stock,
             image: seed.imageHero,
           }),
           breadcrumbJsonLd([
@@ -59,7 +59,7 @@ export default async function ProductDetailPage({ params }: Props) {
         ]}
       />
 
-      <section className="section pb-24 md:pb-16 border-b border-[var(--border)]">
+      <section className="section pb-32 md:pb-16 border-b border-[var(--border)]">
         <div className="container-wide">
           <nav className="text-sm text-slate-500 mb-8 flex flex-wrap gap-2">
             <Link href="/" className="hover:text-cyan-400">Home</Link>

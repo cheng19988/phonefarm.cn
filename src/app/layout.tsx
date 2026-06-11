@@ -30,9 +30,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="site-shell antialiased">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <JsonLd data={organizationJsonLd()} />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <FloatingContact />
       </body>

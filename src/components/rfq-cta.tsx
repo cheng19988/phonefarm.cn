@@ -59,7 +59,7 @@ export function RfqCTA({
         <a href={`${CONTACT.whatsappUrl}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
           WhatsApp Inquiry
         </a>
-        <a href={`mailto:${CONTACT.email}?subject=RFQ%20Phone%20Farm%20Hardware`} className="btn-secondary">
+        <a href={CONTACT.emailHref} target="_blank" rel="noopener noreferrer" className="btn-secondary">
           Email RFQ
         </a>
       </div>
@@ -78,7 +78,7 @@ export function ProductStickyCTA({ slug }: { slug: string }) {
         <a href={`${CONTACT.whatsappUrl}?text=${waText}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-xs py-2 text-center">
           WhatsApp
         </a>
-        <a href={`mailto:${CONTACT.email}`} className="btn-secondary text-xs py-2 text-center">
+        <a href={CONTACT.emailHref} target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs py-2 text-center">
           Email
         </a>
       </div>

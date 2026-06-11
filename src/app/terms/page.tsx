@@ -25,7 +25,7 @@ export default function TermsPage() {
 
           <h2>Products</h2>
           <p>
-            Products are real-device hardware assembled or configured in Guangzhou, China. Specifications vary by configuration -
+            Products are real-device hardware assembled or configured in Guangzhou, China. Specifications vary by configuration —
             only the approved quote and BOM govern your order.
           </p>
 
@@ -48,8 +48,20 @@ export default function TermsPage() {
             {SITE.nameEn} is not responsible for misuse.
           </p>
 
+          <h2>Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by law, {SITE.nameEn} is not liable for indirect, incidental, or consequential damages arising from hardware use,
+            software compatibility, or buyer-side deployment decisions. Liability for a confirmed order is limited to the amount paid for that order unless otherwise stated in writing.
+          </p>
+
+          <h2>Governing Law</h2>
+          <p>
+            These terms are governed by the laws of the People&apos;s Republic of China. Disputes should first be resolved through good-faith negotiation;
+            if unresolved, courts in Guangzhou, China shall have jurisdiction unless mandatory local consumer law requires otherwise.
+          </p>
+
           <h2>Contact</h2>
-          <p>Terms questions: {CONTACT.email}</p>
+          <p>Terms questions: <a href={CONTACT.emailHref} target="_blank" rel="noopener noreferrer">{CONTACT.email}</a></p>
         </div>
       </div>
     </>

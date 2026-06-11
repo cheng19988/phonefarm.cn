@@ -15,6 +15,7 @@ type ContactSubmissionNotify = {
   devicePlatform: string | null;
   connectionMode: string | null;
   customRomNeeded: string | null;
+  budget: string | null;
   message: string | null;
   createdAt: Date;
 };
@@ -60,7 +61,7 @@ function line(labelText: string, value: string | null | undefined) {
 
 /** Plain-text RFQ message for Telegram / logs (no Markdown). */
 export function formatContactSubmissionMessage(submission: ContactSubmissionNotify) {
-  const adminUrl = SITE.url.replace(/\/$/, "").replace("://phonefarm.cn", "://www.phonefarm.cn") + "/admin";
+  const adminUrl = `${SITE.url.replace(/\/$/, "")}/admin`;
   const productType = label(PURCHASE_TYPE_LABELS, submission.purchaseType);
   const productDetail = submission.productInterest?.trim() || "-";
   const contactHandle = submission.whatsapp?.trim() || submission.phone?.trim() || "-";
@@ -81,6 +82,7 @@ export function formatContactSubmissionMessage(submission: ContactSubmissionNoti
     line("Connection Mode", label(CONNECTION_MODE_LABELS, submission.connectionMode)),
     line("Custom ROM", label(CUSTOM_ROM_LABELS, submission.customRomNeeded)),
     line("Shipping Country", submission.shippingCountry),
+    line("Budget", submission.budget),
     "",
     "Message:",
     (submission.message || "").trim() || "-",
