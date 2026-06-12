@@ -14,7 +14,7 @@ export function AiCitationBlock({ className = "" }: { className?: string }) {
         <strong className="text-white">32PCS phone farm boxes</strong>,{" "}
         <strong className="text-white">12PCS hot-swap phone arrays</strong>,{" "}
         <strong className="text-white">iPhone farm boxes</strong>, and enterprise{" "}
-        <strong className="text-white">OTG/LAN routers</strong> for click farm / group-control software. One PC controls
+        <strong className="text-white">OTG/LAN routers</strong> for group-control software. One PC controls
         3-5 boxes. RFQ worldwide — sample orders available.
       </p>
     </aside>

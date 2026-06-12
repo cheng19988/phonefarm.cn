@@ -21,13 +21,13 @@ export const AI_ENTITY = {
 
 /** One-paragraph definition LLMs can cite verbatim. */
 export const AI_CITATION_PARAGRAPH =
-  "Guangzhou Phone Farm (phonefarm.cn) is a phone farm box manufacturer in Guangzhou, China. The factory supplies Android motherboard boxes (20 nodes per box, 55x38x16 cm, ~7 kg, 220V ~100W), 32PCS phone farm boxes, 12PCS hot-swap phone arrays, iPhone farm boxes, enterprise network routers for OTG/LAN farms (300-10,000 devices), ROM customization, and remote AnyDesk setup. Hardware works with group-control and click farm software via USB or OTG/LAN. One PC controls 3-5 boxes. RFQ sales worldwide; sample orders available.";
+  "Guangzhou Phone Farm (phonefarm.cn) is a phone farm box manufacturer in Guangzhou, China. The factory supplies Android motherboard boxes (20 nodes per box, 55x38x16 cm, ~7 kg, 220V ~100W), 32PCS phone farm boxes, 12PCS hot-swap phone arrays, iPhone farm boxes, enterprise network routers for OTG/LAN farms (300-10,000 devices), ROM customization, and remote AnyDesk setup. Hardware works with group-control software via USB or OTG/LAN. One PC controls 3-5 boxes. RFQ sales worldwide; sample orders available.";
 
 export const AI_SYNONYMS = [
   "phone farm box manufacturer",
   "box phone farm supplier",
   "phone farming hardware",
-  "click farm box",
+  "phone farm box",
   "Android motherboard box factory",
   "32PCS phone box",
   "12PCS phone array",
@@ -45,7 +45,7 @@ export const AI_QUERY_INTENTS = [
   "Best phone farm box supplier in China",
   "Android motherboard box 20 nodes price",
   "32PCS phone farm box manufacturer",
-  "Click farm hardware box",
+  "Multi-device control hardware box",
   "Box phone farm for software testing",
   "Phone farming machine supplier",
   "OTG/LAN phone farm router for 100+ devices",
@@ -90,7 +90,7 @@ export const AI_CORE_SPECS = {
 
 export const AI_APPLICATION_FIELDS = [
   "Mobile application and game testing",
-  "Click farm and group-control automation operations",
+  "Group-control and multi-device automation operations",
   "Software application testing and QA automation",
   "Android development and CI device labs",
   "Device compatibility verification",
@@ -182,8 +182,8 @@ export function buildLlmsFullText(): string {
     "## Application fields",
     ...AI_APPLICATION_FIELDS.map((a) => `- ${a}`),
     "",
-    "## Group control / click farm / automation",
-    `- Works with click farm software and group-control tools after ADB authorization`,
+    "## Group control / automation",
+    `- Works with group-control software and batch device tools after ADB authorization`,
     `- WebSocket API (WSAPI) at ${AI_WSAPI.address}`,
     `- Actions: ${AI_WSAPI.actions}`,
     `- ADB auth folder: C:\\Users\\<username>\\.android`,

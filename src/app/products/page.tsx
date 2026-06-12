@@ -11,9 +11,9 @@ import { bannerProps } from "@/lib/banners";
 import { getProductCardImage } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Products — Phone Farm Hardware Catalog",
+  title: "Products — Guangzhou Factory Hardware Catalog",
   description:
-    "Android motherboard box, 32PCS phone farm box, 12PCS phone array, iPhone farm box, routers, accessories and OEM cabinets.",
+    "Browse Guangzhou Phone Farm SKUs: 20-node Android motherboard box, 32PCS chassis, 12PCS array, iPhone farm hardware, enterprise routers and OEM cabinets. Factory RFQ.",
   path: "/products",
 });
 

@@ -48,10 +48,10 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     category: "Motherboard Box",
     catalogGroup: "motherboard-box",
     shortDesc:
-      "20-node Android motherboard chassis — screen, battery, camera and SIM slot removed; USB or OTG/LAN group control for click farm and testing workflows.",
+      "20-node Android motherboard chassis — screen, battery, camera and SIM slot removed; USB or OTG/LAN group control for group-control and testing workflows.",
     targetBuyer: "Integrators and labs running 20–100+ Android nodes with low power per box.",
     description:
-      "The motherboard box removes the phone screen, battery, camera and SIM slot, integrates boards into a metal chassis and works with group-control / click farm software for batch or individual device operation. One box contains 20 mobile phone motherboards in a fixed-size enclosure. One Windows PC typically controls 3–5 boxes (60–100 nodes). Operate all devices at once or run different tasks per phone. Voltage 220V; ~100W when running under continuous load. VPN or proxy methods can change IP per device. Ethernet OTG/LAN and USB modes are switchable (blue LED = USB/WiFi, green LED = OTG/LAN). Carton 55×38×16 cm, ~7 kg — compact and stackable.",
+      "The motherboard box removes the phone screen, battery, camera and SIM slot, integrates boards into a metal chassis and works with group-control software for batch or individual device operation. One box contains 20 mobile phone motherboards in a fixed-size enclosure. One Windows PC typically controls 3–5 boxes (60–100 nodes). Operate all devices at once or run different tasks per phone. Voltage 220V; ~100W when running under continuous load. VPN or proxy methods can change IP per device. Ethernet OTG/LAN and USB modes are switchable (blue LED = USB/WiFi, green LED = OTG/LAN). Carton 55×38×16 cm, ~7 kg — compact and stackable.",
     keyParams: ["20 boards/box", "220V ~100W", "55x38x16 cm", "USB + OTG/LAN", "1 PC -> 3-5 boxes"],
     features: [
       "Compact 20-node density — stackable metal chassis for warehouse or rack deployment",
@@ -59,7 +59,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       "Dual connection: USB mode (blue indicator) and OTG/LAN mode (green indicator)",
       "Mod ROM: auto power-on, auto ADB recognition, compatible with common market tools",
       "One operator controls 20 phones per box; batch or individual tasks via group-control software",
-      "Compatible with click farm software, mirroring tools and WebSocket API after ADB authorization",
+      "Compatible with group-control software, mirroring tools and WebSocket API after ADB authorization",
       "QC burn-in before shipping; remote AnyDesk setup support available",
     ],
     specs: {
@@ -77,7 +77,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     },
     scenarios: [
       "Software application and game testing",
-      "Click farm and automation workflow operations",
+      "Multi-device automation and QA workflow operations",
       "Live streaming and content creation device pools",
       "Business marketing and multi-account management (lawful use)",
       "App compatibility and QA testing at scale",
@@ -132,7 +132,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       { q: "Can one person control all 20 phones at once?", a: "Yes — group-control software supports batch operations on all nodes or individual control per device." },
       { q: "Photos before shipment?", a: "Yes — burn-in and packing photos or short video on request before dispatch." },
       { q: "What if a board fails?", a: "Warranty: remote diagnosis then spare board or repair guidance. Out of warranty: replacement parts quoted separately." },
-      { q: "Does it work with click farm software?", a: "Yes. After ADB authorization, common group-control and click farm tools connect via USB or OTG/LAN. We assist with first-time setup." },
+      { q: "Does it work with group-control software?", a: "Yes. After ADB authorization, common group-control and batch device tools connect via USB or OTG/LAN. We assist with first-time setup." },
       { q: "Can I change IP per device?", a: "Yes — VPN or proxy tools per device are supported when your workflow requires IP rotation." },
     ],
     priceUsd: 899,
@@ -147,7 +147,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     category: "Phone Farm Box",
     catalogGroup: "phone-farm-box",
     shortDesc: "32-device unified phone farm box — batch control, ROM customization and software development scope.",
-    targetBuyer: "Teams deploying 32–200 devices for testing, click farm ops, production QA or reseller bulk orders.",
+    targetBuyer: "Teams deploying 32–200 devices for testing, device operations, production QA or reseller bulk orders.",
     description:
       "Box phone farm unified control for 32 PCS in one chassis. Support ROM customization — auto power-on, persistent ADB, custom firmware features. Triple-fan cooling for 24/7 operation. USB and OTG/LAN dual mode. We develop additional software integration scope on request; contact sales for customization and bulk device management planning.",
     keyParams: ["32 devices/box", "3-fan cooling", "62x42x22 cm", "~160W", "ROM customization"],

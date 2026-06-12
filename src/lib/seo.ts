@@ -23,7 +23,7 @@ export const DEFAULT_KEYWORDS = [
   "phone farm box manufacturer",
   "box phone farm",
   "phone farming hardware",
-  "click farm box",
+  "multi-device control hardware",
   "Android motherboard box",
   "32PCS phone farm box",
   "12PCS phone array",
@@ -149,7 +149,7 @@ export function manufacturerEntityJsonLd() {
     about: {
       "@type": "Thing",
       name: "Phone farm box hardware",
-      description: "Android motherboard boxes, 32PCS phone farm chassis, click farm and group-control hardware",
+      description: "Android motherboard boxes, 32PCS phone farm chassis, multi-device group-control hardware",
     },
     mainEntity: { "@id": `${SITE.url}/#organization` },
   };

@@ -7,9 +7,9 @@ import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
-  title: "FAQ — Phone Farm Hardware",
+  title: "FAQ — Guangzhou Factory Hardware Buyers",
   description:
-    "Product configuration, USB/OTG setup, ADB, router choice, RFQ process, shipping, payment and warranty for Guangzhou Phone Farm hardware.",
+    "Procurement FAQ for Guangzhou Phone Farm: dimensions, MOQ, lead time, packaging, warranty, remote install, Android/iPhone models, USB/OTG setup and export shipping.",
   path: "/faq",
 });
 

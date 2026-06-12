@@ -7,7 +7,7 @@ export const BLOG_POSTS_EXTRA = [
     category: "Knowledge Base",
     date: "2025-09-17",
     excerpt: "Definition of phone farm box hardware, group control software integration and benefits for testing and automation.",
-    content: `A phone farm box is a metal chassis that integrates multiple Android motherboards or phones with centralized power, cooling and data routing. Group-control or click farm software on a Windows PC mirrors screens and sends batch commands.
+    content: `A phone farm box is a metal chassis that integrates multiple Android motherboards or phones with centralized power, cooling and data routing. Group-control software on a Windows PC mirrors screens and sends batch commands.
 
 **How it works**
 Devices connect via USB or OTG/LAN. One box typically holds 20 motherboards (55×38×16 cm, ~7 kg). One PC controls 3–5 boxes. Blue LED = USB mode; green LED = OTG/LAN.

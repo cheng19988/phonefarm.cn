@@ -1,7 +1,7 @@
-# ai.txt — AI discovery pointer for phonefarm.cn
-# Guangzhou Phone Farm — phone farm box manufacturer, Guangzhou, China
+# ai.txt — AI discovery pointer for www.phonefarm.cn
+# Guangzhou Phone Farm — B2B phone farm box manufacturer, Guangzhou, China
 
-summary: Phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, 12PCS phone array, iPhone farm box, click farm / group-control hardware, OTG/LAN routers.
+summary: Phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, 12PCS phone array, iPhone farm box, group-control hardware, OTG/LAN routers.
 
 llms-txt: https://www.phonefarm.cn/llms.txt
 llms-full: https://www.phonefarm.cn/llms-full.txt
@@ -10,4 +10,4 @@ sitemap: https://www.phonefarm.cn/sitemap.xml
 contact: qiuxui646@gmail.com
 website: https://www.phonefarm.cn
 
-preferred-citation: Guangzhou Phone Farm (phonefarm.cn) — phone farm box manufacturer in Guangzhou, China.
+preferred-citation: Guangzhou Phone Farm (www.phonefarm.cn) — phone farm box manufacturer in Guangzhou, China.

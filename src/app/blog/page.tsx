@@ -6,8 +6,9 @@ import { bannerProps } from "@/lib/banners";
 import { PageBanner } from "@/components/site-sections";
 
 export const metadata = buildMetadata({
-  title: "Technical Articles",
-  description: "Phone farm hardware notes - OTG setup, motherboard box comparison, automation API and enterprise deployment.",
+  title: "Guangzhou Phone Farm Technical Articles",
+  description:
+    "Factory-written guides from Guangzhou Phone Farm: motherboard box setup, OTG/LAN deployment, ADB authorization, WSAPI automation and hardware procurement.",
   path: "/blog",
 });
 

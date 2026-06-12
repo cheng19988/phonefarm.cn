@@ -2,6 +2,7 @@ export const SITE = {
   name: "广州手机农场",
   nameEn: "Guangzhou Phone Farm",
   domain: "phonefarm.cn",
+  /** Canonical production origin — use for sitemap, robots, canonical, JSON-LD. */
   url: "https://www.phonefarm.cn",
   tagline: "Phone Farm Hardware - RFQ",
   taglineEn: "Phone Farm Box Manufacturer - Guangzhou, China",
@@ -12,8 +13,11 @@ export const SITE = {
   description:
     "广州手机农场 - 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
   descriptionEn:
-    "Guangzhou Phone Farm — phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, 12PCS phone array, iPhone farm box, click farm / group-control hardware, OTG/LAN routers. Factory Guangzhou, China. RFQ worldwide.",
+    "Guangzhou Phone Farm — B2B phone farm box manufacturer in Guangzhou. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array, iPhone farm hardware, OTG/LAN routers. Factory assembly, QC and worldwide RFQ.",
 } as const;
+
+/** @deprecated Use SITE.url — kept for env-style references */
+export const SITE_URL = SITE.url;
 
 const RFQ_EMAIL_SUBJECT = "RFQ - Guangzhou Phone Farm";
 

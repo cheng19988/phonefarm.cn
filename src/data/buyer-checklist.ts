@@ -146,6 +146,117 @@ export const BUYER_ESSENTIALS: BuyerEssential[] = [
   },
 ];
 
+export type ProductProcurement = {
+  moq: string;
+  leadTime: string;
+  packingSize: string;
+  grossWeight: string;
+  voltage: string;
+  warranty: string;
+  shippingMethod: string;
+  paymentProcess: string;
+};
+
+const STANDARD_WARRANTY =
+  "Chassis / cabinet: 12 months. Motherboards: 90 days. Fans, cables, hubs: 12 months.";
+const STANDARD_SHIPPING =
+  "From Guangzhou, China — express air (DHL/FedEx) typically 3-7 days; sea freight 15-30 days. Commercial invoice and packing list included. Import duties paid by buyer.";
+const RFQ_PAYMENT =
+  "Submit RFQ -> written quote and proforma -> bank transfer or agreed USDT (TRC20) -> production after payment confirmation.";
+const CHECKOUT_PAYMENT =
+  "Standard SKU: checkout with account -> USDT TRC20 within 30 minutes -> factory confirms and schedules production. Bulk/OEM: proforma invoice first.";
+
+const PROCUREMENT_BY_SLUG: Record<string, ProductProcurement> = {
+  "motherboard-box": {
+    moq: "1 box (sample); bulk discounts from 5+ boxes",
+    leadTime: "3-5 business days (standard in stock)",
+    packingSize: "55 x 38 x 16 cm export carton",
+    grossWeight: "~7 kg per carton",
+    voltage: "220V AC",
+    warranty: STANDARD_WARRANTY,
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: CHECKOUT_PAYMENT,
+  },
+  "phone-farm-box": {
+    moq: "1 box; bulk from 3+ boxes",
+    leadTime: "3-5 days in stock; 7-15 days with custom ROM",
+    packingSize: "62 x 42 x 22 cm export carton",
+    grossWeight: "~12 kg per carton",
+    voltage: "220V AC",
+    warranty: STANDARD_WARRANTY,
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: CHECKOUT_PAYMENT,
+  },
+  "phone-array-12pcs": {
+    moq: "1 unit (sample evaluation)",
+    leadTime: "3-5 days; +5-10 days for custom cradles",
+    packingSize: "48 x 36 x 18 cm export carton",
+    grossWeight: "~6 kg per carton",
+    voltage: "220V AC",
+    warranty: STANDARD_WARRANTY,
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: CHECKOUT_PAYMENT,
+  },
+  "iphone-phone-farm": {
+    moq: "Project quote — typically 1 chassis minimum",
+    leadTime: "Depends on iPhone model supply (confirmed in quote)",
+    packingSize: "Custom chassis — dimensions on proforma",
+    grossWeight: "On proforma invoice",
+    voltage: "220V AC",
+    warranty: STANDARD_WARRANTY,
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: RFQ_PAYMENT,
+  },
+  "network-equipment": {
+    moq: "1 unit or bundled with box order",
+    leadTime: "3-7 days common models; quote for large tiers",
+    packingSize: "Router OEM carton — size per model (IK-MSG series)",
+    grossWeight: "2-8 kg typical per unit",
+    voltage: "220V AC (110V adapter discuss in RFQ)",
+    warranty: "12 months hardware",
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: RFQ_PAYMENT,
+  },
+  "ikuai-enterprise-switch": {
+    moq: "1 unit or rack bundle",
+    leadTime: "Quote per port count / PoE budget",
+    packingSize: "Enterprise switch carton — model on proforma",
+    grossWeight: "3-12 kg depending on port count",
+    voltage: "220V AC",
+    warranty: "12 months",
+    shippingMethod: STANDARD_SHIPPING,
+    paymentProcess: RFQ_PAYMENT,
+  },
+};
+
+const DEFAULT_PROCUREMENT: ProductProcurement = {
+  moq: "1 unit sample or project MOQ on quote",
+  leadTime: "3-30 days depending on SKU and customization",
+  packingSize: "Foam-lined export carton; pallet optional for bulk",
+  grossWeight: "On proforma packing list",
+  voltage: "220V AC standard",
+  warranty: STANDARD_WARRANTY,
+  shippingMethod: STANDARD_SHIPPING,
+  paymentProcess: RFQ_PAYMENT,
+};
+
+export function getProductProcurement(slug: string): ProductProcurement {
+  const physical = getPhysicalSpec(slug);
+  const base = PROCUREMENT_BY_SLUG[slug] ?? { ...DEFAULT_PROCUREMENT };
+
+  if (physical && !PROCUREMENT_BY_SLUG[slug]) {
+    return {
+      ...base,
+      packingSize: `${physical.cartonSize} export carton`,
+      grossWeight: physical.weight,
+      voltage: physical.voltage,
+      leadTime: physical.leadTime,
+    };
+  }
+
+  return base;
+}
+
 export function getPhysicalSpec(slug: string): PhysicalSpec | undefined {
   return PHYSICAL_SPECS.find((s) => s.slug === slug);
 }

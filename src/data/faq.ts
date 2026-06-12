@@ -174,7 +174,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "product",
     question: "What is a box phone farm?",
     answer:
-      "A box phone farm is a metal chassis integrating many Android motherboards or phones with centralized power and cooling. Group-control or click farm software on a Windows PC connects via USB or OTG/LAN for batch or individual device tasks. Used for app testing, QA automation, device management and lawful multi-device operations.",
+      "A box phone farm is a metal chassis integrating many Android motherboards or phones with centralized power and cooling. Group-control software on a Windows PC connects via USB or OTG/LAN for batch or individual device tasks. Used for app testing, QA automation, device management and lawful multi-device operations.",
   },
   {
     category: "product",

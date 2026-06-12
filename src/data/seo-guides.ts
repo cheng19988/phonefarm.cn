@@ -13,7 +13,7 @@ export const SEO_GUIDES: SeoGuide[] = [
     metaDescription:
       "Test and develop software applications efficiently with phone farming. Learn how box phone farms improve automation, multi-device control, and real-device testing at scale.",
     heroSubtitle:
-      "How physical phone farm boxes support software testing, QA automation, click farm operations, and structured multi-device control.",
+      "How physical phone farm boxes support software testing, QA automation, multi-device operations, and structured device control.",
     sections: [
       {
         heading: "Test and Develop Software Applications Efficiently with Phone Farming",
@@ -59,7 +59,7 @@ export const SEO_GUIDES: SeoGuide[] = [
           "Mobile application and game testing",
           "Android development and CI device labs",
           "Device compatibility verification across OEM skins",
-          "Automation workflows and click farm operations",
+          "Automation workflows and multi-device QA operations",
           "Quality assurance and stress testing",
           "Multi-device monitoring and research environments",
           "Social media marketing and content workflow testing (where permitted by platform terms)",

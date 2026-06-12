@@ -1,26 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CONTACT } from "@/lib/config";
 
-export function ContactFormSkeleton() {
-  return (
-    <div className="card-flat space-y-4 animate-pulse">
-      <div className="grid sm:grid-cols-2 gap-4">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-12 bg-[var(--surface)] rounded-lg" />
-        ))}
-      </div>
-      <div className="h-32 bg-[var(--surface)] rounded-lg" />
-      <div className="h-12 bg-[var(--surface)] rounded-lg" />
-    </div>
-  );
-}
+type ContactFormProps = {
+  defaultProduct?: string;
+};
 
-export function ContactForm() {
-  const searchParams = useSearchParams();
+export function ContactForm({ defaultProduct = "" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [startedAt] = useState(() => Date.now());
 
@@ -32,7 +20,6 @@ export function ContactForm() {
     setStatus(res.ok ? "success" : "error");
   }
 
-  const defaultProduct = searchParams.get("product") || searchParams.get("service") || "";
   const inputClass = "form-input";
 
   return (
@@ -138,7 +125,7 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          placeholder="Timeline, software stack (group-control / click farm), router environment, sample vs bulk order..."
+          placeholder="Timeline, group-control software stack, router environment, sample vs bulk order..."
           className={inputClass}
         />
       </div>

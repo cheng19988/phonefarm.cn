@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export const metadata = buildMetadata({
   title: "Phone Farming – Multi-Device Hardware Guide",
   description:
-    "Phone farming with box phone farm hardware: software testing, click farm automation, USB/OTG modes and why physical device farms outperform cloud emulators.",
+    "Phone farming with box phone farm hardware: software testing, multi-device automation, USB/OTG modes and why physical device farms outperform cloud emulators.",
   path: "/phone-farming",
 });
 

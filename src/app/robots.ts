@@ -20,7 +20,15 @@ const AI_AGENTS = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
-  const disallow = ["/admin", "/account/", "/api/", "/orders/"];
+  const disallow = [
+    "/admin",
+    "/admin/",
+    "/account/",
+    "/api/",
+    "/orders/",
+    "/login",
+    "/register",
+  ];
 
   return {
     rules: [

@@ -38,7 +38,7 @@ export default function ManualPage() {
     { name: "Prepare Windows PC", text: "Windows 10/11, uninstall phone assistant apps, obtain ADB authorization files." },
     { name: "Connect USB mode", text: "Power on box, connect USB, tap Allow on debug prompt, verify device list in group-control software." },
     { name: "Configure OTG/LAN", text: "Connect box and PC to same router, scan IP range, switch green OTG mode, save adb tcpip 5555." },
-    { name: "Verify batch control", text: "Test mirror, batch select and click farm / group-control batch operations." },
+    { name: "Verify batch control", text: "Test mirror, batch select and group-control batch operations." },
   ];
 
   return (

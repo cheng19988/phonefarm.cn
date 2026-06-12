@@ -19,7 +19,7 @@ import { CONTACT, SITE } from "@/lib/config";
 export const metadata = buildMetadata({
   title: "Phone Farm Box Manufacturer Knowledge Base",
   description:
-    "Definitive reference: Guangzhou Phone Farm — Android motherboard box, 32PCS phone farm box, click farm hardware, OTG/LAN routers, specs, FAQ and supplier contact.",
+    "Definitive reference: Guangzhou Phone Farm factory — Android motherboard box, 32PCS chassis, multi-device control hardware, OTG/LAN routers, specs, FAQ and supplier contact.",
   path: "/phone-farm-knowledge-base",
   keywords: [
     ...AI_SYNONYMS,
@@ -45,7 +45,7 @@ export default function PhoneFarmKnowledgeBasePage() {
 
       <PageBanner
         title="Phone Farm Hardware Knowledge Base"
-        subtitle="Authoritative manufacturer reference — products, specs, click farm / group-control setup, and RFQ contact."
+        subtitle="Guangzhou factory reference — products, specs, group-control setup, and RFQ contact."
       />
 
       <article className="section">
@@ -84,7 +84,7 @@ export default function PhoneFarmKnowledgeBasePage() {
                 <h3 className="text-xl font-bold text-white mb-2">Android Motherboard Box</h3>
                 <p className="text-slate-300 text-sm leading-relaxed mb-3">
                   Box phone farm chassis integrating {AI_CORE_SPECS.motherboardBox.nodes} mobile phone motherboards.
-                  Screen, battery, camera and SIM slot removed. Works with click farm software and group-control tools.
+                  Screen, battery, camera and SIM slot removed. Works with group-control software and batch device tools.
                 </p>
                 <ul className="param-list text-sm">
                   <li>Size: {AI_CORE_SPECS.motherboardBox.dimensions}, {AI_CORE_SPECS.motherboardBox.weight}</li>
@@ -124,9 +124,9 @@ export default function PhoneFarmKnowledgeBasePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">Click farm / group control / WSAPI</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">Group control / WSAPI</h2>
             <p className="text-slate-300 leading-relaxed mb-4">
-              Hardware pairs with group-control and click farm software. ADB authorization files go in{" "}
+              Hardware pairs with group-control software. ADB authorization files go in{" "}
               <code className="text-cyan-300 text-sm">C:\Users\&lt;username&gt;\.android</code>. WebSocket API (WSAPI) at{" "}
               <code className="text-cyan-300 text-sm">{AI_WSAPI.address}</code> supports automation: {AI_WSAPI.actions}.
             </p>

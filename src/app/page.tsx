@@ -20,12 +20,12 @@ import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 export const metadata = buildMetadata({
   title: "Phone Farm Box Manufacturer | Guangzhou China",
   description:
-    "Guangzhou Phone Farm — phone farm box manufacturer. Android motherboard box (20 nodes), 32PCS phone farm box, click farm / group-control hardware, OTG/LAN routers. Factory RFQ worldwide.",
+    "Guangzhou Phone Farm — Guangzhou factory for phone farm hardware. Android motherboard box (20 nodes), 32PCS chassis, group-control ready devices, OTG/LAN routers. B2B RFQ worldwide.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",
     "box phone farm",
-    "click farm hardware",
+    "multi-device control hardware",
     "Android motherboard box manufacturer",
     "phone farming supplier Guangzhou",
   ],
@@ -44,7 +44,7 @@ const APPLICATIONS = [
   "Mobile application & game testing",
   "Android development & CI device farms",
   "Device compatibility verification",
-  "Automation workflows & click farm operations",
+  "Automation workflows and multi-device QA operations",
   "Quality assurance & stress testing",
   "Multi-device monitoring at scale",
   "Social media & marketing workflow testing (lawful use)",

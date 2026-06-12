@@ -10,6 +10,7 @@ import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
 import { SubsectionHeader } from "@/components/site-sections";
 import { BuyerEssentials } from "@/components/buyer-essentials";
+import { ProductProcurementPanel } from "@/components/product-procurement-panel";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { loadProductBySlug } from "@/lib/catalog";
 import { getProductSeed } from "@/data/products";
@@ -141,6 +142,8 @@ export default async function ProductDetailPage({ params }: Props) {
                 <SubsectionHeader title="Buyer essentials" subtitle="Dimensions, warranty, packaging, remote setup and after-sales — common procurement questions." />
                 <BuyerEssentials productSlug={slug} variant="compact" />
               </section>
+
+              <ProductProcurementPanel slug={slug} />
 
               {seed.specTables?.map((table) => (
                 <section key={table.caption}>

@@ -9,7 +9,7 @@ export const MANUAL_SECTIONS: ManualSection[] = [
     id: "about-equipment",
     title: "1. About the Equipment",
     content: `**Motherboard box / phone farm box**
-One box integrates 20 mobile phone motherboards (or 32PCS full-phone configuration). Screen, battery, camera and SIM slot are removed on motherboard configurations; boards mount in a metal chassis with group-control / click farm software for batch operation.
+One box integrates 20 mobile phone motherboards (or 32PCS full-phone configuration). Screen, battery, camera and SIM slot are removed on motherboard configurations; boards mount in a metal chassis with group-control software for batch operation.
 
 **Electrical**
 220V AC input. Approximately 100W under continuous load (e.g. sustained app/game activity). Centralized power bus inside chassis.

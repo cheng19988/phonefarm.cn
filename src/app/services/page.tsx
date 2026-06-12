@@ -7,9 +7,9 @@ import { buildMetadata } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
-  title: "Factory Services — OEM, ROM, Remote Setup",
+  title: "Guangzhou Factory Services — OEM, ROM, Remote Setup",
   description:
-    "OEM phone farm box, Android assembly, ROM customization, OTG/LAN deployment, router config, remote installation, export shipping.",
+    "Guangzhou Phone Farm services: OEM cabinet build, Android assembly, ROM customization, OTG/LAN network deploy, remote AnyDesk commissioning and export shipping.",
   path: "/services",
 });
 

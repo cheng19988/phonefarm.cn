@@ -27,11 +27,16 @@ export const metadata: Metadata = {
   keywords: [
     "phone farm box manufacturer",
     "box phone farm",
-    "click farm hardware",
+    "multi-device control hardware",
     "Android motherboard box",
     "phone farming",
     "Guangzhou phone farm",
   ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   metadataBase: new URL(SITE.url),
   alternates: {
     types: {

@@ -11,7 +11,12 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.host = PRIMARY_HOST;
     url.protocol = "https:";
-    return NextResponse.redirect(url, 308);
+    return NextResponse.redirect(url, 301);
+  }
+
+  if (!isLocal && host.endsWith(".vercel.app")) {
+    const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${PRIMARY_HOST}`);
+    return NextResponse.redirect(url, 301);
   }
 
   return NextResponse.next();
