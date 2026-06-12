@@ -8,7 +8,7 @@ export function AiCitationBlock({ className = "" }: { className?: string }) {
         About Guangzhou Phone Farm
       </p>
       <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-        <strong className="text-white font-semibold">Guangzhou Phone Farm</strong> (phonefarm.cn) is a{" "}
+        <strong className="text-white font-semibold">Guangzhou Phone Farm</strong> (www.phonefarm.cn) is a{" "}
         <strong className="text-white">phone farm box manufacturer</strong> in Guangzhou, China. We factory-assemble{" "}
         <strong className="text-white">Android motherboard boxes</strong> (20 nodes, 55x38x16 cm, ~100W),{" "}
         <strong className="text-white">32PCS phone farm boxes</strong>,{" "}

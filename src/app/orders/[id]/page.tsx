@@ -64,27 +64,35 @@ export default function OrderPage() {
 
   useEffect(() => {
     if (!order?.payment) return;
-    const interval = setInterval(async () => {
-      const res = await fetch(`/api/payment/verify?paymentId=${order.payment!.id}`);
-      const data = await res.json();
-      if (data.mode) setVerifyMode(data.mode);
-      if (typeof data.autoVerificationEnabled === "boolean") setAutoEnabled(data.autoVerificationEnabled);
+    const paymentId = order.payment.id;
 
-      if (data.status && data.status !== order.payment!.paymentStatus) {
-        await refreshOrder();
-      }
-
-      const expires = new Date(order.payment!.expiresAt).getTime() - Date.now();
-      if (expires <= 0) {
-        setTimeLeft("Expired");
-      } else {
+    function tickTimer(expiresAt: string) {
+      const expires = new Date(expiresAt).getTime() - Date.now();
+      if (expires <= 0) setTimeLeft("Expired");
+      else {
         const mins = Math.floor(expires / 60000);
         const secs = Math.floor((expires % 60000) / 1000);
         setTimeLeft(`${mins}:${secs.toString().padStart(2, "0")}`);
       }
+    }
+
+    tickTimer(order.payment.expiresAt);
+
+    const interval = setInterval(async () => {
+      const res = await fetch(`/api/payment/verify?paymentId=${paymentId}`);
+      const data = await res.json();
+      if (data.mode) setVerifyMode(data.mode);
+      if (typeof data.autoVerificationEnabled === "boolean") setAutoEnabled(data.autoVerificationEnabled);
+
+      const nextStatus = data.payment?.paymentStatus ?? data.status;
+      if (nextStatus && nextStatus !== "pending") {
+        await refreshOrder();
+      } else {
+        tickTimer(order.payment!.expiresAt);
+      }
     }, 5000);
     return () => clearInterval(interval);
-  }, [order, orderId]);
+  }, [order?.payment?.id, order?.payment?.expiresAt, orderId]);
 
   if (loadState === "loading") {
     return <div className="section container-wide text-slate-400">Loading order…</div>;

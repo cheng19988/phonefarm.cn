@@ -144,13 +144,13 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "payment",
     question: "What payment methods are supported?",
     answer:
-      "Bank transfer for corporate orders. For confirmed bulk orders, payment methods are discussed with sales - USDT (TRON TRC20) available when applicable. No automatic checkout on this website.",
+      "Bulk and OEM: proforma invoice, then bank transfer or USDT (TRON TRC20) when agreed with sales. Three standard SKUs (motherboard box, 32PCS box, 12PCS array) also support online USDT checkout after free account registration. RFQ-only SKUs use quote and proforma first.",
   },
   {
     category: "payment",
     question: "Is USDT supported?",
     answer:
-      "Yes for confirmed orders when agreed with sales. This site does not display live payment checkout - quote and proforma invoice first.",
+      "Yes. Bulk orders: USDT (TRC20) when agreed on proforma. Standard SKUs: online USDT checkout on /products after login — 30-minute payment window, exact USDT amount shown at checkout (1:1 with USD list price).",
   },
   {
     category: "payment",

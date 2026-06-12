@@ -19,14 +19,14 @@ export default function FAQPage() {
       <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <PageBanner
         title="FAQ"
-        subtitle="Procurement, installation and after-sales answers for phone farm hardware buyers."
+        subtitle="Procurement, installation and after-sales — 50+ answers for phone farm hardware buyers."
         {...bannerProps("faq")}
       />
       <section className="section border-b border-[var(--border)]">
         <div className="container-wide max-w-4xl">
           <SubsectionHeader
             title="Before you buy"
-            subtitle="The 12 questions procurement teams ask most — dimensions, models, lead time, packaging, warranty, photos and remote install."
+            subtitle="Key procurement facts — dimensions, models, lead time, packaging, warranty, photos, remote install and USDT checkout on standard SKUs."
           />
           <BuyerEssentials variant="full" />
         </div>
