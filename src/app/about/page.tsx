@@ -14,10 +14,17 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About — Guangzhou Phone Farm Factory",
+  title: "About - Guangzhou Phone Farm Factory",
   description:
-    "Guangzhou-based phone farm hardware manufacturer — assembly, QC, packing, ROM customization and remote setup for bulk device deployment.",
+    "Phone farm factory in Guangzhou since 2017. B2B phone farm box manufacturer: assembly, QC burn-in, export packing, ROM customization and remote AnyDesk setup for device farm hardware worldwide.",
   path: "/about",
+  keywords: [
+    "phone farm factory",
+    "phone farm box manufacturer",
+    "Guangzhou phone farm",
+    "phone farm hardware supplier",
+    "device farm hardware factory",
+  ],
 });
 
 export default function AboutPage() {

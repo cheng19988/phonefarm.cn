@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Box Buyer Guide — MOQ, Warranty & Export",
+  title: "Phone Farm Box Buyer Guide - MOQ, Warranty & Export",
   description:
     "How to choose a phone farm box supplier: MOQ, lead time, packing size, gross weight, voltage, warranty, USDT payment, export shipping and remote setup. Guangzhou factory checklist.",
   path: "/phone-farm-buyer-guide",
@@ -20,5 +20,5 @@ export const metadata = buildMetadata({
 export default function PhoneFarmBuyerGuidePage() {
   const guide = getSeoGuide("phone-farm-buyer-guide");
   if (!guide) notFound();
-  return <SeoGuidePageView guide={guide} />;
+  return <SeoGuidePageView guide={guide} path="/phone-farm-buyer-guide" />;
 }

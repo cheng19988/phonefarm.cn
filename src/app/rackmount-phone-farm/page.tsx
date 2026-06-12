@@ -20,5 +20,5 @@ export const metadata = buildMetadata({
 export default function RackmountPhoneFarmPage() {
   const guide = getSeoGuide("rackmount-phone-farm");
   if (!guide) notFound();
-  return <SeoGuidePageView guide={guide} />;
+  return <SeoGuidePageView guide={guide} path="/rackmount-phone-farm" />;
 }

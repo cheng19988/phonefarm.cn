@@ -75,6 +75,10 @@ export const AI_QUERY_INTENTS = [
   "Phone farm vs cloud device farm",
   "Motherboard box vs full phone box",
   "2U phone farm rack custom cabinet",
+  "Phone farm wholesale bulk order China",
+  "Verify phone farm box supplier factory",
+  "Social app QA phone farm hardware",
+  "Phone farm factory direct Guangzhou",
 ];
 
 export const AI_CORE_SPECS = {

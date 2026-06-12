@@ -13,7 +13,7 @@ import { BuyerEssentials } from "@/components/buyer-essentials";
 import { ProductProcurementPanel } from "@/components/product-procurement-panel";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { loadProductBySlug } from "@/lib/catalog";
-import { getProductSeed } from "@/data/products";
+import { getProductSeed, getProductSeo } from "@/data/products";
 import { getProductGallery } from "@/lib/images";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
 import { LIST_PRICE_NOTES, canBuyOnline, formatListPrice } from "@/lib/product-pricing";
@@ -26,11 +26,13 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const seed = getProductSeed(slug);
   if (!seed) return {};
+  const seo = getProductSeo(slug);
   return buildMetadata({
-    title: seed.name,
-    description: seed.shortDesc,
+    title: seo?.title ?? seed.name,
+    description: seo?.description ?? seed.shortDesc,
     path: `/products/${slug}`,
     image: seed.imageHero,
+    keywords: seo?.keywords,
   });
 }
 

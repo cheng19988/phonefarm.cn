@@ -7,10 +7,16 @@ import { buildMetadata } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
-  title: "Guangzhou Factory Services — OEM, ROM, Remote Setup",
+  title: "Phone Farm Factory Services - OEM, ROM, Remote Setup",
   description:
-    "Guangzhou Phone Farm services: OEM cabinet build, Android assembly, ROM customization, OTG/LAN network deploy, remote AnyDesk commissioning and export shipping.",
+    "Phone farm box with remote setup included: OEM cabinet build, Android assembly, ROM customization, OTG/LAN network deploy, AnyDesk commissioning and export shipping from Guangzhou.",
   path: "/services",
+  keywords: [
+    "phone farm box with remote setup",
+    "custom phone farm box",
+    "phone farm factory services",
+    "OEM phone farm cabinet",
+  ],
 });
 
 export default function ServicesPage() {

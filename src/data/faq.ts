@@ -302,6 +302,42 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       "Foam-lined cartons from Guangzhou. Express air 3–7 days or sea 15–30 days. Commercial invoice and packing list included. Import duties paid by buyer unless stated on proforma. Details: /blog/phone-farm-equipment-export-shipping",
   },
+  {
+    category: "product",
+    question: "Can phone farm hardware be used for social media app testing and QA?",
+    answer:
+      "Yes for lawful app QA, compatibility testing and regression on social or short-video apps when your workflow complies with platform terms. Hardware provides real devices for UI testing, performance soak tests and multi-device lab workflows — not for policy violations or fraud. Guide: /blog/phone-farm-social-app-qa-testing",
+  },
+  {
+    category: "product",
+    question: "What is a multi-device lab for account isolation testing?",
+    answer:
+      "A multi-device lab uses separate physical devices (or isolated network paths) so QA teams validate login flows, MDM policies and enterprise apps without cross-device data leakage. Phone farm chassis provide the hardware layer; your software stack handles isolation. Hardware for development and testing only.",
+  },
+  {
+    category: "product",
+    question: "Can phone farm boxes support mobile ad SDK and ad verification testing?",
+    answer:
+      "Yes — device labs use real hardware to test ad SDK integration, rendering, latency and compatibility across OEM Android skins before production rollout. This is standard app and SDK QA, not fraudulent ad traffic. See /blog/mobile-device-farm-app-qa-guide",
+  },
+  {
+    category: "order",
+    question: "What is phone farm wholesale or bulk order pricing?",
+    answer:
+      "Wholesale pricing depends on SKU, quantity, ROM scope and export terms. Motherboard box bulk discounts often start around 5+ boxes; OEM cabinets are project-quoted. Request proforma via /contact — we reply within 24 hours on business days. Guide: /blog/phone-farm-wholesale-bulk-order",
+  },
+  {
+    category: "order",
+    question: "Is Guangzhou Phone Farm a phone farm factory with direct pricing?",
+    answer:
+      "Yes — we assemble chassis in Guangzhou (since 2017), not a trader reselling unknown hardware. Factory-direct RFQ via /contact, WhatsApp or email. About page: /about · Quality: /quality-assurance",
+  },
+  {
+    category: "order",
+    question: "What is included in a phone farm box order with remote setup?",
+    answer:
+      "Hardware shipment with export packing, setup documentation, and remote AnyDesk session covering USB/OTG mode, ADB authorization and group-control software walkthrough. Schedule within 5 business days of arrival. Services detail: /services · FAQ: /faq",
+  },
 ];
 
 export function getFaqByCategory(category: string) {

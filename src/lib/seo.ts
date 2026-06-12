@@ -200,15 +200,55 @@ export function productJsonLd(product: {
 
 export function itemListJsonLd(items: { name: string; url: string; description?: string }[]) {
   return {
-    "@context": "https://schema.org",
     "@type": "ItemList",
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
       url: item.url,
-      description: item.description,
+      ...(item.description ? { description: item.description } : {}),
     })),
+  };
+}
+
+export function collectionPageJsonLd(options: {
+  name: string;
+  description: string;
+  path: string;
+  items: { name: string; url: string; description?: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${SITE.url}${options.path}#webpage`,
+    name: options.name,
+    description: options.description,
+    url: `${SITE.url}${options.path}`,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    about: { "@id": `${SITE.url}/#organization` },
+    mainEntity: itemListJsonLd(options.items),
+  };
+}
+
+export function guidePageJsonLd(guide: {
+  title: string;
+  metaDescription: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE.url}${guide.path}#webpage`,
+    name: guide.title,
+    description: guide.metaDescription,
+    url: `${SITE.url}${guide.path}`,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    about: {
+      "@type": "Thing",
+      name: "Phone farm box hardware procurement",
+    },
+    publisher: { "@id": `${SITE.url}/#organization` },
+    inLanguage: "en",
   };
 }
 
@@ -304,13 +344,25 @@ export function contactPageJsonLd() {
 }
 
 export function blogIndexJsonLd() {
-  return itemListJsonLd(
-    getAiBlogLinks().map((b) => ({ name: b.title, url: b.url }))
-  );
+  const items = getAiBlogLinks().map((b) => ({ name: b.title, url: b.url }));
+  return collectionPageJsonLd({
+    name: "Guangzhou Phone Farm Technical Articles",
+    description: "Factory-written phone farm hardware guides, buyer checklists and setup documentation.",
+    path: "/blog",
+    items,
+  });
 }
 
 export function productCatalogJsonLd() {
-  return itemListJsonLd(
-    getAiProductLinks().map((p) => ({ name: p.name, url: p.url, description: p.summary }))
-  );
+  const items = getAiProductLinks().map((p) => ({
+    name: p.name,
+    url: p.url,
+    description: p.summary,
+  }));
+  return collectionPageJsonLd({
+    name: "Phone Farm Equipment Catalog",
+    description: "Guangzhou factory phone farm box, device farm hardware and network equipment catalog.",
+    path: "/products",
+    items,
+  });
 }

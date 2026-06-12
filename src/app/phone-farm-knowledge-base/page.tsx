@@ -31,7 +31,7 @@ export const metadata = buildMetadata({
 export default function PhoneFarmKnowledgeBasePage() {
   const products = getAiProductLinks();
   const articles = getAiBlogLinks();
-  const faqExcerpts = getAiFaqExcerpts(15);
+  const faqExcerpts = getAiFaqExcerpts(20);
 
   return (
     <>

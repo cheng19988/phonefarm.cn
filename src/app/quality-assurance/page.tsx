@@ -13,5 +13,5 @@ export const metadata = buildMetadata({
 export default function QualityAssurancePage() {
   const guide = getSeoGuide("quality-assurance");
   if (!guide) notFound();
-  return <SeoGuidePageView guide={guide} />;
+  return <SeoGuidePageView guide={guide} path="/quality-assurance" />;
 }

@@ -20,5 +20,5 @@ export const metadata = buildMetadata({
 export default function AndroidDeviceFarmPage() {
   const guide = getSeoGuide("android-device-farm");
   if (!guide) notFound();
-  return <SeoGuidePageView guide={guide} />;
+  return <SeoGuidePageView guide={guide} path="/android-device-farm" />;
 }

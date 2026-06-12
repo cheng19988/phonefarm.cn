@@ -9,10 +9,17 @@ import { RFQ_COPY, CONTACT } from "@/lib/config";
 import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
-  title: "Pricing & MOQ — Configuration-Based Quotes",
+  title: "Pricing & MOQ - Phone Farm Box Bulk Quotes",
   description:
-    "Phone farm hardware pricing depends on configuration, quantity, and ROM scope. Standard SKU, bulk, and OEM tiers — request a Guangzhou factory quote.",
+    "Phone farm box pricing, MOQ, lead time, warranty and buyer checklist. Dimensions, weight, voltage for motherboard box, 32PCS and 12PCS array. Factory RFQ and USDT on standard SKUs.",
   path: "/pricing",
+  keywords: [
+    "phone farm box MOQ",
+    "phone farm wholesale",
+    "buy phone farm box",
+    "phone farm equipment pricing",
+    "phone farm box bulk order",
+  ],
 });
 
 export default function PricingPage() {

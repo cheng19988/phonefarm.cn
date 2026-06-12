@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner } from "@/components/site-sections";
 import type { SeoGuide } from "@/data/seo-guides";
 import { CONTACT } from "@/lib/config";
+import { guidePageJsonLd } from "@/lib/seo";
 
-export function SeoGuidePageView({ guide }: { guide: SeoGuide }) {
+export function SeoGuidePageView({ guide, path }: { guide: SeoGuide; path: string }) {
   return (
     <>
+      <JsonLd data={guidePageJsonLd({ title: guide.title, metaDescription: guide.metaDescription, path })} />
       <PageBanner title={guide.title} subtitle={guide.heroSubtitle} />
 
       <article className="section">

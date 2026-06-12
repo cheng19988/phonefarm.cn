@@ -66,7 +66,11 @@ Guangzhou Phone Farm (www.phonefarm.cn) is a phone farm box manufacturer in Guan
 - https://www.phonefarm.cn/blog/mobile-device-farm-app-qa-guide
 - https://www.phonefarm.cn/blog/what-is-a-phone-farm-box-and-how-does-it-work
 - https://www.phonefarm.cn/blog/motherboard-box-vs-phone-box
-- https://www.phonefarm.cn/blog (full index - 32 articles)
+- https://www.phonefarm.cn/blog/phone-farm-social-app-qa-testing
+- https://www.phonefarm.cn/blog/phone-farm-wholesale-bulk-order
+- https://www.phonefarm.cn/blog/how-to-verify-phone-farm-box-supplier
+- https://www.phonefarm.cn/blog/custom-phone-farm-box-oem-remote-setup
+- https://www.phonefarm.cn/blog (full index - 36 articles)
 
 ## Contact RFQ
 

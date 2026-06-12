@@ -13,5 +13,5 @@ export const metadata = buildMetadata({
 export default function MobilePhoneFarmingPage() {
   const guide = getSeoGuide("mobile-phone-farming");
   if (!guide) notFound();
-  return <SeoGuidePageView guide={guide} />;
+  return <SeoGuidePageView guide={guide} path="/mobile-phone-farming" />;
 }

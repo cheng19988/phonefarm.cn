@@ -664,6 +664,95 @@ export const PRODUCT_BEST_FOR: Record<string, string> = {
   "remote-control-setup": "Reseller sample order",
 };
 
+/** Per-SKU SEO titles and keywords for product detail pages. */
+export const PRODUCT_SEO: Record<
+  string,
+  { title: string; description?: string; keywords: string[] }
+> = {
+  "motherboard-box": {
+    title: "Android Motherboard Phone Farm Box - 20 Nodes",
+    description:
+      "Buy Android motherboard phone farm box: 20 nodes, 55x38x16 cm, ~7 kg, 220V ~100W. Factory-direct device farm hardware for app QA and multi-device labs. RFQ Guangzhou.",
+    keywords: [
+      "motherboard phone farm box",
+      "Android phone farm",
+      "Android motherboard box",
+      "buy phone farm box",
+      "device farm hardware",
+      "phone farm equipment",
+    ],
+  },
+  "phone-farm-box": {
+    title: "32PCS Phone Farm Box - Android Device Farm Hardware",
+    description:
+      "32PCS phone farm box with ROM customization, 3-fan cooling, USB and OTG/LAN. Mobile device farm chassis for medium-scale Android labs. Guangzhou factory RFQ.",
+    keywords: [
+      "32PCS phone farm box",
+      "phone farm box",
+      "Android device farm hardware",
+      "buy phone farm box",
+      "phone farm equipment",
+      "mobile device farm",
+    ],
+  },
+  "phone-array-12pcs": {
+    title: "12PCS Phone Array - Mobile Device Farm Lab Hardware",
+    description:
+      "12PCS hot-swap phone array for pilot labs and frequent device swaps. Full phone or motherboard slots, optional built-in PC. Phone farm equipment RFQ.",
+    keywords: [
+      "12PCS phone array",
+      "mobile device farm",
+      "phone farm equipment",
+      "device farm hardware",
+      "phone farm box supplier",
+    ],
+  },
+  "iphone-phone-farm": {
+    title: "iPhone Farm Box - iOS Multi-Device Chassis",
+    description:
+      "iPhone farm box hardware for iOS device labs. Custom configuration per model and iOS version. Guangzhou phone farm factory wholesale RFQ.",
+    keywords: [
+      "iPhone farm box",
+      "phone farm box wholesale",
+      "phone farm hardware supplier",
+      "device farm hardware",
+    ],
+  },
+  "network-equipment": {
+    title: "Phone Farm Network Router - OTG/LAN 100+ Devices",
+    description:
+      "Enterprise router for OTG/LAN phone farms. IK-MSG series supports 300-10,000 device tiers. Phone farm equipment for large Android device farms.",
+    keywords: [
+      "OTG/LAN phone farm",
+      "phone farm network router",
+      "device farm hardware",
+      "Android phone farm",
+    ],
+  },
+  "ikuai-enterprise-switch": {
+    title: "Enterprise Switch for Phone Farm LAN",
+    description:
+      "L2/L3 and PoE enterprise switch for large phone farm LAN segments. Device farm infrastructure from Guangzhou factory.",
+    keywords: ["phone farm network", "device farm hardware", "phone farm equipment"],
+  },
+  "custom-cabinet": {
+    title: "Rackmount & Custom Phone Farm Cabinet - OEM",
+    description:
+      "Rackmount phone farm cabinets and 2U-style OEM chassis. Custom tray layout, cooling, PDU for 50-500+ node device farms. Factory quote.",
+    keywords: [
+      "rackmount phone farm",
+      "2U phone farm rack",
+      "custom phone farm box",
+      "phone farm factory",
+      "OEM phone farm cabinet",
+    ],
+  },
+};
+
+export function getProductSeo(slug: string) {
+  return PRODUCT_SEO[slug];
+}
+
 export function getProductBestFor(slug: string) {
   return PRODUCT_BEST_FOR[slug] || "Contact for configuration";
 }
