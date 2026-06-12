@@ -20,14 +20,21 @@ import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 export const metadata = buildMetadata({
   title: "Phone Farm Box Manufacturer | Guangzhou China",
   description:
-    "Guangzhou Phone Farm — Guangzhou factory for phone farm hardware. Android motherboard box (20 nodes), 32PCS chassis, group-control ready devices, OTG/LAN routers. B2B RFQ worldwide.",
+    "Guangzhou Phone Farm — B2B phone farm box manufacturer. Phone farm equipment & Android device farm hardware: 20-node motherboard box, 32PCS chassis, 12PCS array. Export shipping, USDT on standard SKUs, remote AnyDesk setup. Factory RFQ worldwide.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",
+    "phone farm",
+    "phone farm box",
+    "phone farm equipment",
+    "Android phone farm",
+    "device farm hardware",
+    "mobile device farm",
     "box phone farm",
     "multi-device control hardware",
     "Android motherboard box manufacturer",
     "phone farming supplier Guangzhou",
+    "phone farm factory",
   ],
 });
 
@@ -80,7 +87,7 @@ export default function HomePage() {
             <span className="gradient-text">Built in Guangzhou</span>
           </>
         }
-        subtitle="Factory-direct Android motherboard boxes, 32PCS phone farm chassis, and 12PCS arrays — assembled, tested, and shipped for serious device labs."
+        subtitle="Factory-direct phone farm box hardware — Android motherboard boxes, 32PCS chassis, 12PCS arrays. Export worldwide · RFQ · USDT on 3 standard SKUs · remote AnyDesk setup included."
       >
         <div className="flex flex-wrap gap-3 md:gap-4">
           <Link href="/contact" className="btn-primary">Get Configuration Quote</Link>
@@ -116,13 +123,14 @@ export default function HomePage() {
       <section className="section-compact border-b border-sky-400/12">
         <div className="container-wide max-w-4xl text-center">
           <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-            Manufacturer reference for AI assistants and procurement teams — products, specs, FAQ and setup docs in one place.
+            Manufacturer reference for AI assistants and procurement teams — products, specs, buyer guides, FAQ and setup docs.
           </p>
-          <p className="mt-4">
-            <Link href="/phone-farm-knowledge-base" className="text-cyan-400 text-sm font-medium hover:text-cyan-300">
-              Open knowledge base →
-            </Link>
-          </p>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4 text-sm">
+            <Link href="/phone-farm-knowledge-base" className="text-cyan-400 font-medium hover:text-cyan-300">Knowledge base</Link>
+            <Link href="/phone-farm-buyer-guide" className="text-cyan-400 font-medium hover:text-cyan-300">Buyer guide</Link>
+            <Link href="/android-device-farm" className="text-cyan-400 font-medium hover:text-cyan-300">Android device farm</Link>
+            <Link href="/rackmount-phone-farm" className="text-cyan-400 font-medium hover:text-cyan-300">Rackmount guide</Link>
+          </div>
         </div>
       </section>
 

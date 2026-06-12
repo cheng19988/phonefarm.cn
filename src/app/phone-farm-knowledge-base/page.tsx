@@ -168,6 +168,16 @@ export default function PhoneFarmKnowledgeBasePage() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-bold text-white mb-4">Buyer & procurement guides</h2>
+            <ul className="param-list">
+              <li><Link href="/phone-farm-buyer-guide" className="text-cyan-400 hover:text-cyan-300">Phone farm box buyer guide</Link> — MOQ, lead time, warranty, export</li>
+              <li><Link href="/android-device-farm" className="text-cyan-400 hover:text-cyan-300">Android phone farm & device farm hardware</Link></li>
+              <li><Link href="/rackmount-phone-farm" className="text-cyan-400 hover:text-cyan-300">Rackmount & 2U phone farm rack guide</Link></li>
+              <li><Link href="/pricing" className="text-cyan-400 hover:text-cyan-300">Pricing & buyer checklist</Link> — dimensions, weight, voltage</li>
+            </ul>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-bold text-white mb-4">FAQ excerpts</h2>
             <div className="space-y-6">
               {faqExcerpts.map((f) => (

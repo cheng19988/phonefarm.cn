@@ -245,6 +245,129 @@ Guangzhou Phone Farm has supported domestic and international enterprise custome
 
 Send project requirements: /contact`,
   },
+  {
+    slug: "phone-farm-box-buyer-guide-2026",
+    title: "Phone Farm Box Buyer Guide 2026 — Choose a Supplier",
+    category: "Buyer Guide",
+    date: "2026-06-10",
+    excerpt: "MOQ, lead time, warranty, export shipping, voltage, packing size and how to evaluate phone farm box manufacturers before bulk order.",
+    content: `This buyer guide helps B2B teams procure phone farm equipment from Guangzhou Phone Farm or compare any supplier using the same checklist.
+
+**Define your SKU**
+- 20-node motherboard box for density and low power
+- 32PCS chassis for 32 devices with ROM scope
+- 12PCS array for hot-swap evaluation labs
+- Rackmount OEM for 50–500+ nodes
+
+**Verify the factory**
+Require written BOM, sample order path, burn-in evidence, packing photos on request and remote AnyDesk demo for first orders.
+
+**Export terms**
+Ship from Guangzhou: express 3–7 days or sea 15–30 days. Foam cartons, commercial invoice. MOQ often 1 box for samples; bulk discounts from 5+ boxes on motherboard SKU.
+
+**Payment**
+Bulk: proforma → bank transfer or USDT (TRC20). Standard SKUs: optional online USDT checkout.
+
+**Full guide page:** /phone-farm-buyer-guide · RFQ: /contact · FAQ: /faq`,
+  },
+  {
+    slug: "android-phone-farm-hardware-explained",
+    title: "Android Phone Farm Hardware Explained for B2B Buyers",
+    category: "Knowledge Base",
+    date: "2026-06-08",
+    excerpt: "What is an Android phone farm? Device farm hardware, motherboard boxes, and how mobile device labs differ from emulators.",
+    content: `An **Android phone farm** connects real devices or motherboards to one PC for batch control, app QA and device management workflows.
+
+**Hardware layers**
+1. Chassis — motherboard box, 32PCS box or 12PCS array
+2. Control PC — Windows 10/11, USB controllers or OTG/LAN router
+3. Software — group-control tools after ADB authorization
+
+**Why real device farm hardware**
+Emulators and cloud phones cannot replicate every OEM skin, sensor and network stack. Device farm hardware is the reference lab for compatibility testing and CI pipelines.
+
+**Guangzhou Phone Farm SKUs**
+See /products/motherboard-box and /android-device-farm guide. RFQ: /contact`,
+  },
+  {
+    slug: "phone-farm-vs-cloud-device-farm",
+    title: "Phone Farm Box vs Cloud Device Farm — When to Use Real Hardware",
+    category: "Hardware Selection",
+    date: "2026-06-05",
+    excerpt: "Compare owning phone farm box hardware vs cloud phones and emulators for QA, CI and multi-device workflows.",
+    content: `**Cloud device farm**
+Subscription cost, network latency, vendor lock-in. Good for quick spikes but expensive at 100+ nodes long term.
+
+**Box phone farm (owned hardware)**
+CapEx per node, full ADB, offline labs, exportable asset. Guangzhou Phone Farm assembles chassis with QC burn-in.
+
+**Emulator farm**
+Fast for unit tests; weak for OEM-specific bugs, GPU and telephony paths.
+
+**Recommendation**
+Use real phone farm hardware when QA, compatibility and production-like behavior matter. Use emulators for early dev; cloud for burst testing if budget allows.
+
+Compare SKUs: /products · Guide: /phone-farming · RFQ: /contact`,
+  },
+  {
+    slug: "rackmount-vs-desktop-phone-farm-box",
+    title: "Rackmount vs Desktop Phone Farm Box — Layout Guide",
+    category: "Hardware Selection",
+    date: "2026-06-03",
+    excerpt: "When to use desktop motherboard boxes vs rackmount or 2U-style cabinets for large Android device farms.",
+    content: `**Desktop boxes (55×38×16 cm class)**
+Best for 20–100 nodes, flexible deployment, lower initial cost. Stack on shelves; one PC controls 3–5 boxes.
+
+**Rackmount / OEM cabinets**
+Best for 50–500+ nodes, clean cable routing, PDU integration, data-center HVAC. Lead time 15–30 days after drawing approval.
+
+**2U-style planning**
+Not every rack build uses full 42U — partial racks and bench cabinets are common. Send floor plan in RFQ.
+
+Full rack guide: /rackmount-phone-farm · OEM product: /products/custom-cabinet · Contact: /contact`,
+  },
+  {
+    slug: "mobile-device-farm-app-qa-guide",
+    title: "Mobile Device Farm for App QA & Compatibility Testing",
+    category: "Knowledge Base",
+    date: "2026-06-01",
+    excerpt: "How QA teams use phone farm hardware for batch device testing, regression suites and multi-account lab workflows (lawful use).",
+    content: `A **mobile device farm** lets QA run the same test suite on dozens of real Android devices in parallel.
+
+**Typical workflow**
+1. Flash or ROM-scope boards for auto-boot and persistent ADB
+2. Connect chassis via USB or OTG/LAN
+3. CI or group-control software pushes APK and collects logs
+4. Remote AnyDesk setup from factory on first deployment
+
+**Use cases (lawful)**
+App compatibility across OEM skins, game performance soak tests, MDM validation, enterprise device ops testing.
+
+**Not supported**
+Platform ToS violations, fraud or unauthorized automation — hardware is for development and testing only.
+
+Hardware: /products · Manual: /manual · RFQ: /contact`,
+  },
+  {
+    slug: "phone-farm-equipment-export-shipping",
+    title: "Phone Farm Equipment Export Shipping from Guangzhou",
+    category: "Buyer Guide",
+    date: "2026-05-28",
+    excerpt: "How phone farm box hardware is packed, shipped internationally, and what buyers should plan for customs and freight.",
+    content: `**Packing**
+Foam-lined export cartons per chassis. Gross weight on proforma (e.g. ~7 kg for 20-node box). Pallet option for multi-carton bulk.
+
+**Shipping methods**
+Express air (DHL/FedEx) typically 3–7 days from Guangzhou. Sea freight 15–30 days for large orders. We can introduce freight forwarders.
+
+**Documents**
+Commercial invoice and packing list included. Import duties and brokerage are buyer responsibility unless agreed otherwise in proforma.
+
+**Pre-shipment**
+Photos or short packing video on request. Report shipping damage within 48 hours with photos.
+
+Procurement FAQ: /faq · Buyer guide: /phone-farm-buyer-guide · RFQ: /contact`,
+  },
   ...BLOG_POSTS_EXTRA,
 ];
 

@@ -11,10 +11,17 @@ import { bannerProps } from "@/lib/banners";
 import { getProductCardImage } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Products — Guangzhou Factory Hardware Catalog",
+  title: "Phone Farm Equipment Catalog — Device Farm Hardware",
   description:
-    "Browse Guangzhou Phone Farm SKUs: 20-node Android motherboard box, 32PCS chassis, 12PCS array, iPhone farm hardware, enterprise routers and OEM cabinets. Factory RFQ.",
+    "Guangzhou factory catalog: phone farm box, phone farm equipment, Android phone farm & mobile device farm hardware. Motherboard box, 32PCS chassis, arrays, routers, rackmount OEM. RFQ export.",
   path: "/products",
+  keywords: [
+    "phone farm equipment",
+    "device farm hardware",
+    "phone farm box supplier",
+    "Android phone farm hardware",
+    "buy phone farm box",
+  ],
 });
 
 export default async function ProductsPage({

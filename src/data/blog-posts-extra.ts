@@ -155,8 +155,8 @@ WebSocket API (WSAPI) automation at 127.0.0.1:22223 for custom tooling.
 Manual API section: /manual#api-automation · Hardware: /products/motherboard-box`,
   },
   {
-    slug: "what-is-a-phone-farm-how-people-use-smartphones-to-earn-money",
-    title: "What Is a Phone Farm? How People Use Smartphones in Device Operations",
+    slug: "phone-farm-device-operations-guide",
+    title: "What Is a Phone Farm? Device Operations & Professional Use",
     category: "Knowledge Base",
     date: "2025-08-19",
     excerpt: "Overview of phone farm concepts, hardware requirements and legitimate professional applications.",

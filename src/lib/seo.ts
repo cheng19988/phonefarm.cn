@@ -23,6 +23,12 @@ export const DEFAULT_KEYWORDS = [
   "phone farm box manufacturer",
   "box phone farm",
   "phone farming hardware",
+  "phone farm equipment",
+  "phone farm box",
+  "phone farm",
+  "Android phone farm",
+  "mobile device farm",
+  "device farm hardware",
   "multi-device control hardware",
   "Android motherboard box",
   "32PCS phone farm box",
@@ -33,6 +39,8 @@ export const DEFAULT_KEYWORDS = [
   "mobile phone farming",
   "motherboard farm box",
   "Guangzhou phone farm",
+  "phone farm factory",
+  "buy phone farm box",
 ];
 
 export function buildMetadata({
@@ -275,6 +283,24 @@ export function howToJsonLd(steps: { name: string; text: string }[]) {
 
 export function globalJsonLdBundle() {
   return [organizationJsonLd(), websiteJsonLd()];
+}
+
+export function contactPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${SITE.url}/contact#webpage`,
+    url: `${SITE.url}/contact`,
+    name: `Contact ${SITE.nameEn} — Phone Farm Hardware RFQ`,
+    description:
+      "Request a factory quote for phone farm box hardware. Quantity, device type, connection mode, shipping country and customization.",
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    about: { "@id": `${SITE.url}/#organization` },
+    mainEntity: {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+    },
+  };
 }
 
 export function blogIndexJsonLd() {

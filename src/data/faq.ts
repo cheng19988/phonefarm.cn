@@ -230,6 +230,78 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       "Yes — dedicated sales contact, remote AnyDesk setup included with hardware orders, and warranty-period remote diagnostics.",
   },
+  {
+    category: "product",
+    question: "What is the difference between a phone farm and a mobile device farm lab?",
+    answer:
+      "Both terms describe many real devices controlled from one PC. A phone farm often means dedicated chassis hardware (motherboard box, 32PCS box). A mobile device farm lab is the broader QA/CI environment including PCs, routers and software. We supply the hardware layer; you run lawful testing workflows.",
+  },
+  {
+    category: "product",
+    question: "What is an Android phone farm?",
+    answer:
+      "An Android phone farm is a fleet of real Android phones or motherboards connected to one PC for batch control, app QA and device management. Guangzhou Phone Farm supplies chassis hardware — see /android-device-farm and /products/motherboard-box.",
+  },
+  {
+    category: "product",
+    question: "What is phone farm equipment?",
+    answer:
+      "Phone farm equipment includes the chassis (motherboard box, 32PCS box, 12PCS array), power and data cabling, optional routers/switches for OTG/LAN, and export packing. Software and control PCs are configured on your side; we include remote setup support with hardware orders.",
+  },
+  {
+    category: "order",
+    question: "How do I choose a phone farm box manufacturer in China?",
+    answer:
+      "Verify factory assembly (not trader), sample order path, written warranty, burn-in QC, packing photos on request, and remote demo via AnyDesk. Compare specs: carton size, weight, voltage, MOQ and lead time. Full checklist: /phone-farm-buyer-guide",
+  },
+  {
+    category: "order",
+    question: "Can I buy a phone farm box with remote setup included?",
+    answer:
+      "Yes. Basic remote installation via AnyDesk is included with hardware orders — USB/OTG mode, ADB authorization and group-control software walkthrough. Schedule within 5 business days of hardware arrival.",
+  },
+  {
+    category: "order",
+    question: "What is the MOQ for phone farm hardware export orders?",
+    answer:
+      "Sample MOQ is typically 1 box or 1× 12PCS array for evaluation. Bulk MOQ depends on SKU — motherboard box bulk discounts often start around 5+ boxes. OEM cabinets are project-based. Confirmed on proforma invoice.",
+  },
+  {
+    category: "payment",
+    question: "Is USDT payment accepted for phone farm box orders?",
+    answer:
+      "Yes for confirmed orders when agreed with sales — TRON TRC20 USDT. Three standard SKUs (motherboard box, 32PCS box, 12PCS array) also support online USDT checkout after free account registration. Bulk orders usually use proforma invoice first.",
+  },
+  {
+    category: "product",
+    question: "Phone farm box vs cloud phone or emulator — when use real hardware?",
+    answer:
+      "Use real phone farm hardware when you need OEM-specific behavior, sensors, GPU paths and full ADB — typical for app QA, compatibility and production-like testing. Emulators suit early dev; cloud phones suit short bursts but cost more at scale. Guide: /blog/phone-farm-vs-cloud-device-farm",
+  },
+  {
+    category: "product",
+    question: "Can phone farm hardware support app QA and compatibility testing?",
+    answer:
+      "Yes — primary lawful use cases include mobile app QA, regression testing, compatibility across OEM Android skins, game performance soak tests and enterprise device lab workflows. Hardware is for development and testing only.",
+  },
+  {
+    category: "product",
+    question: "Do you offer rackmount or 2U phone farm cabinets?",
+    answer:
+      "Yes as OEM custom projects — partial rack, 42U-class cabinets or floor cabinets with custom tray layout, cooling and PDU. Lead time 15–30 days after drawing approval. Guide: /rackmount-phone-farm · Product: /products/custom-cabinet",
+  },
+  {
+    category: "order",
+    question: "Where can I buy phone farm box hardware in bulk?",
+    answer:
+      "Contact Guangzhou Phone Farm factory directly via /contact RFQ, WhatsApp or email. We export worldwide from Guangzhou. Standard SKUs may use online checkout; bulk and OEM use proforma invoice.",
+  },
+  {
+    category: "order",
+    question: "How does export shipping work for phone farm equipment?",
+    answer:
+      "Foam-lined cartons from Guangzhou. Express air 3–7 days or sea 15–30 days. Commercial invoice and packing list included. Import duties paid by buyer unless stated on proforma. Details: /blog/phone-farm-equipment-export-shipping",
+  },
 ];
 
 export function getFaqByCategory(category: string) {

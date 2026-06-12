@@ -1,8 +1,9 @@
 import { ContactForm } from "@/components/contact-form";
 import { OrderFlowGuide } from "@/components/order-flow-guide";
 import { SalesContactCard } from "@/components/sales-contact-card";
+import { JsonLd } from "@/components/shared";
 import { PageBanner } from "@/components/site-sections";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, contactPageJsonLd } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
@@ -22,6 +23,7 @@ export default async function ContactPage({ searchParams }: Props) {
 
   return (
     <>
+      <JsonLd data={contactPageJsonLd()} />
       <PageBanner
         title="Request a Quote"
         subtitle="B2B hardware RFQ — we confirm configuration, lead time and export terms before production."
