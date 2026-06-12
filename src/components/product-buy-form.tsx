@@ -1,4 +1,5 @@
 import { formatListPrice } from "@/lib/product-pricing";
+import { formatUsdtAmount } from "@/lib/payment-amounts";
 
 type ProductBuyFormProps = {
   slug: string;
@@ -15,7 +16,7 @@ export function ProductBuyForm({ slug, priceUsd, stock }: ProductBuyFormProps) {
       <input type="hidden" name="productSlug" value={slug} />
       <input type="hidden" name="action" value="buy" />
       <button type="submit" className="btn-secondary min-h-[48px]">
-        Checkout · {formatListPrice(priceUsd)} USDT (TRC20)
+        Checkout · {formatListPrice(priceUsd)} · {formatUsdtAmount(priceUsd)} USDT (TRC20)
       </button>
     </form>
   );

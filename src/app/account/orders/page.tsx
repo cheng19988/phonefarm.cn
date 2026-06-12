@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { paymentStatusLabel } from "@/lib/payment-amounts";
 import { redirect } from "next/navigation";
 import { LogoutButton } from "@/components/logout-button";
 import { ensureDatabase } from "@/lib/ensure-db";
@@ -51,6 +52,11 @@ export default async function AccountOrdersPage() {
                   <div className="text-right">
                     <p className="text-white font-bold">${order.totalUsd}</p>
                     <p className="text-sm text-cyan-400">{order.status}</p>
+                    {order.payment && (
+                      <p className="text-xs text-slate-500 mt-1">
+                        Payment: {paymentStatusLabel(order.payment.paymentStatus)}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Link>

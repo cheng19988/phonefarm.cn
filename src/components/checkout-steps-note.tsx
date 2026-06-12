@@ -7,8 +7,8 @@ export function CheckoutStepsNote() {
       <p className="text-slate-400 font-medium">Online checkout (3 standard SKUs only)</p>
       <ol className="list-decimal list-inside space-y-1 leading-relaxed">
         <li>Click Checkout — sign in or register (free account).</li>
-        <li>Send exact USDT amount on Tron TRC20 within 30 minutes.</li>
-        <li>Factory confirms order and schedules production; remote setup included.</li>
+        <li>Send exactly the USDT amount shown at checkout (1:1 with USD list price) on Tron TRC20 within 30 minutes.</li>
+        <li>Automatic on-chain verification when enabled; otherwise manual confirmation by sales (include order number + tx hash).</li>
       </ol>
       <p>
         Bulk, OEM or custom ROM?{" "}

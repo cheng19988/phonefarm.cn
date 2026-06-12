@@ -3,7 +3,7 @@ import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { PAYMENT } from "@/lib/config";
-import { createPaymentExpiry, usdToUsdt } from "@/lib/payment";
+import { createPaymentExpiry, initialVerificationStatus, usdToUsdt } from "@/lib/payment";
 
 function orderNumber() {
   return `HC${Date.now().toString(36).toUpperCase()}`;
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
           paymentNetwork: PAYMENT.network,
           paymentCurrency: PAYMENT.currency,
           paymentStatus: "pending",
-          verificationStatus: "unverified",
+          verificationStatus: initialVerificationStatus(),
           expiresAt: createPaymentExpiry(),
         },
       }),

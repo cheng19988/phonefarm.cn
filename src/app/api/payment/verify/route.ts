@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureDatabase } from "@/lib/ensure-db";
-import { checkAndUpdatePayment } from "@/lib/payment";
+import { checkAndUpdatePayment, isAutoVerificationEnabled } from "@/lib/payment";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
@@ -18,6 +18,8 @@ export async function GET(req: NextRequest) {
   const payment = await prisma.payment.findUnique({ where: { id: paymentId } });
   return NextResponse.json({
     status: result.status,
+    mode: result.mode,
+    autoVerificationEnabled: isAutoVerificationEnabled(),
     payment: payment
       ? {
           paymentStatus: payment.paymentStatus,
@@ -27,6 +29,8 @@ export async function GET(req: NextRequest) {
           txHash: payment.txHash,
           expiresAt: payment.expiresAt,
           paidAt: payment.paidAt,
+          paymentAddress: payment.paymentAddress,
+          paymentNetwork: payment.paymentNetwork,
         }
       : null,
   });

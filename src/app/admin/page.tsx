@@ -69,6 +69,20 @@ export default async function AdminPage() {
                 status={o.status}
                 email={o.user.email}
                 totalUsd={o.totalUsd}
+                payment={
+                  o.payment
+                    ? {
+                        id: o.payment.id,
+                        paymentStatus: o.payment.paymentStatus,
+                        verificationStatus: o.payment.verificationStatus,
+                        expectedAmount: o.payment.expectedAmount,
+                        receivedAmount: o.payment.receivedAmount,
+                        txHash: o.payment.txHash,
+                        expiresAt: o.payment.expiresAt.toISOString(),
+                        paymentAddress: o.payment.paymentAddress,
+                      }
+                    : null
+                }
               />
             ))}
           </div>
