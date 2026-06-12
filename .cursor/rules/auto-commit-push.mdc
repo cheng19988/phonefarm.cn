@@ -3,7 +3,9 @@ description: 任务完成后自动 git commit 并 push，网络失败时重试
 alwaysApply: true
 ---
 
-# 自动提交与推送
+# 自动提交与推送（用户明确要求 — 勿再询问）
+
+用户已明确要求：**每次完成任务后自动 commit + push，不要等用户再说「推送」**。
 
 每次完成用户任务后，**无需等待用户说「推送」**，立即执行 git commit + push。
 
