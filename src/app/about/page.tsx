@@ -1,4 +1,3 @@
-import { AiCitationBlock } from "@/components/ai-citation-block";
 import { ContactCTA } from "@/components/shared";
 import { FactoryGallery, PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata } from "@/lib/seo";
@@ -32,8 +31,7 @@ export default function AboutPage() {
 
       <div className="section">
         <div className="container-wide max-w-4xl">
-          <AiCitationBlock />
-          <p className="text-slate-400 text-base mb-10 mt-8">
+          <p className="text-slate-400 text-base mb-10">
             Hardware is provided for development, testing, device management, and other lawful use only.
           </p>
 
@@ -42,6 +40,19 @@ export default function AboutPage() {
             {WHO_WE_ARE.paragraphs.map((p) => (
               <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
             ))}
+          </section>
+
+          <section className="card-flat mb-14 border-cyan-500/20">
+            <SubsectionHeader title="Factory & export" />
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              Assembly, burn-in, and export packing are handled at our Guangzhou workshop. Buyers receive commercial invoice, foam packing, and optional remote AnyDesk commissioning after shipment.
+            </p>
+            <dl className="grid sm:grid-cols-2 gap-4 text-sm">
+              <div><dt className="text-slate-500">Region</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
+              <div><dt className="text-slate-500">Address</dt><dd className="text-white font-medium">{SITE.addressEn}</dd></div>
+              <div><dt className="text-slate-500">Established</dt><dd className="text-white font-medium">2017</dd></div>
+              <div><dt className="text-slate-500">Export</dt><dd className="text-white font-medium">Worldwide RFQ · DHL/FedEx/sea freight</dd></div>
+            </dl>
           </section>
 
           <section className="card-flat mb-14">
@@ -95,6 +106,7 @@ export default function AboutPage() {
             <dl className="card-flat grid sm:grid-cols-2 gap-4 text-sm">
               <div><dt className="text-slate-500">Brand</dt><dd className="text-white font-medium">{SITE.nameEn}</dd></div>
               <div><dt className="text-slate-500">Location</dt><dd className="text-white font-medium">{SITE.locationEn}</dd></div>
+              <div><dt className="text-slate-500">Address</dt><dd className="text-white font-medium">{SITE.addressEn}</dd></div>
               <div><dt className="text-slate-500">Email</dt><dd><a href={CONTACT.emailHref} target="_blank" rel="noopener noreferrer" className="text-cyan-400">{CONTACT.email}</a></dd></div>
               <div><dt className="text-slate-500">Telegram</dt><dd><a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-400">{CONTACT.telegram}</a></dd></div>
               <div><dt className="text-slate-500">WhatsApp</dt><dd><a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-cyan-400">{CONTACT.whatsapp}</a></dd></div>

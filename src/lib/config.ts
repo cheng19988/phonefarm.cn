@@ -2,12 +2,13 @@ export const SITE = {
   name: "广州手机农场",
   nameEn: "Guangzhou Phone Farm",
   domain: "phonefarm.cn",
-  url: "https://phonefarm.cn",
+  url: "https://www.phonefarm.cn",
   tagline: "Phone Farm Hardware - RFQ",
   taglineEn: "Phone Farm Box Manufacturer - Guangzhou, China",
   location: "中国广州",
   locationEn: "Guangzhou, China",
   address: "广东省广州市",
+  addressEn: "Guangzhou, Guangdong Province, China",
   description:
     "广州手机农场 - 手机农场硬件设备厂家，提供安卓主板盒、32PCS 整机盒、12PCS 手机阵列、iPhone 农场盒、路由器/交换机、ROM 定制、远程安装与 OEM 批量交付。",
   descriptionEn:

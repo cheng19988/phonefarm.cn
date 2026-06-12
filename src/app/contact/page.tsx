@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { ContactForm, ContactFormSkeleton } from "@/components/contact-form";
-import { ContactBar, ContactCTA } from "@/components/shared";
+import { OrderFlowGuide } from "@/components/order-flow-guide";
+import { SalesContactCard } from "@/components/sales-contact-card";
 import { PageBanner } from "@/components/site-sections";
-import { RFQ_COPY } from "@/lib/config";
-import { bannerProps } from "@/lib/banners";
 import { buildMetadata } from "@/lib/seo";
+import { bannerProps } from "@/lib/banners";
 
 export const metadata = buildMetadata({
   title: "Contact - Request a Quote",
@@ -16,22 +16,22 @@ export default function ContactPage() {
   return (
     <>
       <PageBanner
-        title="Contact / RFQ"
-        subtitle="Send target quantity, device type, connection mode and shipping country. We reply with factory configuration and quote."
+        title="Request a Quote"
+        subtitle="B2B hardware RFQ — we confirm configuration, lead time and export terms before production."
         {...bannerProps("contact")}
       />
       <section className="section">
-        <div className="container-wide max-w-3xl">
-          <div className="card-flat mb-8">
-            <h2 className="font-bold text-white mb-3">Sales channels</h2>
-            <ContactBar />
-            <p className="text-sm text-slate-500 mt-4">{RFQ_COPY.paymentNote}</p>
-          </div>
-          <Suspense fallback={<ContactFormSkeleton />}>
-            <ContactForm />
-          </Suspense>
-          <div className="mt-12">
-            <ContactCTA title="Prefer WhatsApp or email?" />
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-12">
+            <div className="lg:col-span-2 space-y-8">
+              <Suspense fallback={<ContactFormSkeleton />}>
+                <ContactForm />
+              </Suspense>
+            </div>
+            <div className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+              <SalesContactCard />
+              <OrderFlowGuide compact />
+            </div>
           </div>
         </div>
       </section>

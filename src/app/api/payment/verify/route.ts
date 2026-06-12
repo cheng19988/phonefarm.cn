@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { checkAndUpdatePayment } from "@/lib/payment";
 import { prisma } from "@/lib/prisma";
 
@@ -8,6 +9,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "paymentId required" }, { status: 400 });
   }
 
+  await ensureDatabase();
   const result = await checkAndUpdatePayment(paymentId);
   if (!result) {
     return NextResponse.json({ error: "Payment not found" }, { status: 404 });

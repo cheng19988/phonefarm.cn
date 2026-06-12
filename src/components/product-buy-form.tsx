@@ -15,7 +15,7 @@ export function ProductBuyForm({ slug, priceUsd, stock }: ProductBuyFormProps) {
       <input type="hidden" name="productSlug" value={slug} />
       <input type="hidden" name="action" value="buy" />
       <button type="submit" className="btn-secondary min-h-[48px]">
-        Buy Now · {formatListPrice(priceUsd)} USDT
+        Checkout · {formatListPrice(priceUsd)} USDT (TRC20)
       </button>
     </form>
   );

@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ensureDatabase } from "@/lib/ensure-db";
-import { prisma } from "@/lib/prisma";
-import { AiCitationBlock } from "@/components/ai-citation-block";
 import { ProductBuyForm } from "@/components/product-buy-form";
+import { CheckoutStepsNote } from "@/components/checkout-steps-note";
 import { FAQAccordion } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { JsonLd } from "@/components/shared";
@@ -12,10 +10,11 @@ import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
 import { SubsectionHeader } from "@/components/site-sections";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { loadProductBySlug } from "@/lib/catalog";
 import { getProductSeed } from "@/data/products";
 import { getProductGallery } from "@/lib/images";
 import { CONTACT, RFQ_COPY } from "@/lib/config";
-import { REFERENCE_PRICE_NOTES, canBuyOnline, formatListPrice } from "@/lib/product-pricing";
+import { LIST_PRICE_NOTES, canBuyOnline, formatListPrice } from "@/lib/product-pricing";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,15 +34,14 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
-  await ensureDatabase();
-  const product = await prisma.product.findUnique({ where: { slug } });
+  const product = await loadProductBySlug(slug);
   const seed = getProductSeed(slug);
-  if (!product || !seed || !product.published) notFound();
+  if (!product || !seed) notFound();
 
   const gallery = getProductGallery(slug);
   const waText = encodeURIComponent(`Hi, RFQ for: ${seed.name}. Quantity and config to follow.`);
   const buyOnline = canBuyOnline(product.priceUsd, product.stock);
-  const priceNote = REFERENCE_PRICE_NOTES[slug];
+  const priceNote = LIST_PRICE_NOTES[slug];
 
   return (
     <>
@@ -114,7 +112,8 @@ export default async function ProductDetailPage({ params }: Props) {
                 </a>
                 <Link href="/pricing" className="btn-outline">MOQ & Lead Time</Link>
               </div>
-              <p className="text-xs text-slate-500">{RFQ_COPY.paymentNote}</p>
+              {buyOnline && <CheckoutStepsNote />}
+              <p className="text-xs text-slate-500 mt-3">{RFQ_COPY.paymentNote}</p>
             </div>
           </div>
 
@@ -124,8 +123,6 @@ export default async function ProductDetailPage({ params }: Props) {
                 <h2 className="text-2xl font-bold text-white mb-4">Overview</h2>
                 <p className="text-slate-300 text-base md:text-lg leading-relaxed">{seed.description}</p>
               </section>
-
-              <AiCitationBlock />
 
               {seed.detailSections?.map((section) => (
                 <section key={section.title} className="card-flat">

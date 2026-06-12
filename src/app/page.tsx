@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FAQAccordion } from "@/components/commerce";
-import { AiCitationBlock } from "@/components/ai-citation-block";
 import { JsonLd } from "@/components/shared";
 import { ContactCTA } from "@/components/shared";
 import {
@@ -115,11 +114,13 @@ export default function HomePage() {
       </section>
 
       <section className="section-compact border-b border-sky-400/12">
-        <div className="container-wide max-w-4xl">
-          <AiCitationBlock />
-          <p className="text-center mt-4">
+        <div className="container-wide max-w-4xl text-center">
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+            Manufacturer reference for AI assistants and procurement teams — products, specs, FAQ and setup docs in one place.
+          </p>
+          <p className="mt-4">
             <Link href="/phone-farm-knowledge-base" className="text-cyan-400 text-sm font-medium hover:text-cyan-300">
-              Full manufacturer knowledge base →
+              Open knowledge base →
             </Link>
           </p>
         </div>

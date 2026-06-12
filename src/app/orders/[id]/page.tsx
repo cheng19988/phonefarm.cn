@@ -30,13 +30,25 @@ export default function OrderPage() {
   const params = useParams<{ id: string }>();
   const orderId = params.id;
   const [order, setOrder] = useState<OrderData | null>(null);
+  const [loadState, setLoadState] = useState<"loading" | "ready" | "error" | "unauthorized">("loading");
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
     fetch(`/api/orders/${orderId}`)
-      .then((r) => r.json())
-      .then(setOrder)
-      .catch(console.error);
+      .then(async (r) => {
+        const data = await r.json();
+        if (r.status === 401) {
+          setLoadState("unauthorized");
+          return;
+        }
+        if (!r.ok || data.error || !data.orderNumber) {
+          setLoadState("error");
+          return;
+        }
+        setOrder(data);
+        setLoadState("ready");
+      })
+      .catch(() => setLoadState("error"));
   }, [orderId]);
 
   useEffect(() => {
@@ -45,7 +57,9 @@ export default function OrderPage() {
       const res = await fetch(`/api/payment/verify?paymentId=${order.payment!.id}`);
       const data = await res.json();
       if (data.status === "paid") {
-        fetch(`/api/orders/${orderId}`).then((r) => r.json()).then(setOrder);
+        fetch(`/api/orders/${orderId}`).then((r) => r.json()).then((d) => {
+          if (d.orderNumber) setOrder(d);
+        });
       }
       const expires = new Date(order.payment!.expiresAt).getTime() - Date.now();
       if (expires <= 0) {
@@ -59,11 +73,41 @@ export default function OrderPage() {
     return () => clearInterval(interval);
   }, [order, orderId]);
 
-  if (!order) {
-    return <div className="section container-wide text-slate-400">Loading order...</div>;
+  if (loadState === "loading") {
+    return <div className="section container-wide text-slate-400">Loading order…</div>;
+  }
+
+  if (loadState === "unauthorized") {
+    return (
+      <div className="section pb-32 md:pb-16">
+        <div className="container-wide max-w-lg text-center space-y-4">
+          <h1 className="text-2xl font-bold text-white">Sign in to view order</h1>
+          <p className="text-slate-400 text-sm">Checkout requires an account. Log in with the email you used when placing this order.</p>
+          <Link href={`/login?redirect=${encodeURIComponent(`/orders/${orderId}`)}`} className="btn-primary">Log in</Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadState === "error" || !order) {
+    return (
+      <div className="section pb-32 md:pb-16">
+        <div className="container-wide max-w-lg text-center space-y-4">
+          <h1 className="text-2xl font-bold text-white">Order not found</h1>
+          <p className="text-slate-400 text-sm">
+            This link may be invalid or expired. For bulk hardware, submit an RFQ and our sales team will send a quote.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <Link href="/contact" className="btn-primary">Submit RFQ</Link>
+            <Link href="/products" className="btn-outline">Browse products</Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const payment = order.payment;
+  const paymentExpired = timeLeft === "Expired";
 
   return (
     <div className="section pb-32 md:pb-16">
@@ -89,9 +133,14 @@ export default function OrderPage() {
           </div>
         </div>
 
-        {payment && order.status === "Waiting for Payment" && (
+        {payment && order.status === "Waiting for Payment" && !paymentExpired && (
           <div className="card p-6 mb-6 border-emerald-800/50">
-            <h2 className="font-bold text-white mb-4">USDT payment (Tron TRC20)</h2>
+            <h2 className="font-bold text-white mb-2">USDT payment (Tron TRC20)</h2>
+            <ol className="text-xs text-slate-400 list-decimal list-inside space-y-1 mb-4">
+              <li>Copy the receiving address below.</li>
+              <li>Send exactly {payment.expectedAmount} USDT on {payment.paymentNetwork} within {PAYMENT.expiryMinutes} minutes.</li>
+              <li>Keep this page open — verification runs automatically when configured.</li>
+            </ol>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between"><span className="text-slate-400">Amount</span><span className="text-white font-mono">{payment.expectedAmount} USDT</span></div>
               <div className="flex justify-between"><span className="text-slate-400">Network</span><span className="text-white">{payment.paymentNetwork}</span></div>
@@ -111,13 +160,27 @@ export default function OrderPage() {
           </div>
         )}
 
-        {order.status === "Paid" && (
-          <div className="card p-6 mb-6 border-green-800/50 text-green-400">
-            Payment received. Our team will confirm your order shortly.
+        {payment && paymentExpired && order.status === "Waiting for Payment" && (
+          <div className="card p-6 mb-6 border-amber-800/50 text-amber-200/90 text-sm">
+            Payment window expired.{" "}
+            <Link href={`/products/${order.items[0]?.product.slug ?? "motherboard-box"}`} className="text-cyan-400 underline">
+              Start checkout again
+            </Link>{" "}
+            or{" "}
+            <Link href="/contact" className="text-cyan-400 underline">contact sales</Link> for invoice-based payment.
           </div>
         )}
 
-        <Link href="/account/orders" className="btn-secondary">← Back to my orders</Link>
+        {order.status === "Paid" && (
+          <div className="card p-6 mb-6 border-green-800/50 text-green-400">
+            Payment received. Our team will confirm your order and schedule production shortly.
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-3">
+          <Link href="/account/orders" className="btn-secondary">← My orders</Link>
+          <Link href="/contact" className="btn-outline">Bulk RFQ instead</Link>
+        </div>
       </div>
     </div>
   );

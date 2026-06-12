@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { PAYMENT } from "@/lib/config";
@@ -9,6 +10,7 @@ function orderNumber() {
 }
 
 export async function POST(req: NextRequest) {
+  await ensureDatabase();
   const form = await req.formData();
   const productSlug = String(form.get("productSlug") || "");
   const action = String(form.get("action") || "buy");

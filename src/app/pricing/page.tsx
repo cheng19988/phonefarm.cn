@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OrderFlowGuide } from "@/components/order-flow-guide";
 import { ContactCTA } from "@/components/shared";
 import { PageBanner, SectionHeader } from "@/components/site-sections";
 import { PRICING_TIERS } from "@/data/packages";
@@ -54,6 +55,12 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-compact bg-[var(--surface)]/30 border-b border-[var(--border)]">
+        <div className="container-wide max-w-3xl">
+          <OrderFlowGuide />
         </div>
       </section>
 

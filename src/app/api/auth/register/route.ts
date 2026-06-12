@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ensureDatabase } from "@/lib/ensure-db";
 import { prisma } from "@/lib/prisma";
 import { hashPassword, createSession, verifyPassword } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
+  await ensureDatabase();
   const { email, password, name } = await req.json();
   if (!email || !password) {
     return NextResponse.json({ error: "Email and password required" }, { status: 400 });

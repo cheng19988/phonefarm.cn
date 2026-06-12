@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ensureDatabase } from "@/lib/ensure-db";
-import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/commerce";
+import { OrderFlowGuide } from "@/components/order-flow-guide";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner, SubsectionHeader } from "@/components/site-sections";
+import { loadPublishedProducts } from "@/lib/catalog";
 import { buildMetadata, productCatalogJsonLd } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
@@ -25,12 +25,7 @@ export default async function ProductsPage({
   const params = await searchParams;
   const groupFilter = params.group as CatalogGroup | undefined;
 
-  await ensureDatabase();
-
-  const products = await prisma.product.findMany({
-    where: { published: true },
-    orderBy: { name: "asc" },
-  });
+  const products = await loadPublishedProducts();
 
   const filtered = groupFilter
     ? products.filter((p) => getProductSeed(p.slug)?.catalogGroup === groupFilter)
@@ -90,7 +85,8 @@ export default async function ProductsPage({
             })}
           </div>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-6">
+          <div className="mt-16 grid md:grid-cols-3 gap-6">
+            <OrderFlowGuide compact />
             <div className="card-flat">
               <SubsectionHeader compact title="Bulk & OEM" subtitle="Multi-box labs and custom cabinets — send quantity, ROM scope, and shipping country." />
               <Link href="/contact" className="btn-primary">Bulk RFQ</Link>
