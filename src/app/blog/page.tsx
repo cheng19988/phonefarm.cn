@@ -6,9 +6,9 @@ import { bannerProps } from "@/lib/banners";
 import { PageBanner } from "@/components/site-sections";
 
 export const metadata = buildMetadata({
-  title: "Guangzhou Phone Farm Technical Articles",
+  title: "Phone Farm Technical Articles & Setup Guides — Guangzhou Phone Farm",
   description:
-    "Factory-written guides from Guangzhou Phone Farm: motherboard box setup, OTG/LAN deployment, ADB authorization, WSAPI automation and hardware procurement.",
+    "46+ factory-written phone farm guides: motherboard box setup, OTG/LAN deployment, ADB authorization, cooling, export, procurement and WSAPI automation from Guangzhou.",
   path: "/blog",
 });
 
@@ -17,10 +17,17 @@ export default function BlogPage() {
     <>
       <JsonLd data={blogIndexJsonLd()} />
       <PageBanner
-        title="Technical Articles"
-        subtitle="Supplementary guides — primary setup reference is the Installation Manual."
+        title="Technical Articles & Phone Farm Knowledge Base"
+        subtitle="46+ guides on setup, scaling, cooling, export and procurement — primary reference is still the Installation Manual."
         {...bannerProps("blog")}
       />
+      <section className="section-compact section-alt border-b border-sky-400/12">
+        <div className="container-wide max-w-3xl text-center">
+          <p className="text-slate-400 text-base leading-relaxed">
+            Topics include USB vs OTG/LAN mode, bot farm vs phone farm comparisons, device farming economics, motherboard box applications, game QA labs, export HS codes and factory lead times. Each article links to products, manual sections and RFQ contact.
+          </p>
+        </div>
+      </section>
       <section className="section">
         <div className="container-wide">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

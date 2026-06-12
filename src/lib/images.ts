@@ -62,6 +62,8 @@ const GALLERY_FILES = [
   "gallery-08.png",
   "gallery-09.jpg",
   "gallery-10.jpg",
+  "gallery-11.png",
+  "gallery-12.jpg",
 ];
 
 export const FACTORY_GALLERY = GALLERY_FILES.map((f) => pub("factory", f));
@@ -95,14 +97,14 @@ export const IMAGES = {
     detail: asset(R.mbInside, PLACEHOLDER.detail),
   },
   iphoneFarm: {
-    card: skuImage("iphone-phone-farm", "card", R.iphoneHero),
+    card: asset(pub("card", "iphone-farm-front.png"), skuImage("iphone-phone-farm", "card", R.iphoneHero)),
     hero: skuImage("iphone-phone-farm", "hero", R.iphoneHero),
     detail: asset(R.iphoneHero, pub("hero", "iphone-farm-hero.png")),
   },
   realDevice: {
-    card: skuImage("phone-array-12pcs", "card", R.arrayHero),
+    card: asset(pub("card", "phone-array-front.png"), skuImage("phone-array-12pcs", "card", R.arrayHero)),
     hero: skuImage("phone-array-12pcs", "hero", R.arrayHero),
-    detail: asset(R.mbInside, PLACEHOLDER.detail),
+    detail: asset(R.arrayHero, skuImage("phone-array-12pcs", "hero", R.arrayHero)),
   },
   emptyBox: {
     card: skuImage("empty-box-chassis", "card", R.mbInside),

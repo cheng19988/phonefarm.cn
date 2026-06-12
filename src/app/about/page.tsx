@@ -3,20 +3,23 @@ import { FactoryGallery, PageBanner, SectionHeader, SubsectionHeader } from "@/c
 import { buildMetadata } from "@/lib/seo";
 import {
   BUYER_SHOULD_PROVIDE,
+  FACTORY_DIRECT,
   FACTORY_WORKFLOW,
   QUALITY_CHECKS,
+  RELIABILITY,
   TRUST_NOTE,
   WHAT_WE_DO,
   WHO_WE_ARE,
+  WHY_CHOOSE_US,
 } from "@/data/about";
 import { bannerProps } from "@/lib/banners";
 import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About - Guangzhou Phone Farm Factory",
+  title: "About Guangzhou Phone Farm — Factory-Direct Phone Farm Box Manufacturer",
   description:
-    "Phone farm factory in Guangzhou since 2017. B2B phone farm box manufacturer: assembly, QC burn-in, export packing, ROM customization and remote AnyDesk setup for device farm hardware worldwide.",
+    "Phone farm factory in Guangzhou since 2017. B2B phone farm box manufacturer: assembly, QC burn-in, export packing, ROM customization, 20-node motherboard boxes, 32PCS chassis and remote AnyDesk setup worldwide.",
   path: "/about",
   keywords: [
     "phone farm factory",
@@ -45,6 +48,27 @@ export default function AboutPage() {
           <section className="mb-14">
             <SubsectionHeader title={WHO_WE_ARE.title} />
             {WHO_WE_ARE.paragraphs.map((p) => (
+              <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
+            ))}
+          </section>
+
+          <section className="mb-14">
+            <SubsectionHeader title={WHY_CHOOSE_US.title} />
+            {WHY_CHOOSE_US.paragraphs.map((p) => (
+              <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
+            ))}
+          </section>
+
+          <section className="mb-14">
+            <SubsectionHeader title={FACTORY_DIRECT.title} />
+            {FACTORY_DIRECT.paragraphs.map((p) => (
+              <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
+            ))}
+          </section>
+
+          <section className="mb-14">
+            <SubsectionHeader title={RELIABILITY.title} />
+            {RELIABILITY.paragraphs.map((p) => (
               <p key={p} className="text-slate-300 text-base leading-relaxed mb-4">{p}</p>
             ))}
           </section>
@@ -127,10 +151,18 @@ export default function AboutPage() {
           <SectionHeader title="Factory environment" subtitle="Real workshop and packing areas in Guangzhou." center />
           <FactoryGallery
             images={[
-              { src: IMAGES.companyWorkshop, label: "Assembly" },
-              { src: IMAGES.qc, label: "QC bench" },
+              { src: IMAGES.companyWorkshop, label: "Assembly floor" },
+              { src: IMAGES.qc, label: "QC & burn-in" },
               { src: IMAGES.companyWarehouse, label: "Export packing" },
+              { src: IMAGES.companyOffice, label: "Office" },
+              { src: IMAGES.companyMeeting, label: "Meeting room" },
               { src: IMAGES.motherboardBox.hero, label: "Motherboard box" },
+              { src: IMAGES.phoneFarmBox.hero, label: "32PCS chassis" },
+              { src: IMAGES.realDevice.hero, label: "12PCS array" },
+              { src: "/images/factory/gallery-07.jpg", label: "Workshop detail" },
+              { src: "/images/factory/gallery-08.png", label: "Assembly bench" },
+              { src: "/images/factory/gallery-11.png", label: "Production line" },
+              { src: "/images/factory/gallery-12.jpg", label: "Packing area" },
             ]}
           />
         </div>

@@ -3,7 +3,7 @@ import { BLOG_POSTS_EXTRA } from "./blog-posts-extra";
 export const BLOG_POSTS = [
   {
     slug: "usb-mode-vs-otg-lan-mode",
-    title: "USB Mode vs OTG/LAN Mode for Phone Farm Box",
+    title: "USB Mode vs OTG/LAN Mode for Phone Farm Box — Connection Guide",
     category: "Technical Guide",
     date: "2026-06-01",
     excerpt: "Compare USB and OTG/LAN connection modes for phone farm hardware: requirements, scale limits and common issues.",
@@ -152,7 +152,7 @@ Custom builds are non-returnable after shipment. We can coordinate international
   },
   {
     slug: "mobile-phone-farming-guide",
-    title: "What Is a Phone Farm? How It Works & Setup Requirements",
+    title: "What Is a Phone Farm? How It Works, Setup Requirements & Hardware Guide",
     category: "Knowledge Base",
     date: "2026-04-15",
     excerpt: "Understand phone farm hardware requirements, control software, power/network needs and legitimate use cases.",
@@ -247,7 +247,7 @@ Send project requirements: /contact`,
   },
   {
     slug: "phone-farm-box-buyer-guide-2026",
-    title: "Phone Farm Box Buyer Guide 2026 — Choose a Supplier",
+    title: "Phone Farm Box Buyer Guide 2026 — How to Choose a Reliable Supplier",
     category: "Buyer Guide",
     date: "2026-06-10",
     excerpt: "MOQ, lead time, warranty, export shipping, voltage, packing size and how to evaluate phone farm box manufacturers before bulk order.",

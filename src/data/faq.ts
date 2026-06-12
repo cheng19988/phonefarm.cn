@@ -338,6 +338,42 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       "Hardware shipment with export packing, setup documentation, and remote AnyDesk session covering USB/OTG mode, ADB authorization and group-control software walkthrough. Schedule within 5 business days of arrival. Services detail: /services · FAQ: /faq",
   },
+  {
+    category: "product",
+    question: "What is the difference between a bot farm and a phone farm?",
+    answer:
+      "Bot farms often mean software automation on servers or emulators. Phone farms use physical Android boards or phones in a chassis for real-device testing and lawful multi-device operations. Comparison article: /blog/the-difference-between-a-bot-farm-and-a-phone-farm",
+  },
+  {
+    category: "technical",
+    question: "How does phone farm box cooling work at 24/7 operation?",
+    answer:
+      "Motherboard boxes use integrated chassis fans (~100W at 20 nodes); 32PCS boxes use triple-fan active cooling (~160W). Leave airflow gaps when stacking. Clean filters monthly in dusty environments. Guide: /blog/phone-farm-cooling-power-chassis-vs-open-racks",
+  },
+  {
+    category: "technical",
+    question: "How many phone farm devices can one PC control?",
+    answer:
+      "Typically 3–5 × 20-node motherboard boxes (60–100 nodes) or 2–4 × 32PCS boxes depending on software and mirroring load. USB mode hits controller limits before CPU; OTG/LAN scales further with router planning. Guide: /blog/how-many-devices-one-pc-control-usb-otg-lan",
+  },
+  {
+    category: "order",
+    question: "What are typical phone farm box lead times and MOQ?",
+    answer:
+      "Sample 12PCS arrays often ship in 3–5 days; standard bulk depends on stock and ROM scope (custom ROM adds 7–15 days). MOQ varies by SKU — confirm in RFQ. Guide: /blog/phone-farm-lead-times-moq-shenzhen-factory",
+  },
+  {
+    category: "product",
+    question: "When should I choose 20-node motherboard box vs 32PCS chassis?",
+    answer:
+      "20-node box: compact shipments, lowest power per headless node, stack 3–5 boxes per PC. 32PCS: one chassis for 32 devices with unified cooling. 12PCS array: hot-swap evaluation. Guide: /blog/when-choose-20-node-motherboard-vs-32pcs-chassis",
+  },
+  {
+    category: "order",
+    question: "What HS code is used for phone farm box export from China?",
+    answer:
+      "Motherboard box chassis commonly reference HS 8471609000 on commercial invoices — your customs broker confirms final classification for destination country. Export guide: /blog/export-packing-hs-codes-phone-farm-china",
+  },
 ];
 
 export function getFaqByCategory(category: string) {

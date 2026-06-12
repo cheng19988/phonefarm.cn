@@ -83,8 +83,8 @@ export const PRODUCT_NAV = [
 export const CORE_PRODUCTS = [
   {
     slug: "motherboard-box",
-    title: "Android Motherboard Box",
-    eyebrow: "Headless Android",
+    title: "Android Motherboard Box — 20-Node High-Density Phone Farm Chassis",
+    eyebrow: "Headless Android · Factory Direct",
     href: "/products/motherboard-box",
     params: [
       "20 boards / box",
@@ -97,8 +97,8 @@ export const CORE_PRODUCTS = [
   },
   {
     slug: "phone-farm-box",
-    title: "32PCS Phone Farm Box",
-    eyebrow: "32-Device Chassis",
+    title: "32PCS Phone Farm Box — High-Capacity Unified Device Control",
+    eyebrow: "32-Device Chassis · ROM Customization",
     href: "/products/phone-farm-box",
     params: [
       "32 devices / box",
@@ -111,8 +111,8 @@ export const CORE_PRODUCTS = [
   },
   {
     slug: "phone-array-12pcs",
-    title: "12PCS Phone Array",
-    eyebrow: "Hot-Swap Array",
+    title: "12PCS Phone Array — Hot-Swappable Drawer Phone Farm Box",
+    eyebrow: "Hot-Swap Array · Pilot & Lab",
     href: "/products/phone-array-12pcs",
     params: [
       "12 hot-swap drawers",
@@ -125,8 +125,8 @@ export const CORE_PRODUCTS = [
   },
   {
     slug: "iphone-phone-farm",
-    title: "iPhone Farm Box",
-    eyebrow: "iOS Farm Box",
+    title: "iPhone Farm Box — iOS Multi-Device Control Hardware",
+    eyebrow: "iOS Farm Box · Custom Quote",
     href: "/products/iphone-phone-farm",
     params: [
       "iOS device slots",

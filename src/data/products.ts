@@ -44,7 +44,7 @@ export type ProductSeed = {
 export const PRODUCT_SEEDS: ProductSeed[] = [
   {
     slug: "motherboard-box",
-    name: "Android Motherboard Box",
+    name: "Android Motherboard Box — 20-Node Phone Farm Chassis",
     category: "Motherboard Box",
     catalogGroup: "motherboard-box",
     shortDesc:
@@ -143,7 +143,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
   },
   {
     slug: "phone-farm-box",
-    name: "32PCS Phone Farm Box",
+    name: "32PCS Phone Farm Box — High-Capacity Device Control",
     category: "Phone Farm Box",
     catalogGroup: "phone-farm-box",
     shortDesc: "32-device unified phone farm box — batch control, ROM customization and software development scope.",
@@ -200,9 +200,19 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     ],
     detailSections: [
       {
-        title: "High-Capacity Device Control",
+        title: "High-Capacity Device Control for Medium-Scale Labs",
         content:
-          "The 32PCS phone farm box reduces cable clutter versus multiple smaller chassis. One operator manages 32 devices from a single enclosure with centralized power and active cooling. Scale by adding boxes — typically 3–5 boxes per control PC.",
+          "The 32PCS phone farm box reduces cable clutter versus multiple smaller chassis. One operator manages 32 devices from a single enclosure with centralized power and active triple-fan cooling. Scale by adding boxes — typically 2–4 boxes per control PC depending on software load. ROM customization aligns devices to unattended boot and stable ADB for 24/7 QA workflows.",
+      },
+      {
+        title: "Why Choose Our 32PCS Phone Farm Box?",
+        content:
+          "Factory-direct assembly from Guangzhou with burn-in QC, export foam packing and remote AnyDesk setup included. We support batch APK deployment, mirror workflows and OTG/LAN migration when USB limits are reached. Contact sales for software integration scope and bulk reseller pricing.",
+      },
+      {
+        title: "Applications for 32-Device Phone Farm Operations",
+        content:
+          "Medium-scale app compatibility testing, multi-account workflow validation (lawful use), device management training labs and reseller bulk supply. The unified chassis suits teams that want one shipment unit per 32 nodes instead of multiple 20-node boxes.",
       },
     ],
     priceUsd: 1499,
@@ -213,7 +223,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
   },
   {
     slug: "phone-array-12pcs",
-    name: "12PCS Phone Array",
+    name: "12PCS Phone Array — Hot-Swappable Drawer Farm Box",
     category: "Phone Array",
     catalogGroup: "phone-array",
     shortDesc: "12 hot-swappable drawers — complete phone or motherboard, built-in PC option, USB 2.0 HUB.",
@@ -255,6 +265,23 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       { q: "Dimensions and weight?", a: "Export carton 48 x 36 x 18 cm, ~6 kg. 220V, ~60W continuous load at 12 nodes." },
       { q: "Which models fit the drawers?", a: "Cradle inserts matched to your phone model — send exact model in RFQ. Hot-swap without shutting the whole array." },
       { q: "What if a slot fails?", a: "Swap drawer or board; warranty covers hardware defects — contact sales with order number and fault photo." },
+    ],
+    detailSections: [
+      {
+        title: "Hot-Swappable Drawers for Flexible Device Testing",
+        content:
+          "Each of the 12 drawers accepts a complete phone or bare motherboard — swap hardware without shutting down the entire array. Ideal for app testing labs that rotate device samples, QA teams evaluating multiple Android models and training environments where students replace devices frequently.",
+      },
+      {
+        title: "Built-In PC and USB Hub Integration",
+        content:
+          "Optional built-in control PC reduces cable runs for bench deployments. Integrated USB 2.0 HUB stabilizes multi-device routing compared to ad-hoc consumer hubs. Specify full phone vs motherboard configuration in RFQ so cradles match your target models.",
+      },
+      {
+        title: "When to Start with a 12PCS Evaluation Array",
+        content:
+          "Pilot orders and sample evaluation before bulk MOQ on 20-node or 32PCS chassis. Lower entry cost, faster shipping (often 3–5 days) and maintenance-friendly layout for teams validating group-control software compatibility before scaling.",
+      },
     ],
     priceUsd: 799,
     stock: 8,

@@ -291,4 +291,232 @@ Add boxes and router when batch jobs stable for 72+ hours.
 
 Sample orders: /faq · Contact: /contact`,
   },
+  {
+    slug: "phone-farm-cooling-power-chassis-vs-open-racks",
+    title: "Phone Farm Cooling and Power: Why Chassis Design Beats Open Racks at 100+ Nodes",
+    category: "Hardware Design",
+    date: "2026-06-08",
+    excerpt:
+      "How centralized power, triple-fan cooling and metal chassis layout reduce downtime compared to open USB racks at scale.",
+    content: `Open racks with consumer phones look cheap until you count cable chaos, uneven airflow and USB power sag. Professional phone farm boxes integrate power distribution, cooling fans and fixed slot geometry.
+
+**Why chassis wins at 100+ nodes**
+- Predictable airflow path vs phones stacked on shelves
+- One power entry per box instead of 100 wall adapters
+- Labeled USB/Ethernet trees per chassis
+- Stackable footprint for warehouse or rack rows
+
+**Power planning**
+Motherboard boxes draw ~100W at 20 nodes; 32PCS chassis ~160W. Plan circuit load when running 10+ boxes continuously.
+
+**Cooling**
+Clean fan filters monthly in dusty sites. Leave 5–10 cm gap between stacked boxes.
+
+Products: /products/motherboard-box · /products/phone-farm-box · QC process: /quality-assurance`,
+  },
+  {
+    slug: "how-many-devices-one-pc-control-usb-otg-lan",
+    title: "How Many Devices Can One PC Control? USB vs OTG/LAN Scaling Rules",
+    category: "Technical Guide",
+    date: "2026-06-07",
+    excerpt:
+      "Practical PC limits for 20-node motherboard boxes and 32PCS chassis — CPU, RAM, USB controllers and router sizing.",
+    content: `**Typical factory guidance**
+- 1 PC → 3–5 motherboard boxes (60–100 headless nodes)
+- 1 PC → 2–4 × 32PCS boxes (software dependent)
+- Heavy mirroring reduces headroom — batch jobs tolerate more nodes than live mirror farms
+
+**USB mode limits**
+Windows USB host controllers saturate before CPU. Symptoms: "insufficient USB resources". Fix: powered USB 2.0 hubs, PCIe cards, or migrate to OTG/LAN.
+
+**OTG/LAN mode**
+Devices on router segment; PC scans IP range. Scales past USB limits but needs DHCP capacity and enterprise router above 300 devices.
+
+**Written PC baseline**
+Xeon E5-2680 V2 class, 32 GB RAM, SSD, multiple USB 2.0 root ports. See /manual#recommended-pc.
+
+RFQ with target node count: /contact · Packages: /packages`,
+  },
+  {
+    slug: "phone-farm-lead-times-moq-shenzhen-factory",
+    title: "Phone Farm Box Lead Times and MOQ: What to Expect from a Guangzhou Factory",
+    category: "Procurement",
+    date: "2026-06-06",
+    excerpt:
+      "Sample units, bulk MOQ, custom ROM production windows and export packing timelines for B2B buyers.",
+    content: `**Sample / pilot orders**
+12PCS array or single motherboard box often ships in 3–5 business days when in stock configuration.
+
+**Standard bulk**
+20-node motherboard box and 32PCS chassis: confirm MOQ in RFQ — typical integrator orders start at 5–20 units.
+
+**Custom ROM**
+Add 7–15 production days for auto-boot, ADB persistence and firmware hardening scope.
+
+**Export**
+Foam packing, commercial invoice, DHL/FedEx air or sea LCL for pallet loads. HS code reference 8471609000 on motherboard box exports.
+
+**What speeds up delivery**
+Confirm Android model list, connection mode (USB vs OTG/LAN) and destination country in first RFQ email.
+
+Buyer checklist: /phone-farm-buyer-guide · Contact: /contact`,
+  },
+  {
+    slug: "custom-rom-phone-farm-auto-boot-adb",
+    title: "Custom ROM for Phone Farms: Auto-Boot, ADB Persistence, and Lab Hardening",
+    category: "Technical Guide",
+    date: "2026-06-05",
+    excerpt:
+      "ROM customization scope for unattended boot, stable ADB after power loss and reducing OTA interruptions in device labs.",
+    content: `**Common ROM requests**
+- Auto power-on after AC connect
+- ADB debugging persists without on-screen prompts
+- Disable OTA nag screens in locked-down labs
+- Extended screen timeout defaults
+
+**Why it matters**
+Phone farms reboot after outages. Without ROM hardening, operators re-authorize dozens of devices manually.
+
+**Scope limits**
+Advanced per-app hooks or carrier-specific builds quoted separately. We confirm board model compatibility before flash.
+
+**Coordination**
+Send target software stack (group-control tool, mirror client) in RFQ so ROM matches your automation workflow.
+
+Services: /services · Manual ADB section: /manual#adb-auth · Products: /products`,
+  },
+  {
+    slug: "stack-cable-multi-box-phone-farm-without-usb-collapse",
+    title: "How to Stack and Cable a Multi-Box Phone Farm Without USB Collapse",
+    category: "Deployment",
+    date: "2026-06-04",
+    excerpt:
+      "Physical layout, powered hub placement, labeling and when to switch boxes to OTG/LAN before USB trees fail.",
+    content: `**Layout rules**
+- One powered USB 2.0 hub per box branch — avoid daisy-chaining consumer hubs
+- Label each box ID on chassis and in software groups
+- Keep data cables under 2 m where possible; use active extensions for long runs
+
+**Stacking**
+Metal chassis stack with airflow gaps. Heaviest boxes on lower shelf; network gear on separate shelf with UPS.
+
+**Migration trigger**
+When mirror refresh slows or Windows reports USB resource errors on 40+ nodes, plan OTG/LAN for the next box group.
+
+**Router handoff**
+Box and PC on same subnet; green LED = OTG/LAN mode. Router sizing: /products/network-equipment.
+
+Installation reference: /manual · OTG/LAN tutorial: /blog/otg-lan-network-setup`,
+  },
+  {
+    slug: "when-choose-20-node-motherboard-vs-32pcs-chassis",
+    title: "When to Choose 20-Node Motherboard Box vs 32PCS Full-Phone Chassis",
+    category: "Buyer's Guide",
+    date: "2026-06-03",
+    excerpt:
+      "Density, shipment size, power per node and maintenance trade-offs between our two flagship Android chassis SKUs.",
+    content: `**Choose 20-node motherboard box when**
+- You want lowest power per node (headless boards)
+- Shipment units should stay compact (55×38×16 cm, ~7 kg)
+- Scaling by adding 3–5 boxes per PC is enough
+- Integrator/reseller needs stackable standard SKU
+
+**Choose 32PCS phone farm box when**
+- One chassis must hold 32 devices with unified cooling
+- ROM customization and medium-scale QA lab in one enclosure
+- Fewer total boxes to cable on the floor
+
+**Choose 12PCS array when**
+- Hot-swappable drawers for frequent device swaps
+- Pilot evaluation before bulk MOQ
+
+Compare specs: /products/motherboard-box · /products/phone-farm-box · /products/phone-array-12pcs`,
+  },
+  {
+    slug: "export-packing-hs-codes-phone-farm-china",
+    title: "Export Packing and HS Codes for Phone Farm Equipment from China",
+    category: "Export & Logistics",
+    date: "2026-06-02",
+    excerpt:
+      "Commercial invoice fields, foam packing, air vs sea freight and HS code 8471609000 reference for customs brokers.",
+    content: `**Export documentation**
+Commercial invoice with product description, quantity, unit value, HS code and Guangzhou origin. We support buyer forwarder handoff.
+
+**Packing**
+Foam-lined cartons per box; pallet option for 10+ units. Pre-shipment photos or short packing video on request.
+
+**HS code reference**
+Motherboard box chassis commonly declared under 8471609000 (automatic data processing units/components) — buyer's broker confirms final classification for destination country.
+
+**Freight modes**
+DHL/FedEx for samples and urgent lots; sea LCL for bulk chassis orders.
+
+Full export guide: /blog/phone-farm-equipment-export-shipping · RFQ: /contact`,
+  },
+  {
+    slug: "phone-farm-hardware-game-qa-parallel-sessions",
+    title: "Phone Farm Hardware for Game QA: Parallel Sessions on Real Android Boards",
+    category: "Applications",
+    date: "2026-06-01",
+    excerpt:
+      "Why mobile game studios use real-device phone farm boxes for compatibility, GPU behavior and multi-account session testing.",
+    content: `**Why emulators fall short**
+GPU drivers, touch latency, background process limits and carrier-specific behavior differ on real boards.
+
+**Lab setup**
+Motherboard boxes reduce power and heat vs full phones while keeping real SoC behavior. Batch launch, screen mirror and log capture via group-control software.
+
+**Parallel sessions**
+Run compatibility matrices across Android versions simultaneously — one operator supervises 60–100 nodes from stacked boxes.
+
+**Network testing**
+OTG/LAN mode isolates device segments for regional IP or latency simulation when combined with VPN per node.
+
+Hardware: /products/motherboard-box · QA guide: /blog/mobile-device-farm-app-qa-guide`,
+  },
+  {
+    slug: "start-building-phone-farm-factory-direct-guangzhou",
+    title: "Start Building Your Phone Farm Today: Factory-Direct Hardware from Guangzhou",
+    category: "Getting Started",
+    date: "2026-05-31",
+    excerpt:
+      "From first RFQ to remote AnyDesk commissioning — how Guangzhou Phone Farm helps teams deploy multi-device labs worldwide.",
+    content: `**Step 1 — Define scale**
+Target node count, Android vs iPhone, USB vs OTG/LAN, destination country.
+
+**Step 2 — Choose chassis**
+20-node motherboard box, 32PCS farm box or 12PCS evaluation array. See /packages for starter bundles.
+
+**Step 3 — RFQ**
+Email or WhatsApp with quantity and connection mode. We return written quote with lead time and ROM scope.
+
+**Step 4 — Production & QC**
+Slot burn-in, power/USB path check, export packing from Guangzhou workshop.
+
+**Step 5 — Remote setup**
+AnyDesk handoff after delivery — ADB authorization, mode switch and software walkthrough included on hardware orders.
+
+About our factory: /about · Contact: /contact · Manual: /manual`,
+  },
+  {
+    slug: "modern-automation-real-devices-over-scripts",
+    title: "Modern Automation Prefers Real Devices Over Scripts — Here's Why",
+    category: "Knowledge Base",
+    date: "2026-05-30",
+    excerpt:
+      "When headless scripts and emulators fail, structured phone farm hardware delivers predictable real-device behavior for QA and operations.",
+    content: `**Scripts and emulators**
+Low entry cost, fast iteration — but miss sensor fusion, real IMEI/GPU paths and OS-level restrictions mobile apps detect.
+
+**Real device farms**
+Physical Android boards in a box phone farm chassis give fidelity for app QA, compatibility matrices and lawful multi-device workflows on hardware you control offline.
+
+**Structured hardware advantage**
+Centralized power, cooling and labeled USB/LAN paths beat ad-hoc phone stacks that fail under 24/7 load.
+
+**Hybrid approach**
+Use cloud or scripts for unit tests; deploy phone farm boxes for release gates and device-specific regression.
+
+Compare: /blog/phone-farm-vs-cloud-device-farm · Catalog: /products · Guide: /phone-farming`,
+  },
 ];

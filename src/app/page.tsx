@@ -13,14 +13,15 @@ import {
 import { buildMetadata, itemListJsonLd, productCatalogJsonLd } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
 import { BLOG_POSTS } from "@/data/blog";
+import { WHY_CHOOSE_US, FACTORY_DIRECT, RELIABILITY } from "@/data/about";
 import { IMAGES } from "@/lib/images";
 import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Box Manufacturer | Guangzhou China",
+  title: "Phone Farm Box Manufacturer | Guangzhou China — Professional Hardware",
   description:
-    "Guangzhou Phone Farm — B2B phone farm box manufacturer. Phone farm equipment & Android device farm hardware: 20-node motherboard box, 32PCS chassis, 12PCS array. Export shipping, USDT on standard SKUs, remote AnyDesk setup. Factory RFQ worldwide.",
+    "Guangzhou Phone Farm — B2B phone farm box manufacturer. 46+ technical guides, Android motherboard box, 32PCS chassis, 12PCS array. Factory-direct assembly, export shipping, USDT checkout on standard SKUs, remote AnyDesk setup worldwide.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",
@@ -116,6 +117,52 @@ export default function HomePage() {
             <Link href="/phone-farming" className="btn-outline">Phone Farming Guide</Link>
             <Link href="/quality-assurance" className="btn-outline">Hardware Quality</Link>
             <Link href="/manual" className="btn-outline">Installation Manual</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-alt border-b border-sky-400/12">
+        <div className="container-wide max-w-4xl mx-auto space-y-6">
+          <p className="eyebrow">Why Choose Guangzhou Phone Farm</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            {WHY_CHOOSE_US.title}
+          </h2>
+          {WHY_CHOOSE_US.paragraphs.map((p) => (
+            <p key={p} className="text-slate-300 text-base md:text-lg leading-relaxed">{p}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="section border-b border-sky-400/12">
+        <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="space-y-5">
+            <p className="eyebrow">Factory Direct Manufacturing</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
+              {FACTORY_DIRECT.title}
+            </h2>
+            {FACTORY_DIRECT.paragraphs.map((p) => (
+              <p key={p} className="text-slate-400 text-base leading-relaxed">{p}</p>
+            ))}
+            <Link href="/about" className="btn-outline inline-flex">About our factory →</Link>
+          </div>
+          <div className="product-showcase-image min-h-[280px]">
+            <Image src={IMAGES.companyWorkshop} alt="Guangzhou phone farm factory workshop" fill className="object-cover" sizes="50vw" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-alt border-b border-sky-400/12">
+        <div className="container-wide max-w-4xl mx-auto space-y-6">
+          <p className="eyebrow">Built for Reliability</p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
+            {RELIABILITY.title}
+          </h2>
+          {RELIABILITY.paragraphs.map((p) => (
+            <p key={p} className="text-slate-300 text-base leading-relaxed">{p}</p>
+          ))}
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link href="/quality-assurance" className="btn-outline">Quality assurance</Link>
+            <Link href="/phone-farm-buyer-guide" className="btn-outline">Buyer guide</Link>
           </div>
         </div>
       </section>
@@ -219,6 +266,10 @@ export default function HomePage() {
               { src: IMAGES.motherboardBox.detail, label: "Motherboard layout" },
               { src: IMAGES.phoneFarmBox.hero, label: "Phone farm chassis" },
               { src: IMAGES.realDevice.hero, label: "12PCS array" },
+              { src: "/images/factory/gallery-07.jpg", label: "Workshop" },
+              { src: "/images/factory/gallery-09.jpg", label: "Production" },
+              { src: "/images/factory/gallery-11.png", label: "Assembly line" },
+              { src: "/images/factory/gallery-12.jpg", label: "Packing" },
             ]}
           />
           <p className="text-center mt-8">
@@ -230,12 +281,12 @@ export default function HomePage() {
       <section className="section-compact section-alt border-t border-sky-400/10">
         <div className="container-wide">
           <SectionHeader
-            title="Technical Articles"
-            subtitle="Setup notes, connection modes, and deployment guides — full steps in the Installation Manual."
+            title="Technical Articles & Phone Farm Guides"
+            subtitle="46+ factory-written guides — setup, scaling, procurement, cooling, export and deployment. Full steps in the Installation Manual."
             center
           />
-          <div className="grid md:grid-cols-3 gap-6">
-            {BLOG_POSTS.slice(0, 3).map((post) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BLOG_POSTS.slice(0, 6).map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
