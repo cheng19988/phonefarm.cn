@@ -273,6 +273,14 @@ Custom-assembled units: no return/exchange after delivery. Buyer arranges intern
 
 **Shipping damage:** report within 48 hours with photos.
 
+**Hardware failure during warranty**
+1. Contact sales with order number and photo/video of the fault
+2. Remote AnyDesk diagnosis (configuration vs hardware)
+3. Confirmed defect: spare board, fan or cable shipped, or repair guidance (freight per agreement)
+
+**Pre-shipment verification**
+Factory photos, burn-in status and carton packing photos or video available on request before dispatch.
+
 **Out of warranty:** parts and labor quoted separately.`,
   },
   {

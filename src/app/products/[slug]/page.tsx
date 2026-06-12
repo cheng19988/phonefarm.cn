@@ -9,6 +9,7 @@ import { DataTable } from "@/components/data-table";
 import { SpecTable } from "@/components/spec-table";
 import { RfqCTA, ProductStickyCTA } from "@/components/rfq-cta";
 import { SubsectionHeader } from "@/components/site-sections";
+import { BuyerEssentials } from "@/components/buyer-essentials";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { loadProductBySlug } from "@/lib/catalog";
 import { getProductSeed } from "@/data/products";
@@ -134,6 +135,11 @@ export default async function ProductDetailPage({ params }: Props) {
               <section>
                 <SubsectionHeader title="Key Specifications" subtitle="Factory parameters for procurement review." />
                 <SpecTable specs={seed.specs} />
+              </section>
+
+              <section className="card-flat">
+                <SubsectionHeader title="Buyer essentials" subtitle="Dimensions, warranty, packaging, remote setup and after-sales — common procurement questions." />
+                <BuyerEssentials productSlug={slug} variant="compact" />
               </section>
 
               {seed.specTables?.map((table) => (

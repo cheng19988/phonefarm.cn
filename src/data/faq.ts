@@ -10,6 +10,24 @@ export const FAQ_CATEGORIES = [
 export const FAQ_ITEMS: FaqItem[] = [
   {
     category: "product",
+    question: "What are the dimensions and weight of each box?",
+    answer:
+      "Motherboard box (20 nodes): 55 x 38 x 16 cm, ~7 kg. 32PCS box: 62 x 42 x 22 cm, ~12 kg. 12PCS array: 48 x 36 x 18 cm, ~6 kg. See the spec table on each product page or /pricing buyer essentials section.",
+  },
+  {
+    category: "product",
+    question: "What is the power draw and voltage?",
+    answer:
+      "All standard chassis use 220V AC. Typical continuous load: ~100W (20-node box), ~160W (32PCS), ~60W (12PCS array). For 110V destinations discuss transformer options in RFQ.",
+  },
+  {
+    category: "product",
+    question: "Which Android and iPhone models are supported?",
+    answer:
+      "Android: mainstream Samsung Galaxy and other widely supported boards — exact model confirmed in written quote before production. iPhone: custom per model and iOS version. Send target model list in RFQ; sample order recommended for new combinations.",
+  },
+  {
+    category: "product",
     question: "How many devices can one PC control?",
     answer:
       "For Android motherboard boxes: typically 3-5 boxes (60-100 nodes) per PC depending on CPU, RAM and software. USB mode uses more host resources than OTG/LAN. Send your target node count and we recommend a PC spec.",
@@ -78,7 +96,19 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "technical",
     question: "Can you help install remotely?",
     answer:
-      "Yes. Basic remote setup is included with hardware orders (AnyDesk). We walk through mirror, batch control, OTG scan and common errors until operational.",
+      "Yes. Basic remote setup is included with hardware orders (AnyDesk). We walk through power-on, USB/OTG mode, ADB authorization, mirror, batch control, OTG scan and common errors until operational. Schedule within 5 business days of hardware arrival.",
+  },
+  {
+    category: "order",
+    question: "How is hardware packed for international shipping?",
+    answer:
+      "Each chassis is foam-lined in a reinforced export carton with commercial invoice and packing list. Bulk orders ship multiple cartons; pallet and stretch wrap available on request. Sea or express freight from Guangzhou.",
+  },
+  {
+    category: "order",
+    question: "Can I get photos or video before shipment?",
+    answer:
+      "Yes. On request we share factory photos, burn-in status, carton packing photos or short packing video before dispatch. Remote AnyDesk inspection before bulk payment can also be arranged — ask in RFQ or with sales after PO.",
   },
   {
     category: "order",
@@ -121,6 +151,12 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: "Is USDT supported?",
     answer:
       "Yes for confirmed orders when agreed with sales. This site does not display live payment checkout - quote and proforma invoice first.",
+  },
+  {
+    category: "payment",
+    question: "What happens if a board, fan or cable fails?",
+    answer:
+      "During warranty: email or WhatsApp sales with order number and photo of the fault. We start with remote AnyDesk diagnosis. Confirmed hardware defects: spare part shipment or repair guidance (freight per agreement). Out of warranty: replacement parts quoted — see Replacement Parts on /services.",
   },
   {
     category: "payment",

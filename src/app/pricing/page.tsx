@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { OrderFlowGuide } from "@/components/order-flow-guide";
+import { BuyerEssentials } from "@/components/buyer-essentials";
 import { ContactCTA } from "@/components/shared";
-import { PageBanner, SectionHeader } from "@/components/site-sections";
+import { PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
 import { PRICING_TIERS } from "@/data/packages";
 import { buildMetadata } from "@/lib/seo";
 import { RFQ_COPY, CONTACT } from "@/lib/config";
@@ -55,6 +56,16 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section border-b border-[var(--border)]">
+        <div className="container-wide max-w-4xl">
+          <SubsectionHeader
+            title="Physical specs & buyer checklist"
+            subtitle="Carton size, weight, power, PC scaling, packaging, warranty and remote install — all standard SKUs."
+          />
+          <BuyerEssentials variant="full" />
         </div>
       </section>
 

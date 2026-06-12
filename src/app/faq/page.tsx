@@ -1,6 +1,7 @@
 import { FAQSection } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
-import { PageBanner, SectionHeader } from "@/components/site-sections";
+import { BuyerEssentials } from "@/components/buyer-essentials";
+import { PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
 import { FAQ_ITEMS, FAQ_CATEGORIES } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { bannerProps } from "@/lib/banners";
@@ -21,6 +22,16 @@ export default function FAQPage() {
         subtitle="Procurement, installation and after-sales answers for phone farm hardware buyers."
         {...bannerProps("faq")}
       />
+      <section className="section border-b border-[var(--border)]">
+        <div className="container-wide max-w-4xl">
+          <SubsectionHeader
+            title="Before you buy"
+            subtitle="The 12 questions procurement teams ask most — dimensions, models, lead time, packaging, warranty, photos and remote install."
+          />
+          <BuyerEssentials variant="full" />
+        </div>
+      </section>
+
       <section className="section">
         <div className="container-wide max-w-3xl">
           <SectionHeader title="Common questions" subtitle="Grouped by product, technical setup, orders and payment." />
