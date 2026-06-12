@@ -43,6 +43,7 @@ export const metadata: Metadata = {
       "text/plain": [
         { url: "/llms.txt", title: "LLM site summary" },
         { url: "/llms-full.txt", title: "LLM full knowledge base" },
+        { url: "/ai.txt", title: "AI discovery pointer" },
       ],
     },
   },

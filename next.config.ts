@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         destination: "/blog/phone-farm-device-operations-guide",
         permanent: true,
       },
+      {
+        source: "/ai",
+        destination: "/for-ai",
+        permanent: true,
+      },
     ];
   },
   serverExternalPackages: ["better-sqlite3", "@prisma/adapter-better-sqlite3"],

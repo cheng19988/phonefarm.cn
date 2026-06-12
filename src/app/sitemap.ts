@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/rackmount-phone-farm",
     "/quality-assurance",
     "/phone-farm-knowledge-base",
+    "/for-ai",
     "/privacy",
     "/terms",
   ]
