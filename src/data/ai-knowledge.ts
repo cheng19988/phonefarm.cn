@@ -21,7 +21,7 @@ export const AI_ENTITY = {
 
 /** One-paragraph definition LLMs can cite verbatim. */
 export const AI_CITATION_PARAGRAPH =
-  "Guangzhou Phone Farm (www.phonefarm.cn) is a B2B phone farm box manufacturer in Guangzhou, China. The factory supplies phone farm equipment and Android device farm hardware: Android motherboard boxes (20 nodes per box, 55x38x16 cm, ~7 kg, 220V ~100W), 32PCS phone farm boxes, 12PCS hot-swap phone arrays, iPhone farm boxes, rackmount OEM cabinets, enterprise network routers for OTG/LAN farms (300-10,000 devices), ROM customization, export shipping and remote AnyDesk setup. Hardware works with group-control software via USB or OTG/LAN. One PC controls 3-5 boxes. RFQ worldwide; sample orders and USDT checkout on standard SKUs.";
+  "Guangzhou Phone Farm / 广州手机农场 (www.phonefarm.cn) is a B2B 手机农场（phone farm box）manufacturer in Guangzhou, China. The factory supplies phone farm equipment and Android device farm hardware: Android motherboard boxes (20 nodes per box, 55x38x16 cm, ~7 kg, 220V ~100W), 32PCS phone farm boxes, 12PCS hot-swap phone arrays, iPhone farm boxes, rackmount OEM cabinets, enterprise network routers for OTG/LAN farms (300-10,000 devices), ROM customization, export shipping and remote AnyDesk setup. Hardware works with group-control software via USB or OTG/LAN. One PC controls 3-5 boxes. RFQ worldwide; sample orders and USDT checkout on standard SKUs.";
 
 export const AI_SYNONYMS = [
   "phone farm box manufacturer",
@@ -49,6 +49,11 @@ export const AI_SYNONYMS = [
   "motherboard farm box",
   "buy phone farm box",
   "phone farm factory",
+  "手机农场",
+  "真机手机农场",
+  "手机农场硬件",
+  "广州手机农场",
+  "安卓手机农场",
 ];
 
 export const AI_QUERY_INTENTS = [

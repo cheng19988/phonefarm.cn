@@ -19,9 +19,9 @@ import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Box Manufacturer | Guangzhou China — Professional Hardware",
+  title: "Phone Farm Box Manufacturer | 手机农场硬件厂家 — Guangzhou China",
   description:
-    "Guangzhou Phone Farm — B2B phone farm box manufacturer. 46+ technical guides, Android motherboard box, 32PCS chassis, 12PCS array. Factory-direct assembly, export shipping, USDT checkout on standard SKUs, remote AnyDesk setup worldwide.",
+    "Guangzhou Phone Farm（广州手机农场）— B2B 手机农场 / phone farm box manufacturer. 46+ guides, Android motherboard box, 32PCS chassis, 12PCS array. Factory-direct 手机农场硬件, export shipping, USDT checkout, remote AnyDesk setup worldwide.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",
@@ -36,6 +36,13 @@ export const metadata = buildMetadata({
     "Android motherboard box manufacturer",
     "phone farming supplier Guangzhou",
     "phone farm factory",
+    "手机农场",
+    "真机手机农场",
+    "手机农场硬件",
+    "手机农场盒子",
+    "广州手机农场",
+    "安卓手机农场",
+    "手机农场厂家",
   ],
 });
 
@@ -81,14 +88,14 @@ export default function HomePage() {
       })))]} />
       <SiteHero
         {...heroProps("home")}
-        eyebrow={`${SITE.nameEn} · ${SITE.locationEn} · Est. 2017`}
+        eyebrow={`${SITE.name} · 手机农场硬件 · ${SITE.locationEn} · Est. 2017`}
         title={
           <>
             Professional Phone Farm Hardware{" "}
             <span className="gradient-text">Built in Guangzhou</span>
           </>
         }
-        subtitle="Factory-direct phone farm box hardware — Android motherboard boxes, 32PCS chassis, 12PCS arrays. Export worldwide · RFQ · USDT on 3 standard SKUs · remote AnyDesk setup included."
+        subtitle="Factory-direct 手机农场（phone farm）box hardware — Android motherboard boxes, 32PCS chassis, 12PCS arrays. 广州手机农场 · Export worldwide · RFQ · USDT on 3 standard SKUs · remote AnyDesk setup."
       >
         <div className="flex flex-wrap gap-3 md:gap-4">
           <Link href="/contact" className="btn-primary">Get Configuration Quote</Link>
@@ -100,6 +107,26 @@ export default function HomePage() {
       </SiteHero>
 
       <TrustStrip />
+
+      <section className="section border-b border-sky-400/12">
+        <div className="container-wide max-w-4xl mx-auto text-center space-y-6">
+          <p className="eyebrow">手机农场 · Phone Farm Hardware</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+            什么是手机农场？真机硬件厂家直销
+          </h2>
+          <p className="text-slate-300 text-lg leading-relaxed">
+            手机农场（Phone Farm）是将多台 Android 真机或手机主板集中供电、联网、统一管理的硬件系统。一台电脑通过群控软件可同时操控数十台甚至上百台设备，适用于应用测试、兼容性验证、多设备 QA 与企业设备运维等合法场景。
+          </p>
+          <p className="text-slate-400 text-base leading-relaxed">
+            广州手机农场提供安卓主板盒（20 节点）、32PCS 整机盒、12PCS 热插拔阵列、iPhone 农场盒及 OTG/LAN 路由器 — 工厂组装、QC 老化测试、出口打包与 AnyDesk 远程安装。
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <Link href="/phone-farming" className="btn-outline">Phone Farming 指南</Link>
+            <Link href="/products" className="btn-outline">手机农场产品目录</Link>
+            <Link href="/contact" className="btn-primary">获取配置报价</Link>
+          </div>
+        </div>
+      </section>
 
       <section className="section-alt border-b border-sky-400/12">
         <div className="container-wide max-w-4xl mx-auto text-center space-y-6">

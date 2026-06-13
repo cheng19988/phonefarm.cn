@@ -16,6 +16,20 @@ export const SITE = {
     "Guangzhou Phone Farm — B2B phone farm box manufacturer in Guangzhou. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array, iPhone farm hardware, OTG/LAN routers. Factory assembly, QC and worldwide RFQ.",
 } as const;
 
+/** Chinese SEO terms — 手机农场 and related queries for Baidu / CN search. */
+export const SEO_KEYWORDS_ZH = [
+  "手机农场",
+  "真机手机农场",
+  "手机农场硬件",
+  "手机农场盒子",
+  "手机农场设备",
+  "广州手机农场",
+  "安卓手机农场",
+  "手机农场厂家",
+  "主板盒手机农场",
+  "群控手机农场",
+] as const;
+
 /** @deprecated Use SITE.url — kept for env-style references */
 export const SITE_URL = SITE.url;
 

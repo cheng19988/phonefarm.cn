@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CONTACT, SITE } from "./config";
+import { CONTACT, SITE, SEO_KEYWORDS_ZH } from "./config";
 import { IMAGES } from "./images";
 import {
   AI_APPLICATION_FIELDS,
@@ -41,6 +41,7 @@ export const DEFAULT_KEYWORDS = [
   "Guangzhou phone farm",
   "phone farm factory",
   "buy phone farm box",
+  ...SEO_KEYWORDS_ZH,
 ];
 
 export function buildMetadata({
@@ -91,7 +92,14 @@ export function organizationJsonLd() {
     "@type": ["Organization", "Manufacturer"],
     "@id": `${SITE.url}/#organization`,
     name: SITE.nameEn,
-    alternateName: ["Guangzhou Phone Farm", "phonefarm.cn", "Box Phone Farm Guangzhou"],
+    alternateName: [
+      "Guangzhou Phone Farm",
+      "phonefarm.cn",
+      "Box Phone Farm Guangzhou",
+      SITE.name,
+      "手机农场",
+      "广州手机农场",
+    ],
     url: SITE.url,
     logo: `${SITE.url}/icon.svg`,
     image: `${SITE.url}${IMAGES.motherboardBox.hero}`,
@@ -115,7 +123,7 @@ export function organizationJsonLd() {
         email: CONTACT.email,
         contactType: "sales",
         areaServed: "Worldwide",
-        availableLanguage: ["English"],
+        availableLanguage: ["English", "Chinese"],
       },
       {
         "@type": "ContactPoint",

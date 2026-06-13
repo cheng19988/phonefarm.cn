@@ -9,12 +9,20 @@ export type SeoGuide = {
 export const SEO_GUIDES: SeoGuide[] = [
   {
     slug: "phone-farming",
-    title: "Phone Farming with High-Quality Box Phone Farm Hardware",
+    title: "Phone Farming with High-Quality Box Phone Farm Hardware | 手机农场",
     metaDescription:
-      "Test and develop software applications efficiently with phone farming. Learn how box phone farms improve automation, multi-device control, and real-device testing at scale.",
+      "手机农场（Phone Farm）硬件指南 — Test and develop software efficiently with box phone farms. 广州手机农场 multi-device control, automation and real-device testing at scale.",
     heroSubtitle:
       "How physical phone farm boxes support software testing, QA automation, multi-device operations, and structured device control.",
     sections: [
+      {
+        heading: "什么是手机农场（Phone Farm）？",
+        level: 2,
+        paragraphs: [
+          "手机农场是将多台智能手机或 Android 主板集中安装在专用机箱内，由一台电脑通过群控软件统一供电、联网和批量操控的硬件系统。与云手机或模拟器不同，真机手机农场使用物理设备，具备真实 IMEI、传感器和 GPU 行为，适合应用测试、兼容性验证与长期稳定运行。",
+          "广州手机农场（Guangzhou Phone Farm）是广州地区的手机农场硬件厂家，提供 20 节点安卓主板盒、32PCS 整机盒、12PCS 热插拔阵列及出口打包、ROM 定制与 AnyDesk 远程安装服务。",
+        ],
+      },
       {
         heading: "Test and Develop Software Applications Efficiently with Phone Farming",
         level: 2,

@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Android motherboard box",
     "phone farming",
     "Guangzhou phone farm",
+    "手机农场",
+    "广州手机农场",
+    "手机农场硬件",
   ],
   robots: {
     index: true,

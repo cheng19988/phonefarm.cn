@@ -4,9 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 export const metadata = buildMetadata({
-  title: "Phone Farming – Multi-Device Hardware Guide",
+  title: "Phone Farming Guide | 手机农场硬件与部署指南",
   description:
-    "Phone farming with box phone farm hardware: software testing, multi-device automation, USB/OTG modes and why physical device farms outperform cloud emulators.",
+    "手机农场（Phone Farm）硬件指南：真机群控、主板盒、32PCS 整机盒、USB/OTG 模式。Guangzhou Phone Farm 广州手机农场 factory-direct phone farming hardware for testing and QA.",
   path: "/phone-farming",
 });
 

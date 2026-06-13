@@ -369,6 +369,24 @@ export const FAQ_ITEMS: FaqItem[] = [
       "20-node box: compact shipments, lowest power per headless node, stack 3–5 boxes per PC. 32PCS: one chassis for 32 devices with unified cooling. 12PCS array: hot-swap evaluation. Guide: /blog/when-choose-20-node-motherboard-vs-32pcs-chassis",
   },
   {
+    category: "product",
+    question: "What is 手机农场 (phone farm)?",
+    answer:
+      "手机农场（Phone Farm）是将多台真机智能手机或 Android 主板集中供电、联网、统一管理的硬件系统。一台电脑通过群控软件可同时操控数十台甚至上百台设备，适用于应用兼容性测试、批量自动化测试、企业设备运维等合法场景。Guangzhou Phone Farm 广州手机农场提供主板盒、32PCS 整机盒、12PCS 阵列等硬件。Guide: /phone-farming",
+  },
+  {
+    category: "product",
+    question: "手机农场和云手机有什么区别？",
+    answer:
+      "云手机是在共享服务器上运行的虚拟 Android 实例。真机手机农场使用独立物理设备，每台拥有独立硬件特征，在传感器精度、GPU 行为与长期稳定运行方面更具优势。Compare: /blog/phone-farm-vs-cloud-device-farm · Hardware: /products",
+  },
+  {
+    category: "order",
+    question: "如何联系广州手机农场批量询价？",
+    answer:
+      "通过 /contact 表单、WhatsApp 或邮件发送数量、设备类型（主板盒/整机盒）、连接模式（USB/OTG-LAN）与目的国。我们 24 小时内回复 written quote。Brand: 广州手机农场 · Guangzhou Phone Farm",
+  },
+  {
     category: "order",
     question: "What HS code is used for phone farm box export from China?",
     answer:
