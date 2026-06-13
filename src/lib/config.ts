@@ -18,6 +18,8 @@ export const SITE = {
   serpSiteName: "Guangzhou Phone Farm",
   /** Domain label shown above titles in search (alternateName). */
   domainDisplay: "phonefarm.cn",
+  /** Bump when favicon/logo asset changes — busts browser cache. */
+  iconVersion: "20260613",
 } as const;
 
 /** Chinese SEO terms — 手机农场 and related queries for Baidu / CN search. */

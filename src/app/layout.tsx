@@ -62,8 +62,9 @@ export const metadata: Metadata = {
     images: [`${SITE.url}${IMAGES.motherboardBox.hero}`],
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: `/icon.svg?v=${SITE.iconVersion}`, type: "image/svg+xml" }],
+    apple: [{ url: `/apple-icon.svg?v=${SITE.iconVersion}`, type: "image/svg+xml" }],
+    shortcut: [`/icon.svg?v=${SITE.iconVersion}`],
   },
 };
 
