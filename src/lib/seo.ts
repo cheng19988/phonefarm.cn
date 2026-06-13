@@ -17,6 +17,9 @@ type SEOInput = {
   image?: string;
   noIndex?: boolean;
   keywords?: string[];
+  /** Use title as-is (no | brand suffix). For zh-CN pages. */
+  absoluteTitle?: boolean;
+  locale?: "en" | "zh-CN";
 };
 
 export const DEFAULT_KEYWORDS = [
@@ -51,23 +54,36 @@ export function buildMetadata({
   image,
   noIndex,
   keywords = DEFAULT_KEYWORDS,
+  absoluteTitle = false,
+  locale = "en",
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
   const ogImage = image || `${SITE.url}${IMAGES.motherboardBox.hero}`;
-  const fullTitle = `${title} | ${SITE.nameEn}`;
+  const brand = locale === "zh-CN" ? SITE.name : SITE.nameEn;
+  const fullTitle = absoluteTitle ? title : `${title} | ${brand}`;
+  const ogLocale = locale === "zh-CN" ? "zh_CN" : "en_US";
+  const languages: Record<string, string> =
+    path === "/zh" || path === "/zh/faq"
+      ? { en: `${SITE.url}/`, "zh-CN": `${SITE.url}/zh` }
+      : path === ""
+        ? { en: `${SITE.url}/`, "zh-CN": `${SITE.url}/zh` }
+        : {};
 
   return {
     title: { absolute: fullTitle },
     description,
     keywords: keywords.join(", "),
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(Object.keys(languages).length > 0 ? { languages } : {}),
+    },
     openGraph: {
       title: fullTitle,
       description,
       url,
-      siteName: SITE.nameEn,
+      siteName: brand,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
-      locale: "en_US",
+      locale: ogLocale,
       type: "website",
     },
     twitter: {

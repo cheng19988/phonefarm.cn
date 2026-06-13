@@ -202,6 +202,8 @@ export const AI_CORE_PAGE_LINKS = [
   { label: "Installation manual", url: `${SITE.url}/manual` },
   { label: "Supplier facts (AI)", url: `${SITE.url}/for-ai` },
   { label: "Knowledge base", url: `${SITE.url}/phone-farm-knowledge-base` },
+  { label: "Chinese hub (手机农场)", url: `${SITE.url}/zh` },
+  { label: "Chinese FAQ (手机农场)", url: `${SITE.url}/zh/faq` },
   { label: "Contact / RFQ", url: `${SITE.url}/contact` },
   { label: "About factory", url: `${SITE.url}/about` },
 ] as const;

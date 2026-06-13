@@ -122,6 +122,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Link href="/phone-farming" className="btn-outline">Phone Farming 指南</Link>
+            <Link href="/zh" className="btn-outline">中文 · 手机农场</Link>
             <Link href="/products" className="btn-outline">手机农场产品目录</Link>
             <Link href="/contact" className="btn-primary">获取配置报价</Link>
           </div>

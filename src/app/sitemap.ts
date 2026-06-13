@@ -36,6 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/quality-assurance",
     "/phone-farm-knowledge-base",
     "/for-ai",
+    "/zh",
+    "/zh/faq",
     "/privacy",
     "/terms",
   ]
@@ -44,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}${path}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : path === "/manual" ? 0.95 : 0.8,
+      priority: path === "" ? 1 : path === "/manual" ? 0.95 : path.startsWith("/zh") ? 0.92 : 0.8,
     }));
 
   const productPages = PRODUCT_SEEDS.filter((p) => !SITEMAP_EXCLUDED_PRODUCT_SLUGS.has(p.slug)).map((p) => ({
