@@ -20,10 +20,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.nameEn} | ${SITE.taglineEn}`,
-    template: `%s | ${SITE.nameEn}`,
+    default: "Phone Farm Box Manufacturer — Control Multiple Devices",
+    template: "%s",
   },
   description: SITE.descriptionEn,
+  applicationName: SITE.serpSiteName,
   keywords: [
     "phone farm box manufacturer",
     "box phone farm",
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: SITE.nameEn,
+    siteName: SITE.serpSiteName,
     images: [{ url: `${SITE.url}${IMAGES.motherboardBox.hero}`, width: 1600, height: 900, alt: SITE.nameEn }],
   },
   twitter: {

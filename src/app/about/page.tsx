@@ -1,6 +1,6 @@
-import { ContactCTA } from "@/components/shared";
+import { ContactCTA, JsonLd } from "@/components/shared";
 import { FactoryGallery, PageBanner, SectionHeader, SubsectionHeader } from "@/components/site-sections";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import {
   BUYER_SHOULD_PROVIDE,
   FACTORY_DIRECT,
@@ -17,7 +17,7 @@ import { IMAGES } from "@/lib/images";
 import { SITE, CONTACT } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "About Guangzhou Phone Farm — Factory-Direct Phone Farm Box Manufacturer",
+  title: "About Guangzhou Phone Farm — Leading Phone Farm Box Manufacturer",
   description:
     "Phone farm factory in Guangzhou since 2017. B2B phone farm box manufacturer: assembly, QC burn-in, export packing, ROM customization, 20-node motherboard boxes, 32PCS chassis and remote AnyDesk setup worldwide.",
   path: "/about",
@@ -31,8 +31,15 @@ export const metadata = buildMetadata({
 });
 
 export default function AboutPage() {
+  const pageMeta = {
+    name: "About Guangzhou Phone Farm — Leading Phone Farm Box Manufacturer",
+    description:
+      "Phone farm factory in Guangzhou since 2017. B2B phone farm box manufacturer: assembly, QC burn-in, export packing, ROM customization, 20-node motherboard boxes, 32PCS chassis and remote AnyDesk setup worldwide.",
+  };
+
   return (
     <>
+      <JsonLd data={webPageJsonLd({ ...pageMeta, path: "/about" })} />
       <PageBanner
         title={`About ${SITE.nameEn}`}
         subtitle="Factory-direct phone farm hardware from Guangzhou — assembly, burn-in, export packing, and remote commissioning."

@@ -17,8 +17,10 @@ type SEOInput = {
   image?: string;
   noIndex?: boolean;
   keywords?: string[];
-  /** Use title as-is (no | brand suffix). For zh-CN pages. */
+  /** Use title as-is (no brand suffix). Default true — site name comes from WebSite schema / og:site_name. */
   absoluteTitle?: boolean;
+  /** Append | brand to title (legacy). Default false for cleaner Google SERP titles. */
+  includeBrandInTitle?: boolean;
   locale?: "en" | "zh-CN";
 };
 
@@ -54,13 +56,16 @@ export function buildMetadata({
   image,
   noIndex,
   keywords = DEFAULT_KEYWORDS,
-  absoluteTitle = false,
+  absoluteTitle = true,
+  includeBrandInTitle = false,
   locale = "en",
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
   const ogImage = image || `${SITE.url}${IMAGES.motherboardBox.hero}`;
+  const siteName = SITE.serpSiteName;
   const brand = locale === "zh-CN" ? SITE.name : SITE.nameEn;
-  const fullTitle = absoluteTitle ? title : `${title} | ${brand}`;
+  const fullTitle =
+    includeBrandInTitle && !absoluteTitle ? `${title} | ${brand}` : title;
   const ogLocale = locale === "zh-CN" ? "zh_CN" : "en_US";
   const languages: Record<string, string> =
     path === "/zh" || path === "/zh/faq"
@@ -81,7 +86,7 @@ export function buildMetadata({
       title: fullTitle,
       description,
       url,
-      siteName: brand,
+      siteName,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
       locale: ogLocale,
       type: "website",
@@ -107,9 +112,11 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": ["Organization", "Manufacturer"],
     "@id": `${SITE.url}/#organization`,
-    name: SITE.nameEn,
+    name: SITE.serpSiteName,
     alternateName: [
       "Guangzhou Phone Farm",
+      SITE.domainDisplay,
+      `www.${SITE.domainDisplay}`,
       "phonefarm.cn",
       "Box Phone Farm Guangzhou",
       SITE.name,
@@ -117,7 +124,12 @@ export function organizationJsonLd() {
       "广州手机农场",
     ],
     url: SITE.url,
-    logo: `${SITE.url}/icon.svg`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE.url}/icon.svg`,
+      width: 512,
+      height: 512,
+    },
     image: `${SITE.url}${IMAGES.motherboardBox.hero}`,
     description: SITE.descriptionEn,
     foundingDate: "2017",
@@ -156,16 +168,33 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE.url}/#website`,
-    name: SITE.nameEn,
+    name: SITE.serpSiteName,
+    alternateName: [SITE.domainDisplay, `www.${SITE.domainDisplay}`, SITE.name, SITE.nameEn],
     url: SITE.url,
-    description: AI_CITATION_PARAGRAPH,
+    description: SITE.descriptionEn,
     publisher: { "@id": `${SITE.url}/#organization` },
-    inLanguage: "en",
+    inLanguage: ["en", "zh-CN"],
     potentialAction: {
       "@type": "SearchAction",
       target: `${SITE.url}/products?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
+  };
+}
+
+/** Per-page WebPage schema — pairs with <title> and meta description in SERP. */
+export function webPageJsonLd(input: { name: string; description: string; path: string }) {
+  const lang = input.path.startsWith("/zh") ? "zh-CN" : "en";
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE.url}${input.path}#webpage`,
+    name: input.name,
+    description: input.description,
+    url: `${SITE.url}${input.path}`,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    about: { "@id": `${SITE.url}/#organization` },
+    inLanguage: lang,
   };
 }
 

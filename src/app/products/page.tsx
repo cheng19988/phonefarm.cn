@@ -4,16 +4,16 @@ import { OrderFlowGuide } from "@/components/order-flow-guide";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { PageBanner, SubsectionHeader } from "@/components/site-sections";
 import { loadPublishedProducts } from "@/lib/catalog";
-import { buildMetadata, productCatalogJsonLd } from "@/lib/seo";
+import { buildMetadata, productCatalogJsonLd, webPageJsonLd } from "@/lib/seo";
 import { PRODUCT_CATALOG_GROUPS } from "@/lib/config";
 import { getProductSeed, getProductBestFor, type CatalogGroup } from "@/data/products";
 import { bannerProps } from "@/lib/banners";
 import { getProductCardImage } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Equipment Catalog — Device Farm Hardware",
+  title: "Phone Farm Box & Equipment Catalog — Device Farm Hardware",
   description:
-    "Guangzhou factory catalog: phone farm box, phone farm equipment, Android phone farm & mobile device farm hardware. Motherboard box, 32PCS chassis, arrays, routers, rackmount OEM. RFQ export.",
+    "Guangzhou factory catalog: phone farm box, phone farm equipment, Android phone farm hardware. Motherboard box, 32PCS chassis, arrays, routers, rackmount OEM. RFQ export worldwide.",
   path: "/products",
   keywords: [
     "phone farm equipment",
@@ -40,7 +40,17 @@ export default async function ProductsPage({
 
   return (
     <>
-      <JsonLd data={productCatalogJsonLd()} />
+      <JsonLd
+        data={[
+          productCatalogJsonLd(),
+          webPageJsonLd({
+            name: "Phone Farm Box & Equipment Catalog — Device Farm Hardware",
+            description:
+              "Guangzhou factory catalog: phone farm box, phone farm equipment, Android phone farm hardware. Motherboard box, 32PCS chassis, arrays, routers, rackmount OEM. RFQ export worldwide.",
+            path: "/products",
+          }),
+        ]}
+      />
       <PageBanner
         title="Hardware Catalog"
         subtitle="Factory-configured phone farm chassis, motherboard clusters, and lab accessories — every SKU quoted per your configuration."

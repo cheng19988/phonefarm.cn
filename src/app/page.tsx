@@ -10,7 +10,7 @@ import {
   SiteHero,
   TrustStrip,
 } from "@/components/site-sections";
-import { buildMetadata, itemListJsonLd, productCatalogJsonLd } from "@/lib/seo";
+import { buildMetadata, itemListJsonLd, productCatalogJsonLd, webPageJsonLd } from "@/lib/seo";
 import { getFaqPreview } from "@/data/faq";
 import { BLOG_POSTS } from "@/data/blog";
 import { WHY_CHOOSE_US, FACTORY_DIRECT, RELIABILITY } from "@/data/about";
@@ -19,9 +19,9 @@ import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Box Manufacturer | 手机农场硬件厂家 — Guangzhou China",
+  title: "Phone Farm Box Manufacturer — Control Multiple Devices",
   description:
-    "Guangzhou Phone Farm（广州手机农场）— B2B 手机农场 / phone farm box manufacturer. 46+ guides, Android motherboard box, 32PCS chassis, 12PCS array. Factory-direct 手机农场硬件, export shipping, USDT checkout, remote AnyDesk setup worldwide.",
+    "Guangzhou Phone Farm — factory-direct phone farm box hardware. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array. Export worldwide, USDT checkout, remote AnyDesk setup, ROM customization.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",
@@ -79,13 +79,18 @@ const SHOWCASE_COPY: Record<string, string> = {
 
 export default function HomePage() {
   const previewFaq = getFaqPreview(4);
+  const homeMeta = {
+    name: "Phone Farm Box Manufacturer — Control Multiple Devices",
+    description:
+      "Guangzhou Phone Farm — factory-direct phone farm box hardware. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array. Export worldwide, USDT checkout, remote AnyDesk setup, ROM customization.",
+  };
 
   return (
     <>
       <JsonLd data={[productCatalogJsonLd(), itemListJsonLd(CORE_PRODUCTS.map((p) => ({
         name: p.title,
         url: `${SITE.url}${p.href}`,
-      })))]} />
+      }))), webPageJsonLd({ ...homeMeta, path: "/" })]} />
       <SiteHero
         {...heroProps("home")}
         eyebrow={`${SITE.name} · 手机农场硬件 · ${SITE.locationEn} · Est. 2017`}
