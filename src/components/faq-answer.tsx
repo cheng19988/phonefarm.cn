@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-const PATH_RE = /(\/[a-z][a-z0-9-]*(?:\/[a-z0-9-]+)?)/gi;
+/** Site paths like /manual — not slashes inside words (OTG/LAN, photo/video, USB/OTG). */
+const PATH_RE = /(?<![a-zA-Z0-9])(\/[a-z][a-z0-9-]*(?:\/[a-z0-9-]+)?)/gi;
 
 /** Turn inline paths like /manual into internal links in FAQ answers. */
 export function FaqAnswer({ text }: { text: string }) {
