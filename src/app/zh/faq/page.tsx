@@ -32,7 +32,7 @@ export default function ZhFaqPage() {
           <FAQAccordion items={ZH_FAQ_ITEMS} />
           <div className="text-center mt-8 space-x-4">
             <Link href="/zh" className="btn-outline">返回中文首页</Link>
-            <Link href="/contact" className="btn-primary">联系询价</Link>
+            <Link href="/zh/contact" className="btn-primary">联系询价</Link>
           </div>
         </div>
       </section>

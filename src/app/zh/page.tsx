@@ -47,8 +47,8 @@ export default function ZhHomePage() {
             </p>
           ))}
           <div className="flex flex-wrap justify-center gap-3 pt-2">
-            <Link href="/products" className="btn-primary">查看产品目录</Link>
-            <Link href="/contact" className="btn-outline">批量询价 / RFQ</Link>
+            <Link href="/zh/products" className="btn-primary">查看产品目录</Link>
+            <Link href="/zh/contact" className="btn-outline">批量询价 / RFQ</Link>
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
               WhatsApp 咨询
             </a>
@@ -66,7 +66,7 @@ export default function ZhHomePage() {
             {ZH_PRODUCTS.map((p) => (
               <Link
                 key={p.slug}
-                href={`/products/${p.slug}`}
+                href={`/zh/products/${p.slug}`}
                 className="card-flat hover:border-cyan-500/30 transition-all block h-full"
               >
                 <h3 className="text-lg font-bold text-white mb-3 leading-snug">{p.name}</h3>
@@ -108,7 +108,7 @@ export default function ZhHomePage() {
             ))}
           </ul>
           <p className="text-center mt-8">
-            <Link href="/about" className="text-cyan-400 font-medium hover:text-cyan-300">了解工厂团队 →</Link>
+            <Link href="/zh/about" className="text-cyan-400 font-medium hover:text-cyan-300">了解工厂团队 →</Link>
           </p>
         </div>
       </section>

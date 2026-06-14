@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/config";
 import { BLOG_POSTS } from "@/data/blog";
 import { PRODUCT_SEEDS } from "@/data/products";
+import { ZH_PRODUCT_SLUGS } from "@/lib/i18n";
 
 /** Paths that must never appear in the public sitemap. */
 const SITEMAP_EXCLUDED_PREFIXES = ["/admin", "/api", "/account", "/orders", "/login", "/register"];
@@ -38,6 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/for-ai",
     "/zh",
     "/zh/faq",
+    "/zh/products",
+    "/zh/pricing",
+    "/zh/contact",
+    "/zh/about",
+    "/zh/phone-farming",
     "/privacy",
     "/terms",
   ]
@@ -63,5 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...productPages, ...blogPages];
+  const zhProductPages = ZH_PRODUCT_SLUGS.map((slug) => ({
+    url: `${base}/zh/products/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.88,
+  }));
+
+  return [...staticPages, ...productPages, ...zhProductPages, ...blogPages];
 }

@@ -19,9 +19,9 @@ import { heroProps } from "@/lib/banners";
 import { SITE, CONTACT, CORE_PRODUCTS } from "@/lib/config";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Box Manufacturer — Control Multiple Devices",
+  title: "Phone Farm Box Manufacturer | 广州手机农场 · 手机农场硬件",
   description:
-    "Guangzhou Phone Farm — factory-direct phone farm box hardware. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array. Export worldwide, USDT checkout, remote AnyDesk setup, ROM customization.",
+    "Guangzhou Phone Farm / 广州手机农场 — factory-direct 手机农场 phone farm box hardware. Android motherboard box (20 nodes), 32PCS chassis, 12PCS array. Export worldwide, USDT checkout, remote AnyDesk setup, ROM customization.",
   path: "/",
   keywords: [
     "phone farm box manufacturer",

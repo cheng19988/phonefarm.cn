@@ -1,5 +1,14 @@
 /** Chinese (zh-CN) content for domestic / Baidu SEO — 手机农场 keyword hub. */
 
+export const ZH_NAV = [
+  { href: "/zh/products", label: "产品" },
+  { href: "/zh/pricing", label: "报价" },
+  { href: "/zh/phone-farming", label: "手机农场指南" },
+  { href: "/zh/faq", label: "常见问题" },
+  { href: "/zh/about", label: "关于" },
+  { href: "/zh/contact", label: "联系询价" },
+] as const;
+
 export const ZH_HERO = {
   title: "广州手机农场 — 专业手机农场硬件厂家",
   subtitle:
@@ -34,6 +43,12 @@ export const ZH_PRODUCTS = [
     slug: "phone-array-12pcs",
     desc: "12个热插拔抽屉，可装完整手机或主板，便于样品评估与频繁换机测试。可选内置PC与USB 2.0 HUB。",
     params: ["12抽屉", "热插拔", "整机或主板", "样品3-5天发货"],
+  },
+  {
+    name: "iPhone手机农场盒 — iOS多设备群控",
+    slug: "iphone-phone-farm",
+    desc: "iOS设备农场机箱，热插拔抽屉，型号与iOS版本在报价前确认。适合iOS应用测试与企业多设备管理。",
+    params: ["iOS真机槽位", "热插拔", "定制报价", "远程安装"],
   },
 ];
 
@@ -144,10 +159,46 @@ export const ZH_FAQ_ITEMS: { question: string; answer: string }[] = [
 ];
 
 export const ZH_ARTICLE_LINKS = [
-  { title: "手机农场部署指南(英文)", href: "/phone-farming" },
+  { title: "手机农场部署指南", href: "/zh/phone-farming" },
   { title: "USB模式 vs OTG/LAN模式", href: "/blog/usb-mode-vs-otg-lan-mode" },
   { title: "主板盒 vs 32PCS整机盒选型", href: "/blog/when-choose-20-node-motherboard-vs-32pcs-chassis" },
   { title: "手机农场散热与功耗", href: "/blog/phone-farm-cooling-power-chassis-vs-open-racks" },
   { title: "手机农场批发与批量订单", href: "/blog/phone-farm-wholesale-bulk-order" },
   { title: "安装手册(英文)", href: "/manual" },
 ];
+
+export const ZH_ABOUT = {
+  title: "关于广州手机农场",
+  subtitle: "自2017年起在广州组装手机农场硬件 — 工厂直销、QC老化、出口打包与远程交付。",
+  paragraphs: [
+    "广州手机农场(Guangzhou Phone Farm)是位于广东广州的B2B手机农场(Phone Farm)硬件厂家，专注安卓主板盒、32PCS整机盒、12PCS热插拔阵列、iPhone农场盒及OTG/LAN网络设备。",
+    "我们从主板采购、机箱组装、插槽级老化测试到出口泡沫包装一站式完成，服务全球集成商、测试实验室与企业设备运维团队。",
+    "标准硬件订单包含AnyDesk远程安装指导；批量与OEM项目支持ROM定制、机柜布局与混合Android/iOS实验室方案。",
+  ],
+  highlights: [
+    "2017年起广州工厂组装",
+    "20–32节点标准SKU + OEM机柜",
+    "USB与OTG/LAN双连接模式",
+    "出口发票与全球RFQ",
+  ],
+};
+
+export const ZH_PRICING = {
+  title: "手机农场报价与MOQ",
+  subtitle: "所有硬件按配置报价 — 节点数、连接模式、ROM范围与出口条款。标准SKU支持USDT结账，批量/OEM请询价。",
+};
+
+export const ZH_CONTACT = {
+  title: "联系广州手机农场 — 批量询价",
+  subtitle: "B2B硬件RFQ — 确认配置、交期与出口条款后再生产。",
+};
+
+export const ZH_PRODUCTS_PAGE = {
+  title: "手机农场产品目录",
+  subtitle: "安卓主板盒、32PCS整机盒、12PCS阵列、iPhone农场盒、路由器与企业交换机 — 广州工厂直销。",
+};
+
+export const ZH_PHONE_FARMING = {
+  title: "手机农场硬件与部署指南",
+  subtitle: "真机群控、主板盒、32PCS整机盒、USB/OTG模式 — 广州手机农场工厂直销硬件方案。",
+};

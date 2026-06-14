@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CONTACT, NAV, SITE, PRODUCT_NAV } from "@/lib/config";
 import { SiteLogo } from "./logo";
+import { LanguageSwitcher } from "./language-switcher";
 import { getSession } from "@/lib/auth";
 
 export async function Header() {
@@ -23,6 +24,7 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <Link href="/login" className="hidden md:inline-flex nav-link-muted text-sm">
             Account
           </Link>
@@ -93,7 +95,11 @@ export function Footer() {
             <li><Link href="/android-device-farm" className="hover:text-cyan-300 transition-colors">Android Device Farm</Link></li>
             <li><Link href="/rackmount-phone-farm" className="hover:text-cyan-300 transition-colors">Rackmount Phone Farm</Link></li>
             <li><Link href="/zh" className="hover:text-cyan-300 transition-colors">中文 · 手机农场</Link></li>
+            <li><Link href="/zh/products" className="hover:text-cyan-300 transition-colors">手机农场产品 (中文)</Link></li>
+            <li><Link href="/zh/pricing" className="hover:text-cyan-300 transition-colors">报价与 MOQ (中文)</Link></li>
+            <li><Link href="/zh/phone-farming" className="hover:text-cyan-300 transition-colors">手机农场指南 (中文)</Link></li>
             <li><Link href="/zh/faq" className="hover:text-cyan-300 transition-colors">手机农场 FAQ (中文)</Link></li>
+            <li><Link href="/zh/contact" className="hover:text-cyan-300 transition-colors">联系询价 (中文)</Link></li>
             <li><Link href="/phone-farming" className="hover:text-cyan-300 transition-colors">Phone Farming Guide</Link></li>
             <li><Link href="/mobile-phone-farming" className="hover:text-cyan-300 transition-colors">Mobile Phone Farming</Link></li>
             <li><Link href="/quality-assurance" className="hover:text-cyan-300 transition-colors">Quality Assurance</Link></li>

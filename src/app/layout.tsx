@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 import { Header, Footer } from "@/components/layout";
 import { FloatingContact } from "@/components/floating-contact";
 import { JsonLd } from "@/components/shared";
@@ -72,8 +73,11 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerStore = await headers();
+  const lang = headerStore.get("x-site-lang") === "zh-CN" ? "zh-CN" : "en";
+
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="site-shell antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <JsonLd data={globalJsonLdBundle()} />

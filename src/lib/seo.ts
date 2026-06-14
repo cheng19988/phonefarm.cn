@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CONTACT, SITE, SEO_KEYWORDS_ZH } from "./config";
+import { getHreflangAlternates } from "./i18n";
 import { IMAGES } from "./images";
 import {
   AI_APPLICATION_FIELDS,
@@ -67,12 +68,7 @@ export function buildMetadata({
   const fullTitle =
     includeBrandInTitle && !absoluteTitle ? `${title} | ${brand}` : title;
   const ogLocale = locale === "zh-CN" ? "zh_CN" : "en_US";
-  const languages: Record<string, string> =
-    path === "/zh" || path === "/zh/faq"
-      ? { en: `${SITE.url}/`, "zh-CN": `${SITE.url}/zh` }
-      : path === ""
-        ? { en: `${SITE.url}/`, "zh-CN": `${SITE.url}/zh` }
-        : {};
+  const languages = getHreflangAlternates(path);
 
   return {
     title: { absolute: fullTitle },
@@ -80,7 +76,7 @@ export function buildMetadata({
     keywords: keywords.join(", "),
     alternates: {
       canonical: url,
-      ...(Object.keys(languages).length > 0 ? { languages } : {}),
+      ...(languages ? { languages } : {}),
     },
     openGraph: {
       title: fullTitle,
